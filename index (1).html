@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Splash Play</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.5/babel.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&family=Inter:wght@400;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}body{font-family:'Inter',sans-serif;margin:0;background:linear-gradient(135deg,#020617,#0f172a,#1e1b4b);color:#fff;min-height:100vh}.fd{font-family:'Oswald',sans-serif}.fm{font-family:'JetBrains Mono',monospace}.ct{max-width:1600px;margin:0 auto;padding:0 1rem}.flex{display:flex}.fc{flex-direction:column}.fw{flex-wrap:wrap}.ac{align-items:center}.jb{justify-content:space-between}.jc{justify-content:center}.g1{gap:.25rem}.g2{gap:.5rem}.g3{gap:.75rem}.g4{gap:1rem}.gr{display:grid}.tc{text-align:center}.tl{text-align:left}.tr{text-align:right}.wf{width:100%}.f1{flex:1}.hd{display:none}.p2{padding:.5rem}.p6{padding:1.5rem}.mb4{margin-bottom:1rem}.mt8{margin-top:2rem}.txs{font-size:.85rem}.tsm{font-size:.95rem}.tlg{font-size:1.25rem}.txl{font-size:1.5rem}.t2x{font-size:1.85rem}.t3x{font-size:2.5rem}.fw5{font-weight:500}.fw6{font-weight:600}.uc{text-transform:uppercase}.tn{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.tw{color:#fff}.ts4{color:#94a3b8}.ts5{color:#64748b}.ts6{color:#475569}.to4{color:#fb923c}.ta4{color:#fbbf24}.te4{color:#34d399}.tr4{color:#f87171}.tb4{color:#60a5fa}.tp4{color:#c084fc}.tc4{color:#22d3ee}.tpk{color:#f472b6}.ty4{color:#facc15}.bb5{background:rgba(0,0,0,.5)}.bb9{background:rgba(0,0,0,.9)}.bt{border-top:1px solid rgba(255,255,255,.05)}.bb{border-bottom:1px solid rgba(255,255,255,.05)}.bo{border-bottom:2px solid #f97316}.rd{border-radius:.25rem}.rx{border-radius:.75rem}.rf{border-radius:9999px}.gl{background:rgba(255,255,255,.03);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.08)}.gw{box-shadow:0 0 40px rgba(251,146,60,.15)}.ap{animation:pulse 2s infinite}@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}.cp{cursor:pointer}.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.5rem 1rem;border-radius:.5rem;font-weight:500;font-size:.95rem;border:none;cursor:pointer;transition:all .15s}.bp{background:linear-gradient(135deg,#f97316,#f59e0b);color:#000}.bs{background:rgba(255,255,255,.05);color:#94a3b8}.bs:hover{background:rgba(255,255,255,.1);color:#fff}.ba{background:linear-gradient(135deg,#f97316,#f59e0b);color:#000}.bsm{padding:.35rem .7rem;font-size:.85rem}input[type="text"],input[type="password"]{background:rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.1);border-radius:.5rem;padding:.5rem 1rem;color:#fff;font-family:'JetBrains Mono',monospace;font-size:.95rem;outline:none}input:focus{border-color:#f97316}table{width:100%;border-collapse:collapse}th,td{white-space:nowrap}th{font-weight:600}.gt{background:linear-gradient(90deg,#fff,#fb923c);-webkit-background-clip:text;-webkit-text-fill-color:transparent}.st{position:sticky}.t0{top:0}.z5{z-index:50}::-webkit-scrollbar{width:6px;height:6px}::-webkit-scrollbar-track{background:rgba(255,255,255,.05)}::-webkit-scrollbar-thumb{background:#f97316;border-radius:3px}.vb{background:linear-gradient(135deg,#059669,#10b981);color:#fff;padding:.2rem .6rem;border-radius:9999px;font-weight:600;font-size:.85rem}.gc{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.08);border-radius:.75rem;overflow:hidden}.gto{background:linear-gradient(135deg,rgba(249,115,22,.2),rgba(245,158,11,.2));border-bottom:1px solid rgba(249,115,22,.3)}.mc{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.1);border-radius:.5rem;overflow:hidden}.sb{background:rgba(0,0,0,.3);border-radius:.5rem;padding:.7rem;text-align:center}.hr:hover{background:rgba(255,255,255,.05)}.ox{overflow-x:auto}.sh{cursor:pointer;user-select:none;transition:color 0.15s}.sh:hover{color:#fb923c}.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#10b981;color:#fff;padding:12px 28px;border-radius:8px;font-size:1rem;font-weight:500;z-index:200;animation:fadeInOut 2.5s ease}@keyframes fadeInOut{0%{opacity:0;transform:translateX(-50%) translateY(10px)}10%{opacity:1;transform:translateX(-50%) translateY(0)}90%{opacity:1}100%{opacity:0}}.rk{font-size:.65rem;color:#64748b;margin-left:4px}.ertoast{background:#ef4444}@media(min-width:1024px){.lg3{grid-template-columns:repeat(3,1fr)}.lg2{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+const {useState,useMemo,useCallback,useEffect}=React,AU='admin',AP='nbastats2025',ED={matchups:[],games:[],playerRanks:[],myProj:[],lastUpdated:null};
+
+// GitHub Configuration - Connected to your repo
+const GITHUB_OWNER = 'chrisspags';
+const GITHUB_REPO = 'splashplaynba';
+const GITHUB_TOKEN = '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';
+const GITHUB_FILE = 'data.json';
+
+const TC={UTA:'#00471B',CLE:'#860038',LAL:'#552583',BOS:'#007A33',PHI:'#006BB6',LAC:'#C8102E',IND:'#002D62',TOR:'#CE1141',CHA:'#1D1160',SAC:'#5A2D81',BKN:'#000',DAL:'#00538C',MIA:'#98002E',HOU:'#CE1141',DEN:'#0E2240',MIL:'#00471B',NYK:'#006BB6',ATL:'#E03A3E',CHI:'#CE1141',ORL:'#0077C0',WAS:'#002B5C',DET:'#C8102E',MEM:'#5D76A9',NOP:'#0C2340',MIN:'#0C2340',POR:'#E03A3E',OKC:'#007AC1',SAS:'#C4CED4',PHX:'#1D1160',GSW:'#1D428A'};
+const TN={UTA:'Jazz',CLE:'Cavaliers',LAL:'Lakers',BOS:'Celtics',PHI:'76ers',LAC:'Clippers',IND:'Pacers',TOR:'Raptors',CHA:'Hornets',SAC:'Kings',BKN:'Nets',DAL:'Mavericks',MIA:'Heat',HOU:'Rockets',DEN:'Nuggets',MIL:'Bucks',NYK:'Knicks',ATL:'Hawks',CHI:'Bulls',ORL:'Magic',WAS:'Wizards',DET:'Pistons',MEM:'Grizzlies',NOP:'Pelicans',MIN:'Timberwolves',POR:'Trail Blazers',OKC:'Thunder',SAS:'Spurs',PHX:'Suns',GSW:'Warriors'};
+const fm=v=>v!=null&&!isNaN(v)?Number(v).toFixed(1):'-',fm2=v=>v!=null&&!isNaN(v)?Number(v).toFixed(2):'-',fp=v=>v!=null&&!isNaN(v)?(Number(v)*100).toFixed(1)+'%':'-',fc=v=>v?'$'+Number(v).toLocaleString():'-',vc=v=>v>=5.5?'te4':v>=4.5?'ta4':'tr4';
+
+// GitHub API functions
+const getGitHubFile = async () => {
+  try {
+    const url = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${GITHUB_FILE}`;
+    const response = await fetch(url, {
+      headers: { 'Accept': 'application/vnd.github.v3+json' }
+    });
+    if (!response.ok) return { data: null, sha: null };
+    const result = await response.json();
+    const content = atob(result.content);
+    return { data: JSON.parse(content), sha: result.sha };
+  } catch (e) {
+    console.error('GitHub fetch error:', e);
+    return { data: null, sha: null };
+  }
+};
+
+const saveToGitHub = async (data, sha) => {
+  try {
+    const url = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${GITHUB_FILE}`;
+    const content = btoa(unescape(encodeURIComponent(JSON.stringify(data, null, 2))));
+    const body = {
+      message: `Update data ${new Date().toISOString()}`,
+      content: content,
+      branch: 'main'
+    };
+    if (sha) body.sha = sha;
+    
+    const response = await fetch(url, {
+      method: 'PUT',
+      headers: {
+        'Authorization': `token ${GITHUB_TOKEN}`,
+        'Content-Type': 'application/json',
+        'Accept': 'application/vnd.github.v3+json'
+      },
+      body: JSON.stringify(body)
+    });
+    return response.ok;
+  } catch (e) {
+    console.error('GitHub save error:', e);
+    return false;
+  }
+};
+
+function App(){
+const[data,setData]=useState(ED),[tab,setTab]=useState('search'),[search,setSearch]=useState(''),[sort,setSort]=useState({key:'fppm',dir:'desc'}),[projSort,setProjSort]=useState({key:'projection',dir:'desc'}),[matrixSort,setMatrixSort]=useState({key:'projection',dir:'desc'}),[isAdmin,setIsAdmin]=useState(false),[showLogin,setShowLogin]=useState(false),[loginUser,setLoginUser]=useState(''),[loginPass,setLoginPass]=useState(''),[loginError,setLoginError]=useState(''),[uploading,setUploading]=useState(false),[error,setError]=useState(null),[currentPage,setCurrentPage]=useState(1),[showAll,setShowAll]=useState(false),[expanded,setExpanded]=useState(false),[toast,setToast]=useState(''),[toastType,setToastType]=useState(''),[isLoading,setIsLoading]=useState(true),[fileSha,setFileSha]=useState(null);
+const PS=50;
+const showToast=(msg,type='')=>{setToast(msg);setToastType(type);setTimeout(()=>{setToast('');setToastType('')},2500)};
+
+// Load data from GitHub on mount
+useEffect(()=>{
+  const loadData = async () => {
+    setIsLoading(true);
+    const { data: ghData, sha } = await getGitHubFile();
+    if(ghData && ghData.lastUpdated) {
+      setData(ghData);
+      setFileSha(sha);
+    }
+    setIsLoading(false);
+  };
+  loadData();
+  if(sessionStorage.getItem('spAdmin')==='true')setIsAdmin(true);
+},[]);
+
+const handleLogin=()=>{if(loginUser===AU&&loginPass===AP){setIsAdmin(true);setShowLogin(false);setLoginError('');sessionStorage.setItem('spAdmin','true')}else setLoginError('Invalid')};
+const handleLogout=()=>{setIsAdmin(false);sessionStorage.removeItem('spAdmin')};
+
+const parseExcel=useCallback(async(file)=>{
+setUploading(true);setError(null);
+
+const reader=new FileReader();
+reader.onload=async(ev)=>{try{
+const wb=XLSX.read(ev.target.result,{type:'array'}),mRaw=XLSX.utils.sheet_to_json(wb.Sheets['Matchups'],{header:1}),games=[],matchups=[];
+let cg={away:null,home:null,combined:0,awayPlayers:[],homePlayers:[]},ct=null,ia=true;
+for(let i=0;i<mRaw.length;i++){const r=mRaw[i];if(!r||r.length<5)continue;if(!r[0]&&r[1]&&r[3]==='Combined Total'){cg.combined=Number(r[1])||0;if(cg.away&&cg.home&&cg.awayPlayers.length)games.push({...cg});cg={away:null,home:null,combined:0,awayPlayers:[],homePlayers:[]};ia=true;continue}if(!r[0]&&typeof r[1]==='string'&&r[1]!=='P100 Total'&&!isNaN(r[2])&&r[2]>100){if(ia){cg.away={name:r[1],vegas:Number(r[2])};ct='away'}else{cg.home={name:r[1],vegas:Number(r[2])};ct='home'}ia=false;continue}if(r[0]&&typeof r[0]==='string'&&r[0].includes('-')&&r[0].length<10){
+const p={id:r[0],team:r[0].split('-')[0],name:r[1]||'',pos:r[2]||'',price:Number(r[3])||0,proj:Number(r[4])||0,value:Number(r[5])||0,stok:Number(r[6])||0,own:Number(r[7])||0,sim:Number(r[8])||0,min:Number(r[10])||0,usg:Number(r[11])||0,rebPct:Number(r[12])||0,astPct:Number(r[13])||0,fppm:Number(r[14])||0,xFppm:Number(r[19])||0,projPts:Number(r[23])||0,projReb:Number(r[24])||0,projAst:Number(r[25])||0,tsPct:Number(r[34])||0,pts100:Number(r[43])||0,reb100:Number(r[45])||0,ast100:Number(r[46])||0};
+p.pra=p.projPts+p.projReb+p.projAst;
+matchups.push(p);if(ct==='away')cg.awayPlayers.push(p);else if(ct==='home')cg.homePlayers.push(p)}}
+
+const rRaw=XLSX.utils.sheet_to_json(wb.Sheets['Player Ranks']),playerRanks=rRaw.map(r=>({name:r['P100 Total']||'',min:Number(r['Min'])||0,usg:Number(r['USG'])||0,rebPct:Number(r['Reb%'])||0,astPct:Number(r['Ast%'])||0,fppm:Number(r['FPPM'])||0,ppg:Number(r['PPG'])||0,reb:Number(r['Reb'])||0,ast:Number(r['Ast'])||0,pts100:Number(r['P100Pts'])||0,threePA100:Number(r['3PA'])||0,reb100:Number(r['REB'])||0,ast100:Number(r['AST'])||0,tsPct:Number(r['TS%'])||0,ortg:Number(r['ORTG'])||0,drtg:Number(r['DRTG'])||0})).filter(p=>p.name);
+
+const matchupLookup = {};
+matchups.forEach(m => { matchupLookup[m.name.toLowerCase()] = m; });
+
+const pRaw=XLSX.utils.sheet_to_json(wb.Sheets['MyProj']),myProj=pRaw.map(r=>{
+  const name = r['Name']||'';
+  const matchupData = matchupLookup[name.toLowerCase()];
+  return {
+    name,
+    team:r['Team']||'',
+    price:Number(r['Price'])||0,
+    pos:r['Pos']||'',
+    opp:r['Opp']||'',
+    min:Number(r['Proj Min'])||0,
+    projection:Number(r['projection'])||0,
+    ownership:Number(r['Ownership'])||0,
+    stokastic:Number(r['Industry Projection'])||0,
+    projPts: matchupData?.projPts || 0,
+    projReb: matchupData?.projReb || 0,
+    projAst: matchupData?.projAst || 0,
+    pra: matchupData?.pra || 0,
+    value:Number(r['Point Per $'])||0,
+    fppm:Number(r['FPPM'])||0
+  };
+}).filter(p=>p.name&&p.price>0);
+
+const newData = {matchups,games,playerRanks,myProj,lastUpdated:new Date().toLocaleString()};
+
+// Save to GitHub
+showToast('Uploading to cloud...');
+const saved = await saveToGitHub(newData, fileSha);
+if(saved) {
+  setData(newData);
+  // Refresh SHA for next update
+  const { sha: newSha } = await getGitHubFile();
+  setFileSha(newSha);
+  setUploading(false);
+  showToast('✓ Data live! All users will see it.');
+} else {
+  setUploading(false);
+  showToast('✗ Upload failed - check GitHub config','error');
+}
+}catch(err){console.error(err);setError('Parse error');setUploading(false)}};reader.readAsArrayBuffer(file)},[fileSha]);
+
+const handleFile=e=>{const f=e.target.files[0];if(f)parseExcel(f)};
+
+const refreshData = async () => {
+  showToast('Refreshing...');
+  const { data: ghData, sha } = await getGitHubFile();
+  if(ghData && ghData.lastUpdated) {
+    setData(ghData);
+    setFileSha(sha);
+    showToast('✓ Data refreshed!');
+  } else {
+    showToast('✗ No data found','error');
+  }
+};
+
+const playerRanksWithRanks = useMemo(() => {
+  if(!data.playerRanks || data.playerRanks.length === 0) return [];
+  const fields = ['fppm','ppg','reb','ast','usg','rebPct','astPct','tsPct','pts100','reb100','ast100','threePA100','min','ortg','drtg'];
+  const sorted = {};
+  fields.forEach(f => {
+    const arr = [...data.playerRanks].filter(p => p[f] != null && !isNaN(p[f]));
+    if(f === 'drtg') { arr.sort((a,b) => (a[f]||999) - (b[f]||999)); }
+    else { arr.sort((a,b) => (b[f]||0) - (a[f]||0)); }
+    sorted[f] = arr.map(p => p.name);
+  });
+  return data.playerRanks.map(p => {
+    const ranks = {};
+    fields.forEach(f => {
+      const idx = sorted[f].indexOf(p.name);
+      ranks[f + 'Rank'] = idx >= 0 ? idx + 1 : null;
+    });
+    return {...p, ...ranks};
+  });
+}, [data.playerRanks]);
+
+const ranks=useMemo(()=>{if(!playerRanksWithRanks)return[];let d=playerRanksWithRanks.filter(p=>p.name.toLowerCase().includes(search.toLowerCase()));if(sort.key)d.sort((a,b)=>sort.dir==='asc'?(a[sort.key]||0)-(b[sort.key]||0):(b[sort.key]||0)-(a[sort.key]||0));return d},[playerRanksWithRanks,search,sort]);
+const paginatedRanks=useMemo(()=>showAll?ranks:ranks.slice((currentPage-1)*PS,currentPage*PS),[ranks,currentPage,showAll]);
+const totalPages=Math.ceil(ranks.length/PS);
+const proj=useMemo(()=>{if(!data.myProj)return[];let d=[...data.myProj];if(projSort.key){const isStr=['team','pos','opp','name'].includes(projSort.key);d.sort((a,b)=>{const av=a[projSort.key]||'',bv=b[projSort.key]||'';if(isStr)return projSort.dir==='asc'?String(av).localeCompare(String(bv)):String(bv).localeCompare(String(av));return projSort.dir==='asc'?(av||0)-(bv||0):(bv||0)-(av||0)})}return d},[data.myProj,projSort]);
+const matrixData=useMemo(()=>{if(!data.myProj)return{PG:[],SG:[],SF:[],PF:[],C:[]};const r={PG:[],SG:[],SF:[],PF:[],C:[]};data.myProj.forEach(p=>{const ps=p.pos||'';if(ps.includes('PG'))r.PG.push(p);else if(ps.includes('SG'))r.SG.push(p);else if(ps.includes('SF'))r.SF.push(p);else if(ps.includes('PF'))r.PF.push(p);else if(ps.includes('C'))r.C.push(p)});return r},[data.myProj]);
+const sortedMatrix=useMemo(()=>{const r={};['PG','SG','SF','PF','C'].forEach(pos=>{let pl=[...(matrixData[pos]||[])];if(matrixSort.key)pl.sort((a,b)=>matrixSort.dir==='asc'?(a[matrixSort.key]||0)-(b[matrixSort.key]||0):(b[matrixSort.key]||0)-(a[matrixSort.key]||0));r[pos]=pl});return r},[matrixData,matrixSort]);
+const found=useMemo(()=>!search?null:playerRanksWithRanks?.find(p=>p.name.toLowerCase().includes(search.toLowerCase())),[playerRanksWithRanks,search]);
+const doSort=k=>{setSort(s=>({key:k,dir:s.key===k&&s.dir==='desc'?'asc':'desc'}));setCurrentPage(1)};
+const doProjSort=k=>setProjSort(s=>({key:k,dir:s.key===k&&s.dir==='desc'?'asc':'desc'}));
+const doMatrixSort=k=>setMatrixSort(s=>({key:k,dir:s.key===k&&s.dir==='desc'?'asc':'desc'}));
+useEffect(()=>{setCurrentPage(1)},[search]);
+const hasData=(data.matchups?.length>0)||(data.playerRanks?.length>0);
+const copyToClipboard=()=>{if(!proj.length)return;const hd=['Name','Team','Pos','Opp','Price','Min','Proj',...(isAdmin?['Stok','Value','Own%']:[]),'ProjPts','ProjReb','ProjAst','PRA'];const rows=proj.map(p=>[p.name,p.team,p.pos,p.opp,p.price,p.min?.toFixed(1),p.projection?.toFixed(1),...(isAdmin?[p.stokastic?.toFixed(1),p.value?.toFixed(2),p.ownership?.toFixed(1)]:[]),p.projPts?.toFixed(1),p.projReb?.toFixed(1),p.projAst?.toFixed(1),p.pra?.toFixed(1)]);const tsv=[hd.join('\t'),...rows.map(r=>r.join('\t'))].join('\n');navigator.clipboard.writeText(tsv).then(()=>showToast('✓ Copied to clipboard')).catch(()=>showToast('Copy failed','error'))};
+const exportCSV=()=>{if(!proj.length)return;const hd=['Name','Team','Pos','Opp','Price','Min','Proj',...(isAdmin?['Stok','Value','Own%']:[]),'ProjPts','ProjReb','ProjAst','PRA'];const rows=proj.map(p=>[p.name,p.team,p.pos,p.opp,p.price,p.min?.toFixed(1),p.projection?.toFixed(1),...(isAdmin?[p.stokastic?.toFixed(1),p.value?.toFixed(2),p.ownership?.toFixed(1)]:[]),p.projPts?.toFixed(1),p.projReb?.toFixed(1),p.projAst?.toFixed(1),p.pra?.toFixed(1)]);const csv=[hd.join(','),...rows.map(r=>r.map(c=>typeof c==='string'&&c.includes(',')?`"${c}"`:c).join(','))].join('\n');const b=new Blob([csv],{type:'text/csv'});const u=URL.createObjectURL(b);const a=document.createElement('a');a.href=u;a.download='spags.csv';a.click();showToast('✓ CSV downloaded')};
+const cols=expanded?[{k:'pos',l:'Pos',w:38},{k:'price',l:'$',w:58},{k:'min',l:'Min',w:38},{k:'proj',l:'Proj',w:44},{k:'stok',l:'Stok',w:44,ad:1},{k:'value',l:'Val',w:46},{k:'own',l:'Own',w:44,ad:1},{k:'sim',l:'Sim',w:44,ad:1},{k:'projPts',l:'Pts',w:40},{k:'projReb',l:'Reb',w:40},{k:'projAst',l:'Ast',w:40},{k:'pra',l:'PRA',w:44},{k:'usg',l:'Usg',w:42},{k:'rebPct',l:'Rb%',w:42},{k:'astPct',l:'As%',w:42},{k:'tsPct',l:'TS%',w:46},{k:'fppm',l:'FPPM',w:50},{k:'xFppm',l:'xFP',w:48},{k:'pts100',l:'P100',w:44},{k:'reb100',l:'R100',w:44},{k:'ast100',l:'A100',w:44}]:[{k:'pos',l:'Pos',w:38},{k:'price',l:'$',w:58},{k:'min',l:'Min',w:38},{k:'proj',l:'Proj',w:44},{k:'stok',l:'Stok',w:44,ad:1},{k:'value',l:'Val',w:46},{k:'own',l:'Own',w:44,ad:1},{k:'sim',l:'Sim',w:44,ad:1},{k:'projPts',l:'Pts',w:40},{k:'projReb',l:'Reb',w:40},{k:'projAst',l:'Ast',w:40},{k:'pra',l:'PRA',w:44},{k:'usg',l:'Usg',w:42},{k:'rebPct',l:'Rb%',w:42},{k:'astPct',l:'As%',w:42},{k:'tsPct',l:'TS%',w:46},{k:'fppm',l:'FPPM',w:50},{k:'xFppm',l:'xFP',w:48}];
+const gc=()=>cols.filter(c=>!c.ad||isAdmin);
+const rc=(p,c)=>{const v=p[c.k];if(c.k==='price')return<span className="ts4">{fc(v)}</span>;if(c.k==='value')return<span className={vc(v)}>{fm(v)}x</span>;if(c.k==='pos')return<span className="ts5">{v}</span>;if(['usg','rebPct','astPct','own','sim'].includes(c.k))return<span className="tc4">{fm(v)}%</span>;if(c.k==='tsPct')return<span>{fm((v||0)*100)}%</span>;if(c.k==='projPts'||c.k==='pts100')return<span className="te4">{fm(v)}</span>;if(c.k==='projReb'||c.k==='reb100')return<span className="tb4">{fm(v)}</span>;if(c.k==='projAst'||c.k==='ast100')return<span className="tp4">{fm(v)}</span>;if(c.k==='pra')return<span className="fw6">{fm(v)}</span>;if(c.k==='fppm')return<span className="ta4">{fm2(v)}</span>;if(c.k==='xFppm')return<span className="ts4">{fm2(v)}</span>;if(c.k==='stok')return<span className="tpk">{fm(v)}</span>;if(c.k==='proj'||c.k==='min')return<span className="fw6">{fm(v)}</span>;return<span>{fm(v)}</span>};
+
+const RankBadge = ({rank, total}) => {
+  if(!rank) return null;
+  const pct = rank / total;
+  let color = '#64748b';
+  if(pct <= 0.1) color = '#fbbf24';
+  else if(pct <= 0.25) color = '#34d399';
+  else if(pct <= 0.5) color = '#60a5fa';
+  return <span className="rk" style={{color}}>#{rank}</span>;
+};
+
+const TeamSection=({team,players,isHome})=>{
+  const tc=(players&&players[0]?.team)||'',color=TC[tc]||'#333',cls=gc();
+  const filteredPlayers = (players||[]).filter(p => p.proj > 0).slice(0, 12);
+  return(<div className="f1"><div className="flex ac g2" style={{padding:'8px 14px',background:`linear-gradient(${isHome?'135deg':'225deg'},${color}44,transparent)`}}><span className="fd txl" style={{color}}>{tc}</span><span className="ts5 txs">{TN[tc]}</span><span className="vb">{fm(team?.vegas)}</span></div><div className="ox"><table style={{fontSize:'0.82rem',tableLayout:'fixed'}}><thead><tr className="to4" style={{fontSize:'0.75rem'}}><th style={{width:120,textAlign:'left',padding:'4px 6px'}}>Player</th>{cls.map(c=><th key={c.k} style={{width:c.w,textAlign:'center',padding:'4px'}}>{c.l}</th>)}</tr></thead><tbody className="fm">{filteredPlayers.map(p=>(<tr key={p.id} className="bt hr"><td style={{width:120,textAlign:'left',padding:'4px 6px',fontFamily:'Inter',fontSize:'0.82rem',fontWeight:500}}>{p.name}</td>{cls.map(c=><td key={c.k} style={{width:c.w,textAlign:'center',padding:'4px'}}>{rc(p,c)}</td>)}</tr>))}</tbody></table></div></div>)};
+
+const MatrixCard=({pos})=>{
+  const hd=isAdmin?[
+    {k:'price',l:'$',w:52},
+    {k:'projection',l:'Proj',w:46},
+    {k:'stokastic',l:'Stok',w:48},
+    {k:'value',l:'Val',w:46},
+    {k:'ownership',l:'Own',w:48},
+    {k:'fppm',l:'FPPM',w:52}
+  ]:[
+    {k:'price',l:'$',w:52},
+    {k:'min',l:'Proj Min',w:58},
+    {k:'projection',l:'Proj',w:46},
+    {k:'value',l:'Value',w:50},
+    {k:'fppm',l:'FPPM',w:52}
+  ];
+  return(<div className="mc"><div style={{background:'rgba(255,255,255,.05)',padding:'10px 14px',textAlign:'center',borderBottom:'1px solid rgba(255,255,255,.1)'}}><span className="fd txl to4">{pos}</span></div><div className="p2" style={{maxHeight:500,overflowY:'auto'}}><div className="flex ac g1 tc fm" style={{fontSize:'0.72rem',marginBottom:6,padding:'0 6px'}}><span className="f1 tl ts4">Player</span>{hd.map(h=>(<span key={h.k} onClick={()=>doMatrixSort(h.k)} className={'sh '+(matrixSort.key===h.k?'to4':'ts5')} style={{width:h.w,textAlign:'right'}}>{h.l}{matrixSort.key===h.k?(matrixSort.dir==='asc'?'↑':'↓'):''}</span>))}</div>{(sortedMatrix[pos]||[]).slice(0,20).map(p=>(<div key={p.name} className="flex ac g1 hr bt" style={{fontSize:'0.82rem',padding:'5px 6px'}}><div className="f1 tn fw5">{p.name}</div><div className="ts4 fm" style={{width:52,textAlign:'right'}}>{fc(p.price)}</div>{isAdmin?<>
+    <div className="fw6 fm" style={{width:46,textAlign:'right'}}>{fm(p.projection)}</div>
+    <div className="fm tpk" style={{width:48,textAlign:'right'}}>{fm(p.stokastic)}</div>
+    <div className={'fm '+vc(p.value)} style={{width:46,textAlign:'right'}}>{fm(p.value)}x</div>
+    <div className="fm ty4" style={{width:48,textAlign:'right'}}>{fm(p.ownership)}%</div>
+    <div className="fm ta4" style={{width:52,textAlign:'right'}}>{fm2(p.fppm)}</div>
+  </>:<>
+    <div className="fm ts4" style={{width:58,textAlign:'right'}}>{fm(p.min)}</div>
+    <div className="fw6 fm" style={{width:46,textAlign:'right'}}>{fm(p.projection)}</div>
+    <div className={'fm '+vc(p.value)} style={{width:50,textAlign:'right'}}>{fm(p.value)}x</div>
+    <div className="fm ta4" style={{width:52,textAlign:'right'}}>{fm2(p.fppm)}</div>
+  </>}</div>))}</div></div>)};
+
+const totalPlayers = playerRanksWithRanks?.length || 0;
+
+if(isLoading) return <div className="flex ac jc" style={{minHeight:'100vh'}}><div className="fd t2x to4 ap">Loading data...</div></div>;
+
+return(<div>{toast&&<div className={'toast'+(toastType==='error'?' ertoast':'')}>{toast}</div>}{showLogin&&(<div style={{position:'fixed',inset:0,background:'rgba(0,0,0,0.9)',display:'flex',alignItems:'center',justifyContent:'center',zIndex:100}}><div className="gl rx p6" style={{width:'100%',maxWidth:360}}><h2 className="fd t2x to4 tc mb4">LOG IN</h2><div className="fc g3"><input type="text" placeholder="Username" value={loginUser} onChange={e=>setLoginUser(e.target.value)} className="wf"/><input type="password" placeholder="Password" value={loginPass} onChange={e=>setLoginPass(e.target.value)} onKeyDown={e=>e.key==='Enter'&&handleLogin()} className="wf"/>{loginError&&<p className="tr4 txs tc">{loginError}</p>}<div className="flex g2"><button onClick={()=>setShowLogin(false)} className="btn bs f1">Cancel</button><button onClick={handleLogin} className="btn bp f1">Login</button></div></div></div></div>)}
+<header className="st t0 z5 bb9 bo" style={{backdropFilter:'blur(20px)'}}><div className="ct flex ac jb fw g2" style={{padding:'10px 0'}}><div className="flex ac g3"><h1 className="fd txl" style={{margin:0}}><span style={{marginRight:'0.4rem'}}>🏀💦</span><span className="gt">SPLASH PLAY</span></h1><span className="fm txs ts5">DFS & BETTING</span></div><div className="flex ac g2">{data.lastUpdated&&<span className="fm txs te4 flex ac g1"><span className="ap" style={{width:7,height:7,background:'#34d399',borderRadius:'50%'}}></span>{data.lastUpdated}</span>}{hasData&&!isAdmin&&<button onClick={refreshData} className="btn bs bsm">🔄</button>}{isAdmin?(<div className="flex ac g2"><label className="btn bp bsm cp">📁 Upload<input type="file" accept=".xlsx,.xls" onChange={handleFile} className="hd"/></label><button onClick={refreshData} className="btn bs bsm">🔄</button><button onClick={handleLogout} className="btn bs bsm">Logout</button></div>):(<button onClick={()=>setShowLogin(true)} className="btn bs bsm">🔐</button>)}</div></div></header>
+<nav className="bb5 bb"><div className="ct flex g2 ox" style={{padding:'8px 0'}}>{[['search','🔍 Search'],['ranks','🏆 Player Ranks'],['matchups',"⚔️ Today's Matchups"],['matrix','📊 Projection Matrix'],['proj','📈 SPAGS Projections']].map(([id,label])=>(<button key={id} onClick={()=>setTab(id)} className={'btn bsm '+(tab===id?'ba':'bs')} style={{whiteSpace:'nowrap'}}>{label}</button>))}</div></nav>
+<main className="ct" style={{padding:'20px 0'}}>{!hasData&&(<div className="gl rx p6 tc gw"><div className="t3x mb4">📊</div><h2 className="fd t2x to4 mb4">NO DATA</h2>{isAdmin?(<div><p className="ts4 mb4">Upload Excel to publish data.</p><label className="btn bp cp">📁 Upload Excel<input type="file" accept=".xlsx,.xls" onChange={handleFile} className="hd"/></label>{uploading&&<p className="mt4 to4 ap">Uploading...</p>}{error&&<p className="mt4 tr4">{error}</p>}</div>):<div><p className="ts4 mb4">No data available yet.</p><button onClick={refreshData} className="btn bs">🔄 Refresh</button></div>}</div>)}
+{hasData&&tab==='search'&&(<div style={{maxWidth:'52rem',margin:'0 auto'}} className="fc g4"><h2 className="fd t2x to4 tc">PLAYER SEARCH</h2><input type="text" placeholder="Search player..." value={search} onChange={e=>setSearch(e.target.value)} className="wf tc tlg" style={{padding:'14px',border:'2px solid rgba(249,115,22,0.3)'}}/>{found?(<div className="gl rx p6 gw"><div className="tc mb4"><h3 className="fd t3x gt">{found.name}</h3></div><div className="gr g3 mb4" style={{gridTemplateColumns:'repeat(4,1fr)'}}>{[['FPPM',found.fppm,'te4',1,'fppmRank'],['PPG',found.ppg,'te4',0,'ppgRank'],['RPG',found.reb,'tb4',0,'rebRank'],['APG',found.ast,'tp4',0,'astRank']].map(([l,v,c,d2,rk])=>(<div key={l} className="sb"><div className={'fd t2x '+c}>{d2?fm2(v):fm(v)}<RankBadge rank={found[rk]} total={totalPlayers}/></div><div className="fm txs ts5">{l}</div></div>))}</div><div className="gr g3 mb4" style={{gridTemplateColumns:'repeat(4,1fr)'}}>{[['USG%',found.usg,'tc4','usgRank'],['REB%',found.rebPct,'tb4','rebPctRank'],['AST%',found.astPct,'tp4','astPctRank'],['TS%',found.tsPct,'ta4','tsPctRank',1]].map(([l,v,c,rk,pct])=>(<div key={l} className="sb"><div className={'fd txl '+c}>{pct?fp(v):fm(v)+'%'}<RankBadge rank={found[rk]} total={totalPlayers}/></div><div className="fm txs ts5">{l}</div></div>))}</div><div className="gr g3" style={{gridTemplateColumns:'repeat(4,1fr)'}}>{[['P100',found.pts100,'te4','pts100Rank'],['R100',found.reb100,'tb4','reb100Rank'],['A100',found.ast100,'tp4','ast100Rank'],['3PA',found.threePA100,'ta4','threePA100Rank']].map(([l,v,c,rk])=>(<div key={l} className="sb"><div className={'fd txl '+c}>{fm(v)}<RankBadge rank={found[rk]} total={totalPlayers}/></div><div className="fm txs ts5">{l}</div></div>))}</div></div>):search?(<div className="gl rx p6 tc"><p className="ts4">No player found</p></div>):(<div className="gl rx p6 tc"><p className="ts4">Enter name to search</p></div>)}</div>)}
+{hasData&&tab==='ranks'&&(<div className="fc g4"><div className="flex ac jb fw g2"><div><h2 className="fd t2x to4">PLAYER RANKS</h2><p className="ts5 fm txs">{ranks.length} players</p></div><input type="text" placeholder="Search..." value={search} onChange={e=>setSearch(e.target.value)} style={{width:180}}/></div><div className="gl rx" style={{overflow:'hidden'}}><div className="ox"><table style={{fontSize:'0.88rem'}}><thead><tr className="to4 txs uc bb5">{[['name','Player','tl'],['fppm','FPPM'],['ppg','PPG'],['reb','REB'],['ast','AST'],['min','MIN'],['usg','USG%'],['astPct','AST%'],['rebPct','REB%'],['pts100','P100'],['ast100','A100'],['threePA100','3PA'],['reb100','R100'],['tsPct','TS%'],['ortg','ORTG'],['drtg','DRTG']].map(([k,l,a])=>(<th key={k} onClick={()=>k!=='name'&&doSort(k)} className={'cp'} style={{padding:'10px',textAlign:a||'right'}}>{l}{sort.key===k?(sort.dir==='asc'?' ↑':' ↓'):''}</th>))}</tr></thead><tbody className="fm">{paginatedRanks.map((p,i)=>(<tr key={p.name+i} className="bt hr"><td style={{padding:'6px 10px',fontFamily:'Inter',fontWeight:500}}>{p.name}</td><td className={'tr '+(p.fppm>=1.5?'te4':'')} style={{padding:'6px 10px'}}>{fm2(p.fppm)}</td><td className="tr te4" style={{padding:'6px 10px'}}>{fm(p.ppg)}</td><td className="tr tb4" style={{padding:'6px 10px'}}>{fm(p.reb)}</td><td className="tr tp4" style={{padding:'6px 10px'}}>{fm(p.ast)}</td><td className="tr ts5" style={{padding:'6px 10px'}}>{fm(p.min)}</td><td className="tr tc4" style={{padding:'6px 10px'}}>{fm(p.usg)}%</td><td className="tr tp4" style={{padding:'6px 10px'}}>{fm(p.astPct)}%</td><td className="tr tb4" style={{padding:'6px 10px'}}>{fm(p.rebPct)}%</td><td className="tr" style={{padding:'6px 10px'}}>{fm(p.pts100)}</td><td className="tr" style={{padding:'6px 10px'}}>{fm(p.ast100)}</td><td className="tr" style={{padding:'6px 10px'}}>{fm(p.threePA100)}</td><td className="tr" style={{padding:'6px 10px'}}>{fm(p.reb100)}</td><td className="tr" style={{padding:'6px 10px'}}>{fp(p.tsPct)}</td><td className="tr" style={{padding:'6px 10px'}}>{fm(p.ortg)}</td><td className="tr" style={{padding:'6px 10px'}}>{fm(p.drtg)}</td></tr>))}</tbody></table></div></div><div className="flex ac jb"><span className="fm txs ts4">{showAll?'All':((currentPage-1)*PS+1)+'-'+Math.min(currentPage*PS,ranks.length)} of {ranks.length}</span><div className="flex g1">{!showAll&&<><button onClick={()=>setCurrentPage(p=>Math.max(1,p-1))} disabled={currentPage===1} className="btn bs bsm">←</button><button onClick={()=>setCurrentPage(p=>Math.min(totalPages,p+1))} disabled={currentPage===totalPages} className="btn bs bsm">→</button></>}<button onClick={()=>{setShowAll(!showAll);setCurrentPage(1)}} className="btn bp bsm">{showAll?'Page':'All'}</button></div></div></div>)}
+{hasData&&tab==='matchups'&&(<div className="fc g4"><div className="flex ac jb fw g2"><h2 className="fd t2x to4">TODAY'S MATCHUPS</h2><button onClick={()=>setExpanded(!expanded)} className={'btn bsm '+(expanded?'ba':'bs')}>{expanded?'📉 Compact':'📈 All Stats'}</button></div><div className="gr g4">{(data.games||[]).map((g,i)=>(<div key={i} className="gc"><div className="gto flex ac jc g4" style={{padding:'10px 18px'}}><span className="fd txl" style={{color:TC[g.awayPlayers?.[0]?.team]}}>{g.awayPlayers?.[0]?.team}</span><span className="ts5">@</span><span className="fd txl" style={{color:TC[g.homePlayers?.[0]?.team]}}>{g.homePlayers?.[0]?.team}</span><div className="bb5 rf flex ac g2" style={{padding:'5px 18px'}}><span className="ts4 txs">O/U</span><span className="fd t2x to4">{fm(g.combined)}</span></div></div><div className="fc"><TeamSection team={g.away} players={g.awayPlayers} isHome={false}/><div style={{borderTop:'1px solid rgba(249,115,22,0.3)'}}></div><TeamSection team={g.home} players={g.homePlayers} isHome={true}/></div></div>))}</div></div>)}
+{hasData&&tab==='matrix'&&(<div className="fc g4"><h2 className="fd t2x to4">PROJECTION MATRIX</h2><div className="gr g3 lg3">{['PG','SG','C'].map(pos=><MatrixCard key={pos} pos={pos}/>)}</div><div className="gr g3 lg2">{['SF','PF'].map(pos=><MatrixCard key={pos} pos={pos}/>)}</div></div>)}
+{hasData&&tab==='proj'&&(<div className="fc g4"><div className="flex ac jb fw g2"><h2 className="fd t2x to4">SPAGS PROJECTIONS</h2><div className="flex g2"><button onClick={copyToClipboard} className="btn bp bsm">📋 Copy</button><button onClick={exportCSV} className="btn bs bsm">💾 CSV</button></div></div><div className="gl rx" style={{overflow:'hidden'}}><div className="ox"><table style={{fontSize:'0.88rem'}}><thead><tr className="to4 txs uc bb5">{[['name','Player'],['team','Team'],['pos','Pos'],['opp','Opp'],['price','Price'],['min','Min'],['projection','Proj'],['stokastic','Stok',1],['value','Value',1],['ownership','Own%',1],['projPts','ProjPts'],['projReb','ProjReb'],['projAst','ProjAst'],['pra','PRA']].filter(c=>!c[2]||isAdmin).map(([k,l])=>(<th key={k} onClick={()=>doProjSort(k)} className="cp" style={{padding:'10px',textAlign:k==='name'?'left':'center'}}>{l}{projSort.key===k?(projSort.dir==='asc'?' ↑':' ↓'):''}</th>))}</tr></thead><tbody className="fm">{proj.map((p,i)=>(<tr key={p.name+i} className="bt hr"><td style={{padding:'6px 10px',fontFamily:'Inter',fontWeight:500}}>{p.name}</td><td className="tc" style={{padding:'6px 10px'}}><span className="rd txs fw6" style={{padding:'3px 8px',background:TC[p.team]||'#333'}}>{p.team}</span></td><td className="tc ts5" style={{padding:'6px 10px'}}>{p.pos}</td><td className="tc ts5" style={{padding:'6px 10px'}}>{p.opp}</td><td className="tc ts4" style={{padding:'6px 10px'}}>{fc(p.price)}</td><td className="tc" style={{padding:'6px 10px'}}>{fm(p.min)}</td><td className="tc fw6" style={{padding:'6px 10px'}}>{fm(p.projection)}</td>{isAdmin&&<td className="tc tpk" style={{padding:'6px 10px'}}>{fm(p.stokastic)}</td>}{isAdmin&&<td className={'tc '+vc(p.value)} style={{padding:'6px 10px'}}>{fm(p.value)}x</td>}{isAdmin&&<td className="tc ty4" style={{padding:'6px 10px'}}>{fm(p.ownership)}%</td>}<td className="tc te4" style={{padding:'6px 10px'}}>{fm(p.projPts)}</td><td className="tc tb4" style={{padding:'6px 10px'}}>{fm(p.projReb)}</td><td className="tc tp4" style={{padding:'6px 10px'}}>{fm(p.projAst)}</td><td className="tc fw6" style={{padding:'6px 10px'}}>{fm(p.pra)}</td></tr>))}</tbody></table></div></div></div>)}</main>
+<footer className="bt bb5 mt8"><div className="ct tc" style={{padding:'18px'}}><p className="fm tsm ts6">SPLASH PLAY • 2025-26</p></div></footer></div>)}
+ReactDOM.render(<App/>,document.getElementById('root'));
+</script>
+</body>
+</html>
