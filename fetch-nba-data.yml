@@ -1,0 +1,216 @@
+name: Fetch NBA Injury & Rotation Data
+
+on:
+  schedule:
+    # Run every 30 minutes from 10am to 11pm ET (3pm-4am UTC) on game days
+    - cron: '*/30 15-23,0-4 * * *'
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  fetch-data:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install requests pypdf2
+
+      - name: Fetch and process data
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python << 'EOF'
+          import requests
+          import json
+          import re
+          from datetime import datetime, timedelta
+          from io import BytesIO
+          
+          try:
+              from PyPDF2 import PdfReader
+          except ImportError:
+              from pypdf import PdfReader
+          
+          # Team abbreviation mapping
+          TEAM_MAP = {
+              'Atlanta': 'ATL', 'Boston': 'BOS', 'Brooklyn': 'BKN', 'Charlotte': 'CHA',
+              'Chicago': 'CHI', 'Cleveland': 'CLE', 'Dallas': 'DAL', 'Denver': 'DEN',
+              'Detroit': 'DET', 'Golden State': 'GSW', 'Houston': 'HOU', 'Indiana': 'IND',
+              'LA Clippers': 'LAC', 'Los Angeles Clippers': 'LAC', 'LA Lakers': 'LAL', 
+              'Los Angeles Lakers': 'LAL', 'Memphis': 'MEM', 'Miami': 'MIA', 
+              'Milwaukee': 'MIL', 'Minnesota': 'MIN', 'New Orleans': 'NOP', 
+              'New York': 'NYK', 'Oklahoma City': 'OKC', 'Orlando': 'ORL',
+              'Philadelphia': 'PHI', 'Phoenix': 'PHX', 'Portland': 'POR', 
+              'Sacramento': 'SAC', 'San Antonio': 'SAS', 'Toronto': 'TOR',
+              'Utah': 'UTA', 'Washington': 'WAS'
+          }
+          
+          def fetch_injury_report():
+              """Fetch latest NBA injury report PDF and parse it"""
+              now = datetime.utcnow()
+              # Try recent timestamps
+              injuries = []
+              
+              for hours_ago in range(0, 6):
+                  check_time = now - timedelta(hours=hours_ago)
+                  # Round to 15-min intervals
+                  minute = (check_time.minute // 15) * 15
+                  for min_offset in [0, 15, 30, 45]:
+                      try_min = (minute - min_offset) % 60
+                      try_hour = check_time.hour if try_min <= minute else check_time.hour - 1
+                      if try_hour < 0:
+                          continue
+                      
+                      date_str = check_time.strftime('%Y-%m-%d')
+                      time_str = f"{try_hour:02d}_{try_min:02d}{'AM' if try_hour < 12 else 'PM'}"
+                      if try_hour == 0:
+                          time_str = f"12_{try_min:02d}AM"
+                      elif try_hour > 12:
+                          time_str = f"{try_hour-12:02d}_{try_min:02d}PM"
+                      elif try_hour == 12:
+                          time_str = f"12_{try_min:02d}PM"
+                      
+                      # Try different URL patterns
+                      urls = [
+                          f"https://ak-static.cms.nba.com/referee/injury/Injury-Report_{date_str}_{time_str}.pdf",
+                          f"https://ak-static.cms.nba.com/referee/injury/Injury-Report_{date_str}_{try_hour:02d}_{try_min:02d}AM.pdf",
+                      ]
+                      
+                      for url in urls:
+                          try:
+                              resp = requests.get(url, timeout=10)
+                              if resp.status_code == 200 and len(resp.content) > 1000:
+                                  print(f"Found injury report: {url}")
+                                  pdf = PdfReader(BytesIO(resp.content))
+                                  text = ""
+                                  for page in pdf.pages:
+                                      text += page.extract_text() or ""
+                                  
+                                  # Parse injury report
+                                  lines = text.split('\n')
+                                  current_team = None
+                                  current_game = None
+                                  
+                                  for line in lines:
+                                      line = line.strip()
+                                      if not line:
+                                          continue
+                                      
+                                      # Check for team name
+                                      for team_name, abbrev in TEAM_MAP.items():
+                                          if team_name in line and '@' not in line:
+                                              current_team = abbrev
+                                              break
+                                      
+                                      # Check for game line (Team @ Team)
+                                      if '@' in line:
+                                          current_game = line
+                                      
+                                      # Check for player injury line
+                                      # Pattern: Player Name | Injury | Status
+                                      statuses = ['Out', 'Doubtful', 'Questionable', 'Probable', 'Available', 'GTD']
+                                      for status in statuses:
+                                          if status in line and current_team:
+                                              # Try to extract player name
+                                              parts = re.split(r'\s{2,}|\t|\|', line)
+                                              if len(parts) >= 2:
+                                                  player_name = parts[0].strip()
+                                                  if player_name and len(player_name) > 2:
+                                                      injury_info = ' '.join(parts[1:-1]) if len(parts) > 2 else ''
+                                                      injuries.append({
+                                                          'player': player_name,
+                                                          'team': current_team,
+                                                          'status': status,
+                                                          'injury': injury_info.strip(),
+                                                          'game': current_game
+                                                      })
+                                              break
+                                  
+                                  if injuries:
+                                      return injuries
+                          except Exception as e:
+                              continue
+              
+              return injuries
+          
+          def fetch_pbpstats_minutes():
+              """Fetch playing time data from PBPStats API"""
+              players_data = []
+              
+              try:
+                  # Get current season totals
+                  url = "https://api.pbpstats.com/get-totals/nba"
+                  params = {
+                      "Season": "2025-26",
+                      "SeasonType": "Regular Season",
+                      "Type": "Player"
+                  }
+                  resp = requests.get(url, params=params, timeout=30)
+                  if resp.status_code == 200:
+                      data = resp.json()
+                      for player in data.get('multi_row_table_data', []):
+                          players_data.append({
+                              'name': player.get('Name', ''),
+                              'team': player.get('TeamAbbreviation', ''),
+                              'minutes': player.get('Minutes', 0),
+                              'games': player.get('Games', 0),
+                              'mpg': round(player.get('Minutes', 0) / max(1, player.get('Games', 1)), 1),
+                              'usg': player.get('Usage', 0),
+                          })
+                      print(f"Fetched {len(players_data)} players from PBPStats")
+              except Exception as e:
+                  print(f"Error fetching PBPStats: {e}")
+              
+              return players_data
+          
+          def fetch_recent_games_rotation(team_abbrev):
+              """Fetch recent rotation patterns for a team"""
+              try:
+                  # This would fetch lineup/rotation data
+                  # For now, return empty - can expand later
+                  pass
+              except:
+                  pass
+              return []
+          
+          # Main execution
+          print("Fetching NBA data...")
+          
+          injuries = fetch_injury_report()
+          print(f"Found {len(injuries)} injury entries")
+          
+          minutes_data = fetch_pbpstats_minutes()
+          
+          # Load existing data.json if it exists
+          try:
+              with open('data.json', 'r') as f:
+                  existing = json.load(f)
+          except:
+              existing = {}
+          
+          # Update with new rotation/injury data
+          existing['injuries'] = injuries
+          existing['minutesData'] = minutes_data
+          existing['rotationUpdated'] = datetime.utcnow().isoformat() + 'Z'
+          
+          # Save updated data
+          with open('data.json', 'w') as f:
+              json.dump(existing, f)
+          
+          print("Data updated successfully")
+          EOF
+
+      - name: Commit changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add data.json
+          git diff --staged --quiet || git commit -m "Update NBA injury/rotation data [skip ci]"
+          git push
