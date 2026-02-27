@@ -166,7 +166,7 @@ def query_claude(profiles):
             try:
                 response = client.messages.create(
                     model="claude-haiku-4-5-20251001",
-                    max_tokens=1024,
+                    max_tokens=2048,
                     temperature=0.3,
                     system=CLAUDE_SYSTEM,
                     messages=[{"role": "user", "content": prompt}],
