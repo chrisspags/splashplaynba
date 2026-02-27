@@ -1,10 +1,10 @@
 name: NBA Minutes Agent
 
 on:
-  workflow_dispatch:  # Manual trigger only from GitHub Actions UI
+  workflow_dispatch:
 
 permissions:
-  contents: write           # Needed to commit minutes-data.json
+  contents: write
 
 jobs:
   minutes-agent:
@@ -35,3 +35,4 @@ jobs:
           git add minutes-data.json
           git diff --cached --quiet || git commit -m "Update minutes-data.json $(date -u +%Y-%m-%dT%H:%M:%SZ)"
           git push
+
