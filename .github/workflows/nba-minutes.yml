@@ -13,6 +13,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - uses: actions/setup-python@v5
         with:
@@ -32,9 +34,15 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+          # Save generated file
+          cp minutes-data.json /tmp/minutes-data.json
+          # Get latest remote (may have new commits from Colab notebook)
+          git fetch origin main
+          git reset --hard origin/main
+          # Restore our generated file on top of latest
+          cp /tmp/minutes-data.json minutes-data.json
           git add minutes-data.json
           git diff --cached --quiet || git commit -m "Update minutes-data.json $(date -u +%Y-%m-%dT%H:%M:%SZ)"
-          git pull --rebase origin main
           git push
 
 
