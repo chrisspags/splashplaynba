@@ -66,20 +66,25 @@ def load_profiles():
 #  STEP 2: QUERY CLAUDE FOR MINUTES PROJECTIONS
 # ══════════════════════════════════════════════════════════════════════════════
 
-CLAUDE_SYSTEM = """You are an NBA minutes projection analyst for DFS (daily fantasy sports).
-Given a team's recent game logs, substitution patterns, and injury context,
-project realistic minutes for each active player in tonight's game.
+CLAUDE_SYSTEM = """You are an NBA minutes allocation analyst for DFS (daily fantasy sports).
+You must distribute exactly 240 team minutes across active players for tonight's game (5 players × 48 min = 240). You may add up to 1 minute for overtime probability (target: 240-241 total).
 
-Rules:
-- CRITICAL: The sum of ALL projected minutes for the team MUST be between 240 and 242. Never exceed 242. A regulation game is 240 total team minutes (5 players x 48 min). Add at most 2 extra minutes for overtime probability.
-- Consider recent trends heavily (L3 > L5 > L10 weighting)
+ALLOCATION PROCESS — follow these steps in order:
+1. Identify the 5 starters (highest recent minutes, marked with * in game logs). Allocate 28-36 min each.
+2. Allocate remaining minutes to bench players based on recent usage (L5 avg heavily weighted).
+3. Sum all projected minutes. If the total is not between 240 and 241, adjust bench players up or down by 1-2 min each until the total equals 240-241. Do NOT inflate starters beyond their recent averages.
+
+GUIDELINES:
+- Weight recent games heavily: L3 > L5 > L10
 - Account for minutes redistribution when players are OUT
-- Players who consistently start get priority for 30+ min projections
 - Consider blowout risk: high spreads may reduce starter minutes in Q4
-- Players with 0 projected minutes from the data source are OUT — do not project minutes for them
-- Before outputting, verify the sum of all projectedMinutes values is between 240 and 242. If it exceeds 242, reduce the lowest-minutes players proportionally.
+- Players with 0 projected minutes from the data source are OUT — do not include them
+- No player should exceed 40 minutes unless they averaged 38+ over their L5
+- The data source total is provided as a baseline — use it as a reference point
 
-Respond ONLY with valid JSON. No markdown fences, no commentary outside the JSON."""
+MANDATORY: Your projected minutes MUST sum to between 240 and 241. Add them up before responding. Include the sum as "totalMinutes" in your JSON output.
+
+Respond ONLY with valid JSON. No markdown fences, no commentary."""
 
 
 def build_team_prompt(team, opponent, team_players):
@@ -132,9 +137,13 @@ def build_team_prompt(team, opponent, team_players):
     )
     lines.append(f"\nCurrent projected minutes from data source: {proj_str}")
 
+    total_proj = sum(p.get("currentProjMin", 0) for p in active_sorted)
+    lines.append(f"Data source total: {total_proj:.0f} min for {len(active_sorted)} active players")
+    lines.append(f"\nYou MUST distribute exactly 240-241 total minutes across these {len(active_sorted)} players. Add up your projections before responding to verify.")
+
     lines.append("""
 Respond with this exact JSON format:
-{"players":[{"name":"Player Name","projectedMinutes":35.5,"confidence":"high","reasoning":"Brief 1-sentence explanation"}]}""")
+{"totalMinutes":240.5,"players":[{"name":"Player Name","projectedMinutes":35.5,"confidence":"high","reasoning":"Brief 1-sentence explanation"}]}""")
 
     return "\n".join(lines)
 
@@ -180,7 +189,23 @@ def query_claude(profiles):
                     text = re.sub(r"\n?```$", "", text)
 
                 result = json.loads(text)
-                for p in result.get("players", []):
+                players_list = result.get("players", [])
+                # Lightweight safety net: bench-only adjustment for small deviations
+                team_total = sum(p.get("projectedMinutes", 0) for p in players_list)
+                if team_total > 0 and not (239 <= team_total <= 242):
+                    diff = 241.0 - team_total
+                    if abs(diff) <= 5:
+                        # Small fix: spread across bench players only (< 25 min)
+                        bench = [p for p in players_list if p.get("projectedMinutes", 0) < 25]
+                        if bench:
+                            adj = diff / len(bench)
+                            for p in bench:
+                                p["projectedMinutes"] = round(p["projectedMinutes"] + adj, 1)
+                            new_total = sum(p.get("projectedMinutes", 0) for p in players_list)
+                            print(f"    Adjusted {team} bench: {team_total:.0f} → {new_total:.1f} min")
+                    else:
+                        print(f"    WARNING: {team} total is {team_total:.0f} min (off by {abs(diff):.0f}) — needs prompt tuning")
+                for p in players_list:
                     name = p.get("name", "")
                     if name:
                         projections[name] = {
@@ -188,7 +213,8 @@ def query_claude(profiles):
                             "confidence": p.get("confidence", "medium"),
                             "reasoning": p.get("reasoning", ""),
                         }
-                print(f"    ✓ Got {len(result.get('players', []))} projections")
+                final_total = sum(p.get("projectedMinutes", 0) for p in players_list)
+                print(f"    ✓ Got {len(players_list)} projections ({final_total:.1f} min)")
                 break  # success
             except json.JSONDecodeError as e:
                 print(f"    JSON parse error for {team}: {e}")
@@ -300,3 +326,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
