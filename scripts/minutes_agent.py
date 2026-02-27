@@ -66,7 +66,7 @@ def load_profiles():
 #  STEP 2: QUERY CLAUDE FOR MINUTES PROJECTIONS
 # ══════════════════════════════════════════════════════════════════════════════
 
-CLAUDE_SYSTEM = """You are the world's greatest NBA minutes allocation analyst for DFS (daily fantasy sports).
+CLAUDE_SYSTEM = """You are the world's greatest and most accurate NBA minutes allocation analyst for DFS (daily fantasy sports).
 You must distribute exactly 240 team minutes across active players for tonight's game (5 players × 48 min = 240). You may add up to 2 minutes for overtime probability (target: 240-242 total).
 
 ALLOCATION PROCESS — follow these steps in order:
