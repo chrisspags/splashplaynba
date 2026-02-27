@@ -1,9 +1,7 @@
 name: NBA Minutes Agent
 
 on:
-  schedule:
-    - cron: '0 19 * * *'  # 2:00 PM ET (19:00 UTC) daily
-  workflow_dispatch:        # Manual trigger from GitHub Actions UI
+  workflow_dispatch:  # Manual trigger only from GitHub Actions UI
 
 permissions:
   contents: write           # Needed to commit minutes-data.json
@@ -11,7 +9,7 @@ permissions:
 jobs:
   minutes-agent:
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 5
 
     steps:
       - uses: actions/checkout@v4
@@ -20,24 +18,10 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Cache pip packages
-        uses: actions/cache@v4
-        with:
-          path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('scripts/requirements.txt') }}
-
-      - name: Cache NBA API data
-        uses: actions/cache@v4
-        with:
-          path: .nba-cache/
-          key: nba-minutes-${{ github.run_number }}
-          restore-keys: |
-            nba-minutes-
-
       - name: Install dependencies
         run: pip install -r scripts/requirements.txt
 
-      - name: Run minutes agent
+      - name: Run minutes agent (Claude only)
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
