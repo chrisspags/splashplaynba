@@ -28,7 +28,7 @@ jobs:
           PYTHONUNBUFFERED: "1"
         run: python scripts/minutes_agent.py
 
-            - name: Commit and push minutes-data.json
+      - name: Commit and push minutes-data.json
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -36,4 +36,5 @@ jobs:
           git diff --cached --quiet || git commit -m "Update minutes-data.json $(date -u +%Y-%m-%dT%H:%M:%SZ)"
           git pull --rebase origin main
           git push
+
 
