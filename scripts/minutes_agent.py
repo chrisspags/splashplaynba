@@ -71,12 +71,13 @@ Given a team's recent game logs, substitution patterns, and injury context,
 project realistic minutes for each active player in tonight's game.
 
 Rules:
-- Team minutes must total approximately 240 (5 players x 48 min, accounting for overtime probability)
+- CRITICAL: The sum of ALL projected minutes for the team MUST be between 240 and 242. Never exceed 242. A regulation game is 240 total team minutes (5 players x 48 min). Add at most 2 extra minutes for overtime probability.
 - Consider recent trends heavily (L3 > L5 > L10 weighting)
 - Account for minutes redistribution when players are OUT
 - Players who consistently start get priority for 30+ min projections
 - Consider blowout risk: high spreads may reduce starter minutes in Q4
 - Players with 0 projected minutes from the data source are OUT — do not project minutes for them
+- Before outputting, verify the sum of all projectedMinutes values is between 240 and 242. If it exceeds 242, reduce the lowest-minutes players proportionally.
 
 Respond ONLY with valid JSON. No markdown fences, no commentary outside the JSON."""
 
