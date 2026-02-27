@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 """
 NBA Minutes Agent — Claude-Only Pipeline
-Reads player-profiles.json (pushed by Colab notebook), sends per-team data
-to Claude Haiku for minutes projections, and writes minutes-data.json.
+Reads player-profiles.json (game history) and data.json (fresh Stokastic minutes)
+from GitHub, sends per-team data to Claude Haiku for minutes projections,
+and writes minutes-data.json.
 
-No NBA API calls — all game data is pre-built by the Colab notebook.
+No NBA API calls — game data is from Colab, Stokastic data is from site upload.
 """
 
 import json
@@ -63,19 +64,70 @@ def load_profiles():
 
 
 # ══════════════════════════════════════════════════════════════════════════════
+#  STEP 1b: LOAD FRESH SLATE DATA FROM data.json
+# ══════════════════════════════════════════════════════════════════════════════
+
+def load_slate_data():
+    """Read data.json from GitHub to get fresh Stokastic minutes + prices."""
+    print("Loading data.json from GitHub...")
+    headers = {"Accept": "application/vnd.github.v3+json"}
+    if GITHUB_TOKEN:
+        headers["Authorization"] = f"Bearer {GITHUB_TOKEN}"
+
+    url = f"https://api.github.com/repos/{REPO_OWNER}/{REPO_NAME}/contents/data.json"
+    resp = requests.get(url, headers=headers)
+    resp.raise_for_status()
+    gh_data = resp.json()
+    data = json.loads(base64.b64decode(gh_data["content"]))
+
+    my_proj = data.get("myProj", [])
+    # Build lookup: normalized name -> {min, price, pos, team}
+    slate = {}
+    for p in my_proj:
+        name = normalize_name(p.get("name", ""))
+        if name:
+            slate[name] = {
+                "min": p.get("min", 0),
+                "price": p.get("price", 0),
+                "pos": p.get("pos", ""),
+                "team": p.get("team", ""),
+            }
+
+    print(f"  Loaded {len(slate)} players from data.json slate")
+    return slate
+
+
+def merge_slate_into_profiles(profiles, slate):
+    """Override currentProjMin/price/pos in profiles with fresh data.json values."""
+    updated = 0
+    for p in profiles:
+        key = normalize_name(p["name"])
+        if key in slate:
+            s = slate[key]
+            if s["min"] > 0:
+                p["currentProjMin"] = s["min"]
+                p["price"] = s["price"]
+                if s["pos"]:
+                    p["pos"] = s["pos"]
+                updated += 1
+    print(f"  Merged fresh slate data for {updated}/{len(profiles)} players")
+    return profiles
+
+
+# ══════════════════════════════════════════════════════════════════════════════
 #  STEP 2: QUERY CLAUDE FOR MINUTES PROJECTIONS
 # ══════════════════════════════════════════════════════════════════════════════
 
-CLAUDE_SYSTEM = """You are the world's greatest and most accurate NBA minutes allocation analyst for DFS (daily fantasy sports).
+CLAUDE_SYSTEM = """You are the world's most accurate NBA minutes allocation analyst for DFS (daily fantasy sports).
 You must distribute exactly 240 team minutes across active players for tonight's game (5 players × 48 min = 240). You may add up to 2 minutes for overtime probability (target: 240-242 total).
 
 ALLOCATION PROCESS — follow these steps in order:
 1. Start with each player's data source projection as the baseline. These projections already account for injury status, rest days, and lineup changes.
-2. Adjust projections up or down based on recent trends (L5 avg vs data source), but stay within ~7 minutes of the data source projection for each player.
+2. Adjust projections up or down based on recent trends (L5 avg vs data source), but stay within ~3 minutes of the data source projection for each player.
 3. Sum all projected minutes. If the total is not between 240 and 242, adjust bench players (lowest-minutes players) up or down by 1-2 min each until the total equals 240-242. Do NOT reduce starters to fix the total.
 
 CRITICAL RULES:
-- Every active player's projection must be within 7 minutes of their data source projection. Do NOT drastically reduce or inflate any player.
+- Every active player's projection must be within 3 minutes of their data source projection. Do NOT drastically reduce or inflate any player.
 - If a player is listed as ACTIVE with a data source projection > 0, they WILL play. Never project an active player below 5 minutes.
 - Players with 0 projected minutes from the data source are OUT — do not include them.
 - No player should exceed 40 minutes unless their data source projection is 38+.
@@ -336,6 +388,15 @@ def main():
             json.dump(output, f, indent=2)
         return
 
+    # Step 1b: Merge fresh Stokastic minutes from data.json
+    try:
+        slate = load_slate_data()
+        if slate:
+            profiles = merge_slate_into_profiles(profiles, slate)
+    except Exception as e:
+        print(f"WARNING: Could not load data.json: {e}")
+        print("  Falling back to currentProjMin from player-profiles.json")
+
     # Step 2: Query Claude
     print("\nQuerying Claude for projections...")
     claude_projections = query_claude(profiles)
@@ -354,5 +415,6 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 
