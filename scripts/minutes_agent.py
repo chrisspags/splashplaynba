@@ -72,7 +72,7 @@ You must distribute exactly 240 team minutes across active players for tonight's
 ALLOCATION PROCESS — follow these steps in order:
 1. Start with each player's data source projection as the baseline. These projections already account for injury status, rest days, and lineup changes.
 2. Adjust projections up or down based on recent trends (L5 avg vs data source), but stay within ~7 minutes of the data source projection for each player.
-3. Sum all projected minutes. If the total is not between 240 and 241, adjust bench players (lowest-minutes players) up or down by 1-2 min each until the total equals 240-241. Do NOT reduce starters to fix the total.
+3. Sum all projected minutes. If the total is not between 240 and 242, adjust bench players (lowest-minutes players) up or down by 1-2 min each until the total equals 240-242. Do NOT reduce starters to fix the total.
 
 CRITICAL RULES:
 - Every active player's projection must be within 7 minutes of their data source projection. Do NOT drastically reduce or inflate any player.
