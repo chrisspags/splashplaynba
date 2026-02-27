@@ -33,7 +33,7 @@ import anthropic
 
 # ── Configuration ─────────────────────────────────────────────────────────────
 SEASON = "2025-26"
-DELAY = 0.7
+DELAY = 1.2  # Higher delay for cloud environments (GitHub Actions / Azure IPs get throttled)
 MAX_RETRIES = 3
 GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN", "")
 ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
@@ -155,16 +155,20 @@ def load_slate():
     gh_data = resp.json()
     data_json = json.loads(base64.b64decode(gh_data["content"]))
 
-    slate_players = data_json.get("myProj", [])
+    all_slate_players = data_json.get("myProj", [])
     games = data_json.get("games", [])
+
+    # Filter to only active players (have a projection or a price)
+    slate_players = [p for p in all_slate_players if p.get("proj", 0) > 0 or p.get("price", 0) > 0]
+    print(f"  Filtered {len(all_slate_players)} total → {len(slate_players)} active players")
 
     teams_playing = set()
     for g in games:
         if isinstance(g, dict):
             if "away" in g and isinstance(g["away"], dict):
-                teams_playing.add(g["away"].get("team", ""))
+                teams_playing.add(g["away"].get("name", ""))
             if "home" in g and isinstance(g["home"], dict):
-                teams_playing.add(g["home"].get("team", ""))
+                teams_playing.add(g["home"].get("name", ""))
             if "awayTeam" in g:
                 teams_playing.add(g["awayTeam"])
             if "homeTeam" in g:
@@ -178,11 +182,11 @@ def load_slate():
             away = ""
             home = ""
             if "away" in g and isinstance(g["away"], dict):
-                away = g["away"].get("team", "")
+                away = g["away"].get("name", "")
             elif "awayTeam" in g:
                 away = g["awayTeam"]
             if "home" in g and isinstance(g["home"], dict):
-                home = g["home"].get("team", "")
+                home = g["home"].get("name", "")
             elif "homeTeam" in g:
                 home = g["homeTeam"]
             if away and home:
@@ -207,10 +211,11 @@ def build_player_name_index():
         player_name_to_id[full_norm] = p["id"]
         player_name_to_id[last_norm] = p["id"]
 
-    # Supplement with live current-season roster
+    # Supplement with live current-season roster (skip if it takes too long on cloud)
     try:
         cap = commonallplayers.CommonAllPlayers(
-            is_only_current_season=1, league_id="00", season=SEASON
+            is_only_current_season=1, league_id="00", season=SEASON,
+            timeout=15,
         )
         time.sleep(DELAY)
         cap_df = cap.get_data_frames()[0]
@@ -226,7 +231,7 @@ def build_player_name_index():
         if added:
             print(f"  Added {added} players from live roster")
     except Exception as e:
-        print(f"  Live roster lookup skipped ({e})")
+        print(f"  Live roster lookup skipped ({e}) — using static player index")
 
     return player_name_to_id, all_nba_players
 
@@ -616,13 +621,16 @@ def fetch_nba_data(slate_players, teams_playing):
             time.sleep(DELAY)
 
     else:  # full fetch
-        print("  Full fetch from NBA API...")
+        print(f"  Full fetch from NBA API ({len(slate_players)} players)...")
+        skipped = 0
         for i, sp in enumerate(slate_players):
             name = sp.get("name", "")
             if not name:
+                skipped += 1
                 continue
             pid = find_player_id(name, player_name_to_id, all_nba_players)
             if not pid:
+                skipped += 1
                 continue
             player_id_map[name] = pid
             for attempt in range(3):
@@ -636,13 +644,15 @@ def fetch_nba_data(slate_players, teams_playing):
                         break
                     elif attempt < 2:
                         time.sleep(DELAY * (attempt + 2))
-                except Exception:
+                except Exception as e:
                     if attempt < 2:
                         time.sleep(DELAY * (attempt + 2))
-            if (i + 1) % 10 == 0:
-                print(f"    Fetched {i + 1}/{len(slate_players)}...")
+                    elif i < 5:
+                        print(f"    ⚠ Failed: {name} ({e})")
+            if (i + 1) % 5 == 0:
+                print(f"    Game logs: {i + 1}/{len(slate_players)} ({len(player_game_logs)} ok, {skipped} skipped)")
             time.sleep(DELAY)
-        print(f"  Fetched game logs for {len(player_game_logs)} players")
+        print(f"  Fetched game logs for {len(player_game_logs)} players ({skipped} skipped)")
 
     # Fetch box scores for recent games only (last 30 days covers L10 + margin)
     cutoff_date = datetime.now() - timedelta(days=30)
@@ -657,6 +667,10 @@ def fetch_nba_data(slate_players, teams_playing):
                 all_game_ids.add(str(row["Game_ID"]))
 
     missing_box_ids = all_game_ids - set(box_scores.keys())
+    # Skip PBP on large fetches (first run) — sub chains are nice-to-have, not essential
+    skip_pbp = len(missing_box_ids) > 30
+    if skip_pbp and missing_box_ids:
+        print(f"  Large fetch ({len(missing_box_ids)} box scores) — skipping PBP to save time")
     if missing_box_ids:
         print(f"  Fetching {len(missing_box_ids)} box scores...")
         consecutive_failures = 0
@@ -673,15 +687,15 @@ def fetch_nba_data(slate_players, teams_playing):
                         started_data[gid] = {}
                     started_data[gid][pname] = row["STARTED"]
 
-                # Co-fetch PBP
-                if gid not in sub_pairs:
+                # Co-fetch PBP (skip on large fetches to halve API calls)
+                if not skip_pbp and gid not in sub_pairs:
                     time.sleep(DELAY)
                     pairs = fetch_sub_pairs(gid)
                     sub_pairs[gid] = pairs
             else:
                 consecutive_failures += 1
 
-            if (i + 1) % 20 == 0:
+            if (i + 1) % 10 == 0:
                 print(f"    Fetched {i + 1}/{len(missing_box_ids)} box scores...")
             if (i + 1) % 50 == 0:
                 save_cache(
@@ -1162,3 +1176,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
