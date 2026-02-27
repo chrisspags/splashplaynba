@@ -644,10 +644,17 @@ def fetch_nba_data(slate_players, teams_playing):
             time.sleep(DELAY)
         print(f"  Fetched game logs for {len(player_game_logs)} players")
 
-    # Fetch box scores for all games referenced in game logs
+    # Fetch box scores for recent games only (last 30 days covers L10 + margin)
+    cutoff_date = datetime.now() - timedelta(days=30)
     all_game_ids = set()
     for name, df in player_game_logs.items():
-        all_game_ids.update(df["Game_ID"].astype(str).tolist())
+        for _, row in df.iterrows():
+            try:
+                game_date = pd.to_datetime(row["GAME_DATE"])
+                if game_date >= cutoff_date:
+                    all_game_ids.add(str(row["Game_ID"]))
+            except Exception:
+                all_game_ids.add(str(row["Game_ID"]))
 
     missing_box_ids = all_game_ids - set(box_scores.keys())
     if missing_box_ids:
