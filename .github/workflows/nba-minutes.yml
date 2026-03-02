@@ -1,10 +1,10 @@
 name: NBA Minutes Agent
 
 on:
-  workflow_dispatch:
+  workflow_dispatch:  # Manual trigger only from GitHub Actions UI
 
 permissions:
-  contents: write
+  contents: write           # Needed to commit minutes-data.json
 
 jobs:
   minutes-agent:
@@ -34,15 +34,18 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          # Save generated file
+          # Save generated files
           cp minutes-data.json /tmp/minutes-data.json
-          # Get latest remote (may have new commits from Colab notebook)
+          cp minutes-export.csv /tmp/minutes-export.csv 2>/dev/null || true
+          # Get latest remote (may have new commits from Colab/site)
           git fetch origin main
           git reset --hard origin/main
-          # Restore our generated file on top of latest
+          # Restore generated files on top of latest
           cp /tmp/minutes-data.json minutes-data.json
-          git add minutes-data.json
+          cp /tmp/minutes-export.csv minutes-export.csv 2>/dev/null || true
+          git add minutes-data.json minutes-export.csv
           git diff --cached --quiet || git commit -m "Update minutes-data.json $(date -u +%Y-%m-%dT%H:%M:%SZ)"
           git push
+
 
 
