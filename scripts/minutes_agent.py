@@ -8,6 +8,7 @@ and writes minutes-data.json.
 No NBA API calls — game data is from Colab, Stokastic data is from site upload.
 """
 
+import csv
 import json
 import os
 import re
@@ -123,11 +124,11 @@ You must distribute exactly 240 team minutes across active players for tonight's
 
 ALLOCATION PROCESS — follow these steps in order:
 1. Start with each player's data source projection as the baseline. These projections already account for injury status, rest days, and lineup changes.
-2. Adjust projections up or down based on recent trends (L5 avg vs data source), but stay within ~3 minutes of the data source projection for each player.
+2. Adjust projections up or down based on recent trends (L5 avg vs data source), but stay within ~10 minutes of the data source projection for each player.
 3. Sum all projected minutes. If the total is not between 240 and 242, adjust bench players (lowest-minutes players) up or down by 1-2 min each until the total equals 240-242. Do NOT reduce starters to fix the total.
 
 CRITICAL RULES:
-- Every active player's projection must be within 3 minutes of their data source projection. Do NOT drastically reduce or inflate any player.
+- Every active player's projection must be within 10 minutes of their data source projection. Do NOT drastically reduce or inflate any player.
 - If a player is listed as ACTIVE with a data source projection > 0, they WILL play. Never project an active player below 5 minutes.
 - Players with 0 projected minutes from the data source are OUT — do not include them.
 - No player should exceed 40 minutes unless their data source projection is 38+.
@@ -351,6 +352,53 @@ def build_output(profiles, claude_projections, season):
 
 
 # ══════════════════════════════════════════════════════════════════════════════
+#  STEP 4: WRITE CSV EXPORT
+# ══════════════════════════════════════════════════════════════════════════════
+
+CSV_FILE = "minutes-export.csv"
+
+
+def write_csv(output):
+    """Write a flat CSV of all minutes data for the Minutes tab."""
+    players = output.get("players", [])
+    if not players:
+        print("  No players — skipping CSV")
+        return
+
+    with open(CSV_FILE, "w", newline="") as f:
+        writer = csv.writer(f)
+        writer.writerow([
+            "Player", "Team", "Pos", "Price",
+            "Proj Min", "Confidence", "Stok Min",
+            "L5 Avg", "L10 Avg",
+            "G1", "G2", "G3", "G4", "G5",
+            "G6", "G7", "G8", "G9", "G10",
+            "Reasoning",
+        ])
+        for p in players:
+            games = p.get("last10Games", [])
+            while len(games) < 10:
+                games.append({})
+            row = [
+                p.get("name", ""),
+                p.get("team", ""),
+                p.get("pos", ""),
+                p.get("price", 0),
+                p.get("projectedMinutes", ""),
+                p.get("confidence", ""),
+                p.get("currentProjMin", 0),
+                p.get("l5Avg", 0),
+                p.get("l10Avg", 0),
+            ]
+            for g in games[:10]:
+                row.append(g.get("minutes", 0) if g else 0)
+            row.append(p.get("reasoning", ""))
+            writer.writerow(row)
+
+    print(f"  Wrote {CSV_FILE}: {len(players)} rows")
+
+
+# ══════════════════════════════════════════════════════════════════════════════
 #  MAIN
 # ══════════════════════════════════════════════════════════════════════════════
 
@@ -408,6 +456,9 @@ def main():
     with open(OUTPUT_FILE, "w") as f:
         json.dump(output, f, indent=2)
 
+    # Step 4: Write CSV export
+    write_csv(output)
+
     proj_count = sum(1 for p in output["players"] if p.get("projectedMinutes"))
     print(f"\nWrote {OUTPUT_FILE}: {len(output['players'])} players, {proj_count} with Claude projections")
     print("Done!")
@@ -415,6 +466,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 
 
