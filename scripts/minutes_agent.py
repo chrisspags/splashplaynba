@@ -368,12 +368,10 @@ def write_csv(output):
     with open(CSV_FILE, "w", newline="") as f:
         writer = csv.writer(f)
         writer.writerow([
-            "Player", "Team", "Pos", "Price",
-            "Proj Min", "Confidence", "Stok Min",
-            "L5 Avg", "L10 Avg",
+            "Player", "Team", "Proj Min", "Confidence",
+            "L5", "L10",
             "G1", "G2", "G3", "G4", "G5",
             "G6", "G7", "G8", "G9", "G10",
-            "Reasoning",
         ])
         for p in players:
             games = p.get("last10Games", [])
@@ -382,17 +380,13 @@ def write_csv(output):
             row = [
                 p.get("name", ""),
                 p.get("team", ""),
-                p.get("pos", ""),
-                p.get("price", 0),
                 p.get("projectedMinutes", ""),
                 p.get("confidence", ""),
-                p.get("currentProjMin", 0),
                 p.get("l5Avg", 0),
                 p.get("l10Avg", 0),
             ]
             for g in games[:10]:
                 row.append(g.get("minutes", 0) if g else 0)
-            row.append(p.get("reasoning", ""))
             writer.writerow(row)
 
     print(f"  Wrote {CSV_FILE}: {len(players)} rows")
