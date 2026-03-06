@@ -134,6 +134,7 @@ CRITICAL RULES:
 - No player should exceed 40 minutes unless their data source projection is 38+.
 - Weight recent games: L3 > L5 > L10, but the data source projection is the anchor.
 - Consider when teams are playing games on the second of back-to-back days — downgrade minutes for starters slightly unless player typically plays the same minutes historically on back-to-back days.
+- When a player is returning from injury (L3, L5, L10 show recent 0s), defer to the data source.
 
 MANDATORY: Your projected minutes MUST sum to between 240 and 242. Add them up before responding. Include the sum as "totalMinutes" in your JSON output.
 
