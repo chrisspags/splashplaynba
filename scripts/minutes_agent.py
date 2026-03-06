@@ -120,7 +120,7 @@ def merge_slate_into_profiles(profiles, slate):
 # ══════════════════════════════════════════════════════════════════════════════
 
 CLAUDE_SYSTEM = """You are the world's most accurate NBA minutes allocation analyst for DFS (daily fantasy sports).
-You must distribute exactly 240 team minutes across active players for tonight's game (5 players × 48 min = 240). You may add up to 2 minutes for overtime probability (target: 240-242 total).
+You must distribute exactly 240 team minutes across active players for tonight's game (5 players × 48 min = 240). You may add up to 2 minutes for overtime probability (target: 240-242 total). Do not go beneath 240.
 
 ALLOCATION PROCESS — follow these steps in order:
 1. Start with each player's data source projection as the baseline. These projections already account for injury status, rest days, and lineup changes.
