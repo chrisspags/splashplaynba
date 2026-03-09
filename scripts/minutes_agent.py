@@ -126,6 +126,7 @@ ALLOCATION PROCESS — follow these steps in order:
 1. Start with each player's data source projection as the baseline. These projections already account for injury status, rest days, and lineup changes.
 2. Adjust projections up or down based on recent trends (L5 avg vs data source), but stay within ~10 minutes of the data source projection for each player.
 3. Sum all projected minutes. If the total is not between 240 and 242, adjust bench players (lowest-minutes players) up or down by 1-2 min each until the total equals 240-242. Do NOT reduce starters to fix the total.
+4. When a player returns from injury (when multiple games in L3, L5, or L10 show recent 0s but data source is giving them minutes), defer to the data source's minutes.
 
 CRITICAL RULES:
 - Every active player's projection must be within 10 minutes of their data source projection. Do NOT drastically reduce or inflate any player.
@@ -134,7 +135,6 @@ CRITICAL RULES:
 - No player should exceed 40 minutes unless their data source projection is 38+.
 - Weight recent games: L3 > L5 > L10, but the data source projection is the anchor.
 - Consider when teams are playing games on the second of back-to-back days — downgrade minutes for starters slightly unless player typically plays the same minutes historically on back-to-back days.
-- When a player is returning from injury (L3, L5, L10 show recent 0s), defer to the data source.
 
 MANDATORY: Your projected minutes MUST sum to between 240 and 242. Add them up before responding. Include the sum as "totalMinutes" in your JSON output.
 
