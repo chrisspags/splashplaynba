@@ -224,7 +224,7 @@ def fetch_injury_report(game_date_str=None):
     for t in times_to_try:
         url = f"https://ak-static.cms.nba.com/referee/injury/Injury-Report_{game_date_str}_{t}.pdf"
         try:
-            r = requests.head(url, timeout=5)
+            r = requests.head(url, timeout=5, headers={"User-Agent": "Mozilla/5.0"})
             if r.status_code == 200:
                 injury_pdf_url = url
                 print(f"  Found: {url}")
@@ -238,7 +238,7 @@ def fetch_injury_report(game_date_str=None):
         for t in times_to_try[:10]:
             url = f"https://ak-static.cms.nba.com/referee/injury/Injury-Report_{yesterday}_{t}.pdf"
             try:
-                r = requests.head(url, timeout=5)
+                r = requests.head(url, timeout=5, headers={"User-Agent": "Mozilla/5.0"})
                 if r.status_code == 200:
                     injury_pdf_url = url
                     print(f"  Found day-before report: {url}")
@@ -252,31 +252,38 @@ def fetch_injury_report(game_date_str=None):
 
     # Parse PDF
     try:
-        pdf_resp = requests.get(injury_pdf_url)
+        pdf_resp = requests.get(injury_pdf_url, headers={"User-Agent": "Mozilla/5.0"})
         pdf_resp.raise_for_status()
 
-        injuries = {}  # normalized_name -> {status, reason, team}
+        injuries = {}  # normalized_name -> {status, reason}
 
         with pdfplumber.open(io.BytesIO(pdf_resp.content)) as pdf:
+            all_text = ""
             for page in pdf.pages:
-                table = page.extract_table()
-                if not table:
-                    continue
-                for row in table:
-                    if not row or len(row) < 7 or row[0] == "Game Date":
-                        continue
-                    player_name = (row[4] or "").strip()
-                    status = (row[5] or "").strip()
-                    reason = (row[6] or "").strip()
-                    team = (row[3] or "").strip()
+                all_text += (page.extract_text() or "") + "\n"
 
-                    if player_name and status:
-                        key = normalize_name(player_name)
-                        injuries[key] = {
-                            "status": status,
-                            "reason": reason,
-                            "team": team,
-                        }
+        # Parse text with regex — PDF table extraction doesn't work on this format
+        status_pattern = "Out|Questionable|Doubtful|Probable|Available"
+        for line in all_text.split("\n"):
+            line = line.strip()
+            if not line:
+                continue
+            m = re.search(
+                r"([A-Z][a-z'\-]+(?:,[A-Z][a-z'\-\.]+)+)\s+(" + status_pattern + r")\b",
+                line,
+            )
+            if m:
+                name_raw = m.group(1)
+                status = m.group(2)
+                parts = name_raw.split(",")
+                player_name = (parts[1].strip() + " " + parts[0].strip()) if len(parts) == 2 else name_raw
+                reason = line[m.end():].strip()[:100]
+
+                key = normalize_name(player_name)
+                injuries[key] = {
+                    "status": status,
+                    "reason": reason,
+                }
 
         out_count = sum(1 for v in injuries.values() if v["status"].lower() in ("out", "doubtful"))
         q_count = sum(1 for v in injuries.values() if v["status"].lower() == "questionable")
@@ -341,13 +348,13 @@ ALLOCATION PROCESS — follow these steps in order:
 
 INJURY STATUS KEY:
 - "Out" or "Doubtful" = will NOT play. Project 0 minutes. Redistribute using sub chains.
-- "Questionable" = uncertain. Assume they will play normally and we'll update if they're out.
+- "Questionable" = uncertain. Assume they'll play normally, we'll update them as out if needed.
 - "Probable" or "Available" = will play normally.
 
 CRITICAL RULES:
 - USE THE SUBSTITUTION CHAIN DATA. This is real play-by-play data showing coaching patterns. It's your best tool.
 - L5 average is your primary baseline for each player. L3 trend is your adjustment signal.
-- Starters (started 80%+ of games): typically 24-38 min. Never below 20 unless injury-limited.
+- Starters (started 80%+ of games): typically 24-38 min. Never below 22 unless injury-limited.
 - Rotation players (started <50%, L5 15-28 min): 12-28 min range.
 - Deep bench (L5 < 12 min): 0-15 min range. These are your flex for hitting 240.
 - No player should exceed 40 minutes unless their L5 is 38+.
