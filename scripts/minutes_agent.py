@@ -90,68 +90,50 @@ def load_slate_data():
     """Read slate data from DK slates, FD slates, or data.json as fallback."""
     slate = {}
 
-    # Try dk-slates.json first
+    # Load ALL DK slates
     print("Loading dk-slates.json from GitHub...")
     dk_data = gh_fetch_json("dk-slates.json")
     if dk_data and dk_data.get("slates"):
-        # Find main slate (most games, SalaryCap, has players)
-        best_key = None
-        best_gc = 0
+        dk_labels = []
         for key, sl in dk_data["slates"].items():
-            if sl.get("players") and sl.get("gameCount", 0) > best_gc:
-                gt = sl.get("gameType", "")
-                if gt == "SalaryCap" or not gt:
-                    best_gc = sl["gameCount"]
-                    best_key = key
-
-        if best_key:
-            dk_slate = dk_data["slates"][best_key]
-            label = dk_slate.get("label", f"DK Slate {best_key}")
-            print(f"  Using DK slate: {label} ({len(dk_slate['players'])} players)")
-
-            for p in dk_slate["players"]:
+            if not sl.get("players"):
+                continue
+            dk_labels.append(sl.get("label", key))
+            for p in sl["players"]:
                 name = normalize_name(p.get("name", ""))
-                if name:
-                    slate[name] = {
-                        "min": p.get("fppg", 0),  # FPPG as projection proxy
-                        "price": p.get("salary", 0),
-                        "pos": p.get("pos", ""),
-                        "team": p.get("team", ""),
-                    }
-
-            if slate:
-                print(f"  Loaded {len(slate)} players from DK slate")
-                return slate
-
-    # Try fd-slates.json
-    print("  No DK slates, trying fd-slates.json...")
-    fd_data = gh_fetch_json("fd-slates.json")
-    if fd_data:
-        best_key = None
-        best_gc = 0
-        for key, sl in fd_data.items():
-            if isinstance(sl, dict) and sl.get("players") and sl.get("gameCount", 0) > best_gc:
-                best_gc = sl["gameCount"]
-                best_key = key
-
-        if best_key:
-            fd_slate = fd_data[best_key]
-            label = fd_slate.get("label", f"FD Slate {best_key}")
-            print(f"  Using FD slate: {label} ({len(fd_slate['players'])} players)")
-
-            for p in fd_slate["players"]:
-                name = normalize_name(p.get("name", ""))
-                if name:
+                if name and name not in slate:
                     slate[name] = {
                         "min": p.get("fppg", 0),
                         "price": p.get("salary", 0),
                         "pos": p.get("pos", ""),
                         "team": p.get("team", ""),
                     }
+        if dk_labels:
+            print(f"  Loaded {len(slate)} players from {len(dk_labels)} DK slates: {', '.join(dk_labels)}")
 
-            if slate:
-                print(f"  Loaded {len(slate)} players from FD slate")
-                return slate
+    # Also load FD slates (merge new players)
+    print("Loading fd-slates.json from GitHub...")
+    fd_data = gh_fetch_json("fd-slates.json")
+    if fd_data:
+        fd_added = 0
+        for key, sl in fd_data.items():
+            if key == "_slateOrder" or not isinstance(sl, dict) or not sl.get("players"):
+                continue
+            for p in sl["players"]:
+                name = normalize_name(p.get("name", ""))
+                if name and name not in slate:
+                    slate[name] = {
+                        "min": p.get("fppg", 0),
+                        "price": p.get("salary", 0),
+                        "pos": p.get("pos", ""),
+                        "team": p.get("team", ""),
+                    }
+                    fd_added += 1
+        if fd_added:
+            print(f"  Added {fd_added} new players from FD slates")
+
+    if slate:
+        return slate
 
     # Fallback to data.json
     print("  No DK/FD slates, falling back to data.json...")
@@ -542,40 +524,21 @@ def query_claude(profiles):
                 players_list = result.get("players", [])
                 team_total = sum(p.get("projectedMinutes", 0) for p in players_list)
 
+                # Always force-scale to exactly 241 minutes
+                # Claude gets the relative proportions right, we enforce the total
                 if team_total > 0 and not (239 <= team_total <= 242):
-                    diff = 241.0 - team_total
-                    if abs(diff) <= 5:
-                        bench = [p for p in players_list if p.get("projectedMinutes", 0) < 25]
-                        if bench:
-                            adj = diff / len(bench)
-                            for p in bench:
-                                p["projectedMinutes"] = round(p["projectedMinutes"] + adj, 1)
-                            new_total = sum(p.get("projectedMinutes", 0) for p in players_list)
-                            print(f"    Adjusted {team} bench: {team_total:.0f} → {new_total:.1f} min")
-                        break
-                    elif attempt < 2:
-                        proj_summary = ", ".join(
-                            f"{p['name']}={p.get('projectedMinutes', 0)}"
-                            for p in players_list
-                        )
-                        correction = (
-                            f"Your total was {team_total:.1f} minutes, which is off by {abs(diff):.0f}. "
-                            f"An NBA team plays exactly 240 minutes per game (5 x 48). "
-                            f"Here were your projections: {proj_summary}. "
-                            f"Redistribute these to sum to exactly 240-241. "
-                            f"Keep starters close to their current values and adjust bench players. "
-                            f"Respond with the corrected JSON in the same format."
-                        )
-                        messages.append({"role": "assistant", "content": text})
-                        messages.append({"role": "user", "content": correction})
-                        print(f"    Total was {team_total:.0f} — sending correction (attempt {attempt + 2})...")
-                        time.sleep(1)
-                        continue
-                    else:
-                        print(f"    WARNING: {team} still at {team_total:.0f} after correction — accepting")
-                        break
-                else:
-                    break
+                    scale = 241.0 / team_total
+                    for p in players_list:
+                        p["projectedMinutes"] = round(p["projectedMinutes"] * scale, 1)
+                    new_total = sum(p.get("projectedMinutes", 0) for p in players_list)
+                    # Fine-tune: adjust the largest player to hit exactly 241
+                    remainder = round(241.0 - new_total, 1)
+                    if abs(remainder) > 0 and players_list:
+                        biggest = max(players_list, key=lambda x: x.get("projectedMinutes", 0))
+                        biggest["projectedMinutes"] = round(biggest["projectedMinutes"] + remainder, 1)
+                    new_total = sum(p.get("projectedMinutes", 0) for p in players_list)
+                    print(f"    Scaled {team}: {team_total:.0f} → {new_total:.1f} min")
+                break
 
             except json.JSONDecodeError as e:
                 print(f"    JSON parse error for {team}: {e}")
