@@ -207,13 +207,15 @@ def fetch_injury_report(game_date_str=None):
 
     print(f"Fetching NBA injury report for {game_date_str}...")
 
-    # Try descending timestamps
+    # Try descending timestamps — every 15 min from 11:45PM to 10:00AM
     times_to_try = [
-        "05_00PM", "04_45PM", "04_30PM", "04_15PM", "04_00PM", "03_45PM", "03_30PM",
-        "01_00PM", "12_45PM", "12_30PM", "12_15PM", "12_00PM",
-        "11_45AM", "11_30AM", "11_15AM", "11_00AM", "10_45AM", "10_30AM",
-        "08_15PM", "08_00PM", "07_45PM", "07_30PM", "07_15PM", "07_00PM",
-        "06_45PM", "06_30PM", "06_15PM", "06_00PM", "05_45PM", "05_30PM", "05_15PM",
+        "11_45PM", "11_30PM", "11_15PM", "11_00PM", "10_45PM", "10_30PM", "10_15PM", "10_00PM",
+        "09_45PM", "09_30PM", "09_15PM", "09_00PM", "08_45PM", "08_30PM", "08_15PM", "08_00PM",
+        "07_45PM", "07_30PM", "07_15PM", "07_00PM", "06_45PM", "06_30PM", "06_15PM", "06_00PM",
+        "05_45PM", "05_30PM", "05_15PM", "05_00PM", "04_45PM", "04_30PM", "04_15PM", "04_00PM",
+        "03_45PM", "03_30PM", "03_15PM", "03_00PM", "02_45PM", "02_30PM", "02_15PM", "02_00PM",
+        "01_45PM", "01_30PM", "01_15PM", "01_00PM", "12_45PM", "12_30PM", "12_15PM", "12_00PM",
+        "11_45AM", "11_30AM", "11_15AM", "11_00AM", "10_45AM", "10_30AM", "10_15AM", "10_00AM",
     ]
 
     injury_pdf_url = None
