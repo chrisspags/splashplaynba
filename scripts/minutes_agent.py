@@ -1,123 +1,4 @@
-#!/usr/bin/env python3
-"""
-NBA Minutes Agent — Claude-Only Pipeline
-Reads player-profiles.json (game history) and dk-slates.json/fd-slates.json (fresh slate data)
-from GitHub, fetches the latest NBA injury report PDF, sends per-team data to Claude Haiku
-for minutes projections, and writes minutes-data.json.
-
-No NBA API calls — game data is from Colab, slate data is from DK/FD API pulls on the site.
-"""
-
-import csv
-import io
-import json
-import os
-import re
-import base64
-import time
-import unicodedata
-import requests
-from datetime import datetime, timedelta
-
-import anthropic
-
-# ── Configuration ─────────────────────────────────────────────────────────────
-GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN", "")
-ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
-REPO_OWNER = "chrisspags"
-REPO_NAME = "splashplaynba"
-PROFILES_FILE = "player-profiles.json"
-OUTPUT_FILE = "minutes-data.json"
-CSV_FILE = "minutes-export.csv"
-
-
-# ── Utility ───────────────────────────────────────────────────────────────────
-
-def normalize_name(name):
-    """Strip diacritics, remove periods/apostrophes, normalize whitespace."""
-    nfkd = unicodedata.normalize("NFKD", name)
-    ascii_name = "".join(c for c in nfkd if not unicodedata.combining(c))
-    ascii_name = ascii_name.replace(".", "").replace("'", "").replace("-", " ")
-    return " ".join(ascii_name.split()).strip().lower()
-
-
-def gh_fetch_json(filename):
-    """Fetch a JSON file from GitHub repo, handling large files."""
-    headers = {"Accept": "application/vnd.github.v3+json"}
-    if GITHUB_TOKEN:
-        headers["Authorization"] = f"Bearer {GITHUB_TOKEN}"
-
-    url = f"https://api.github.com/repos/{REPO_OWNER}/{REPO_NAME}/contents/{filename}"
-    resp = requests.get(url, headers=headers)
-    if resp.status_code == 404:
-        return None
-    resp.raise_for_status()
-    gh_data = resp.json()
-
-    if gh_data.get("content"):
-        return json.loads(base64.b64decode(gh_data["content"]))
-    elif gh_data.get("download_url"):
-        raw = requests.get(gh_data["download_url"], headers=headers)
-        raw.raise_for_status()
-        return raw.json()
-    return None
-
-
-# ══════════════════════════════════════════════════════════════════════════════
-#  STEP 1: LOAD PROFILES FROM GITHUB
-# ══════════════════════════════════════════════════════════════════════════════
-
-def load_profiles():
-    """Read player-profiles.json from GitHub repo."""
-    print("Loading player-profiles.json from GitHub...")
-    data = gh_fetch_json(PROFILES_FILE)
-    if not data:
-        raise Exception("player-profiles.json not found on GitHub")
-
-    profiles = data.get("profiles", [])
-    generated_at = data.get("generatedAt", "unknown")
-    season = data.get("season", "")
-
-    print(f"  Loaded {len(profiles)} profiles (generated: {generated_at})")
-    return profiles, season, generated_at
-
-
-# ══════════════════════════════════════════════════════════════════════════════
-#  STEP 1b: LOAD SLATE DATA (dk-slates.json → fd-slates.json → data.json)
-# ══════════════════════════════════════════════════════════════════════════════
-
-def load_slate_data():
-    """Read slate data from DK slates, FD slates, or data.json as fallback."""
-    slate = {}
-
-    # Load ALL DK slates
-    print("Loading dk-slates.json from GitHub...")
-    dk_data = gh_fetch_json("dk-slates.json")
-    if dk_data and dk_data.get("slates"):
-        dk_labels = []
-        for key, sl in dk_data["slates"].items():
-            if not sl.get("players"):
-                continue
-            dk_labels.append(sl.get("label", key))
-            for p in sl["players"]:
-                name = normalize_name(p.get("name", ""))
-                if name and name not in slate:
-                    slate[name] = {
-                        "min": p.get("fppg", 0),
-                        "price": p.get("salary", 0),
-                        "pos": p.get("pos", ""),
-                        "team": p.get("team", ""),
-                    }
-        if dk_labels:
-            print(f"  Loaded {len(slate)} players from {len(dk_labels)} DK slates: {', '.join(dk_labels)}")
-
-    # Also load FD slates (merge new players)
-    print("Loading fd-slates.json from GitHub...")
-    fd_data = gh_fetch_json("fd-slates.json")
-    if fd_data:
-        fd_added = 0
-        for key, sl in fd_data.items():
-            if key == "_slateOrder" or not isinstance(sl, dict) or not sl.get("players"):
+isinstance(sl, dict) or not sl.get("players"):
                 continue
             for p in sl["players"]:
                 name = normalize_name(p.get("name", ""))
@@ -349,15 +230,22 @@ Respond ONLY with valid JSON. No markdown fences, no commentary."""
 
 def build_team_prompt(team, opponent, team_players):
     """Build a Claude prompt for one team's minutes projections with full rotation data."""
-    # Active = meaningful rotation player (L5 >= 5 min) and not OUT/Doubtful
-    # Players under 5 min L5 are deep bench / garbage time only — exclude from Claude prompt
+    # Count how many of last 5 games each player actually played
+    def games_played_l5(p):
+        games = p.get("last10Games", [])[:5]
+        return sum(1 for g in games if g.get("minutes", 0) > 0)
+
+    # Active = played at least 2 of last 5 games AND averaged 5+ min when playing
+    # AND not OUT/Doubtful
     active = [p for p in team_players if
-              p.get("l5Avg", 0) >= 5
+              games_played_l5(p) >= 2
+              and p.get("l5Avg", 0) >= 5
               and p.get("injuryStatus", "Available").lower() not in ("out", "doubtful")]
-    # If fewer than 8 active, lower threshold to include more
+    # If fewer than 8 active, lower threshold but still require recent play
     if len(active) < 8:
         active = [p for p in team_players if
-                  (p.get("l5Avg", 0) > 0 or p.get("l10Avg", 0) >= 5)
+                  games_played_l5(p) >= 1
+                  and p.get("l5Avg", 0) > 0
                   and p.get("injuryStatus", "Available").lower() not in ("out", "doubtful")]
     # Out = explicitly OUT/Doubtful, or not in the rotation
     out = [p for p in team_players if
@@ -382,9 +270,11 @@ def build_team_prompt(team, opponent, team_players):
         elif p.get("injuryStatus", "").lower() == "probable":
             injury_tag = f" [PROBABLE: {p.get('injuryReason', '')}]"
 
+        gp5 = games_played_l5(p)
+        dnp_tag = f" [DNP {5-gp5} of last 5]" if gp5 < 4 else ""
         lines.append(
-            f"\n- {p['name']} ({p.get('pos', '?')}, ${p.get('price', 0)}){injury_tag}: "
-            f"L5={p.get('l5Avg', 0)}, L10={p.get('l10Avg', 0)}"
+            f"\n- {p['name']} ({p.get('pos', '?')}, ${p.get('price', 0)}){injury_tag}{dnp_tag}: "
+            f"L5={p.get('l5Avg', 0)} ({gp5}/5 games played), L10={p.get('l10Avg', 0)}"
         )
 
         # Game-by-game minutes with stats and starter flag
