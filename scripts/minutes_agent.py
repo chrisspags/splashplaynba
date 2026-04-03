@@ -349,14 +349,21 @@ Respond ONLY with valid JSON. No markdown fences, no commentary."""
 
 def build_team_prompt(team, opponent, team_players):
     """Build a Claude prompt for one team's minutes projections with full rotation data."""
-    # Active = has recent minutes (L5 or L10 > 0) and not OUT/Doubtful
+    # Active = meaningful rotation player (L5 >= 5 min) and not OUT/Doubtful
+    # Players under 5 min L5 are deep bench / garbage time only — exclude from Claude prompt
     active = [p for p in team_players if
-              (p.get("l5Avg", 0) > 0 or p.get("l10Avg", 0) > 0)
+              p.get("l5Avg", 0) >= 5
               and p.get("injuryStatus", "Available").lower() not in ("out", "doubtful")]
-    # Out = explicitly OUT/Doubtful, or no recent minutes at all
+    # If fewer than 8 active, lower threshold to include more
+    if len(active) < 8:
+        active = [p for p in team_players if
+                  (p.get("l5Avg", 0) > 0 or p.get("l10Avg", 0) >= 5)
+                  and p.get("injuryStatus", "Available").lower() not in ("out", "doubtful")]
+    # Out = explicitly OUT/Doubtful, or not in the rotation
     out = [p for p in team_players if
-           p.get("injuryStatus", "").lower() in ("out", "doubtful")
-           or (p.get("l5Avg", 0) == 0 and p.get("l10Avg", 0) == 0)]
+           p.get("injuryStatus", "").lower() in ("out", "doubtful")]
+    # DNP = on the slate but not in the active rotation (deep bench)
+    dnp = [p for p in team_players if p not in active and p not in out]
     questionable = [p for p in active if p.get("injuryStatus", "").lower() == "questionable"]
 
     if not active:
