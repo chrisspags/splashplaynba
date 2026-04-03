@@ -501,25 +501,40 @@ def query_claude(profiles):
 
     projections = {}  # name -> {projectedMinutes, confidence, reasoning}
 
+    # Build all team prompts
+    team_prompts = []
     for team, players in team_players.items():
         opponent = players[0].get("opponent", "?") if players else "?"
         prompt = build_team_prompt(team, opponent, players)
-        if not prompt:
-            continue
+        if prompt:
+            team_prompts.append((team, opponent, prompt))
 
-        print(f"  Querying Claude for {team} vs {opponent}...")
+    # Batch teams into groups of 4 to reduce API calls
+    BATCH_SIZE = 4
+    batches = [team_prompts[i:i + BATCH_SIZE] for i in range(0, len(team_prompts), BATCH_SIZE)]
+    print(f"  {len(team_prompts)} teams in {len(batches)} batches of up to {BATCH_SIZE}")
 
-        messages = [{"role": "user", "content": prompt}]
-        players_list = None
+    for batch_idx, batch in enumerate(batches):
+        batch_teams = [t[0] for t in batch]
+        print(f"\n  Batch {batch_idx + 1}/{len(batches)}: {', '.join(batch_teams)}")
 
-        for attempt in range(3):
+        # Combine prompts with clear separators
+        combined_prompt = "Project minutes for MULTIPLE teams. Each team MUST total exactly 240-242 minutes.\n"
+        combined_prompt += "Return a JSON object with team abbreviations as keys.\n\n"
+        for team, opponent, prompt in batch:
+            combined_prompt += f"═══ TEAM: {team} ═══\n{prompt}\n\n"
+        combined_prompt += """
+Return this EXACT JSON format with ALL teams:
+{"teams":{"TEAM1":{"totalMinutes":241,"players":[{"name":"Player","projectedMinutes":35.5,"confidence":"high","reasoning":"brief"}]},"TEAM2":{...}}}"""
+
+        for attempt in range(2):
             try:
                 response = client.messages.create(
                     model="claude-haiku-4-5-20251001",
-                    max_tokens=2048,
+                    max_tokens=4096,
                     temperature=0.3,
                     system=CLAUDE_SYSTEM,
-                    messages=messages,
+                    messages=[{"role": "user", "content": combined_prompt}],
                 )
 
                 text = response.content[0].text.strip()
@@ -528,45 +543,65 @@ def query_claude(profiles):
                     text = re.sub(r"\n?```$", "", text)
 
                 result = json.loads(text)
-                players_list = result.get("players", [])
-                team_total = sum(p.get("projectedMinutes", 0) for p in players_list)
 
-                # Always force-scale to exactly 241 minutes
-                # Claude gets the relative proportions right, we enforce the total
-                if team_total > 0 and not (239 <= team_total <= 242):
-                    scale = 241.0 / team_total
+                # Handle both formats: {teams: {TEAM: ...}} or {TEAM: {players: [...]}}
+                teams_data = result.get("teams", result)
+
+                for team, opponent, _ in batch:
+                    team_result = teams_data.get(team, {})
+                    players_list = team_result.get("players", [])
+
+                    if not players_list:
+                        print(f"    ⚠ {team}: no players returned")
+                        continue
+
+                    team_total = sum(p.get("projectedMinutes", 0) for p in players_list)
+
+                    # Force-scale to exactly 241
+                    if team_total > 0 and not (239 <= team_total <= 242):
+                        scale = 241.0 / team_total
+                        for p in players_list:
+                            p["projectedMinutes"] = round(p["projectedMinutes"] * scale, 1)
+                        new_total = sum(p.get("projectedMinutes", 0) for p in players_list)
+                        remainder = round(241.0 - new_total, 1)
+                        if abs(remainder) > 0 and players_list:
+                            biggest = max(players_list, key=lambda x: x.get("projectedMinutes", 0))
+                            biggest["projectedMinutes"] = round(biggest["projectedMinutes"] + remainder, 1)
+                        new_total = sum(p.get("projectedMinutes", 0) for p in players_list)
+                        print(f"    Scaled {team}: {team_total:.0f} → {new_total:.1f} min")
+
+                    # Store results + print detail
+                    players_list.sort(key=lambda x: x.get("projectedMinutes", 0), reverse=True)
                     for p in players_list:
-                        p["projectedMinutes"] = round(p["projectedMinutes"] * scale, 1)
-                    new_total = sum(p.get("projectedMinutes", 0) for p in players_list)
-                    # Fine-tune: adjust the largest player to hit exactly 241
-                    remainder = round(241.0 - new_total, 1)
-                    if abs(remainder) > 0 and players_list:
-                        biggest = max(players_list, key=lambda x: x.get("projectedMinutes", 0))
-                        biggest["projectedMinutes"] = round(biggest["projectedMinutes"] + remainder, 1)
-                    new_total = sum(p.get("projectedMinutes", 0) for p in players_list)
-                    print(f"    Scaled {team}: {team_total:.0f} → {new_total:.1f} min")
-                break
+                        name = p.get("name", "")
+                        if name:
+                            projections[name] = {
+                                "projectedMinutes": round(p.get("projectedMinutes", 0), 1),
+                                "confidence": p.get("confidence", "medium"),
+                                "reasoning": p.get("reasoning", ""),
+                            }
+                    final_total = sum(p.get("projectedMinutes", 0) for p in players_list)
+                    print(f"    ✓ {team} vs {opponent} — {len(players_list)} players, {final_total:.1f} min")
+                    for p in players_list:
+                        mins = p.get("projectedMinutes", 0)
+                        conf = p.get("confidence", "?")[0].upper()
+                        reason = (p.get("reasoning", "") or "")[:60]
+                        bar = "█" * int(mins // 2) + "░" * max(0, 20 - int(mins // 2))
+                        print(f"      {p['name']:25s} {mins:5.1f}m [{conf}] {bar} {reason}")
+
+                break  # Success, no retry needed
 
             except json.JSONDecodeError as e:
-                print(f"    JSON parse error for {team}: {e}")
-                if attempt < 2:
+                print(f"    JSON parse error batch {batch_idx + 1}: {e}")
+                if attempt < 1:
+                    print("    Retrying batch...")
                     time.sleep(2)
             except Exception as e:
-                print(f"    Claude API error for {team}: {e}")
-                if attempt < 2:
+                print(f"    Claude API error batch {batch_idx + 1}: {e}")
+                if attempt < 1:
                     time.sleep(5)
 
-        if players_list:
-            for p in players_list:
-                name = p.get("name", "")
-                if name:
-                    projections[name] = {
-                        "projectedMinutes": round(p.get("projectedMinutes", 0), 1),
-                        "confidence": p.get("confidence", "medium"),
-                        "reasoning": p.get("reasoning", ""),
-                    }
-            final_total = sum(p.get("projectedMinutes", 0) for p in players_list)
-            print(f"    ✓ Got {len(players_list)} projections ({final_total:.1f} min)")
+        time.sleep(1)  # Rate limit between batches
 
         time.sleep(1)
 
