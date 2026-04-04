@@ -454,9 +454,11 @@ You are building minutes projections FROM SCRATCH using only historical game dat
 ALLOCATION PROCESS — follow these steps in order:
 
 1. ESTABLISH THE ROTATION from game logs:
+   - You will see each player's INDIVIDUAL GAME MINUTES for their last 10 games (most recent first). READ THESE CAREFULLY — they tell you more than any average.
+   - Example: "32 34 30 33 35" = consistent starter. "0 0 0 18 22" = returning from injury, project conservatively. "15 28 14 26 15" = inconsistent role, use recent trend.
    - Players who started 80%+ of recent games are STARTERS. They get priority minutes.
-   - Look at L5 average as the primary baseline for each player's expected minutes.
-   - If L3 trend diverges from L5 by 3+ minutes, weight L3 more heavily (coach is adjusting rotation).
+   - L5 average is the primary baseline, but ALWAYS cross-reference with individual game numbers for context.
+   - If the last 2-3 games diverge from L5 by 3+ minutes, weight the recent games more heavily (coach is adjusting rotation).
    - Players with L5 < 10 min are deep bench — they get leftover minutes.
 
 2. ACCOUNT FOR INJURIES using substitution chain data:
@@ -516,8 +518,6 @@ def build_team_prompt(team, opponent, team_players):
     # Out = explicitly OUT/Doubtful, or not in the rotation
     out = [p for p in team_players if
            p.get("injuryStatus", "").lower() in ("out", "doubtful")]
-    # DNP = on the slate but not in the active rotation (deep bench)
-    dnp = [p for p in team_players if p not in active and p not in out]
     questionable = [p for p in active if p.get("injuryStatus", "").lower() == "questionable"]
 
     if not active:
@@ -525,7 +525,7 @@ def build_team_prompt(team, opponent, team_players):
 
     lines = [f"Project minutes for {team} vs {opponent} tonight.\n"]
 
-    # ── Active players with full game-by-game data ──
+    # ── Active players with game-by-game minutes prominently displayed ──
     lines.append("ACTIVE PLAYERS (sorted by L5 avg):")
 
     active_sorted = sorted(active, key=lambda x: x.get("l5Avg", 0), reverse=True)
@@ -538,35 +538,36 @@ def build_team_prompt(team, opponent, team_players):
 
         gp5 = games_played_l5(p)
         dnp_tag = f" [DNP {5-gp5} of last 5]" if gp5 < 4 else ""
-        lines.append(
-            f"\n- {p['name']} ({p.get('pos', '?')}, ${p.get('price', 0)}){injury_tag}{dnp_tag}: "
-            f"L5={p.get('l5Avg', 0)} ({gp5}/5 games played), L10={p.get('l10Avg', 0)}"
-        )
 
-        # Game-by-game minutes with stats and starter flag
+        # Build game-by-game minutes as plain numbers (most recent first)
         games = p.get("last10Games", [])
-        if games:
-            game_details = []
-            for g in games:
-                if not g.get("date"):
-                    continue
-                mins = g.get("minutes", 0)
-                started = "S" if g.get("started") else "B"  # Starter vs Bench
-                dkfp = g.get("dkfp", 0)
-                pts = g.get("pts", 0)
-                reb = g.get("reb", 0)
-                ast = g.get("ast", 0)
-                game_details.append(
-                    f"{g['date'][-5:]}: {mins:.0f}min({started}) {pts}p/{reb}r/{ast}a {dkfp:.0f}fp"
-                )
-            if game_details:
-                lines.append(f"  Game log (recent→old): {' | '.join(game_details)}")
+        game_mins = []
+        started_flags = []
+        for g in games[:10]:
+            if not g.get("date"):
+                continue
+            mins = int(g.get("minutes", 0))
+            game_mins.append(str(mins))
+            if g.get("started"):
+                started_flags.append("S")
+            else:
+                started_flags.append("B")
 
-            # Starter consistency
-            started_count = sum(1 for g in games if g.get("started") and g.get("date"))
-            total_games = sum(1 for g in games if g.get("date") and g.get("minutes", 0) > 0)
-            if total_games > 0:
-                lines.append(f"  Started {started_count}/{total_games} recent games")
+        mins_str = " ".join(game_mins) if game_mins else "no games"
+        role_str = " ".join(started_flags) if started_flags else ""
+
+        lines.append(
+            f"\n- {p['name']} ({p.get('pos', '?')}, ${p.get('price', 0)}){injury_tag}{dnp_tag}"
+        )
+        lines.append(f"  L10 minutes (recent→old): {mins_str}")
+        lines.append(f"  Start/Bench (recent→old): {role_str}")
+        lines.append(f"  L5 avg={p.get('l5Avg', 0)}, L10 avg={p.get('l10Avg', 0)}")
+
+        # Starter consistency
+        started_count = sum(1 for f in started_flags if f == "S")
+        total_games = len(started_flags)
+        if total_games > 0:
+            lines.append(f"  Started {started_count}/{total_games} recent games")
 
         # Substitution chain for this player (who replaces them)
         chain = p.get("substitutionChain", [])
@@ -592,6 +593,13 @@ def build_team_prompt(team, opponent, team_players):
                 f"- {p['name']} ({p.get('pos', '?')}): L5={p.get('l5Avg', 0)} min/game when active{reason}"
             )
 
+            # Show recent game minutes for context
+            games = p.get("last10Games", [])
+            if games:
+                recent_mins = [str(int(g.get("minutes", 0))) for g in games[:10] if g.get("date")]
+                if recent_mins:
+                    lines.append(f"  L10 minutes: {' '.join(recent_mins)}")
+
             # Who absorbs their minutes
             chain = p.get("substitutionChain", [])
             if chain:
@@ -603,35 +611,22 @@ def build_team_prompt(team, opponent, team_players):
             else:
                 lines.append(f"  → No historical sub data — distribute to same-position players")
 
-            # Show their recent game log so Claude can see the role they occupied
-            games = p.get("last10Games", [])
-            if games:
-                recent = [g for g in games[:5] if g.get("date") and g.get("minutes", 0) > 0]
-                if recent:
-                    game_str = ", ".join(f"{g['minutes']:.0f}min" for g in recent)
-                    lines.append(f"  Recent when active: {game_str}")
-
     if questionable:
         lines.append(f"\n⚠️ {len(questionable)} QUESTIONABLE players — reduce their minutes ~20-30% and redistribute to teammates")
 
     # ── Summary ──
-    l5_str = ", ".join(
-        f"{p['name']}={p.get('l5Avg', 0):.0f}"
-        for p in active_sorted
-    )
-    lines.append(f"\nL5 averages (your baseline): {l5_str}")
-
     total_l5 = sum(p.get("l5Avg", 0) for p in active_sorted)
     out_minutes = sum(p.get("l5Avg", 0) for p in out if p.get("l5Avg", 0) > 0)
-    lines.append(f"Active players L5 total: {total_l5:.0f} min ({len(active_sorted)} players)")
+    lines.append(f"\nActive players L5 total: {total_l5:.0f} min ({len(active_sorted)} players)")
 
     if out_minutes > 0:
         lines.append(f"\n🔴 {len([p for p in out if p.get('l5Avg', 0) > 0])} rotation players are OUT, freeing ~{out_minutes:.0f} minutes.")
         lines.append("Use the substitution chains above to redistribute these minutes to the correct teammates.")
         lines.append(f"Target total after redistribution: 240-242 min across {len(active_sorted)} active players.")
     else:
-        lines.append(f"\nNo significant OUT players — distribute 240-242 total minutes, using L5 as baseline and adjusting for L3 trends.")
+        lines.append(f"\nNo significant OUT players — distribute 240-242 total minutes, using L5 as baseline and adjusting for recent game trends.")
 
+    lines.append("\nLook at each player's individual game minutes — patterns like 0 0 0 15 25 indicate a player returning from injury (project conservatively). Patterns like 35 34 36 33 35 indicate a locked-in starter.")
     lines.append("\nAdd up your projections before responding to verify the sum equals 240-242.")
 
     lines.append("""
@@ -642,180 +637,100 @@ Respond with this exact JSON format:
 
 
 def query_claude(profiles):
-    """Send per-team data to Claude Haiku, get projected minutes."""
+    """Send one team at a time to Claude Haiku, get projected minutes."""
     if not ANTHROPIC_API_KEY:
         print("  No ANTHROPIC_API_KEY — skipping Claude projections")
         return {}
 
     client = anthropic.Anthropic(api_key=ANTHROPIC_API_KEY)
 
-    # Group players by team, dedup near-identical names on same team
+    # Group players by team
     team_players = defaultdict(list)
-    _names_by_team = defaultdict(list)  # team -> list of normalized names
     for p in profiles:
-        team = p["team"]
-        norm = normalize_name(p["name"])
-        # Check if this name is a substring of an existing name or vice versa
-        is_dupe = False
-        for existing in _names_by_team[team]:
-            if norm in existing or existing in norm:
-                is_dupe = True
-                break
-        if is_dupe:
-            continue
-        _names_by_team[team].append(norm)
-        team_players[team].append(p)
+        team_players[p["team"]].append(p)
 
     projections = {}  # name -> {projectedMinutes, confidence, reasoning}
 
-    # Build all team prompts
-    team_prompts = []
-    for team, players in team_players.items():
+    team_count = len(team_players)
+    print(f"  {team_count} teams to project (one API call each)")
+
+    for idx, (team, players) in enumerate(team_players.items()):
         opponent = players[0].get("opponent", "?") if players else "?"
         prompt = build_team_prompt(team, opponent, players)
-        if prompt:
-            team_prompts.append((team, opponent, prompt))
+        if not prompt:
+            continue
 
-    # Batch teams into groups of 2 to avoid JSON truncation
-    BATCH_SIZE = 2
-    batches = [team_prompts[i:i + BATCH_SIZE] for i in range(0, len(team_prompts), BATCH_SIZE)]
-    print(f"  {len(team_prompts)} teams in {len(batches)} batches of up to {BATCH_SIZE}")
+        print(f"\n  [{idx+1}/{team_count}] {team} vs {opponent}...")
 
-    for batch_idx, batch in enumerate(batches):
-        batch_teams = [t[0] for t in batch]
-        print(f"\n  Batch {batch_idx + 1}/{len(batches)}: {', '.join(batch_teams)}")
+        for attempt in range(2):
+            try:
+                response = client.messages.create(
+                    model="claude-haiku-4-5-20251001",
+                    max_tokens=4096,
+                    temperature=0.3,
+                    system=CLAUDE_SYSTEM,
+                    messages=[{"role": "user", "content": prompt}],
+                )
 
-        # If only 1 team in batch, use single-team format for reliability
-        if len(batch) == 1:
-            team, opponent, prompt = batch[0]
-            for attempt in range(2):
-                try:
-                    response = client.messages.create(
-                        model="claude-haiku-4-5-20251001",
-                        max_tokens=4096,
-                        temperature=0.3,
-                        system=CLAUDE_SYSTEM,
-                        messages=[{"role": "user", "content": prompt}],
-                    )
+                text = response.content[0].text.strip()
+                if text.startswith("```"):
+                    text = re.sub(r"^```(?:json)?\n?", "", text)
+                    text = re.sub(r"\n?```$", "", text)
 
-                    text = response.content[0].text.strip()
-                    if text.startswith("```"):
-                        text = re.sub(r"^```(?:json)?\n?", "", text)
-                        text = re.sub(r"\n?```$", "", text)
+                result = json.loads(text)
+                players_list = result.get("players", [])
+                team_total = sum(p.get("projectedMinutes", 0) for p in players_list)
 
-                    result = json.loads(text)
-                    players_list = result.get("players", [])
-                    _store_team_projections(projections, team, opponent, players_list)
-                    break
+                # Force-scale to exactly 241 if off
+                if team_total > 0 and not (239 <= team_total <= 242):
+                    scale = 241.0 / team_total
+                    for p in players_list:
+                        p["projectedMinutes"] = round(p["projectedMinutes"] * scale, 1)
+                    new_total = sum(p.get("projectedMinutes", 0) for p in players_list)
+                    remainder = round(241.0 - new_total, 1)
+                    if abs(remainder) > 0 and players_list:
+                        biggest = max(players_list, key=lambda x: x.get("projectedMinutes", 0))
+                        biggest["projectedMinutes"] = round(biggest["projectedMinutes"] + remainder, 1)
+                    new_total = sum(p.get("projectedMinutes", 0) for p in players_list)
+                    print(f"    Scaled {team}: {team_total:.0f} → {new_total:.1f} min")
 
-                except json.JSONDecodeError as e:
-                    print(f"    JSON parse error for {team}: {e}")
-                    if attempt < 1:
-                        print("    Retrying...")
-                        time.sleep(2)
-                except Exception as e:
-                    print(f"    Claude API error for {team}: {e}")
-                    if attempt < 1:
-                        time.sleep(5)
-        else:
-            # Multi-team batch
-            combined_prompt = "Project minutes for MULTIPLE teams. Each team MUST total exactly 240-242 minutes.\n"
-            combined_prompt += "Return a JSON object with team abbreviations as keys.\n\n"
-            for team, opponent, prompt in batch:
-                combined_prompt += f"═══ TEAM: {team} ═══\n{prompt}\n\n"
-            combined_prompt += (
-                "Return this EXACT JSON format with ALL teams:\n"
-                '{"teams":{"' + '":{"totalMinutes":241,"players":[...]},"'.join(batch_teams) +
-                '":{"totalMinutes":241,"players":[{"name":"Player","projectedMinutes":35.5,"confidence":"high","reasoning":"brief"}]}}}'
-            )
-
-            for attempt in range(2):
-                try:
-                    response = client.messages.create(
-                        model="claude-haiku-4-5-20251001",
-                        max_tokens=8192,
-                        temperature=0.3,
-                        system=CLAUDE_SYSTEM,
-                        messages=[{"role": "user", "content": combined_prompt}],
-                    )
-
-                    text = response.content[0].text.strip()
-                    if text.startswith("```"):
-                        text = re.sub(r"^```(?:json)?\n?", "", text)
-                        text = re.sub(r"\n?```$", "", text)
-
-                    result = json.loads(text)
-
-                    # Handle both formats: {teams: {TEAM: ...}} or {TEAM: {players: [...]}}
-                    teams_data = result.get("teams", result)
-
-                    for team, opponent, _ in batch:
-                        team_result = teams_data.get(team, {})
-                        players_list = team_result.get("players", [])
-
-                        if not players_list:
-                            print(f"    ⚠ {team}: no players returned")
+                # Store results
+                players_list.sort(key=lambda x: x.get("projectedMinutes", 0), reverse=True)
+                for p in players_list:
+                    name = p.get("name", "")
+                    if name:
+                        mins = round(p.get("projectedMinutes", 0), 1)
+                        if mins < 3:
                             continue
+                        projections[name] = {
+                            "projectedMinutes": mins,
+                            "confidence": p.get("confidence", "medium"),
+                            "reasoning": p.get("reasoning", ""),
+                        }
+                final_total = sum(p.get("projectedMinutes", 0) for p in players_list)
+                print(f"    ✓ {len(players_list)} players, {final_total:.1f} min")
+                for p in players_list:
+                    mins = p.get("projectedMinutes", 0)
+                    conf = p.get("confidence", "?")[0].upper()
+                    reason = (p.get("reasoning", "") or "")[:60]
+                    bar = "█" * int(mins // 2) + "░" * max(0, 20 - int(mins // 2))
+                    print(f"      {p['name']:25s} {mins:5.1f}m [{conf}] {bar} {reason}")
+                break  # Success
 
-                        _store_team_projections(projections, team, opponent, players_list)
+            except json.JSONDecodeError as e:
+                print(f"    JSON parse error for {team}: {e}")
+                if attempt < 1:
+                    print("    Retrying...")
+                    time.sleep(2)
+            except Exception as e:
+                print(f"    Claude API error for {team}: {e}")
+                if attempt < 1:
+                    time.sleep(5)
 
-                    break  # Success, no retry needed
+        time.sleep(1)  # Rate limit between teams
 
-                except json.JSONDecodeError as e:
-                    print(f"    JSON parse error batch {batch_idx + 1}: {e}")
-                    if attempt < 1:
-                        print("    Retrying batch...")
-                        time.sleep(2)
-                except Exception as e:
-                    print(f"    Claude API error batch {batch_idx + 1}: {e}")
-                    if attempt < 1:
-                        time.sleep(5)
-
-        time.sleep(1)  # Rate limit between batches
-
-    print(f"  Got projections for {len(projections)} players total")
+    print(f"\n  Got projections for {len(projections)} players total")
     return projections
-
-
-def _store_team_projections(projections, team, opponent, players_list):
-    """Scale team to 241 min if needed, store projections, print summary."""
-    team_total = sum(p.get("projectedMinutes", 0) for p in players_list)
-
-    # Force-scale to exactly 241
-    if team_total > 0 and not (239 <= team_total <= 242):
-        scale = 241.0 / team_total
-        for p in players_list:
-            p["projectedMinutes"] = round(p["projectedMinutes"] * scale, 1)
-        new_total = sum(p.get("projectedMinutes", 0) for p in players_list)
-        remainder = round(241.0 - new_total, 1)
-        if abs(remainder) > 0 and players_list:
-            biggest = max(players_list, key=lambda x: x.get("projectedMinutes", 0))
-            biggest["projectedMinutes"] = round(biggest["projectedMinutes"] + remainder, 1)
-        new_total = sum(p.get("projectedMinutes", 0) for p in players_list)
-        print(f"    Scaled {team}: {team_total:.0f} → {new_total:.1f} min")
-
-    # Store results + print detail
-    players_list.sort(key=lambda x: x.get("projectedMinutes", 0), reverse=True)
-    for p in players_list:
-        name = p.get("name", "")
-        if name:
-            mins = round(p.get("projectedMinutes", 0), 1)
-            # Skip players with < 3 min (duplicates, errors, garbage time)
-            if mins < 3:
-                continue
-            projections[name] = {
-                "projectedMinutes": mins,
-                "confidence": p.get("confidence", "medium"),
-                "reasoning": p.get("reasoning", ""),
-            }
-    final_total = sum(p.get("projectedMinutes", 0) for p in players_list)
-    print(f"    ✓ {team} vs {opponent} — {len(players_list)} players, {final_total:.1f} min")
-    for p in players_list:
-        mins = p.get("projectedMinutes", 0)
-        conf = p.get("confidence", "?")[0].upper()
-        reason = (p.get("reasoning", "") or "")[:60]
-        bar = "█" * int(mins // 2) + "░" * max(0, 20 - int(mins // 2))
-        print(f"      {p['name']:25s} {mins:5.1f}m [{conf}] {bar} {reason}")
 
 
 # ══════════════════════════════════════════════════════════════════════════════
