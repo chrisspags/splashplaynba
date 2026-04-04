@@ -677,7 +677,32 @@ def query_claude(profiles):
                     text = re.sub(r"^```(?:json)?\n?", "", text)
                     text = re.sub(r"\n?```$", "", text)
 
-                result = json.loads(text)
+                # Try parsing; if it fails, log raw response and try to salvage
+                try:
+                    result = json.loads(text)
+                except json.JSONDecodeError as je:
+                    print(f"    RAW RESPONSE ({len(text)} chars): {text[:500]}")
+                    if "Extra data" in str(je):
+                        # Claude output multiple JSON objects — merge them
+                        decoder = json.JSONDecoder()
+                        result = {}
+                        pos = 0
+                        while pos < len(text):
+                            remaining = text[pos:].lstrip()
+                            if not remaining:
+                                break
+                            try:
+                                obj, end = decoder.raw_decode(remaining)
+                                if isinstance(obj, dict):
+                                    result.update(obj)
+                                pos += len(text) - len(remaining) + end
+                            except json.JSONDecodeError:
+                                break
+                        if not result or "players" not in result:
+                            raise
+                        print(f"    Salvaged by merging JSON fragments for {team}")
+                    else:
+                        raise
                 players_list = result.get("players", [])
                 team_total = sum(p.get("projectedMinutes", 0) for p in players_list)
 
@@ -892,3 +917,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
