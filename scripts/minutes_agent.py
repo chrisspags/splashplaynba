@@ -42,6 +42,17 @@ def normalize_name(name):
     return " ".join(ascii_name.split()).strip().lower()
 
 
+# NBA team abbreviation inconsistencies between data sources (NBA API vs DraftKings vs FanDuel)
+TEAM_ALIAS = {
+    "SAS": "SA", "NOP": "NO", "NYK": "NY", "GSW": "GS",
+    "PHX": "PHO", "WSH": "WAS",
+}
+
+def normalize_team(abbr):
+    """Normalize team abbreviation to DraftKings standard."""
+    return TEAM_ALIAS.get(abbr, abbr)
+
+
 def gh_fetch_json(filename):
     """Fetch a JSON file from GitHub repo, handling large files."""
     headers = {"Accept": "application/vnd.github.v3+json"}
@@ -136,6 +147,10 @@ def load_profiles():
     generated_at = data.get("generatedAt", "unknown")
     season = data.get("season", "")
 
+    # Normalize team abbreviations across all profiles
+    for p in profiles:
+        p["team"] = normalize_team(p.get("team", ""))
+
     print(f"  Loaded {len(profiles)} profiles (generated: {generated_at})")
     return profiles, season, generated_at
 
@@ -164,7 +179,7 @@ def load_slate_data():
                         "min": p.get("fppg", 0),
                         "price": p.get("salary", 0),
                         "pos": p.get("pos", ""),
-                        "team": p.get("team", ""),
+                        "team": normalize_team(p.get("team", "")),
                     }
         if dk_labels:
             print(f"  Loaded {len(slate)} players from {len(dk_labels)} DK slates: {', '.join(dk_labels)}")
@@ -184,7 +199,7 @@ def load_slate_data():
                         "min": p.get("fppg", 0),
                         "price": p.get("salary", 0),
                         "pos": p.get("pos", ""),
-                        "team": p.get("team", ""),
+                        "team": normalize_team(p.get("team", "")),
                     }
                     fd_added += 1
         if fd_added:
@@ -205,7 +220,7 @@ def load_slate_data():
                     "min": p.get("min", 0),
                     "price": p.get("price", 0),
                     "pos": p.get("pos", ""),
-                    "team": p.get("team", ""),
+                    "team": normalize_team(p.get("team", "")),
                 }
         print(f"  Loaded {len(slate)} players from data.json")
 
@@ -917,4 +932,6 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
 
