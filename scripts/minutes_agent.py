@@ -17,6 +17,7 @@ import base64
 import time
 import unicodedata
 import requests
+from collections import defaultdict
 from datetime import datetime, timedelta
 
 import anthropic
@@ -61,6 +62,63 @@ def gh_fetch_json(filename):
         raw.raise_for_status()
         return raw.json()
     return None
+
+
+def dedup_profiles(profiles):
+    """Remove duplicate players on the same team (e.g. 'Jaime Jaquez' vs 'Jaime Jaquez Jr.',
+    or 'Kasparas Jakučionis' vs 'Kasparas Jakucionis' after diacritics stripping).
+    Keeps the entry with more game data."""
+    by_team = defaultdict(list)
+    for p in profiles:
+        by_team[p.get("team", "?")].append(p)
+
+    kept = []
+    removed_count = 0
+
+    for team, players in by_team.items():
+        # Build list of (normalized_name, player) pairs
+        normed = [(normalize_name(p["name"]), p) for p in players]
+        skip = set()  # indices to skip
+
+        for i in range(len(normed)):
+            if i in skip:
+                continue
+            for j in range(i + 1, len(normed)):
+                if j in skip:
+                    continue
+                name_i, pi = normed[i]
+                name_j, pj = normed[j]
+
+                # Check if names are identical or one is substring of other
+                is_dupe = (name_i == name_j
+                           or name_i in name_j
+                           or name_j in name_i)
+                if not is_dupe:
+                    continue
+
+                # Keep the one with more game data
+                games_i = len([g for g in pi.get("last10Games", []) if g.get("minutes", 0) > 0])
+                games_j = len([g for g in pj.get("last10Games", []) if g.get("minutes", 0) > 0])
+                l5_i = pi.get("l5Avg", 0)
+                l5_j = pj.get("l5Avg", 0)
+
+                if games_i > games_j or (games_i == games_j and l5_i >= l5_j):
+                    skip.add(j)
+                    print(f"  Dedup: removing '{pj['name']}' (duplicate of '{pi['name']}' on {team})")
+                else:
+                    skip.add(i)
+                    print(f"  Dedup: removing '{pi['name']}' (duplicate of '{pj['name']}' on {team})")
+                    break  # i is skipped, move on
+
+        for idx, (_, p) in enumerate(normed):
+            if idx not in skip:
+                kept.append(p)
+            else:
+                removed_count += 1
+
+    if removed_count:
+        print(f"  Removed {removed_count} duplicate players ({len(profiles)} → {len(kept)})")
+    return kept
 
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -592,8 +650,6 @@ def query_claude(profiles):
     client = anthropic.Anthropic(api_key=ANTHROPIC_API_KEY)
 
     # Group players by team, dedup near-identical names on same team
-    # (handles "Derrick Jones" vs "Derrick Jones Jr." — one is substring of the other)
-    from collections import defaultdict
     team_players = defaultdict(list)
     _names_by_team = defaultdict(list)  # team -> list of normalized names
     for p in profiles:
@@ -620,8 +676,8 @@ def query_claude(profiles):
         if prompt:
             team_prompts.append((team, opponent, prompt))
 
-    # Batch teams into groups of 4 to reduce API calls
-    BATCH_SIZE = 4
+    # Batch teams into groups of 2 to avoid JSON truncation
+    BATCH_SIZE = 2
     batches = [team_prompts[i:i + BATCH_SIZE] for i in range(0, len(team_prompts), BATCH_SIZE)]
     print(f"  {len(team_prompts)} teams in {len(batches)} batches of up to {BATCH_SIZE}")
 
@@ -629,99 +685,137 @@ def query_claude(profiles):
         batch_teams = [t[0] for t in batch]
         print(f"\n  Batch {batch_idx + 1}/{len(batches)}: {', '.join(batch_teams)}")
 
-        # Combine prompts with clear separators
-        combined_prompt = "Project minutes for MULTIPLE teams. Each team MUST total exactly 240-242 minutes.\n"
-        combined_prompt += "Return a JSON object with team abbreviations as keys.\n\n"
-        for team, opponent, prompt in batch:
-            combined_prompt += f"═══ TEAM: {team} ═══\n{prompt}\n\n"
-        combined_prompt += """
-Return this EXACT JSON format with ALL teams:
-{"teams":{"TEAM1":{"totalMinutes":241,"players":[{"name":"Player","projectedMinutes":35.5,"confidence":"high","reasoning":"brief"}]},"TEAM2":{...}}}"""
+        # If only 1 team in batch, use single-team format for reliability
+        if len(batch) == 1:
+            team, opponent, prompt = batch[0]
+            for attempt in range(2):
+                try:
+                    response = client.messages.create(
+                        model="claude-haiku-4-5-20251001",
+                        max_tokens=4096,
+                        temperature=0.3,
+                        system=CLAUDE_SYSTEM,
+                        messages=[{"role": "user", "content": prompt}],
+                    )
 
-        for attempt in range(2):
-            try:
-                response = client.messages.create(
-                    model="claude-haiku-4-5-20251001",
-                    max_tokens=4096,
-                    temperature=0.3,
-                    system=CLAUDE_SYSTEM,
-                    messages=[{"role": "user", "content": combined_prompt}],
-                )
+                    text = response.content[0].text.strip()
+                    if text.startswith("```"):
+                        text = re.sub(r"^```(?:json)?\n?", "", text)
+                        text = re.sub(r"\n?```$", "", text)
 
-                text = response.content[0].text.strip()
-                if text.startswith("```"):
-                    text = re.sub(r"^```(?:json)?\n?", "", text)
-                    text = re.sub(r"\n?```$", "", text)
+                    result = json.loads(text)
+                    players_list = result.get("players", [])
+                    _store_team_projections(projections, team, opponent, players_list)
+                    break
 
-                result = json.loads(text)
+                except json.JSONDecodeError as e:
+                    print(f"    JSON parse error for {team}: {e}")
+                    if attempt < 1:
+                        print("    Retrying...")
+                        time.sleep(2)
+                except Exception as e:
+                    print(f"    Claude API error for {team}: {e}")
+                    if attempt < 1:
+                        time.sleep(5)
+        else:
+            # Multi-team batch
+            combined_prompt = "Project minutes for MULTIPLE teams. Each team MUST total exactly 240-242 minutes.\n"
+            combined_prompt += "Return a JSON object with team abbreviations as keys.\n\n"
+            for team, opponent, prompt in batch:
+                combined_prompt += f"═══ TEAM: {team} ═══\n{prompt}\n\n"
+            combined_prompt += (
+                "Return this EXACT JSON format with ALL teams:\n"
+                '{"teams":{"' + '":{"totalMinutes":241,"players":[...]},"'.join(batch_teams) +
+                '":{"totalMinutes":241,"players":[{"name":"Player","projectedMinutes":35.5,"confidence":"high","reasoning":"brief"}]}}}'
+            )
 
-                # Handle both formats: {teams: {TEAM: ...}} or {TEAM: {players: [...]}}
-                teams_data = result.get("teams", result)
+            for attempt in range(2):
+                try:
+                    response = client.messages.create(
+                        model="claude-haiku-4-5-20251001",
+                        max_tokens=8192,
+                        temperature=0.3,
+                        system=CLAUDE_SYSTEM,
+                        messages=[{"role": "user", "content": combined_prompt}],
+                    )
 
-                for team, opponent, _ in batch:
-                    team_result = teams_data.get(team, {})
-                    players_list = team_result.get("players", [])
+                    text = response.content[0].text.strip()
+                    if text.startswith("```"):
+                        text = re.sub(r"^```(?:json)?\n?", "", text)
+                        text = re.sub(r"\n?```$", "", text)
 
-                    if not players_list:
-                        print(f"    ⚠ {team}: no players returned")
-                        continue
+                    result = json.loads(text)
 
-                    team_total = sum(p.get("projectedMinutes", 0) for p in players_list)
+                    # Handle both formats: {teams: {TEAM: ...}} or {TEAM: {players: [...]}}
+                    teams_data = result.get("teams", result)
 
-                    # Force-scale to exactly 241
-                    if team_total > 0 and not (239 <= team_total <= 242):
-                        scale = 241.0 / team_total
-                        for p in players_list:
-                            p["projectedMinutes"] = round(p["projectedMinutes"] * scale, 1)
-                        new_total = sum(p.get("projectedMinutes", 0) for p in players_list)
-                        remainder = round(241.0 - new_total, 1)
-                        if abs(remainder) > 0 and players_list:
-                            biggest = max(players_list, key=lambda x: x.get("projectedMinutes", 0))
-                            biggest["projectedMinutes"] = round(biggest["projectedMinutes"] + remainder, 1)
-                        new_total = sum(p.get("projectedMinutes", 0) for p in players_list)
-                        print(f"    Scaled {team}: {team_total:.0f} → {new_total:.1f} min")
+                    for team, opponent, _ in batch:
+                        team_result = teams_data.get(team, {})
+                        players_list = team_result.get("players", [])
 
-                    # Store results + print detail
-                    players_list.sort(key=lambda x: x.get("projectedMinutes", 0), reverse=True)
-                    for p in players_list:
-                        name = p.get("name", "")
-                        if name:
-                            mins = round(p.get("projectedMinutes", 0), 1)
-                            # Skip players with < 3 min (duplicates, errors, garbage time)
-                            if mins < 3:
-                                continue
-                            projections[name] = {
-                                "projectedMinutes": mins,
-                                "confidence": p.get("confidence", "medium"),
-                                "reasoning": p.get("reasoning", ""),
-                            }
-                    final_total = sum(p.get("projectedMinutes", 0) for p in players_list)
-                    print(f"    ✓ {team} vs {opponent} — {len(players_list)} players, {final_total:.1f} min")
-                    for p in players_list:
-                        mins = p.get("projectedMinutes", 0)
-                        conf = p.get("confidence", "?")[0].upper()
-                        reason = (p.get("reasoning", "") or "")[:60]
-                        bar = "█" * int(mins // 2) + "░" * max(0, 20 - int(mins // 2))
-                        print(f"      {p['name']:25s} {mins:5.1f}m [{conf}] {bar} {reason}")
+                        if not players_list:
+                            print(f"    ⚠ {team}: no players returned")
+                            continue
 
-                break  # Success, no retry needed
+                        _store_team_projections(projections, team, opponent, players_list)
 
-            except json.JSONDecodeError as e:
-                print(f"    JSON parse error batch {batch_idx + 1}: {e}")
-                if attempt < 1:
-                    print("    Retrying batch...")
-                    time.sleep(2)
-            except Exception as e:
-                print(f"    Claude API error batch {batch_idx + 1}: {e}")
-                if attempt < 1:
-                    time.sleep(5)
+                    break  # Success, no retry needed
+
+                except json.JSONDecodeError as e:
+                    print(f"    JSON parse error batch {batch_idx + 1}: {e}")
+                    if attempt < 1:
+                        print("    Retrying batch...")
+                        time.sleep(2)
+                except Exception as e:
+                    print(f"    Claude API error batch {batch_idx + 1}: {e}")
+                    if attempt < 1:
+                        time.sleep(5)
 
         time.sleep(1)  # Rate limit between batches
 
-        time.sleep(1)
-
     print(f"  Got projections for {len(projections)} players total")
     return projections
+
+
+def _store_team_projections(projections, team, opponent, players_list):
+    """Scale team to 241 min if needed, store projections, print summary."""
+    team_total = sum(p.get("projectedMinutes", 0) for p in players_list)
+
+    # Force-scale to exactly 241
+    if team_total > 0 and not (239 <= team_total <= 242):
+        scale = 241.0 / team_total
+        for p in players_list:
+            p["projectedMinutes"] = round(p["projectedMinutes"] * scale, 1)
+        new_total = sum(p.get("projectedMinutes", 0) for p in players_list)
+        remainder = round(241.0 - new_total, 1)
+        if abs(remainder) > 0 and players_list:
+            biggest = max(players_list, key=lambda x: x.get("projectedMinutes", 0))
+            biggest["projectedMinutes"] = round(biggest["projectedMinutes"] + remainder, 1)
+        new_total = sum(p.get("projectedMinutes", 0) for p in players_list)
+        print(f"    Scaled {team}: {team_total:.0f} → {new_total:.1f} min")
+
+    # Store results + print detail
+    players_list.sort(key=lambda x: x.get("projectedMinutes", 0), reverse=True)
+    for p in players_list:
+        name = p.get("name", "")
+        if name:
+            mins = round(p.get("projectedMinutes", 0), 1)
+            # Skip players with < 3 min (duplicates, errors, garbage time)
+            if mins < 3:
+                continue
+            projections[name] = {
+                "projectedMinutes": mins,
+                "confidence": p.get("confidence", "medium"),
+                "reasoning": p.get("reasoning", ""),
+            }
+    final_total = sum(p.get("projectedMinutes", 0) for p in players_list)
+    print(f"    ✓ {team} vs {opponent} — {len(players_list)} players, {final_total:.1f} min")
+    for p in players_list:
+        mins = p.get("projectedMinutes", 0)
+        conf = p.get("confidence", "?")[0].upper()
+        reason = (p.get("reasoning", "") or "")[:60]
+        bar = "█" * int(mins // 2) + "░" * max(0, 20 - int(mins // 2))
+        print(f"      {p['name']:25s} {mins:5.1f}m [{conf}] {bar} {reason}")
 
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -839,6 +933,9 @@ def main():
         with open(OUTPUT_FILE, "w") as f:
             json.dump(output, f, indent=2)
         return
+
+    # Step 1a: Dedup profiles (remove duplicate player names per team)
+    profiles = dedup_profiles(profiles)
 
     # Step 1b: Merge fresh slate data (DK/FD/data.json)
     try:
