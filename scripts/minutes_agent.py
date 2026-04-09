@@ -848,6 +848,52 @@ def query_claude(profiles):
                         if distributed >= clawed:
                             break
 
+                # Build reverse sub chain: for each replacement player, which starters
+                # do they sub in for? From the Colab's substitution chain data.
+                # If a fringe player ONLY appears as a sub for guys playing tonight,
+                # they're a scrub who only gets run when starters sit.
+                tonight_active = {p["name"] for p in players
+                                  if p.get("injuryStatus", "Available").lower() not in ("out", "doubtful")}
+                tonight_out = {p["name"] for p in players
+                               if p.get("injuryStatus", "").lower() in ("out", "doubtful")}
+
+                # Invert sub chains: replacement_name → set of starters they replace
+                replaces_who = {}  # "Yurtseven" → {"Curry", "Draymond", ...}
+                for pl in players:
+                    chain = pl.get("substitutionChain", [])
+                    for entry in chain:
+                        rep_name = entry.get("replacement", "")
+                        if rep_name:
+                            if rep_name not in replaces_who:
+                                replaces_who[rep_name] = set()
+                            replaces_who[rep_name].add(pl["name"])
+
+                # DNP-heavy players: check sub chain context
+                for p in players_list:
+                    profile = player_lookup.get(p.get("name", ""), {})
+                    recent_5 = profile.get("last10Games", [])[:5]
+                    dnp_count = sum(1 for g in recent_5 if g.get("minutes", 0) == 0)
+
+                    if dnp_count < 3:
+                        continue  # Regular rotation player
+
+                    name = p.get("name", "")
+                    subs_for = replaces_who.get(name, set())
+
+                    if subs_for:
+                        # This player is a known substitute for specific starters
+                        # If ALL the starters they replace are playing tonight → scrub
+                        starters_out = subs_for & tonight_out
+                        if not starters_out and p["projectedMinutes"] > 0.7:
+                            print(f"    🔻 {name} scrub cap: {p['projectedMinutes']:.1f}→0.7m (DNP {dnp_count}/5, subs for {', '.join(subs_for)} who are all active)")
+                            p["projectedMinutes"] = 0.7
+                    elif dnp_count >= 3:
+                        # No sub chain data but heavy DNPs — check if last game was real
+                        last_game = recent_5[0].get("minutes", 0) if recent_5 else 0
+                        if last_game < 10 and p["projectedMinutes"] > 0.7:
+                            print(f"    🔻 {name} scrub cap: {p['projectedMinutes']:.1f}→0.7m (DNP {dnp_count}/5, no sub chain, last game {last_game})")
+                            p["projectedMinutes"] = 0.7
+
                 # Store results
                 players_list.sort(key=lambda x: x.get("projectedMinutes", 0), reverse=True)
                 for p in players_list:
@@ -868,7 +914,7 @@ def query_claude(profiles):
                             if mins < floor:
                                 print(f"    ⚠️ Floor applied: {name} projected {mins}→{floor}m (last game: {last_game_mins})")
                                 mins = floor
-                        elif mins < 3:
+                        elif mins < 0.7:
                             continue
 
                         projections[name] = {
