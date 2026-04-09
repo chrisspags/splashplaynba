@@ -869,6 +869,7 @@ def query_claude(profiles):
                             replaces_who[rep_name].add(pl["name"])
 
                 # DNP-heavy players: check sub chain context
+                scrub_capped = set()  # Track who was capped so floor doesn't override
                 for p in players_list:
                     profile = player_lookup.get(p.get("name", ""), {})
                     recent_5 = profile.get("last10Games", [])[:5]
@@ -887,12 +888,14 @@ def query_claude(profiles):
                         if not starters_out and p["projectedMinutes"] > 0.7:
                             print(f"    🔻 {name} scrub cap: {p['projectedMinutes']:.1f}→0.7m (DNP {dnp_count}/5, subs for {', '.join(subs_for)} who are all active)")
                             p["projectedMinutes"] = 0.7
+                            scrub_capped.add(name)
                     elif dnp_count >= 3:
                         # No sub chain data but heavy DNPs — check if last game was real
                         last_game = recent_5[0].get("minutes", 0) if recent_5 else 0
                         if last_game < 10 and p["projectedMinutes"] > 0.7:
                             print(f"    🔻 {name} scrub cap: {p['projectedMinutes']:.1f}→0.7m (DNP {dnp_count}/5, no sub chain, last game {last_game})")
                             p["projectedMinutes"] = 0.7
+                            scrub_capped.add(name)
 
                 # Store results
                 players_list.sort(key=lambda x: x.get("projectedMinutes", 0), reverse=True)
@@ -902,12 +905,12 @@ def query_claude(profiles):
                         mins = round(p.get("projectedMinutes", 0), 1)
 
                         # Post-Claude floor based on recent game context
+                        # Skip floor for scrub-capped players (they were capped for a reason)
                         profile = player_lookup.get(name, {})
                         recent_games = profile.get("last10Games", [])[:5]
-                        played_recent = [g.get("minutes", 0) for g in recent_games if g.get("minutes", 0) > 0]
-                        last_game_mins = played_recent[0] if played_recent else 0
+                        last_game_mins = recent_games[0].get("minutes", 0) if recent_games else 0
 
-                        if last_game_mins >= 10:
+                        if name not in scrub_capped and last_game_mins >= 10:
                             # Player played 10+ min in their most recent game —
                             # floor at 60% of last game (they're clearly in rotation)
                             floor = round(last_game_mins * 0.6, 1)
@@ -1107,4 +1110,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
