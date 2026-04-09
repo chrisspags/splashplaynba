@@ -472,8 +472,9 @@ ALLOCATION PROCESS — follow these steps in order:
    - You will see each player's INDIVIDUAL GAME MINUTES for their last 10 games (most recent first). READ THESE CAREFULLY — they tell you more than any average.
    - Example: "32 34 30 33 35" = consistent starter. "0 0 0 18 22" = returning from injury, project conservatively. "15 28 14 26 15" = inconsistent role, use recent trend.
    - Players who started 80%+ of recent games are STARTERS. They get priority minutes.
-   - L5 average is the primary baseline, but ALWAYS cross-reference with individual game numbers for context.
+   - The MOST RECENT GAME is the strongest signal for tonight's projection. Start there, then adjust.
    - If the last 2-3 games diverge from L5 by 3+ minutes, weight the recent games more heavily (coach is adjusting rotation).
+   - A player returning from injury who played 20+ min last game should be projected near that number, not pulled down by prior DNPs.
    - Players with L5 < 10 min are deep bench — they get leftover minutes.
 
 2. ACCOUNT FOR INJURIES using substitution chain data:
@@ -483,7 +484,7 @@ ALLOCATION PROCESS — follow these steps in order:
    - If no sub chain data exists for an OUT player, distribute their minutes to same-position players proportionally by current minutes.
 
 3. ADJUST FOR CONTEXT:
-   - Questionable players: reduce by ~20-30%, redistribute the difference via sub chains.
+   - Questionable players: ~75% play normal minutes. Do NOT reduce unless the injury clearly limits mobility. Project at baseline.
    - Back-to-back games: reduce starters by 1-3 min unless their game log shows they maintain minutes on B2Bs.
    - Blowout risk (large spread): starters may lose 2-4 min to bench in 4th quarter.
    - Players returning from injury (recent 0s in game log but now active): start conservative, use their most recent active game as baseline rather than L5/L10.
@@ -499,7 +500,7 @@ INJURY STATUS KEY:
 
 CRITICAL RULES:
 - USE THE SUBSTITUTION CHAIN DATA. This is real play-by-play data showing coaching patterns. It's your best tool.
-- L5 average is your primary baseline for each player. L3 trend is your adjustment signal.
+- The MOST RECENT GAME is your anchor. L5 average is your secondary baseline. If last game diverges from L5, trust the last game more — coaches adjust rotations game to game.
 - Starters (started 80%+ of games): typically 24-38 min. Never below 22 unless injury-limited.
 - Rotation players (started <50%, L5 15-28 min): 12-28 min range.
 - Deep bench (L5 < 12 min): 0-15 min range. These are your flex for hitting 240.
@@ -602,13 +603,27 @@ def build_team_prompt(team, opponent, team_players):
         mins_str = " ".join(game_mins) if game_mins else "no games"
         role_str = " ".join(started_flags) if started_flags else ""
 
+        # Compute trend from games where player actually played (ignore DNPs)
+        played_mins = [int(g.get("minutes", 0)) for g in games[:5] if g.get("minutes", 0) > 0]
+        last_game = played_mins[0] if played_mins else 0
+        trend_tag = ""
+        if len(played_mins) >= 2:
+            recent_avg = sum(played_mins[:2]) / 2
+            older_avg = sum(played_mins[2:]) / len(played_mins[2:]) if len(played_mins) > 2 else played_mins[-1]
+            if recent_avg > older_avg * 1.15:
+                trend_tag = f" ↑ MINUTES TRENDING UP (last {len(played_mins)} games played: {', '.join(str(m) for m in played_mins)})"
+            elif recent_avg < older_avg * 0.85:
+                trend_tag = f" ↓ minutes trending down"
+        if last_game > 0 and gp5 < 3:
+            trend_tag += f" — RETURNING: last game {last_game} min, use as baseline"
+
         lines.append(
             f"\n- {p['name']} ({p.get('pos', '?')}, ${p.get('price', 0)}){injury_tag}{dnp_tag}"
         )
         lines.append(f"  L10 minutes (recent→old): {mins_str}")
         lines.append(f"  Start/Bench (recent→old): {role_str}")
         computed_avg = compute_l5_avg(p)
-        lines.append(f"  L5 avg={computed_avg:.1f} (when playing), L10 avg={p.get('l10Avg', 0)}")
+        lines.append(f"  L5 avg={computed_avg:.1f} (when playing), L10 avg={p.get('l10Avg', 0)}{trend_tag}")
 
         # Starter consistency
         started_count = sum(1 for f in started_flags if f == "S")
@@ -679,7 +694,8 @@ def build_team_prompt(team, opponent, team_players):
     lines.append("\nCRITICAL: Every player on the ACTIVE list MUST receive >0 projected minutes. They are confirmed active for tonight's game. Never project 0 for an active player.")
     lines.append("\nPatterns like 0 0 0 15 25 (recent→old) indicate a player returning from injury — use their most recent game as baseline, not the zeros.")
     lines.append("Patterns like 35 34 36 33 35 indicate a locked-in starter.")
-    lines.append("\nAdd up your projections before responding to verify the sum equals 240-242.")
+    lines.append("\n⚠️ MANDATORY: Your projections MUST sum to exactly 240-242 total minutes. An NBA game has 48 min × 5 players = 240 min. Add up every player's projection BEFORE responding. If the sum is under 235 or over 248, redo your numbers. This is the most important constraint.")
+    lines.append("\nFor each player, anchor on their MOST RECENT game minutes first, then adjust based on context (opponent, who's out, trend). Don't project a player significantly above their recent high or below their recent low unless there's a specific reason.")
 
     lines.append("""
 Respond with this exact JSON format:
@@ -760,19 +776,74 @@ def query_claude(profiles):
 
                 # Force-scale to exactly 241 if off
                 if team_total > 0 and not (239 <= team_total <= 242):
-                    scale = 241.0 / team_total
-                    for p in players_list:
-                        p["projectedMinutes"] = round(p["projectedMinutes"] * scale, 1)
+                    deficit = 241.0 - team_total
+                    # Smart scaling: distribute deficit/surplus to bench players first
+                    # Sort by minutes (ascending) so bench players absorb most adjustment
+                    sorted_by_mins = sorted(players_list, key=lambda x: x.get("projectedMinutes", 0))
+
+                    if abs(deficit) <= 15:
+                        # Small gap: spread across bottom half of rotation
+                        bottom_half = sorted_by_mins[:max(len(sorted_by_mins) // 2, 1)]
+                        adj_per = round(deficit / len(bottom_half), 1)
+                        for p in bottom_half:
+                            p["projectedMinutes"] = round(p["projectedMinutes"] + adj_per, 1)
+                    else:
+                        # Large gap: proportional scale (original behavior)
+                        scale = 241.0 / team_total
+                        for p in players_list:
+                            p["projectedMinutes"] = round(p["projectedMinutes"] * scale, 1)
+
+                    # Fix rounding remainder
                     new_total = sum(p.get("projectedMinutes", 0) for p in players_list)
                     remainder = round(241.0 - new_total, 1)
                     if abs(remainder) > 0 and players_list:
-                        biggest = max(players_list, key=lambda x: x.get("projectedMinutes", 0))
-                        biggest["projectedMinutes"] = round(biggest["projectedMinutes"] + remainder, 1)
+                        # Give remainder to the smallest player (least distortion)
+                        smallest = min(players_list, key=lambda x: x.get("projectedMinutes", 0))
+                        smallest["projectedMinutes"] = round(smallest["projectedMinutes"] + remainder, 1)
                     new_total = sum(p.get("projectedMinutes", 0) for p in players_list)
-                    print(f"    Scaled {team}: {team_total:.0f} → {new_total:.1f} min")
+                    print(f"    Scaled {team}: {team_total:.0f} → {new_total:.1f} min (deficit was {deficit:+.0f})")
 
-                # Build lookup for recent game data to apply post-Claude floor
+                # Build lookup for recent game data
                 player_lookup = {p["name"]: p for p in players}
+
+                # Per-player ceiling: no one exceeds their recent max + 2 min
+                # Clawed-back minutes go to uncapped players
+                clawed = 0
+                for p in players_list:
+                    profile = player_lookup.get(p.get("name", ""), {})
+                    recent_games = profile.get("last10Games", [])[:5]
+                    played = [g.get("minutes", 0) for g in recent_games if g.get("minutes", 0) > 0]
+                    if played:
+                        recent_max = max(played)
+                        ceiling = recent_max + 2
+                        if p["projectedMinutes"] > ceiling:
+                            excess = round(p["projectedMinutes"] - ceiling, 1)
+                            print(f"    🔻 {p['name']} capped: {p['projectedMinutes']:.1f}→{ceiling:.1f}m (recent max {recent_max})")
+                            p["projectedMinutes"] = ceiling
+                            clawed += excess
+
+                # Redistribute clawed minutes to uncapped players (bench-first)
+                if clawed > 0.5:
+                    uncapped = sorted(
+                        [p for p in players_list if p.get("projectedMinutes", 0) > 0],
+                        key=lambda x: x.get("projectedMinutes", 0)
+                    )
+                    # Check each player still has headroom before giving them minutes
+                    distributed = 0
+                    for p in uncapped:
+                        profile = player_lookup.get(p.get("name", ""), {})
+                        recent_games = profile.get("last10Games", [])[:5]
+                        played = [g.get("minutes", 0) for g in recent_games if g.get("minutes", 0) > 0]
+                        if played:
+                            ceiling = max(played) + 2
+                            headroom = ceiling - p["projectedMinutes"]
+                            if headroom > 0:
+                                give = min(headroom, round((clawed - distributed) / max(1, len(uncapped)), 1), clawed - distributed)
+                                if give > 0.1:
+                                    p["projectedMinutes"] = round(p["projectedMinutes"] + give, 1)
+                                    distributed += give
+                        if distributed >= clawed:
+                            break
 
                 # Store results
                 players_list.sort(key=lambda x: x.get("projectedMinutes", 0), reverse=True)
@@ -780,17 +851,23 @@ def query_claude(profiles):
                     name = p.get("name", "")
                     if name:
                         mins = round(p.get("projectedMinutes", 0), 1)
-                        # Post-Claude floor: if player played 10+ min in their most recent game,
-                        # don't drop them below 5 min (they're clearly in the rotation)
-                        if mins < 3:
-                            profile = player_lookup.get(name, {})
-                            recent = profile.get("last10Games", [])[:1]
-                            last_game_mins = recent[0].get("minutes", 0) if recent else 0
-                            if last_game_mins >= 10:
-                                mins = max(5.0, round(last_game_mins * 0.5, 1))
-                                print(f"    ⚠️ Floor applied: {name} projected {p.get('projectedMinutes', 0):.1f}→{mins}m (last game: {last_game_mins})")
-                            else:
-                                continue
+
+                        # Post-Claude floor based on recent game context
+                        profile = player_lookup.get(name, {})
+                        recent_games = profile.get("last10Games", [])[:5]
+                        played_recent = [g.get("minutes", 0) for g in recent_games if g.get("minutes", 0) > 0]
+                        last_game_mins = played_recent[0] if played_recent else 0
+
+                        if last_game_mins >= 10:
+                            # Player played 10+ min in their most recent game —
+                            # floor at 60% of last game (they're clearly in rotation)
+                            floor = round(last_game_mins * 0.6, 1)
+                            if mins < floor:
+                                print(f"    ⚠️ Floor applied: {name} projected {mins}→{floor}m (last game: {last_game_mins})")
+                                mins = floor
+                        elif mins < 3:
+                            continue
+
                         projections[name] = {
                             "projectedMinutes": mins,
                             "confidence": p.get("confidence", "medium"),
@@ -981,3 +1058,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
