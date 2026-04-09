@@ -518,22 +518,53 @@ def build_team_prompt(team, opponent, team_players):
         games = p.get("last10Games", [])[:5]
         return sum(1 for g in games if g.get("minutes", 0) > 0)
 
+    # Compute L5 avg from actual game data (only games played, ignoring DNPs)
+    # This fixes the bug where profile l5Avg=0.0 for returning-from-injury players
+    def compute_l5_avg(p):
+        games = p.get("last10Games", [])[:5]
+        played = [g.get("minutes", 0) for g in games if g.get("minutes", 0) > 0]
+        return sum(played) / len(played) if played else 0
+
+    def is_not_out(p):
+        return p.get("injuryStatus", "Available").lower() not in ("out", "doubtful")
+
     # Active = played at least 2 of last 5 games AND averaged 5+ min when playing
     # AND not OUT/Doubtful
+    # Use computed avg instead of profile l5Avg (which can be 0 for returning players)
     active = [p for p in team_players if
               games_played_l5(p) >= 2
-              and p.get("l5Avg", 0) >= 5
-              and p.get("injuryStatus", "Available").lower() not in ("out", "doubtful")]
+              and compute_l5_avg(p) >= 5
+              and is_not_out(p)]
     # If fewer than 8 active, lower threshold but still require recent play
     if len(active) < 8:
         active = [p for p in team_players if
                   games_played_l5(p) >= 1
-                  and p.get("l5Avg", 0) > 0
-                  and p.get("injuryStatus", "Available").lower() not in ("out", "doubtful")]
+                  and compute_l5_avg(p) > 0
+                  and is_not_out(p)]
+
+    # Safety net: include anyone who played 10+ min in their last 2 games
+    # (catches returning-from-injury players like Jarace Walker)
+    active_names = {p["name"] for p in active}
+    for p in team_players:
+        if p["name"] in active_names or not is_not_out(p):
+            continue
+        recent_2 = p.get("last10Games", [])[:2]
+        if any(g.get("minutes", 0) >= 10 for g in recent_2):
+            active.append(p)
+            active_names.add(p["name"])
+            print(f"    + {p['name']} added via recent-activity safety net (L5 avg from profile={p.get('l5Avg', 0)}, computed={compute_l5_avg(p):.1f})")
+
     # Out = explicitly OUT/Doubtful, or not in the rotation
     out = [p for p in team_players if
            p.get("injuryStatus", "").lower() in ("out", "doubtful")]
     questionable = [p for p in active if p.get("injuryStatus", "").lower() == "questionable"]
+
+    # Diagnostic: warn about excluded players who have recent minutes
+    excluded = [p for p in team_players if p["name"] not in active_names and p not in out]
+    for p in excluded:
+        computed = compute_l5_avg(p)
+        if computed > 0:
+            print(f"    ⚠️ {p['name']} excluded (profile l5Avg={p.get('l5Avg', 0)}, computed={computed:.1f}, gamesL5={games_played_l5(p)})")
 
     if not active:
         return None
@@ -543,7 +574,7 @@ def build_team_prompt(team, opponent, team_players):
     # ── Active players with game-by-game minutes prominently displayed ──
     lines.append("ACTIVE PLAYERS (sorted by L5 avg):")
 
-    active_sorted = sorted(active, key=lambda x: x.get("l5Avg", 0), reverse=True)
+    active_sorted = sorted(active, key=lambda x: compute_l5_avg(x), reverse=True)
     for p in active_sorted:
         injury_tag = ""
         if p.get("injuryStatus", "").lower() == "questionable":
@@ -576,7 +607,8 @@ def build_team_prompt(team, opponent, team_players):
         )
         lines.append(f"  L10 minutes (recent→old): {mins_str}")
         lines.append(f"  Start/Bench (recent→old): {role_str}")
-        lines.append(f"  L5 avg={p.get('l5Avg', 0)}, L10 avg={p.get('l10Avg', 0)}")
+        computed_avg = compute_l5_avg(p)
+        lines.append(f"  L5 avg={computed_avg:.1f} (when playing), L10 avg={p.get('l10Avg', 0)}")
 
         # Starter consistency
         started_count = sum(1 for f in started_flags if f == "S")
@@ -596,7 +628,7 @@ def build_team_prompt(team, opponent, team_players):
     # ── Out/Doubtful players + their rotation impact ──
     if out:
         lines.append("\n\nOUT/DOUBTFUL PLAYERS & ROTATION IMPACT:")
-        out_with_minutes = [p for p in out if p.get("l5Avg", 0) > 0]
+        out_with_minutes = [p for p in out if compute_l5_avg(p) > 0 or p.get("l10Avg", 0) > 0]
         for p in out_with_minutes:
             reason = ""
             if p.get("injuryReason"):
@@ -604,8 +636,9 @@ def build_team_prompt(team, opponent, team_players):
             elif p.get("injuryStatus"):
                 reason = f" — {p['injuryStatus']}"
 
+            out_avg = compute_l5_avg(p) or p.get("l10Avg", 0)
             lines.append(
-                f"- {p['name']} ({p.get('pos', '?')}): L5={p.get('l5Avg', 0)} min/game when active{reason}"
+                f"- {p['name']} ({p.get('pos', '?')}): avg={out_avg:.1f} min/game when active{reason}"
             )
 
             # Show recent game minutes for context
@@ -630,12 +663,13 @@ def build_team_prompt(team, opponent, team_players):
         lines.append(f"\n⚠️ {len(questionable)} QUESTIONABLE players — reduce their minutes ~20-30% and redistribute to teammates")
 
     # ── Summary ──
-    total_l5 = sum(p.get("l5Avg", 0) for p in active_sorted)
-    out_minutes = sum(p.get("l5Avg", 0) for p in out if p.get("l5Avg", 0) > 0)
+    total_l5 = sum(compute_l5_avg(p) for p in active_sorted)
+    out_minutes = sum(compute_l5_avg(p) or p.get("l10Avg", 0) for p in out if (compute_l5_avg(p) or p.get("l10Avg", 0)) > 0)
     lines.append(f"\nActive players L5 total: {total_l5:.0f} min ({len(active_sorted)} players)")
 
     if out_minutes > 0:
-        lines.append(f"\n🔴 {len([p for p in out if p.get('l5Avg', 0) > 0])} rotation players are OUT, freeing ~{out_minutes:.0f} minutes.")
+        out_rotation = [p for p in out if (compute_l5_avg(p) or p.get("l10Avg", 0)) > 0]
+        lines.append(f"\n🔴 {len(out_rotation)} rotation players are OUT, freeing ~{out_minutes:.0f} minutes.")
         lines.append("Use the substitution chains above to redistribute these minutes to the correct teammates.")
         lines.append(f"Target total after redistribution: 240-242 min across {len(active_sorted)} active players.")
     else:
@@ -932,6 +966,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
-
