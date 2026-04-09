@@ -163,13 +163,16 @@ def load_slate_data():
     """Read slate data from DK slates, FD slates, or data.json as fallback."""
     slate = {}
 
-    # Load ALL DK slates
+    # Load NBA DK slates only (sportId 4 = NBA, 2 = MLB, 1 = NFL)
     print("Loading dk-slates.json from GitHub...")
     dk_data = gh_fetch_json("dk-slates.json")
     if dk_data and dk_data.get("slates"):
         dk_labels = []
         for key, sl in dk_data["slates"].items():
             if not sl.get("players"):
+                continue
+            # Filter to NBA slates only (sportId=4)
+            if sl.get("sportId") and sl["sportId"] != 4:
                 continue
             dk_labels.append(sl.get("label", key))
             for p in sl["players"]:
@@ -182,7 +185,7 @@ def load_slate_data():
                         "team": normalize_team(p.get("team", "")),
                     }
         if dk_labels:
-            print(f"  Loaded {len(slate)} players from {len(dk_labels)} DK slates: {', '.join(dk_labels)}")
+            print(f"  Loaded {len(slate)} players from {len(dk_labels)} NBA DK slates: {', '.join(dk_labels)}")
 
     # Also load FD slates (merge new players)
     print("Loading fd-slates.json from GitHub...")
@@ -691,7 +694,7 @@ def build_team_prompt(team, opponent, team_players):
         lines.append(f"\nNo significant OUT players — distribute 240-242 total minutes, using L5 as baseline and adjusting for recent game trends.")
 
     lines.append("\nLook at each player's MOST RECENT game first — that is the strongest signal. A player who played 20+ min in their last game is clearly in the rotation regardless of DNPs before that.")
-    lines.append("\nCRITICAL: Every player on the ACTIVE list MUST receive >0 projected minutes. They are confirmed active for tonight's game. Never project 0 for an active player.")
+    lines.append("\nPlayers with consistent 0-minute games are deep bench and can be projected at 0. Only project significant minutes for players who have actually been playing recently.")
     lines.append("\nPatterns like 0 0 0 15 25 (recent→old) indicate a player returning from injury — use their most recent game as baseline, not the zeros.")
     lines.append("Patterns like 35 34 36 33 35 indicate a locked-in starter.")
     lines.append("\n⚠️ MANDATORY: Your projections MUST sum to exactly 240-242 total minutes. An NBA game has 48 min × 5 players = 240 min. Add up every player's projection BEFORE responding. If the sum is under 235 or over 248, redo your numbers. This is the most important constraint.")
