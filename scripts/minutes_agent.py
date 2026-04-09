@@ -660,7 +660,7 @@ def build_team_prompt(team, opponent, team_players):
                 lines.append(f"  → No historical sub data — distribute to same-position players")
 
     if questionable:
-        lines.append(f"\n⚠️ {len(questionable)} QUESTIONABLE players — reduce their minutes ~20-30% and redistribute to teammates")
+        lines.append(f"\n⚠️ {len(questionable)} QUESTIONABLE players — historically ~75% of questionable players play their normal minutes. Do NOT reduce their minutes unless the injury clearly limits playing time (e.g. acute knee/ankle). Project them at their normal baseline.")
 
     # ── Summary ──
     total_l5 = sum(compute_l5_avg(p) for p in active_sorted)
@@ -675,7 +675,10 @@ def build_team_prompt(team, opponent, team_players):
     else:
         lines.append(f"\nNo significant OUT players — distribute 240-242 total minutes, using L5 as baseline and adjusting for recent game trends.")
 
-    lines.append("\nLook at each player's individual game minutes — patterns like 0 0 0 15 25 indicate a player returning from injury (project conservatively). Patterns like 35 34 36 33 35 indicate a locked-in starter.")
+    lines.append("\nLook at each player's MOST RECENT game first — that is the strongest signal. A player who played 20+ min in their last game is clearly in the rotation regardless of DNPs before that.")
+    lines.append("\nCRITICAL: Every player on the ACTIVE list MUST receive >0 projected minutes. They are confirmed active for tonight's game. Never project 0 for an active player.")
+    lines.append("\nPatterns like 0 0 0 15 25 (recent→old) indicate a player returning from injury — use their most recent game as baseline, not the zeros.")
+    lines.append("Patterns like 35 34 36 33 35 indicate a locked-in starter.")
     lines.append("\nAdd up your projections before responding to verify the sum equals 240-242.")
 
     lines.append("""
@@ -768,14 +771,26 @@ def query_claude(profiles):
                     new_total = sum(p.get("projectedMinutes", 0) for p in players_list)
                     print(f"    Scaled {team}: {team_total:.0f} → {new_total:.1f} min")
 
+                # Build lookup for recent game data to apply post-Claude floor
+                player_lookup = {p["name"]: p for p in players}
+
                 # Store results
                 players_list.sort(key=lambda x: x.get("projectedMinutes", 0), reverse=True)
                 for p in players_list:
                     name = p.get("name", "")
                     if name:
                         mins = round(p.get("projectedMinutes", 0), 1)
+                        # Post-Claude floor: if player played 10+ min in their most recent game,
+                        # don't drop them below 5 min (they're clearly in the rotation)
                         if mins < 3:
-                            continue
+                            profile = player_lookup.get(name, {})
+                            recent = profile.get("last10Games", [])[:1]
+                            last_game_mins = recent[0].get("minutes", 0) if recent else 0
+                            if last_game_mins >= 10:
+                                mins = max(5.0, round(last_game_mins * 0.5, 1))
+                                print(f"    ⚠️ Floor applied: {name} projected {p.get('projectedMinutes', 0):.1f}→{mins}m (last game: {last_game_mins})")
+                            else:
+                                continue
                         projections[name] = {
                             "projectedMinutes": mins,
                             "confidence": p.get("confidence", "medium"),
