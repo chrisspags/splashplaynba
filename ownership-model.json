@@ -1,0 +1,223 @@
+{
+  "version": 1,
+  "schema": "ownership-model.v1",
+  "trainedAt": "2026-04-30T21:20:00.922Z",
+  "target": "top100CohortOwnership",
+  "scale": 100,
+  "intercept": -1.369115,
+  "coefficients": {
+    "valuePerK": 0.519789,
+    "projRankInPos": 0.09754,
+    "valueRankInPos": -0.226399,
+    "priceRankInPos": -0.357641,
+    "ceilingRate": 0.633405,
+    "salTier_lt4k": -0.449733,
+    "salTier_4to6": 0.270891,
+    "salTier_6to8": -0.46506,
+    "salTier_8plus": 0.202948,
+    "pos_PG": -0.048849,
+    "pos_SG": -0.349943,
+    "pos_SF": 0.31972,
+    "pos_PF": 0.374397,
+    "pos_C": -0.736279,
+    "games_2": 0,
+    "games_3": -0.120224,
+    "games_4": -0.32073,
+    "games_5plus": 0,
+    "isTopValueAtPos": 0.636132,
+    "isTopProjAtPos": -0.196312
+  },
+  "featureNames": [
+    "valuePerK",
+    "projRankInPos",
+    "valueRankInPos",
+    "priceRankInPos",
+    "ceilingRate",
+    "salTier_lt4k",
+    "salTier_4to6",
+    "salTier_6to8",
+    "salTier_8plus",
+    "pos_PG",
+    "pos_SG",
+    "pos_SF",
+    "pos_PF",
+    "pos_C",
+    "games_2",
+    "games_3",
+    "games_4",
+    "games_5plus",
+    "isTopValueAtPos",
+    "isTopProjAtPos"
+  ],
+  "featureMeans": {
+    "valuePerK": 4.967453,
+    "projRankInPos": 0.482157,
+    "valueRankInPos": 0.463802,
+    "priceRankInPos": 0.497624,
+    "ceilingRate": 1.963176
+  },
+  "featureStds": {
+    "valuePerK": 0.594324,
+    "projRankInPos": 0.331912,
+    "valueRankInPos": 0.311439,
+    "priceRankInPos": 0.334892,
+    "ceilingRate": 0.225273
+  },
+  "training": {
+    "slateCount": 3,
+    "holdoutSlateCount": 1,
+    "trainRows": 114,
+    "holdoutRows": 32,
+    "trainDates": [
+      "2026-04-26",
+      "2026-04-27",
+      "2026-04-28"
+    ],
+    "holdoutDates": [
+      "2026-04-29"
+    ],
+    "perSlateStats": [
+      {
+        "date": "2026-04-26",
+        "contestId": 189942018,
+        "n": 47,
+        "cohortCount": 100
+      },
+      {
+        "date": "2026-04-27",
+        "contestId": 189960873,
+        "n": 35,
+        "cohortCount": 100
+      },
+      {
+        "date": "2026-04-28",
+        "contestId": 189990668,
+        "n": 32,
+        "cohortCount": 100
+      },
+      {
+        "date": "2026-04-29",
+        "contestId": 190023043,
+        "n": 32,
+        "cohortCount": 100
+      }
+    ],
+    "skipped": [
+      {
+        "date": "2026-04-14",
+        "reason": "no rollup slate"
+      },
+      {
+        "date": "2026-04-15",
+        "reason": "no rollup slate"
+      },
+      {
+        "date": "2026-04-17",
+        "reason": "no rollup slate"
+      },
+      {
+        "date": "2026-04-18",
+        "reason": "no rollup slate"
+      },
+      {
+        "date": "2026-04-19",
+        "reason": "no rollup slate"
+      },
+      {
+        "date": "2026-04-20",
+        "reason": "no rollup slate"
+      },
+      {
+        "date": "2026-04-21",
+        "reason": "no rollup slate"
+      },
+      {
+        "date": "2026-04-22",
+        "reason": "no rollup slate"
+      },
+      {
+        "date": "2026-04-23",
+        "reason": "no rollup slate"
+      },
+      {
+        "date": "2026-04-24",
+        "reason": "no rollup slate"
+      },
+      {
+        "date": "2026-04-25",
+        "reason": "no rollup slate"
+      }
+    ]
+  },
+  "backtest": {
+    "overall": {
+      "n": 32,
+      "rmse": 23.261,
+      "mae": 17.09,
+      "r2": 0.002
+    },
+    "byPosition": {
+      "PF": {
+        "n": 7,
+        "rmse": 25.3,
+        "mae": 16.835,
+        "r2": -0.506
+      },
+      "C": {
+        "n": 6,
+        "rmse": 29.102,
+        "mae": 19.775,
+        "r2": -0.606
+      },
+      "PG": {
+        "n": 8,
+        "rmse": 17.995,
+        "mae": 15.355,
+        "r2": 0.426
+      },
+      "SF": {
+        "n": 4,
+        "rmse": 28.187,
+        "mae": 23.217,
+        "r2": -0.606
+      },
+      "SG": {
+        "n": 7,
+        "rmse": 16.833,
+        "mae": 13.524,
+        "r2": 0.381
+      }
+    },
+    "vsBaselines": {
+      "predictStokastic": {
+        "n": 32,
+        "rmse": 22.087,
+        "mae": 16.566,
+        "r2": 0.1
+      },
+      "predictSimProjOwn": {
+        "n": 32,
+        "rmse": 26.808,
+        "mae": 20.178,
+        "r2": -0.326
+      }
+    },
+    "improvementOverStokastic": {
+      "n": 32,
+      "modelRmse": 23.261,
+      "stokRmse": 22.087,
+      "delta": -1.174
+    },
+    "agreementWithStokastic": {
+      "n": 32,
+      "correlation": 0.706,
+      "meanAbsDiff": 8.512
+    },
+    "vsFieldOwnership": {
+      "n": 32,
+      "rmse": 11.257,
+      "mae": 9.121,
+      "r2": 0.447
+    }
+  }
+}
