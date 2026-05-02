@@ -2,6 +2,114 @@
   "schemaVersion": 1,
   "runs": [
     {
+      "date": "2026-04-28",
+      "matched": 40,
+      "generatedAt": "2026-05-02T17:32:44.416Z",
+      "projFile": "nba-rollup.json.gz",
+      "projSource": "nba-rollup.json.gz (main_dk)",
+      "overall": {
+        "bias": -3.067,
+        "mae": 7.777,
+        "r": 0.787,
+        "rmse": 9.212,
+        "medianBias": -3.05,
+        "medianAbsErr": 6.2,
+        "pctActualOverProj": 0.35
+      },
+      "byPosition": {
+        "C": {
+          "fifty": 1,
+          "eighty": 1,
+          "n": 9,
+          "bias": 1.256,
+          "mae": 3.856,
+          "r": 0.962,
+          "medianBias": 2.2,
+          "medianAbsErr": 3.3,
+          "pctActualOverProj": 0.5556
+        },
+        "PG": {
+          "fifty": 0.3846,
+          "eighty": 0.7692,
+          "n": 13,
+          "bias": -5.346,
+          "mae": 10.992,
+          "r": 0.699,
+          "medianBias": -5.8,
+          "medianAbsErr": 11.7,
+          "pctActualOverProj": 0.3846
+        },
+        "PF": {
+          "fifty": 0.6,
+          "eighty": 0.9,
+          "n": 10,
+          "bias": 1.32,
+          "mae": 6.94,
+          "r": 0.829,
+          "medianBias": 1.55,
+          "medianAbsErr": 6.05,
+          "pctActualOverProj": 0.5
+        },
+        "SG": {
+          "fifty": 0.3846,
+          "eighty": 0.9231,
+          "n": 13,
+          "bias": -8.077,
+          "mae": 10.215,
+          "r": 0.618,
+          "medianBias": -10.6,
+          "medianAbsErr": 10.6,
+          "pctActualOverProj": 0.1538
+        },
+        "SF": {
+          "fifty": 0.3846,
+          "eighty": 0.9231,
+          "n": 13,
+          "bias": -4.262,
+          "mae": 7.738,
+          "r": 0.666,
+          "medianBias": -5.4,
+          "medianAbsErr": 8.1,
+          "pctActualOverProj": 0.1538
+        }
+      },
+      "byPriceTier": {
+        "stud": {
+          "fifty": 0.7778,
+          "eighty": 1,
+          "n": 9,
+          "bias": 0.989,
+          "mae": 7.544,
+          "r": 0.333,
+          "medianBias": 6.1,
+          "medianAbsErr": 6.7,
+          "pctActualOverProj": 0.5556
+        },
+        "mid": {
+          "fifty": 0.4211,
+          "eighty": 0.8421,
+          "n": 19,
+          "bias": -6.195,
+          "mae": 9.216,
+          "r": 0.396,
+          "medianBias": -5.8,
+          "medianAbsErr": 7,
+          "pctActualOverProj": 0.3158
+        },
+        "value": {
+          "fifty": 0.6667,
+          "eighty": 0.9167,
+          "n": 12,
+          "bias": -1.158,
+          "mae": 5.675,
+          "r": 0.461,
+          "medianBias": -2.55,
+          "medianAbsErr": 3.8,
+          "pctActualOverProj": 0.25
+        }
+      }
+    },
+    {
       "date": "2026-04-29",
       "matched": 36,
       "generatedAt": "2026-05-02T17:32:37.278Z",
@@ -488,87 +596,6 @@
       }
     },
     {
-      "date": "2026-04-28",
-      "matched": 40,
-      "generatedAt": "2026-04-30T16:41:26.480Z",
-      "projFile": "nba-rollup.json.gz",
-      "projSource": "nba-rollup.json.gz (main_dk)",
-      "overall": {
-        "bias": -3.067,
-        "mae": 7.777,
-        "r": 0.787,
-        "rmse": 9.212
-      },
-      "byPosition": {
-        "C": {
-          "fifty": 1,
-          "eighty": 1,
-          "n": 9,
-          "bias": 1.256,
-          "mae": 3.856,
-          "r": 0.962
-        },
-        "PG": {
-          "fifty": 0.3846,
-          "eighty": 0.7692,
-          "n": 13,
-          "bias": -5.346,
-          "mae": 10.992,
-          "r": 0.699
-        },
-        "PF": {
-          "fifty": 0.6,
-          "eighty": 0.9,
-          "n": 10,
-          "bias": 1.32,
-          "mae": 6.94,
-          "r": 0.829
-        },
-        "SG": {
-          "fifty": 0.3846,
-          "eighty": 0.9231,
-          "n": 13,
-          "bias": -8.077,
-          "mae": 10.215,
-          "r": 0.618
-        },
-        "SF": {
-          "fifty": 0.3846,
-          "eighty": 0.9231,
-          "n": 13,
-          "bias": -4.262,
-          "mae": 7.738,
-          "r": 0.666
-        }
-      },
-      "byPriceTier": {
-        "stud": {
-          "fifty": 0.7778,
-          "eighty": 1,
-          "n": 9,
-          "bias": 0.989,
-          "mae": 7.544,
-          "r": 0.333
-        },
-        "mid": {
-          "fifty": 0.4211,
-          "eighty": 0.8421,
-          "n": 19,
-          "bias": -6.195,
-          "mae": 9.216,
-          "r": 0.396
-        },
-        "value": {
-          "fifty": 0.6667,
-          "eighty": 0.9167,
-          "n": 12,
-          "bias": -1.158,
-          "mae": 5.675,
-          "r": 0.461
-        }
-      }
-    },
-    {
       "date": "2026-04-25",
       "matched": 25,
       "generatedAt": "2026-04-29T13:15:09.145Z",
@@ -862,14 +889,9 @@
     }
   ],
   "averaged": {
-    "lastUpdated": "2026-05-02T17:32:37.278Z",
+    "lastUpdated": "2026-05-02T17:32:44.416Z",
     "slatesIncluded": 10,
     "byPosition": {
-      "PF": {
-        "fifty": 0.5899,
-        "eighty": 0.7501,
-        "nTotal": 100
-      },
       "C": {
         "fifty": 0.6211,
         "eighty": 0.842,
@@ -879,6 +901,11 @@
         "fifty": 0.472,
         "eighty": 0.768,
         "nTotal": 125
+      },
+      "PF": {
+        "fifty": 0.5899,
+        "eighty": 0.7501,
+        "nTotal": 100
       },
       "SG": {
         "fifty": 0.4361,
@@ -1552,6 +1579,12 @@
             "proj": 44.8,
             "actual": 51.8,
             "err": 7
+          },
+          {
+            "date": "2026-04-28",
+            "proj": 44.2,
+            "actual": 51,
+            "err": 6.8
           }
         ]
       },
@@ -1563,6 +1596,12 @@
             "proj": 46.6,
             "actual": 20.8,
             "err": -25.8
+          },
+          {
+            "date": "2026-04-28",
+            "proj": 46.3,
+            "actual": 36.8,
+            "err": -9.5
           }
         ]
       },
@@ -1574,6 +1613,12 @@
             "proj": 34,
             "actual": 14.2,
             "err": -19.8
+          },
+          {
+            "date": "2026-04-28",
+            "proj": 31.6,
+            "actual": 13.2,
+            "err": -18.4
           }
         ]
       },
@@ -1585,6 +1630,12 @@
             "proj": 49.3,
             "actual": 47,
             "err": -2.3
+          },
+          {
+            "date": "2026-04-28",
+            "proj": 44.4,
+            "actual": 50.5,
+            "err": 6.1
           }
         ]
       },
@@ -1618,6 +1669,12 @@
             "proj": 43.2,
             "actual": 36,
             "err": -7.2
+          },
+          {
+            "date": "2026-04-28",
+            "proj": 43.3,
+            "actual": 55.8,
+            "err": 12.5
           }
         ]
       },
@@ -1629,6 +1686,12 @@
             "proj": 17,
             "actual": 8,
             "err": -9
+          },
+          {
+            "date": "2026-04-28",
+            "proj": 19.2,
+            "actual": 15.5,
+            "err": -3.7
           }
         ]
       },
@@ -1640,6 +1703,12 @@
             "proj": 28.6,
             "actual": 4.5,
             "err": -24.1
+          },
+          {
+            "date": "2026-04-28",
+            "proj": 30.4,
+            "actual": 28,
+            "err": -2.4
           }
         ]
       },
@@ -1651,6 +1720,12 @@
             "proj": 46,
             "actual": 41.5,
             "err": -4.5
+          },
+          {
+            "date": "2026-04-28",
+            "proj": 48.4,
+            "actual": 44,
+            "err": -4.4
           }
         ]
       },
@@ -1662,6 +1737,12 @@
             "proj": 33.6,
             "actual": 15.2,
             "err": -18.4
+          },
+          {
+            "date": "2026-04-28",
+            "proj": 35.7,
+            "actual": 24,
+            "err": -11.7
           }
         ]
       },
@@ -1673,6 +1754,12 @@
             "proj": 35.3,
             "actual": 39,
             "err": 3.7
+          },
+          {
+            "date": "2026-04-28",
+            "proj": 33.4,
+            "actual": 42.8,
+            "err": 9.4
           }
         ]
       },
@@ -1695,6 +1782,12 @@
             "proj": 31,
             "actual": 33,
             "err": 2
+          },
+          {
+            "date": "2026-04-28",
+            "proj": 32,
+            "actual": 26.2,
+            "err": -5.8
           }
         ]
       },
@@ -1706,6 +1799,12 @@
             "proj": 27.9,
             "actual": 25.2,
             "err": -2.7
+          },
+          {
+            "date": "2026-04-28",
+            "proj": 29.6,
+            "actual": 24,
+            "err": -5.6
           }
         ]
       },
@@ -1717,6 +1816,12 @@
             "proj": 24.4,
             "actual": 20,
             "err": -4.4
+          },
+          {
+            "date": "2026-04-28",
+            "proj": 24.9,
+            "actual": 19.5,
+            "err": -5.4
           }
         ]
       },
@@ -1739,6 +1844,12 @@
             "proj": 24.3,
             "actual": 33.8,
             "err": 9.5
+          },
+          {
+            "date": "2026-04-28",
+            "proj": 23.6,
+            "actual": 13,
+            "err": -10.6
           }
         ]
       },
@@ -1783,6 +1894,12 @@
             "proj": 20.8,
             "actual": 37.8,
             "err": 17
+          },
+          {
+            "date": "2026-04-28",
+            "proj": 19.9,
+            "actual": 11.8,
+            "err": -8.1
           }
         ]
       },
@@ -1805,6 +1922,12 @@
             "proj": 16,
             "actual": 12,
             "err": -4
+          },
+          {
+            "date": "2026-04-28",
+            "proj": 16.3,
+            "actual": 14.2,
+            "err": -2.1
           }
         ]
       },
@@ -1816,6 +1939,12 @@
             "proj": 16.7,
             "actual": 8.8,
             "err": -7.9
+          },
+          {
+            "date": "2026-04-28",
+            "proj": 15.5,
+            "actual": 24,
+            "err": 8.5
           }
         ]
       },
@@ -1838,6 +1967,12 @@
             "proj": 16.6,
             "actual": 13.8,
             "err": -2.8
+          },
+          {
+            "date": "2026-04-28",
+            "proj": 18.2,
+            "actual": 15.5,
+            "err": -2.7
           }
         ]
       },
@@ -1849,6 +1984,12 @@
             "proj": 33.8,
             "actual": 20.2,
             "err": -13.6
+          },
+          {
+            "date": "2026-04-28",
+            "proj": 32.9,
+            "actual": 11.2,
+            "err": -21.7
           }
         ]
       },
@@ -1860,6 +2001,12 @@
             "proj": 45.4,
             "actual": 45.5,
             "err": 0.1
+          },
+          {
+            "date": "2026-04-28",
+            "proj": 46.7,
+            "actual": 53,
+            "err": 6.3
           }
         ]
       },
@@ -1871,6 +2018,12 @@
             "proj": 31.6,
             "actual": 22,
             "err": -9.6
+          },
+          {
+            "date": "2026-04-28",
+            "proj": 31,
+            "actual": 33.2,
+            "err": 2.2
           }
         ]
       },
@@ -1882,6 +2035,12 @@
             "proj": 23.1,
             "actual": 21.2,
             "err": -1.9
+          },
+          {
+            "date": "2026-04-28",
+            "proj": 22.3,
+            "actual": 27,
+            "err": 4.7
           }
         ]
       },
@@ -1904,6 +2063,12 @@
             "proj": 51.9,
             "actual": 36.2,
             "err": -15.7
+          },
+          {
+            "date": "2026-04-28",
+            "proj": 50.8,
+            "actual": 57.5,
+            "err": 6.7
           }
         ]
       },
@@ -1915,6 +2080,12 @@
             "proj": 36,
             "actual": 52.8,
             "err": 16.8
+          },
+          {
+            "date": "2026-04-28",
+            "proj": 34.3,
+            "actual": 39.5,
+            "err": 5.2
           }
         ]
       },
@@ -1937,6 +2108,12 @@
             "proj": 16.8,
             "actual": 8.8,
             "err": -8
+          },
+          {
+            "date": "2026-04-28",
+            "proj": 18.1,
+            "actual": 4.8,
+            "err": -13.3
           }
         ]
       },
@@ -1948,6 +2125,12 @@
             "proj": 31.8,
             "actual": 23.2,
             "err": -8.6
+          },
+          {
+            "date": "2026-04-28",
+            "proj": 36.6,
+            "actual": 21.2,
+            "err": -15.4
           }
         ]
       },
@@ -1972,8 +2155,162 @@
             "err": -2.4
           }
         ]
+      },
+      "victor wembanyama": {
+        "name": "Victor Wembanyama",
+        "recent": [
+          {
+            "date": "2026-04-28",
+            "proj": 55.8,
+            "actual": 52.5,
+            "err": -3.3
+          }
+        ]
+      },
+      "jrue holiday": {
+        "name": "Jrue Holiday",
+        "recent": [
+          {
+            "date": "2026-04-28",
+            "proj": 38.6,
+            "actual": 25.5,
+            "err": -13.1
+          }
+        ]
+      },
+      "de'aaron fox": {
+        "name": "De'Aaron Fox",
+        "recent": [
+          {
+            "date": "2026-04-28",
+            "proj": 36.2,
+            "actual": 40.2,
+            "err": 4
+          }
+        ]
+      },
+      "stephon castle": {
+        "name": "Stephon Castle",
+        "recent": [
+          {
+            "date": "2026-04-28",
+            "proj": 38.5,
+            "actual": 25.8,
+            "err": -12.7
+          }
+        ]
+      },
+      "robert williams": {
+        "name": "Robert Williams",
+        "recent": [
+          {
+            "date": "2026-04-28",
+            "proj": 25.8,
+            "actual": 23.8,
+            "err": -2
+          }
+        ]
+      },
+      "donovan clingan": {
+        "name": "Donovan Clingan",
+        "recent": [
+          {
+            "date": "2026-04-28",
+            "proj": 22.6,
+            "actual": 25.8,
+            "err": 3.2
+          }
+        ]
+      },
+      "jerami grant": {
+        "name": "Jerami Grant",
+        "recent": [
+          {
+            "date": "2026-04-28",
+            "proj": 23.1,
+            "actual": 19.2,
+            "err": -3.9
+          }
+        ]
+      },
+      "scoot henderson": {
+        "name": "Scoot Henderson",
+        "recent": [
+          {
+            "date": "2026-04-28",
+            "proj": 24.1,
+            "actual": 7.5,
+            "err": -16.6
+          }
+        ]
+      },
+      "dylan harper": {
+        "name": "Dylan Harper",
+        "recent": [
+          {
+            "date": "2026-04-28",
+            "proj": 22.8,
+            "actual": 28.2,
+            "err": 5.4
+          }
+        ]
+      },
+      "toumani camara": {
+        "name": "Toumani Camara",
+        "recent": [
+          {
+            "date": "2026-04-28",
+            "proj": 22.4,
+            "actual": 20,
+            "err": -2.4
+          }
+        ]
+      },
+      "julian champagnie": {
+        "name": "Julian Champagnie",
+        "recent": [
+          {
+            "date": "2026-04-28",
+            "proj": 21.6,
+            "actual": 34.8,
+            "err": 13.2
+          }
+        ]
+      },
+      "keldon johnson": {
+        "name": "Keldon Johnson",
+        "recent": [
+          {
+            "date": "2026-04-28",
+            "proj": 17,
+            "actual": 14.2,
+            "err": -2.8
+          }
+        ]
+      },
+      "deni avdija": {
+        "name": "Deni Avdija",
+        "recent": [
+          {
+            "date": "2026-04-28",
+            "proj": 43.1,
+            "actual": 30.8,
+            "err": -12.3
+          }
+        ]
+      },
+      "devin vassell": {
+        "name": "Devin Vassell",
+        "recent": [
+          {
+            "date": "2026-04-28",
+            "proj": 24.8,
+            "actual": 17.8,
+            "err": -7
+          }
+        ]
       }
     },
-    "lastUpdated": "2026-05-02T17:32:37.278Z"
+    "lastUpdated": "2026-05-02T17:32:44.416Z"
   }
 }
