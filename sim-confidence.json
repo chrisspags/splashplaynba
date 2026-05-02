@@ -4,14 +4,17 @@
     {
       "date": "2026-05-01",
       "matched": 37,
-      "generatedAt": "2026-05-02T17:15:55.459Z",
+      "generatedAt": "2026-05-02T17:29:14.927Z",
       "projFile": "nba-rollup.json.gz",
       "projSource": "nba-rollup.json.gz (main_dk)",
       "overall": {
         "bias": -2.281,
         "mae": 8.195,
         "r": 0.755,
-        "rmse": 9.816
+        "rmse": 9.816,
+        "medianBias": -4.1,
+        "medianAbsErr": 7.2,
+        "pctActualOverProj": 0.4054
       },
       "byPosition": {
         "PF": {
@@ -20,7 +23,10 @@
           "n": 8,
           "bias": 6.013,
           "mae": 9.037,
-          "r": 0.642
+          "r": 0.642,
+          "medianBias": 5.4,
+          "medianAbsErr": 7.55,
+          "pctActualOverProj": 0.75
         },
         "C": {
           "fifty": 0.6,
@@ -28,7 +34,10 @@
           "n": 10,
           "bias": -2.8,
           "mae": 8.8,
-          "r": 0.559
+          "r": 0.559,
+          "medianBias": -3.9,
+          "medianAbsErr": 6.55,
+          "pctActualOverProj": 0.4
         },
         "PG": {
           "fifty": 0.5455,
@@ -36,7 +45,10 @@
           "n": 11,
           "bias": -5.064,
           "mae": 9.645,
-          "r": 0.749
+          "r": 0.749,
+          "medianBias": -7.2,
+          "medianAbsErr": 8.2,
+          "pctActualOverProj": 0.2727
         },
         "SG": {
           "fifty": 0.4286,
@@ -44,7 +56,10 @@
           "n": 14,
           "bias": -5.057,
           "mae": 9.143,
-          "r": 0.562
+          "r": 0.562,
+          "medianBias": -5.25,
+          "medianAbsErr": 7.95,
+          "pctActualOverProj": 0.2143
         },
         "SF": {
           "fifty": 0.75,
@@ -52,7 +67,10 @@
           "n": 8,
           "bias": -0.325,
           "mae": 6.425,
-          "r": 0.784
+          "r": 0.784,
+          "medianBias": -0.7,
+          "medianAbsErr": 4.15,
+          "pctActualOverProj": 0.5
         }
       },
       "byPriceTier": {
@@ -62,7 +80,10 @@
           "n": 8,
           "bias": -1.438,
           "mae": 8.038,
-          "r": 0.507
+          "r": 0.507,
+          "medianBias": -2.4,
+          "medianAbsErr": 7.25,
+          "pctActualOverProj": 0.5
         },
         "mid": {
           "fifty": 0.6471,
@@ -70,7 +91,10 @@
           "n": 17,
           "bias": -2.788,
           "mae": 7.624,
-          "r": 0.338
+          "r": 0.338,
+          "medianBias": -3.5,
+          "medianAbsErr": 5.7,
+          "pctActualOverProj": 0.4706
         },
         "value": {
           "fifty": 0.5,
@@ -78,7 +102,10 @@
           "n": 12,
           "bias": -2.125,
           "mae": 9.108,
-          "r": 0.376
+          "r": 0.376,
+          "medianBias": -4.8,
+          "medianAbsErr": 8.8,
+          "pctActualOverProj": 0.25
         }
       }
     },
@@ -781,7 +808,7 @@
     }
   ],
   "averaged": {
-    "lastUpdated": "2026-05-02T17:15:55.459Z",
+    "lastUpdated": "2026-05-02T17:29:14.927Z",
     "slatesIncluded": 10,
     "byPosition": {
       "PF": {
@@ -827,5 +854,417 @@
         "nTotal": 219
       }
     }
+  },
+  "playerBias": {
+    "players": {
+      "lebron james": {
+        "name": "LeBron James",
+        "recent": [
+          {
+            "date": "2026-05-01",
+            "proj": 45.2,
+            "actual": 48.2,
+            "err": 3
+          }
+        ]
+      },
+      "alperen sengun": {
+        "name": "Alperen Sengun",
+        "recent": [
+          {
+            "date": "2026-05-01",
+            "proj": 51,
+            "actual": 35.8,
+            "err": -15.2
+          }
+        ]
+      },
+      "paolo banchero": {
+        "name": "Paolo Banchero",
+        "recent": [
+          {
+            "date": "2026-05-01",
+            "proj": 50.8,
+            "actual": 43.5,
+            "err": -7.3
+          }
+        ]
+      },
+      "austin reaves": {
+        "name": "Austin Reaves",
+        "recent": [
+          {
+            "date": "2026-05-01",
+            "proj": 45.3,
+            "actual": 26.8,
+            "err": -18.5
+          }
+        ]
+      },
+      "james harden": {
+        "name": "James Harden",
+        "recent": [
+          {
+            "date": "2026-05-01",
+            "proj": 40.5,
+            "actual": 45.2,
+            "err": 4.7
+          }
+        ]
+      },
+      "jabari smith jr.": {
+        "name": "Jabari Smith Jr.",
+        "recent": [
+          {
+            "date": "2026-05-01",
+            "proj": 35.3,
+            "actual": 30.5,
+            "err": -4.8
+          }
+        ]
+      },
+      "evan mobley": {
+        "name": "Evan Mobley",
+        "recent": [
+          {
+            "date": "2026-05-01",
+            "proj": 35.3,
+            "actual": 51.5,
+            "err": 16.2
+          }
+        ]
+      },
+      "desmond bane": {
+        "name": "Desmond Bane",
+        "recent": [
+          {
+            "date": "2026-05-01",
+            "proj": 31.9,
+            "actual": 27.8,
+            "err": -4.1
+          }
+        ]
+      },
+      "max strus": {
+        "name": "Max Strus",
+        "recent": [
+          {
+            "date": "2026-05-01",
+            "proj": 22,
+            "actual": 17.2,
+            "err": -4.8
+          }
+        ]
+      },
+      "donovan mitchell": {
+        "name": "Donovan Mitchell",
+        "recent": [
+          {
+            "date": "2026-05-01",
+            "proj": 42,
+            "actual": 34.8,
+            "err": -7.2
+          }
+        ]
+      },
+      "rj barrett": {
+        "name": "RJ Barrett",
+        "recent": [
+          {
+            "date": "2026-05-01",
+            "proj": 39.9,
+            "actual": 41.2,
+            "err": 1.3
+          }
+        ]
+      },
+      "jalen suggs": {
+        "name": "Jalen Suggs",
+        "recent": [
+          {
+            "date": "2026-05-01",
+            "proj": 33.4,
+            "actual": 26.2,
+            "err": -7.2
+          }
+        ]
+      },
+      "ausar thompson": {
+        "name": "Ausar Thompson",
+        "recent": [
+          {
+            "date": "2026-05-01",
+            "proj": 29.3,
+            "actual": 35.5,
+            "err": 6.2
+          }
+        ]
+      },
+      "reed sheppard": {
+        "name": "Reed Sheppard",
+        "recent": [
+          {
+            "date": "2026-05-01",
+            "proj": 34.5,
+            "actual": 19.5,
+            "err": -15
+          }
+        ]
+      },
+      "luke kennard": {
+        "name": "Luke Kennard",
+        "recent": [
+          {
+            "date": "2026-05-01",
+            "proj": 18.9,
+            "actual": 13.2,
+            "err": -5.7
+          }
+        ]
+      },
+      "jarrett allen": {
+        "name": "Jarrett Allen",
+        "recent": [
+          {
+            "date": "2026-05-01",
+            "proj": 27.5,
+            "actual": 30.2,
+            "err": 2.7
+          }
+        ]
+      },
+      "jakob poeltl": {
+        "name": "Jakob Poeltl",
+        "recent": [
+          {
+            "date": "2026-05-01",
+            "proj": 19.8,
+            "actual": 14.5,
+            "err": -5.3
+          }
+        ]
+      },
+      "jamal cain": {
+        "name": "Jamal Cain",
+        "recent": [
+          {
+            "date": "2026-05-01",
+            "proj": 17.7,
+            "actual": 15,
+            "err": -2.7
+          }
+        ]
+      },
+      "collin murray-boyles": {
+        "name": "Collin Murray-Boyles",
+        "recent": [
+          {
+            "date": "2026-05-01",
+            "proj": 29,
+            "actual": 36.8,
+            "err": 7.8
+          }
+        ]
+      },
+      "jamal shead": {
+        "name": "Jamal Shead",
+        "recent": [
+          {
+            "date": "2026-05-01",
+            "proj": 28.1,
+            "actual": 19.2,
+            "err": -8.9
+          }
+        ]
+      },
+      "anthony black": {
+        "name": "Anthony Black",
+        "recent": [
+          {
+            "date": "2026-05-01",
+            "proj": 26.4,
+            "actual": 13.8,
+            "err": -12.6
+          }
+        ]
+      },
+      "caris levert": {
+        "name": "Caris LeVert",
+        "recent": [
+          {
+            "date": "2026-05-01",
+            "proj": 16,
+            "actual": 0,
+            "err": -16
+          }
+        ]
+      },
+      "rui hachimura": {
+        "name": "Rui Hachimura",
+        "recent": [
+          {
+            "date": "2026-05-01",
+            "proj": 20.9,
+            "actual": 36,
+            "err": 15.1
+          }
+        ]
+      },
+      "sandro mamukelashvili": {
+        "name": "Sandro Mamukelashvili",
+        "recent": [
+          {
+            "date": "2026-05-01",
+            "proj": 15.5,
+            "actual": 12.5,
+            "err": -3
+          }
+        ]
+      },
+      "dennis schroder": {
+        "name": "Dennis Schroder",
+        "recent": [
+          {
+            "date": "2026-05-01",
+            "proj": 16.3,
+            "actual": 11.5,
+            "err": -4.8
+          }
+        ]
+      },
+      "duncan robinson": {
+        "name": "Duncan Robinson",
+        "recent": [
+          {
+            "date": "2026-05-01",
+            "proj": 17.1,
+            "actual": 25.8,
+            "err": 8.7
+          }
+        ]
+      },
+      "sam merrill": {
+        "name": "Sam Merrill",
+        "recent": [
+          {
+            "date": "2026-05-01",
+            "proj": 15.5,
+            "actual": 6.2,
+            "err": -9.3
+          }
+        ]
+      },
+      "wendell carter jr.": {
+        "name": "Wendell Carter Jr.",
+        "recent": [
+          {
+            "date": "2026-05-01",
+            "proj": 26.9,
+            "actual": 15.5,
+            "err": -11.4
+          }
+        ]
+      },
+      "amen thompson": {
+        "name": "Amen Thompson",
+        "recent": [
+          {
+            "date": "2026-05-01",
+            "proj": 45.7,
+            "actual": 37.5,
+            "err": -8.2
+          }
+        ]
+      },
+      "marcus smart": {
+        "name": "Marcus Smart",
+        "recent": [
+          {
+            "date": "2026-05-01",
+            "proj": 29.3,
+            "actual": 25.8,
+            "err": -3.5
+          }
+        ]
+      },
+      "scottie barnes": {
+        "name": "Scottie Barnes",
+        "recent": [
+          {
+            "date": "2026-05-01",
+            "proj": 50.5,
+            "actual": 66.8,
+            "err": 16.3
+          }
+        ]
+      },
+      "deandre ayton": {
+        "name": "Deandre Ayton",
+        "recent": [
+          {
+            "date": "2026-05-01",
+            "proj": 27.2,
+            "actual": 30.5,
+            "err": 3.3
+          }
+        ]
+      },
+      "ja'kobe walter": {
+        "name": "Ja'Kobe Walter",
+        "recent": [
+          {
+            "date": "2026-05-01",
+            "proj": 22.1,
+            "actual": 40.2,
+            "err": 18.1
+          }
+        ]
+      },
+      "cade cunningham": {
+        "name": "Cade Cunningham",
+        "recent": [
+          {
+            "date": "2026-05-01",
+            "proj": 57.1,
+            "actual": 59.5,
+            "err": 2.4
+          }
+        ]
+      },
+      "jalen duren": {
+        "name": "Jalen Duren",
+        "recent": [
+          {
+            "date": "2026-05-01",
+            "proj": 38.1,
+            "actual": 19.8,
+            "err": -18.3
+          }
+        ]
+      },
+      "tari eason": {
+        "name": "Tari Eason",
+        "recent": [
+          {
+            "date": "2026-05-01",
+            "proj": 30.4,
+            "actual": 32.2,
+            "err": 1.8
+          }
+        ]
+      },
+      "tobias harris": {
+        "name": "Tobias Harris",
+        "recent": [
+          {
+            "date": "2026-05-01",
+            "proj": 35.2,
+            "actual": 37,
+            "err": 1.8
+          }
+        ]
+      }
+    },
+    "lastUpdated": "2026-05-02T17:29:14.927Z"
   }
 }
