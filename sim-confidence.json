@@ -2,6 +2,103 @@
   "schemaVersion": 1,
   "runs": [
     {
+      "date": "2026-05-03",
+      "matched": 22,
+      "generatedAt": "2026-05-04T12:51:31.339Z",
+      "projFile": "nba-rollup.json.gz",
+      "projSource": "nba-rollup.json.gz (main_dk)",
+      "overall": {
+        "bias": 2.205,
+        "mae": 7.314,
+        "r": 0.653,
+        "rmse": 10.248,
+        "medianBias": 1.7,
+        "medianAbsErr": 4.4,
+        "pctActualOverProj": 0.5909
+      },
+      "byPosition": {
+        "PG": {
+          "fifty": 1,
+          "eighty": 1,
+          "n": 6,
+          "bias": -0.083,
+          "mae": 3.183,
+          "r": 0.945,
+          "medianBias": 1.7,
+          "medianAbsErr": 2.95,
+          "pctActualOverProj": 0.6667
+        },
+        "PF": {
+          "fifty": 0.6667,
+          "eighty": 0.8333,
+          "n": 6,
+          "bias": 0.367,
+          "mae": 9.267,
+          "r": 0.792,
+          "medianBias": -5.05,
+          "medianAbsErr": 8.3,
+          "pctActualOverProj": 0.3333
+        },
+        "SG": {
+          "fifty": 0.5,
+          "eighty": 0.8333,
+          "n": 6,
+          "bias": 2.75,
+          "mae": 7.85,
+          "r": -0.371,
+          "medianBias": 2.65,
+          "medianAbsErr": 6.8,
+          "pctActualOverProj": 0.8333
+        },
+        "C": {
+          "fifty": 0.8333,
+          "eighty": 0.8333,
+          "n": 6,
+          "bias": 3.6,
+          "mae": 9.033,
+          "r": 0.313,
+          "medianBias": 0.7,
+          "medianAbsErr": 6.05,
+          "pctActualOverProj": 0.5
+        }
+      },
+      "byPriceTier": {
+        "stud": {
+          "fifty": 0.6,
+          "eighty": 1,
+          "n": 5,
+          "bias": -3.16,
+          "mae": 7.84,
+          "r": 0.77,
+          "medianBias": -3.8,
+          "medianAbsErr": 8.4,
+          "pctActualOverProj": 0.4
+        },
+        "mid": {
+          "fifty": 0.8182,
+          "eighty": 0.8182,
+          "n": 11,
+          "bias": 2.982,
+          "mae": 7.655,
+          "r": 0.297,
+          "medianBias": 0.3,
+          "medianAbsErr": 5,
+          "pctActualOverProj": 0.5455
+        },
+        "value": {
+          "fifty": 0.6667,
+          "eighty": 0.8333,
+          "n": 6,
+          "bias": 5.25,
+          "mae": 6.25,
+          "r": 0.449,
+          "medianBias": 3.1,
+          "medianAbsErr": 3.4,
+          "pctActualOverProj": 0.8333
+        }
+      }
+    },
+    {
       "date": "2026-05-02",
       "matched": 18,
       "generatedAt": "2026-05-03T14:34:40.631Z",
@@ -1040,50 +1137,50 @@
     }
   ],
   "averaged": {
-    "lastUpdated": "2026-05-03T14:34:40.631Z",
-    "slatesIncluded": 11,
+    "lastUpdated": "2026-05-04T12:51:31.339Z",
+    "slatesIncluded": 12,
     "byPosition": {
+      "PG": {
+        "fifty": 0.5,
+        "eighty": 0.7868,
+        "nTotal": 136
+      },
+      "PF": {
+        "fifty": 0.5675,
+        "eighty": 0.7388,
+        "nTotal": 111
+      },
       "SG": {
-        "fifty": 0.4533,
-        "eighty": 0.7482,
-        "nTotal": 139
+        "fifty": 0.4552,
+        "eighty": 0.7517,
+        "nTotal": 145
+      },
+      "C": {
+        "fifty": 0.6133,
+        "eighty": 0.8301,
+        "nTotal": 106
       },
       "SF": {
         "fifty": 0.5142,
         "eighty": 0.7334,
         "nTotal": 105
-      },
-      "PF": {
-        "fifty": 0.5618,
-        "eighty": 0.7334,
-        "nTotal": 105
-      },
-      "PG": {
-        "fifty": 0.477,
-        "eighty": 0.7769,
-        "nTotal": 130
-      },
-      "C": {
-        "fifty": 0.6,
-        "eighty": 0.8299,
-        "nTotal": 100
       }
     },
     "byPriceTier": {
       "stud": {
-        "fifty": 0.7051,
-        "eighty": 0.9231,
-        "nTotal": 78
-      },
-      "value": {
-        "fifty": 0.4079,
-        "eighty": 0.6493,
-        "nTotal": 228
+        "fifty": 0.6988,
+        "eighty": 0.9277,
+        "nTotal": 83
       },
       "mid": {
-        "fifty": 0.5706,
-        "eighty": 0.816,
-        "nTotal": 163
+        "fifty": 0.5863,
+        "eighty": 0.8161,
+        "nTotal": 174
+      },
+      "value": {
+        "fifty": 0.4146,
+        "eighty": 0.654,
+        "nTotal": 234
       }
     }
   },
@@ -1155,6 +1252,12 @@
             "proj": 40.3,
             "actual": 37,
             "err": -3.3
+          },
+          {
+            "date": "2026-05-03",
+            "proj": 50,
+            "actual": 59.8,
+            "err": 9.8
           }
         ]
       },
@@ -1195,6 +1298,12 @@
             "proj": 39.6,
             "actual": 35,
             "err": -4.6
+          },
+          {
+            "date": "2026-05-03",
+            "proj": 39.3,
+            "actual": 35.5,
+            "err": -3.8
           }
         ]
       },
@@ -1241,6 +1350,12 @@
             "proj": 37.6,
             "actual": 27.2,
             "err": -10.4
+          },
+          {
+            "date": "2026-05-03",
+            "proj": 36.4,
+            "actual": 28.2,
+            "err": -8.2
           }
         ]
       },
@@ -1264,6 +1379,12 @@
             "proj": 32.4,
             "actual": 32.8,
             "err": 0.4
+          },
+          {
+            "date": "2026-05-03",
+            "proj": 31.5,
+            "actual": 31.8,
+            "err": 0.3
           }
         ]
       },
@@ -1287,6 +1408,12 @@
             "proj": 21.9,
             "actual": 9.2,
             "err": -12.7
+          },
+          {
+            "date": "2026-05-03",
+            "proj": 18.6,
+            "actual": 35,
+            "err": 16.4
           }
         ]
       },
@@ -1310,6 +1437,12 @@
             "proj": 43.8,
             "actual": 34,
             "err": -9.8
+          },
+          {
+            "date": "2026-05-03",
+            "proj": 42.5,
+            "actual": 27.2,
+            "err": -15.3
           }
         ]
       },
@@ -1333,6 +1466,12 @@
             "proj": 34.8,
             "actual": 34,
             "err": -0.8
+          },
+          {
+            "date": "2026-05-03",
+            "proj": 39.9,
+            "actual": 42,
+            "err": 2.1
           }
         ]
       },
@@ -1356,6 +1495,12 @@
             "proj": 34.5,
             "actual": 15.5,
             "err": -19
+          },
+          {
+            "date": "2026-05-03",
+            "proj": 33.5,
+            "actual": 27.5,
+            "err": -6
           }
         ]
       },
@@ -1379,6 +1524,12 @@
             "proj": 28.7,
             "actual": 23.8,
             "err": -4.9
+          },
+          {
+            "date": "2026-05-03",
+            "proj": 29.9,
+            "actual": 26.5,
+            "err": -3.4
           }
         ]
       },
@@ -1448,6 +1599,12 @@
             "proj": 30.1,
             "actual": 27.8,
             "err": -2.3
+          },
+          {
+            "date": "2026-05-03",
+            "proj": 28.3,
+            "actual": 58.8,
+            "err": 30.5
           }
         ]
       },
@@ -1471,6 +1628,12 @@
             "proj": 17.3,
             "actual": 23,
             "err": 5.7
+          },
+          {
+            "date": "2026-05-03",
+            "proj": 18.4,
+            "actual": 20.8,
+            "err": 2.4
           }
         ]
       },
@@ -1511,6 +1674,12 @@
             "proj": 26.1,
             "actual": 36.5,
             "err": 10.4
+          },
+          {
+            "date": "2026-05-03",
+            "proj": 29.6,
+            "actual": 22.5,
+            "err": -7.1
           }
         ]
       },
@@ -1534,6 +1703,12 @@
             "proj": 25,
             "actual": 13,
             "err": -12
+          },
+          {
+            "date": "2026-05-03",
+            "proj": 26.7,
+            "actual": 28.8,
+            "err": 2.1
           }
         ]
       },
@@ -1557,6 +1732,12 @@
             "proj": 20.9,
             "actual": 4.5,
             "err": -16.4
+          },
+          {
+            "date": "2026-05-03",
+            "proj": 26.7,
+            "actual": 28.2,
+            "err": 1.5
           }
         ]
       },
@@ -1648,6 +1829,12 @@
             "proj": 19,
             "actual": 10.2,
             "err": -8.8
+          },
+          {
+            "date": "2026-05-03",
+            "proj": 18.7,
+            "actual": 28.5,
+            "err": 9.8
           }
         ]
       },
@@ -1682,6 +1869,12 @@
             "proj": 26.7,
             "actual": 36.8,
             "err": 10.1
+          },
+          {
+            "date": "2026-05-03",
+            "proj": 25.2,
+            "actual": 24.2,
+            "err": -1
           }
         ]
       },
@@ -1751,6 +1944,12 @@
             "proj": 43.3,
             "actual": 49.2,
             "err": 5.9
+          },
+          {
+            "date": "2026-05-03",
+            "proj": 53.6,
+            "actual": 45.2,
+            "err": -8.4
           }
         ]
       },
@@ -1797,6 +1996,12 @@
             "proj": 19.1,
             "actual": 19.2,
             "err": 0.1
+          },
+          {
+            "date": "2026-05-03",
+            "proj": 23.2,
+            "actual": 27,
+            "err": 3.8
           }
         ]
       },
@@ -1820,6 +2025,12 @@
             "proj": 53.7,
             "actual": 46.8,
             "err": -6.9
+          },
+          {
+            "date": "2026-05-03",
+            "proj": 54.9,
+            "actual": 56.8,
+            "err": 1.9
           }
         ]
       },
@@ -1843,6 +2054,12 @@
             "proj": 41.5,
             "actual": 28.5,
             "err": -13
+          },
+          {
+            "date": "2026-05-03",
+            "proj": 35.8,
+            "actual": 40.8,
+            "err": 5
           }
         ]
       },
@@ -1889,6 +2106,12 @@
             "proj": 31.7,
             "actual": 31,
             "err": -0.7
+          },
+          {
+            "date": "2026-05-03",
+            "proj": 35.1,
+            "actual": 54.2,
+            "err": 19.1
           }
         ]
       },
@@ -3171,6 +3394,12 @@
             "proj": 15.1,
             "actual": 13.8,
             "err": -1.3
+          },
+          {
+            "date": "2026-05-03",
+            "proj": 16,
+            "actual": 13,
+            "err": -3
           }
         ]
       },
@@ -3241,6 +3470,6 @@
         ]
       }
     },
-    "lastUpdated": "2026-05-03T14:34:40.631Z"
+    "lastUpdated": "2026-05-04T12:51:31.339Z"
   }
 }
