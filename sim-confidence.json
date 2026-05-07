@@ -2,6 +2,114 @@
   "schemaVersion": 1,
   "runs": [
     {
+      "date": "2026-05-06",
+      "matched": 25,
+      "generatedAt": "2026-05-07T11:32:39.485Z",
+      "projFile": "nba-rollup.json.gz",
+      "projSource": "nba-rollup.json.gz (main_dk)",
+      "overall": {
+        "bias": -2.832,
+        "mae": 7.44,
+        "r": 0.68,
+        "rmse": 8.783,
+        "medianBias": -3,
+        "medianAbsErr": 6.7,
+        "pctActualOverProj": 0.36
+      },
+      "byPosition": {
+        "C": {
+          "fifty": 0.8,
+          "eighty": 1,
+          "n": 5,
+          "bias": -6.2,
+          "mae": 6.2,
+          "r": 0.971,
+          "medianBias": -6.6,
+          "medianAbsErr": 6.6,
+          "pctActualOverProj": 0
+        },
+        "PF": {
+          "fifty": 0.5,
+          "eighty": 1,
+          "n": 6,
+          "bias": 0.433,
+          "mae": 7.533,
+          "r": 0.639,
+          "medianBias": 1.8,
+          "medianAbsErr": 7.2,
+          "pctActualOverProj": 0.5
+        },
+        "PG": {
+          "fifty": 0.5714,
+          "eighty": 0.8571,
+          "n": 7,
+          "bias": -5.957,
+          "mae": 8.614,
+          "r": 0.712,
+          "medianBias": -4.7,
+          "medianAbsErr": 7.8,
+          "pctActualOverProj": 0.2857
+        },
+        "SF": {
+          "fifty": 0.5556,
+          "eighty": 1,
+          "n": 9,
+          "bias": 2.778,
+          "mae": 5.644,
+          "r": 0.618,
+          "medianBias": 5.7,
+          "medianAbsErr": 6.1,
+          "pctActualOverProj": 0.6667
+        },
+        "SG": {
+          "fifty": 0.7,
+          "eighty": 0.8,
+          "n": 10,
+          "bias": -2.41,
+          "mae": 7.65,
+          "r": 0.356,
+          "medianBias": -0.75,
+          "medianAbsErr": 5.7,
+          "pctActualOverProj": 0.5
+        }
+      },
+      "byPriceTier": {
+        "stud": {
+          "fifty": 0.6,
+          "eighty": 0.8,
+          "n": 5,
+          "bias": -9.08,
+          "mae": 9.08,
+          "r": 0.883,
+          "medianBias": -8.6,
+          "medianAbsErr": 8.6,
+          "pctActualOverProj": 0
+        },
+        "mid": {
+          "fifty": 0.4615,
+          "eighty": 0.9231,
+          "n": 13,
+          "bias": -4.292,
+          "mae": 8.031,
+          "r": 0.606,
+          "medianBias": -5.3,
+          "medianAbsErr": 6.7,
+          "pctActualOverProj": 0.2308
+        },
+        "value": {
+          "fifty": 0.7143,
+          "eighty": 1,
+          "n": 7,
+          "bias": 4.343,
+          "mae": 5.171,
+          "r": 0.713,
+          "medianBias": 5.7,
+          "medianAbsErr": 5.7,
+          "pctActualOverProj": 0.8571
+        }
+      }
+    },
+    {
       "date": "2026-05-05",
       "matched": 24,
       "generatedAt": "2026-05-06T12:23:47.036Z",
@@ -1353,50 +1461,50 @@
     }
   ],
   "averaged": {
-    "lastUpdated": "2026-05-06T12:23:47.036Z",
-    "slatesIncluded": 14,
+    "lastUpdated": "2026-05-07T11:32:39.485Z",
+    "slatesIncluded": 15,
     "byPosition": {
-      "PG": {
-        "fifty": 0.4967,
-        "eighty": 0.7919,
-        "nTotal": 149
-      },
-      "SG": {
-        "fifty": 0.4753,
-        "eighty": 0.7778,
-        "nTotal": 162
+      "C": {
+        "fifty": 0.6312,
+        "eighty": 0.836,
+        "nTotal": 122
       },
       "PF": {
-        "fifty": 0.5772,
-        "eighty": 0.748,
-        "nTotal": 123
+        "fifty": 0.5736,
+        "eighty": 0.7598,
+        "nTotal": 129
       },
-      "C": {
-        "fifty": 0.624,
-        "eighty": 0.829,
-        "nTotal": 117
+      "PG": {
+        "fifty": 0.5,
+        "eighty": 0.7949,
+        "nTotal": 156
       },
       "SF": {
-        "fifty": 0.5166,
-        "eighty": 0.7584,
-        "nTotal": 120
+        "fifty": 0.5193,
+        "eighty": 0.7752,
+        "nTotal": 129
+      },
+      "SG": {
+        "fifty": 0.4884,
+        "eighty": 0.7791,
+        "nTotal": 172
       }
     },
     "byPriceTier": {
       "stud": {
-        "fifty": 0.6915,
-        "eighty": 0.9149,
-        "nTotal": 94
+        "fifty": 0.6868,
+        "eighty": 0.9091,
+        "nTotal": 99
       },
       "mid": {
-        "fifty": 0.591,
-        "eighty": 0.8233,
-        "nTotal": 198
+        "fifty": 0.583,
+        "eighty": 0.8294,
+        "nTotal": 211
       },
       "value": {
-        "fifty": 0.4194,
-        "eighty": 0.6695,
-        "nTotal": 248
+        "fifty": 0.4275,
+        "eighty": 0.6785,
+        "nTotal": 255
       }
     }
   },
@@ -2481,6 +2589,12 @@
             "proj": 45,
             "actual": 37.5,
             "err": -7.5
+          },
+          {
+            "date": "2026-05-06",
+            "proj": 47.6,
+            "actual": 45.5,
+            "err": -2.1
           }
         ]
       },
@@ -2585,6 +2699,12 @@
             "proj": 31.5,
             "actual": 33.5,
             "err": 2
+          },
+          {
+            "date": "2026-05-06",
+            "proj": 27.8,
+            "actual": 17,
+            "err": -10.8
           }
         ]
       },
@@ -2608,6 +2728,12 @@
             "proj": 35.8,
             "actual": 38.5,
             "err": 2.7
+          },
+          {
+            "date": "2026-05-06",
+            "proj": 35.4,
+            "actual": 22.8,
+            "err": -12.6
           }
         ]
       },
@@ -2631,6 +2757,12 @@
             "proj": 41,
             "actual": 45.8,
             "err": 4.8
+          },
+          {
+            "date": "2026-05-06",
+            "proj": 40.6,
+            "actual": 37.2,
+            "err": -3.4
           }
         ]
       },
@@ -2746,6 +2878,12 @@
             "proj": 31.8,
             "actual": 26.8,
             "err": -5
+          },
+          {
+            "date": "2026-05-06",
+            "proj": 34.2,
+            "actual": 42,
+            "err": 7.8
           }
         ]
       },
@@ -2769,6 +2907,12 @@
             "proj": 31.7,
             "actual": 28.8,
             "err": -2.9
+          },
+          {
+            "date": "2026-05-06",
+            "proj": 29.5,
+            "actual": 22.8,
+            "err": -6.7
           }
         ]
       },
@@ -2804,6 +2948,12 @@
             "proj": 31,
             "actual": 18.8,
             "err": -12.2
+          },
+          {
+            "date": "2026-05-06",
+            "proj": 33.9,
+            "actual": 29.2,
+            "err": -4.7
           }
         ]
       },
@@ -2902,6 +3052,12 @@
             "proj": 24.1,
             "actual": 23.2,
             "err": -0.9
+          },
+          {
+            "date": "2026-05-06",
+            "proj": 25.1,
+            "actual": 31.2,
+            "err": 6.1
           }
         ]
       },
@@ -2976,6 +3132,12 @@
             "proj": 22.7,
             "actual": 30.5,
             "err": 7.8
+          },
+          {
+            "date": "2026-05-06",
+            "proj": 23.7,
+            "actual": 31.2,
+            "err": 7.5
           }
         ]
       },
@@ -3057,6 +3219,12 @@
             "proj": 15.8,
             "actual": 14.8,
             "err": -1
+          },
+          {
+            "date": "2026-05-06",
+            "proj": 15.7,
+            "actual": 17.2,
+            "err": 1.5
           }
         ]
       },
@@ -3161,6 +3329,12 @@
             "proj": 43.4,
             "actual": 17.8,
             "err": -25.6
+          },
+          {
+            "date": "2026-05-06",
+            "proj": 51.6,
+            "actual": 38.2,
+            "err": -13.4
           }
         ]
       },
@@ -3224,6 +3398,12 @@
             "proj": 15.7,
             "actual": 23.8,
             "err": 8.1
+          },
+          {
+            "date": "2026-05-06",
+            "proj": 16.2,
+            "actual": 19.2,
+            "err": 3
           }
         ]
       },
@@ -3270,6 +3450,12 @@
             "proj": 34.5,
             "actual": 25.2,
             "err": -9.3
+          },
+          {
+            "date": "2026-05-06",
+            "proj": 33.8,
+            "actual": 44.2,
+            "err": 10.4
           }
         ]
       },
@@ -3293,6 +3479,12 @@
             "proj": 27.8,
             "actual": 26.8,
             "err": -1
+          },
+          {
+            "date": "2026-05-06",
+            "proj": 26.8,
+            "actual": 20.2,
+            "err": -6.6
           }
         ]
       },
@@ -3333,6 +3525,12 @@
             "proj": 32.3,
             "actual": 35,
             "err": 2.7
+          },
+          {
+            "date": "2026-05-06",
+            "proj": 32.5,
+            "actual": 27.2,
+            "err": -5.3
           }
         ]
       },
@@ -3384,6 +3582,12 @@
             "proj": 54.5,
             "actual": 64.2,
             "err": 9.7
+          },
+          {
+            "date": "2026-05-06",
+            "proj": 56.8,
+            "actual": 48.2,
+            "err": -8.6
           }
         ]
       },
@@ -3424,6 +3628,12 @@
             "proj": 34.5,
             "actual": 21.8,
             "err": -12.7
+          },
+          {
+            "date": "2026-05-06",
+            "proj": 33.6,
+            "actual": 23.5,
+            "err": -10.1
           }
         ]
       },
@@ -3447,6 +3657,12 @@
             "proj": 38.9,
             "actual": 32.2,
             "err": -6.7
+          },
+          {
+            "date": "2026-05-06",
+            "proj": 36.5,
+            "actual": 33.5,
+            "err": -3
           }
         ]
       },
@@ -3538,6 +3754,12 @@
             "proj": 22,
             "actual": 29.5,
             "err": 7.5
+          },
+          {
+            "date": "2026-05-06",
+            "proj": 23,
+            "actual": 30.8,
+            "err": 7.8
           }
         ]
       },
@@ -3578,6 +3800,12 @@
             "proj": 20.8,
             "actual": 26.8,
             "err": 6
+          },
+          {
+            "date": "2026-05-06",
+            "proj": 21.1,
+            "actual": 26.8,
+            "err": 5.7
           }
         ]
       },
@@ -3601,6 +3829,12 @@
             "proj": 18.3,
             "actual": 15,
             "err": -3.3
+          },
+          {
+            "date": "2026-05-06",
+            "proj": 16.7,
+            "actual": 24.5,
+            "err": 7.8
           }
         ]
       },
@@ -3641,6 +3875,12 @@
             "proj": 24.5,
             "actual": 33.8,
             "err": 9.3
+          },
+          {
+            "date": "2026-05-06",
+            "proj": 24.1,
+            "actual": 23.2,
+            "err": -0.9
           }
         ]
       },
@@ -3702,6 +3942,12 @@
             "proj": 36.9,
             "actual": 30.2,
             "err": -6.7
+          },
+          {
+            "date": "2026-05-06",
+            "proj": 23.4,
+            "actual": 4,
+            "err": -19.4
           }
         ]
       },
@@ -3953,6 +4199,12 @@
             "proj": 8.9,
             "actual": 2.8,
             "err": -6.1
+          },
+          {
+            "date": "2026-05-06",
+            "proj": 22.4,
+            "actual": 19.5,
+            "err": -2.9
           }
         ]
       },
@@ -3975,6 +4227,12 @@
             "proj": 31.4,
             "actual": 28.8,
             "err": -2.6
+          },
+          {
+            "date": "2026-05-06",
+            "proj": 32.1,
+            "actual": 14.2,
+            "err": -17.9
           }
         ]
       },
@@ -3990,6 +4248,6 @@
         ]
       }
     },
-    "lastUpdated": "2026-05-06T12:23:47.036Z"
+    "lastUpdated": "2026-05-07T11:32:39.485Z"
   }
 }
