@@ -2,6 +2,127 @@
   "schemaVersion": 1,
   "runs": [
     {
+      "date": "2026-05-11",
+      "matched": 25,
+      "generatedAt": "2026-05-12T11:46:23.011Z",
+      "projFile": "nba-rollup.json.gz",
+      "projSource": "nba-rollup.json.gz (main_dk)",
+      "overall": {
+        "bias": -3.168,
+        "mae": 9.416,
+        "r": 0.772,
+        "rmse": 11.025,
+        "medianBias": -3.8,
+        "medianAbsErr": 10.6,
+        "pctActualOverProj": 0.4
+      },
+      "byPosition": {
+        "PG": {
+          "fifty": 0.5,
+          "eighty": 1,
+          "n": 8,
+          "bias": -1.337,
+          "mae": 8.963,
+          "r": 0.78,
+          "medianBias": -1.5,
+          "medianAbsErr": 8.25,
+          "pctActualOverProj": 0.5
+        },
+        "SG": {
+          "fifty": 0.4444,
+          "eighty": 1,
+          "n": 9,
+          "bias": -2.567,
+          "mae": 9.633,
+          "r": 0.928,
+          "medianBias": -5.5,
+          "medianAbsErr": 11.1,
+          "pctActualOverProj": 0.3333
+        },
+        "PF": {
+          "fifty": 0.6667,
+          "eighty": 0.8333,
+          "n": 6,
+          "bias": 4.267,
+          "mae": 6.9,
+          "r": 0.73,
+          "medianBias": 4,
+          "medianAbsErr": 6.1,
+          "pctActualOverProj": 0.6667
+        },
+        "C": {
+          "fifty": 0.2,
+          "eighty": 1,
+          "n": 5,
+          "bias": -5.76,
+          "mae": 10.92,
+          "r": 0.598,
+          "medianBias": -10.6,
+          "medianAbsErr": 12,
+          "pctActualOverProj": 0.4
+        },
+        "SF": {
+          "fifty": 0.3333,
+          "eighty": 0.6667,
+          "n": 6,
+          "bias": -5.167,
+          "mae": 10.433,
+          "r": 0.08,
+          "medianBias": -7.4,
+          "medianAbsErr": 12.05,
+          "pctActualOverProj": 0.3333
+        }
+      },
+      "byPriceTier": {
+        "stud": {
+          "fifty": 0.4,
+          "eighty": 1,
+          "n": 5,
+          "bias": 0.86,
+          "mae": 9.58,
+          "r": -0.865,
+          "medianBias": 0.8,
+          "medianAbsErr": 11.6,
+          "pctActualOverProj": 0.6
+        },
+        "mid": {
+          "fifty": 0.3333,
+          "eighty": 0.8333,
+          "n": 12,
+          "bias": -2.625,
+          "mae": 10.825,
+          "r": 0.573,
+          "medianBias": -3.3,
+          "medianAbsErr": 12.25,
+          "pctActualOverProj": 0.5
+        },
+        "value": {
+          "fifty": 0.625,
+          "eighty": 1,
+          "n": 8,
+          "bias": -6.5,
+          "mae": 7.2,
+          "r": -0.066,
+          "medianBias": -5.9,
+          "medianAbsErr": 5.9,
+          "pctActualOverProj": 0.125
+        }
+      },
+      "byOwnership": {
+        "chalk": {
+          "fifty": 0.3913,
+          "eighty": 0.913,
+          "n": 23,
+          "bias": -2.93,
+          "mae": 9.722,
+          "r": 0.748,
+          "medianBias": -3.7,
+          "medianAbsErr": 11.1,
+          "pctActualOverProj": 0.4348
+        }
+      }
+    },
+    {
       "date": "2026-05-10",
       "matched": 26,
       "generatedAt": "2026-05-11T12:57:45.764Z",
@@ -1906,57 +2027,57 @@
     }
   ],
   "averaged": {
-    "lastUpdated": "2026-05-11T12:57:45.764Z",
-    "slatesIncluded": 19,
+    "lastUpdated": "2026-05-12T11:46:23.011Z",
+    "slatesIncluded": 20,
     "byPosition": {
-      "C": {
-        "fifty": 0.6389,
-        "eighty": 0.8472,
-        "nTotal": 144
-      },
       "PG": {
-        "fifty": 0.5054,
-        "eighty": 0.8064,
-        "nTotal": 186
-      },
-      "SF": {
-        "fifty": 0.5432,
-        "eighty": 0.8087,
-        "nTotal": 162
-      },
-      "PF": {
-        "fifty": 0.5844,
-        "eighty": 0.7663,
-        "nTotal": 154
+        "fifty": 0.5052,
+        "eighty": 0.8144,
+        "nTotal": 194
       },
       "SG": {
-        "fifty": 0.4953,
-        "eighty": 0.7952,
-        "nTotal": 210
+        "fifty": 0.4932,
+        "eighty": 0.8036,
+        "nTotal": 219
+      },
+      "PF": {
+        "fifty": 0.5875,
+        "eighty": 0.7688,
+        "nTotal": 160
+      },
+      "C": {
+        "fifty": 0.6242,
+        "eighty": 0.8523,
+        "nTotal": 149
+      },
+      "SF": {
+        "fifty": 0.5357,
+        "eighty": 0.8036,
+        "nTotal": 168
       }
     },
     "byPriceTier": {
       "stud": {
-        "fifty": 0.6694,
-        "eighty": 0.9091,
-        "nTotal": 121
+        "fifty": 0.6587,
+        "eighty": 0.9127,
+        "nTotal": 126
       },
       "mid": {
-        "fifty": 0.5924,
-        "eighty": 0.8385,
-        "nTotal": 260
+        "fifty": 0.5809,
+        "eighty": 0.8383,
+        "nTotal": 272
       },
       "value": {
-        "fifty": 0.4391,
-        "eighty": 0.7005,
-        "nTotal": 287
+        "fifty": 0.4441,
+        "eighty": 0.7086,
+        "nTotal": 295
       }
     },
     "byOwnership": {
       "chalk": {
-        "fifty": 0.6522,
-        "eighty": 0.8261,
-        "nTotal": 23
+        "fifty": 0.5218,
+        "eighty": 0.8696,
+        "nTotal": 46
       }
     }
   },
@@ -2000,6 +2121,12 @@
             "proj": 45.2,
             "actual": 40,
             "err": -5.2
+          },
+          {
+            "date": "2026-05-11",
+            "proj": 46.9,
+            "actual": 46,
+            "err": -0.9
           }
         ]
       },
@@ -2087,6 +2214,12 @@
             "proj": 41,
             "actual": 32.2,
             "err": -8.8
+          },
+          {
+            "date": "2026-05-11",
+            "proj": 41.5,
+            "actual": 46.2,
+            "err": 4.7
           }
         ]
       },
@@ -2134,6 +2267,12 @@
             "proj": 38.9,
             "actual": 34,
             "err": -4.9
+          },
+          {
+            "date": "2026-05-11",
+            "proj": 39.9,
+            "actual": 51.5,
+            "err": 11.6
           }
         ]
       },
@@ -2204,6 +2343,12 @@
             "proj": 36.7,
             "actual": 32.5,
             "err": -4.2
+          },
+          {
+            "date": "2026-05-11",
+            "proj": 37,
+            "actual": 49.5,
+            "err": 12.5
           }
         ]
       },
@@ -2280,6 +2425,12 @@
             "proj": 20.9,
             "actual": 17.8,
             "err": -3.1
+          },
+          {
+            "date": "2026-05-11",
+            "proj": 20.2,
+            "actual": 16.5,
+            "err": -3.7
           }
         ]
       },
@@ -2327,6 +2478,12 @@
             "proj": 42.2,
             "actual": 54.5,
             "err": 12.3
+          },
+          {
+            "date": "2026-05-11",
+            "proj": 42.1,
+            "actual": 55.8,
+            "err": 13.7
           }
         ]
       },
@@ -2432,6 +2589,12 @@
             "proj": 29.2,
             "actual": 29.2,
             "err": 0
+          },
+          {
+            "date": "2026-05-11",
+            "proj": 28.4,
+            "actual": 10.5,
+            "err": -17.9
           }
         ]
       },
@@ -2496,6 +2659,12 @@
             "proj": 16.8,
             "actual": 27.5,
             "err": 10.7
+          },
+          {
+            "date": "2026-05-11",
+            "proj": 19.3,
+            "actual": 13,
+            "err": -6.3
           }
         ]
       },
@@ -2543,6 +2712,12 @@
             "proj": 29.2,
             "actual": 30,
             "err": 0.8
+          },
+          {
+            "date": "2026-05-11",
+            "proj": 30.8,
+            "actual": 20.2,
+            "err": -10.6
           }
         ]
       },
@@ -2728,6 +2903,12 @@
             "proj": 23.9,
             "actual": 37.2,
             "err": 13.3
+          },
+          {
+            "date": "2026-05-11",
+            "proj": 25.2,
+            "actual": 38.2,
+            "err": 13
           }
         ]
       },
@@ -2762,6 +2943,12 @@
             "proj": 16.3,
             "actual": 11.5,
             "err": -4.8
+          },
+          {
+            "date": "2026-05-11",
+            "proj": 15.3,
+            "actual": 11.5,
+            "err": -3.8
           }
         ]
       },
@@ -2809,6 +2996,12 @@
             "proj": 20.5,
             "actual": 38.8,
             "err": 18.3
+          },
+          {
+            "date": "2026-05-11",
+            "proj": 21,
+            "actual": 6.8,
+            "err": -14.2
           }
         ]
       },
@@ -2913,6 +3106,12 @@
             "proj": 28.1,
             "actual": 19.8,
             "err": -8.3
+          },
+          {
+            "date": "2026-05-11",
+            "proj": 27.1,
+            "actual": 13,
+            "err": -14.1
           }
         ]
       },
@@ -2983,6 +3182,12 @@
             "proj": 24.5,
             "actual": 21.5,
             "err": -3
+          },
+          {
+            "date": "2026-05-11",
+            "proj": 23.2,
+            "actual": 11.2,
+            "err": -12
           }
         ]
       },
@@ -3059,6 +3264,12 @@
             "proj": 52.8,
             "actual": 58,
             "err": 5.2
+          },
+          {
+            "date": "2026-05-11",
+            "proj": 53.1,
+            "actual": 32.2,
+            "err": -20.9
           }
         ]
       },
@@ -3106,6 +3317,12 @@
             "proj": 38.6,
             "actual": 20,
             "err": -18.6
+          },
+          {
+            "date": "2026-05-11",
+            "proj": 36.6,
+            "actual": 17.5,
+            "err": -19.1
           }
         ]
       },
@@ -3176,6 +3393,12 @@
             "proj": 35.3,
             "actual": 27.8,
             "err": -7.5
+          },
+          {
+            "date": "2026-05-11",
+            "proj": 35.3,
+            "actual": 40.5,
+            "err": 5.2
           }
         ]
       },
@@ -4865,6 +5088,12 @@
             "proj": 35.2,
             "actual": 32.2,
             "err": -3
+          },
+          {
+            "date": "2026-05-11",
+            "proj": 35.8,
+            "actual": 28.8,
+            "err": -7
           }
         ]
       },
@@ -4989,6 +5218,12 @@
             "proj": 17.7,
             "actual": 17.5,
             "err": -0.2
+          },
+          {
+            "date": "2026-05-11",
+            "proj": 17.7,
+            "actual": 20.5,
+            "err": 2.8
           }
         ]
       },
@@ -5018,6 +5253,12 @@
             "proj": 15.6,
             "actual": 16.8,
             "err": 1.2
+          },
+          {
+            "date": "2026-05-11",
+            "proj": 15,
+            "actual": 9.5,
+            "err": -5.5
           }
         ]
       },
@@ -5047,6 +5288,12 @@
             "proj": 27.9,
             "actual": 26.2,
             "err": -1.7
+          },
+          {
+            "date": "2026-05-11",
+            "proj": 29.1,
+            "actual": 29.5,
+            "err": 0.4
           }
         ]
       },
@@ -5076,6 +5323,12 @@
             "proj": 18.1,
             "actual": 22.2,
             "err": 4.1
+          },
+          {
+            "date": "2026-05-11",
+            "proj": 18.6,
+            "actual": 7.5,
+            "err": -11.1
           }
         ]
       },
@@ -5105,6 +5358,12 @@
             "proj": 48,
             "actual": 48,
             "err": 0
+          },
+          {
+            "date": "2026-05-11",
+            "proj": 48.4,
+            "actual": 49.2,
+            "err": 0.8
           }
         ]
       },
@@ -5145,6 +5404,12 @@
             "proj": 31.5,
             "actual": 52.5,
             "err": 21
+          },
+          {
+            "date": "2026-05-11",
+            "proj": 32.4,
+            "actual": 45.8,
+            "err": 13.4
           }
         ]
       },
@@ -5314,10 +5579,16 @@
             "proj": 21.4,
             "actual": 7.2,
             "err": -14.2
+          },
+          {
+            "date": "2026-05-11",
+            "proj": 20,
+            "actual": 9.8,
+            "err": -10.2
           }
         ]
       }
     },
-    "lastUpdated": "2026-05-11T12:57:45.764Z"
+    "lastUpdated": "2026-05-12T11:46:23.011Z"
   }
 }
