@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-05-12T11:50:46.739Z",
+  "generatedAt": "2026-05-12T12:06:57.244Z",
   "slatesProcessed": 27,
   "slatesByBucket": {
     "unknown": 0,
@@ -10,7 +10,7 @@
     "4g": 4,
     "5g+": 0
   },
-  "minSlatesPerBucket": 3,
+  "minSlatesPerBucket": 2,
   "minPlayersPerSegment": 8,
   "biasClamp": [
     0.85,
@@ -24,7 +24,7 @@
     "showdown": {
       "nSlates": 1,
       "status": "starved",
-      "note": "Need ≥3 slates; falling back to global"
+      "note": "Need ≥2 slates; falling back to global"
     },
     "2g": {
       "nSlates": 13,
@@ -125,6 +125,14 @@
       "nSlates": 9,
       "status": "active",
       "byPosition": {
+        "PF": {
+          "biasMult": 1.099,
+          "stdevMult": 0.838,
+          "n": 47,
+          "cov50": 0.66,
+          "cov80": 0.872,
+          "bias": 3.34
+        },
         "C": {
           "biasMult": 0.987,
           "stdevMult": 0.745,
@@ -140,14 +148,6 @@
           "cov50": 0.466,
           "cov80": 0.81,
           "bias": -5.01
-        },
-        "PF": {
-          "biasMult": 1.099,
-          "stdevMult": 0.838,
-          "n": 47,
-          "cov50": 0.66,
-          "cov80": 0.872,
-          "bias": 3.34
         },
         "SG": {
           "biasMult": 0.85,
@@ -320,7 +320,7 @@
     "5g+": {
       "nSlates": 0,
       "status": "starved",
-      "note": "Need ≥3 slates; falling back to global"
+      "note": "Need ≥2 slates; falling back to global"
     }
   },
   "global": {
@@ -437,6 +437,54 @@
       }
     },
     {
+      "date": "2026-05-05",
+      "gameCount": 2,
+      "isShowdown": false,
+      "bucket": "2g",
+      "matched": 24,
+      "gateFailures": {
+        "noProj": 0,
+        "noProfile": 0,
+        "noGameForDate": 0,
+        "noDkfp": 0,
+        "noStdDev": 0,
+        "totalScanned": 24,
+        "projSource": "nba-rollup.json.gz (main_dk)"
+      }
+    },
+    {
+      "date": "2026-05-06",
+      "gameCount": 2,
+      "isShowdown": false,
+      "bucket": "2g",
+      "matched": 24,
+      "gateFailures": {
+        "noProj": 0,
+        "noProfile": 0,
+        "noGameForDate": 1,
+        "noDkfp": 0,
+        "noStdDev": 0,
+        "totalScanned": 25,
+        "projSource": "nba-rollup.json.gz (main_dk)"
+      }
+    },
+    {
+      "date": "2026-05-10",
+      "gameCount": 2,
+      "isShowdown": false,
+      "bucket": "2g",
+      "matched": 25,
+      "gateFailures": {
+        "noProj": 0,
+        "noProfile": 0,
+        "noGameForDate": 1,
+        "noDkfp": 0,
+        "noStdDev": 0,
+        "totalScanned": 26,
+        "projSource": "nba-rollup.json.gz (main_dk)"
+      }
+    },
+    {
       "date": "2026-05-09",
       "gameCount": 2,
       "isShowdown": false,
@@ -485,115 +533,7 @@
       }
     },
     {
-      "date": "2026-05-05",
-      "gameCount": 2,
-      "isShowdown": false,
-      "bucket": "2g",
-      "matched": 24,
-      "gateFailures": {
-        "noProj": 0,
-        "noProfile": 0,
-        "noGameForDate": 0,
-        "noDkfp": 0,
-        "noStdDev": 0,
-        "totalScanned": 24,
-        "projSource": "nba-rollup.json.gz (main_dk)"
-      }
-    },
-    {
       "date": "2026-05-04",
-      "gameCount": 2,
-      "isShowdown": false,
-      "bucket": "2g",
-      "matched": 24,
-      "gateFailures": {
-        "noProj": 0,
-        "noProfile": 0,
-        "noGameForDate": 1,
-        "noDkfp": 0,
-        "noStdDev": 0,
-        "totalScanned": 25,
-        "projSource": "nba-rollup.json.gz (main_dk)"
-      }
-    },
-    {
-      "date": "2026-05-02",
-      "gameCount": 1,
-      "isShowdown": true,
-      "bucket": "showdown",
-      "matched": 0,
-      "gateFailures": {
-        "noProj": 0,
-        "noProfile": 0,
-        "noGameForDate": 37,
-        "noDkfp": 0,
-        "noStdDev": 0,
-        "totalScanned": 37,
-        "projSource": "nba-rollup.json.gz (main_dk)"
-      }
-    },
-    {
-      "date": "2026-04-28",
-      "gameCount": 3,
-      "isShowdown": false,
-      "bucket": "3g",
-      "matched": 39,
-      "gateFailures": {
-        "noProj": 0,
-        "noProfile": 0,
-        "noGameForDate": 1,
-        "noDkfp": 0,
-        "noStdDev": 0,
-        "totalScanned": 40,
-        "projSource": "nba-rollup.json.gz (main_dk)"
-      }
-    },
-    {
-      "date": "2026-04-26",
-      "gameCount": 4,
-      "isShowdown": false,
-      "bucket": "4g",
-      "matched": 52,
-      "gateFailures": {
-        "noProj": 0,
-        "noProfile": 0,
-        "noGameForDate": 1,
-        "noDkfp": 0,
-        "noStdDev": 0,
-        "totalScanned": 53,
-        "projSource": "nba-rollup.json.gz (main_dk)"
-      }
-    },
-    {
-      "date": "2026-04-18",
-      "gameCount": 4,
-      "isShowdown": false,
-      "bucket": "4g",
-      "matched": 0,
-      "gateFailures": {
-        "totalScanned": 0,
-        "noArchive": 1
-      },
-      "note": "no projection snapshot in archive or nba-rollup.json.gz"
-    },
-    {
-      "date": "2026-05-10",
-      "gameCount": 2,
-      "isShowdown": false,
-      "bucket": "2g",
-      "matched": 25,
-      "gateFailures": {
-        "noProj": 0,
-        "noProfile": 0,
-        "noGameForDate": 1,
-        "noDkfp": 0,
-        "noStdDev": 0,
-        "totalScanned": 26,
-        "projSource": "nba-rollup.json.gz (main_dk)"
-      }
-    },
-    {
-      "date": "2026-05-06",
       "gameCount": 2,
       "isShowdown": false,
       "bucket": "2g",
@@ -625,6 +565,22 @@
       }
     },
     {
+      "date": "2026-05-02",
+      "gameCount": 1,
+      "isShowdown": true,
+      "bucket": "showdown",
+      "matched": 0,
+      "gateFailures": {
+        "noProj": 0,
+        "noProfile": 0,
+        "noGameForDate": 37,
+        "noDkfp": 0,
+        "noStdDev": 0,
+        "totalScanned": 37,
+        "projSource": "nba-rollup.json.gz (main_dk)"
+      }
+    },
+    {
       "date": "2026-05-01",
       "gameCount": 3,
       "isShowdown": false,
@@ -650,6 +606,118 @@
         "noProj": 0,
         "noProfile": 0,
         "noGameForDate": 4,
+        "noDkfp": 0,
+        "noStdDev": 0,
+        "totalScanned": 40,
+        "projSource": "nba-rollup.json.gz (main_dk)"
+      }
+    },
+    {
+      "date": "2026-04-22",
+      "gameCount": 2,
+      "isShowdown": false,
+      "bucket": "2g",
+      "matched": 0,
+      "gateFailures": {
+        "totalScanned": 0,
+        "noArchive": 1
+      },
+      "note": "no projection snapshot in archive or nba-rollup.json.gz"
+    },
+    {
+      "date": "2026-04-17",
+      "gameCount": 2,
+      "isShowdown": false,
+      "bucket": "2g",
+      "matched": 0,
+      "gateFailures": {
+        "totalScanned": 0,
+        "noArchive": 1
+      },
+      "note": "no projection snapshot in archive or nba-rollup.json.gz"
+    },
+    {
+      "date": "2026-04-23",
+      "gameCount": 3,
+      "isShowdown": false,
+      "bucket": "3g",
+      "matched": 0,
+      "gateFailures": {
+        "totalScanned": 0,
+        "noArchive": 1
+      },
+      "note": "no projection snapshot in archive or nba-rollup.json.gz"
+    },
+    {
+      "date": "2026-04-18",
+      "gameCount": 4,
+      "isShowdown": false,
+      "bucket": "4g",
+      "matched": 0,
+      "gateFailures": {
+        "totalScanned": 0,
+        "noArchive": 1
+      },
+      "note": "no projection snapshot in archive or nba-rollup.json.gz"
+    },
+    {
+      "date": "2026-04-19",
+      "gameCount": 4,
+      "isShowdown": false,
+      "bucket": "4g",
+      "matched": 0,
+      "gateFailures": {
+        "totalScanned": 0,
+        "noArchive": 1
+      },
+      "note": "no projection snapshot in archive or nba-rollup.json.gz"
+    },
+    {
+      "date": "2026-04-21",
+      "gameCount": 3,
+      "isShowdown": false,
+      "bucket": "3g",
+      "matched": 0,
+      "gateFailures": {
+        "totalScanned": 0,
+        "noArchive": 1
+      },
+      "note": "no projection snapshot in archive or nba-rollup.json.gz"
+    },
+    {
+      "date": "2026-04-20",
+      "gameCount": 3,
+      "isShowdown": false,
+      "bucket": "3g",
+      "matched": 0,
+      "gateFailures": {
+        "totalScanned": 0,
+        "noArchive": 1
+      },
+      "note": "no projection snapshot in archive or nba-rollup.json.gz"
+    },
+    {
+      "date": "2026-04-15",
+      "gameCount": 2,
+      "isShowdown": false,
+      "bucket": "2g",
+      "matched": 0,
+      "gateFailures": {
+        "totalScanned": 0,
+        "noArchive": 1
+      },
+      "note": "no projection snapshot in archive or nba-rollup.json.gz"
+    },
+    {
+      "date": "2026-04-28",
+      "gameCount": 3,
+      "isShowdown": false,
+      "bucket": "3g",
+      "matched": 39,
+      "gateFailures": {
+        "noProj": 0,
+        "noProfile": 0,
+        "noGameForDate": 1,
         "noDkfp": 0,
         "noStdDev": 0,
         "totalScanned": 40,
@@ -689,6 +757,22 @@
       }
     },
     {
+      "date": "2026-04-26",
+      "gameCount": 4,
+      "isShowdown": false,
+      "bucket": "4g",
+      "matched": 52,
+      "gateFailures": {
+        "noProj": 0,
+        "noProfile": 0,
+        "noGameForDate": 1,
+        "noDkfp": 0,
+        "noStdDev": 0,
+        "totalScanned": 53,
+        "projSource": "nba-rollup.json.gz (main_dk)"
+      }
+    },
+    {
       "date": "2026-04-25",
       "gameCount": 4,
       "isShowdown": false,
@@ -705,90 +789,6 @@
       "gameCount": 3,
       "isShowdown": false,
       "bucket": "3g",
-      "matched": 0,
-      "gateFailures": {
-        "totalScanned": 0,
-        "noArchive": 1
-      },
-      "note": "no projection snapshot in archive or nba-rollup.json.gz"
-    },
-    {
-      "date": "2026-04-23",
-      "gameCount": 3,
-      "isShowdown": false,
-      "bucket": "3g",
-      "matched": 0,
-      "gateFailures": {
-        "totalScanned": 0,
-        "noArchive": 1
-      },
-      "note": "no projection snapshot in archive or nba-rollup.json.gz"
-    },
-    {
-      "date": "2026-04-22",
-      "gameCount": 2,
-      "isShowdown": false,
-      "bucket": "2g",
-      "matched": 0,
-      "gateFailures": {
-        "totalScanned": 0,
-        "noArchive": 1
-      },
-      "note": "no projection snapshot in archive or nba-rollup.json.gz"
-    },
-    {
-      "date": "2026-04-21",
-      "gameCount": 3,
-      "isShowdown": false,
-      "bucket": "3g",
-      "matched": 0,
-      "gateFailures": {
-        "totalScanned": 0,
-        "noArchive": 1
-      },
-      "note": "no projection snapshot in archive or nba-rollup.json.gz"
-    },
-    {
-      "date": "2026-04-20",
-      "gameCount": 3,
-      "isShowdown": false,
-      "bucket": "3g",
-      "matched": 0,
-      "gateFailures": {
-        "totalScanned": 0,
-        "noArchive": 1
-      },
-      "note": "no projection snapshot in archive or nba-rollup.json.gz"
-    },
-    {
-      "date": "2026-04-19",
-      "gameCount": 4,
-      "isShowdown": false,
-      "bucket": "4g",
-      "matched": 0,
-      "gateFailures": {
-        "totalScanned": 0,
-        "noArchive": 1
-      },
-      "note": "no projection snapshot in archive or nba-rollup.json.gz"
-    },
-    {
-      "date": "2026-04-17",
-      "gameCount": 2,
-      "isShowdown": false,
-      "bucket": "2g",
-      "matched": 0,
-      "gateFailures": {
-        "totalScanned": 0,
-        "noArchive": 1
-      },
-      "note": "no projection snapshot in archive or nba-rollup.json.gz"
-    },
-    {
-      "date": "2026-04-15",
-      "gameCount": 2,
-      "isShowdown": false,
-      "bucket": "2g",
       "matched": 0,
       "gateFailures": {
         "totalScanned": 0,
