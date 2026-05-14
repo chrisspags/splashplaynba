@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-05-13T12:35:27.025Z",
-  "slatesProcessed": 28,
+  "generatedAt": "2026-05-14T11:57:36.081Z",
+  "slatesProcessed": 29,
   "slatesByBucket": {
     "unknown": 0,
-    "showdown": 2,
+    "showdown": 3,
     "2g": 13,
     "3g": 9,
     "4g": 4,
@@ -22,62 +22,88 @@
   ],
   "buckets": {
     "showdown": {
-      "nSlates": 2,
+      "nSlates": 3,
       "status": "active",
       "byPosition": {
-        "C": {
-          "biasMult": 1,
-          "stdevMult": 1,
-          "n": 4
-        },
-        "PF": {
-          "biasMult": 1,
-          "stdevMult": 1,
-          "n": 7
-        },
-        "SF": {
-          "biasMult": 1,
-          "stdevMult": 1,
-          "n": 7
+        "PG": {
+          "biasMult": 1.15,
+          "stdevMult": 1.069,
+          "n": 10,
+          "cov50": 0.4,
+          "cov80": 0.9,
+          "bias": 5.31
         },
         "SG": {
-          "biasMult": 1,
-          "stdevMult": 1,
-          "n": 6
+          "biasMult": 1.031,
+          "stdevMult": 1.248,
+          "n": 16,
+          "cov50": 0.375,
+          "cov80": 0.688,
+          "bias": 0.74
         },
-        "PG": {
-          "biasMult": 1,
-          "stdevMult": 1,
-          "n": 5
+        "PF": {
+          "biasMult": 1.068,
+          "stdevMult": 0.984,
+          "n": 13,
+          "cov50": 0.538,
+          "cov80": 0.769,
+          "bias": 1.7
+        },
+        "SF": {
+          "biasMult": 0.901,
+          "stdevMult": 1.378,
+          "n": 16,
+          "cov50": 0.375,
+          "cov80": 0.563,
+          "bias": -1.91
+        },
+        "C": {
+          "biasMult": 1.036,
+          "stdevMult": 1.2,
+          "n": 9,
+          "cov50": 0.333,
+          "cov80": 0.889,
+          "bias": 0.99
         }
       },
       "byPriceTier": {
         "stud": {
-          "biasMult": 1,
-          "stdevMult": 1,
-          "n": 5
+          "biasMult": 1.028,
+          "stdevMult": 0.898,
+          "n": 13,
+          "cov50": 0.538,
+          "cov80": 0.923,
+          "bias": 1.08
+        },
+        "value": {
+          "biasMult": 1.065,
+          "stdevMult": 1.5,
+          "n": 19,
+          "cov50": 0.211,
+          "cov80": 0.579,
+          "bias": 0.87
         },
         "mid": {
           "biasMult": 1,
           "stdevMult": 1,
           "n": 5
-        },
-        "value": {
-          "biasMult": 1,
-          "stdevMult": 1,
-          "n": 7
         }
       },
       "byOwnership": {
         "chalk": {
-          "biasMult": 0.973,
-          "stdevMult": 1.033,
-          "n": 16,
-          "cov50": 0.5,
-          "cov80": 0.75,
-          "bias": -0.72
+          "biasMult": 1.04,
+          "stdevMult": 1.016,
+          "n": 30,
+          "cov50": 0.467,
+          "cov80": 0.833,
+          "bias": 1.11
         },
         "mid": {
+          "biasMult": 1,
+          "stdevMult": 1,
+          "n": 6
+        },
+        "leverage": {
           "biasMult": 1,
           "stdevMult": 1,
           "n": 1
@@ -88,21 +114,29 @@
       "nSlates": 13,
       "status": "active",
       "byPosition": {
+        "C": {
+          "biasMult": 0.895,
+          "stdevMult": 0.817,
+          "n": 49,
+          "cov50": 0.673,
+          "cov80": 0.898,
+          "bias": -3.54
+        },
         "PG": {
-          "biasMult": 0.915,
-          "stdevMult": 0.913,
+          "biasMult": 0.914,
+          "stdevMult": 0.906,
+          "n": 64,
+          "cov50": 0.547,
+          "cov80": 0.891,
+          "bias": -2.83
+        },
+        "SF": {
+          "biasMult": 1.017,
+          "stdevMult": 0.939,
           "n": 63,
           "cov50": 0.54,
-          "cov80": 0.889,
-          "bias": -2.82
-        },
-        "SG": {
-          "biasMult": 1.023,
-          "stdevMult": 0.958,
-          "n": 76,
-          "cov50": 0.526,
-          "cov80": 0.829,
-          "bias": 0.6
+          "cov80": 0.841,
+          "bias": 0.4
         },
         "PF": {
           "biasMult": 0.999,
@@ -112,21 +146,13 @@
           "cov80": 0.818,
           "bias": -0.03
         },
-        "C": {
-          "biasMult": 0.895,
-          "stdevMult": 0.817,
-          "n": 49,
-          "cov50": 0.673,
-          "cov80": 0.898,
-          "bias": -3.54
-        },
-        "SF": {
-          "biasMult": 1.017,
-          "stdevMult": 0.939,
-          "n": 63,
-          "cov50": 0.54,
-          "cov80": 0.841,
-          "bias": 0.4
+        "SG": {
+          "biasMult": 1.023,
+          "stdevMult": 0.958,
+          "n": 76,
+          "cov50": 0.526,
+          "cov80": 0.829,
+          "bias": 0.6
         }
       },
       "byPriceTier": {
@@ -147,22 +173,22 @@
           "bias": -1.29
         },
         "value": {
-          "biasMult": 1.057,
-          "stdevMult": 1.006,
-          "n": 65,
-          "cov50": 0.477,
-          "cov80": 0.831,
-          "bias": 1.07
+          "biasMult": 1.053,
+          "stdevMult": 0.996,
+          "n": 66,
+          "cov50": 0.485,
+          "cov80": 0.833,
+          "bias": 1
         }
       },
       "byOwnership": {
         "chalk": {
-          "biasMult": 0.957,
-          "stdevMult": 0.921,
-          "n": 181,
-          "cov50": 0.558,
-          "cov80": 0.845,
-          "bias": -1.43
+          "biasMult": 0.956,
+          "stdevMult": 0.919,
+          "n": 182,
+          "cov50": 0.56,
+          "cov80": 0.846,
+          "bias": -1.44
         },
         "mid": {
           "biasMult": 0.965,
@@ -183,6 +209,14 @@
       "nSlates": 9,
       "status": "active",
       "byPosition": {
+        "PG": {
+          "biasMult": 0.85,
+          "stdevMult": 1.031,
+          "n": 58,
+          "cov50": 0.466,
+          "cov80": 0.81,
+          "bias": -5.01
+        },
         "PF": {
           "biasMult": 1.099,
           "stdevMult": 0.838,
@@ -198,14 +232,6 @@
           "cov50": 0.744,
           "cov80": 0.977,
           "bias": -0.39
-        },
-        "PG": {
-          "biasMult": 0.85,
-          "stdevMult": 1.044,
-          "n": 57,
-          "cov50": 0.456,
-          "cov80": 0.807,
-          "bias": -5.01
         },
         "SG": {
           "biasMult": 0.85,
@@ -242,22 +268,22 @@
           "bias": -2.92
         },
         "value": {
-          "biasMult": 0.996,
-          "stdevMult": 1.11,
-          "n": 60,
-          "cov50": 0.433,
-          "cov80": 0.75,
-          "bias": -0.07
+          "biasMult": 0.992,
+          "stdevMult": 1.095,
+          "n": 61,
+          "cov50": 0.443,
+          "cov80": 0.754,
+          "bias": -0.15
         }
       },
       "byOwnership": {
         "mid": {
-          "biasMult": 0.93,
-          "stdevMult": 0.965,
-          "n": 89,
-          "cov50": 0.539,
-          "cov80": 0.798,
-          "bias": -2.15
+          "biasMult": 0.929,
+          "stdevMult": 0.959,
+          "n": 90,
+          "cov50": 0.544,
+          "cov80": 0.8,
+          "bias": -2.18
         },
         "chalk": {
           "biasMult": 0.942,
@@ -383,55 +409,63 @@
   },
   "global": {
     "byPosition": {
-      "C": {
-        "biasMult": 0.942,
-        "stdevMult": 0.78,
-        "n": 110,
-        "cov50": 0.709,
-        "cov80": 0.936,
-        "bias": -1.85
+      "PG": {
+        "biasMult": 0.897,
+        "stdevMult": 0.988,
+        "n": 148,
+        "cov50": 0.493,
+        "cov80": 0.831,
+        "bias": -3.29
+      },
+      "SG": {
+        "biasMult": 0.921,
+        "stdevMult": 1.083,
+        "n": 172,
+        "cov50": 0.442,
+        "cov80": 0.773,
+        "bias": -2.09
       },
       "PF": {
-        "biasMult": 1.039,
-        "stdevMult": 0.862,
-        "n": 121,
-        "cov50": 0.645,
+        "biasMult": 1.04,
+        "stdevMult": 0.872,
+        "n": 127,
+        "cov50": 0.63,
         "cov80": 0.843,
         "bias": 1.27
       },
       "SF": {
-        "biasMult": 0.991,
-        "stdevMult": 0.99,
-        "n": 131,
-        "cov50": 0.519,
-        "cov80": 0.786,
-        "bias": -0.23
+        "biasMult": 0.987,
+        "stdevMult": 1.011,
+        "n": 140,
+        "cov50": 0.507,
+        "cov80": 0.771,
+        "bias": -0.33
       },
-      "SG": {
-        "biasMult": 0.914,
-        "stdevMult": 1.077,
-        "n": 162,
-        "cov50": 0.444,
-        "cov80": 0.778,
-        "bias": -2.31
-      },
-      "PG": {
-        "biasMult": 0.888,
-        "stdevMult": 0.997,
-        "n": 141,
-        "cov50": 0.489,
-        "cov80": 0.823,
-        "bias": -3.6
+      "C": {
+        "biasMult": 0.951,
+        "stdevMult": 0.794,
+        "n": 115,
+        "cov50": 0.687,
+        "cov80": 0.93,
+        "bias": -1.55
       }
     },
     "byPriceTier": {
       "stud": {
-        "biasMult": 0.922,
-        "stdevMult": 0.833,
-        "n": 103,
-        "cov50": 0.641,
-        "cov80": 0.903,
-        "bias": -3.6
+        "biasMult": 0.932,
+        "stdevMult": 0.842,
+        "n": 111,
+        "cov50": 0.622,
+        "cov80": 0.91,
+        "bias": -3.07
+      },
+      "value": {
+        "biasMult": 1.016,
+        "stdevMult": 1.067,
+        "n": 164,
+        "cov50": 0.451,
+        "cov80": 0.78,
+        "bias": 0.31
       },
       "mid": {
         "biasMult": 0.935,
@@ -440,44 +474,52 @@
         "cov50": 0.583,
         "cov80": 0.835,
         "bias": -2.06
-      },
-      "value": {
-        "biasMult": 1.019,
-        "stdevMult": 1.043,
-        "n": 150,
-        "cov50": 0.46,
-        "cov80": 0.8,
-        "bias": 0.37
       }
     },
     "byOwnership": {
       "chalk": {
-        "biasMult": 0.951,
-        "stdevMult": 0.923,
-        "n": 281,
-        "cov50": 0.562,
-        "cov80": 0.836,
-        "bias": -1.61
+        "biasMult": 0.957,
+        "stdevMult": 0.924,
+        "n": 296,
+        "cov50": 0.557,
+        "cov80": 0.841,
+        "bias": -1.39
       },
       "mid": {
-        "biasMult": 0.92,
-        "stdevMult": 0.923,
-        "n": 140,
-        "cov50": 0.557,
-        "cov80": 0.843,
-        "bias": -2.32
+        "biasMult": 0.918,
+        "stdevMult": 0.949,
+        "n": 146,
+        "cov50": 0.541,
+        "cov80": 0.822,
+        "bias": -2.3
       },
       "leverage": {
-        "biasMult": 1.011,
-        "stdevMult": 0.957,
-        "n": 50,
-        "cov50": 0.52,
-        "cov80": 0.84,
-        "bias": 0.27
+        "biasMult": 1.007,
+        "stdevMult": 0.976,
+        "n": 51,
+        "cov50": 0.51,
+        "cov80": 0.824,
+        "bias": 0.15
       }
     }
   },
   "slateSummaries": [
+    {
+      "date": "2026-05-13",
+      "gameCount": 1,
+      "isShowdown": true,
+      "bucket": "showdown",
+      "matched": 20,
+      "gateFailures": {
+        "noProj": 0,
+        "noProfile": 0,
+        "noGameForDate": 0,
+        "noDkfp": 0,
+        "noStdDev": 0,
+        "totalScanned": 20,
+        "projSource": "nba-rollup.json.gz (cle-det_fd)"
+      }
+    },
     {
       "date": "2026-05-12",
       "gameCount": 1,
@@ -492,22 +534,6 @@
         "noStdDev": 0,
         "totalScanned": 17,
         "projSource": "nba-rollup.json.gz (min-sa_fd)"
-      }
-    },
-    {
-      "date": "2026-05-11",
-      "gameCount": 2,
-      "isShowdown": false,
-      "bucket": "2g",
-      "matched": 24,
-      "gateFailures": {
-        "noProj": 0,
-        "noProfile": 0,
-        "noGameForDate": 1,
-        "noDkfp": 0,
-        "noStdDev": 0,
-        "totalScanned": 25,
-        "projSource": "nba-rollup.json.gz (main_dk)"
       }
     },
     {
@@ -527,6 +553,82 @@
       }
     },
     {
+      "date": "2026-05-04",
+      "gameCount": 2,
+      "isShowdown": false,
+      "bucket": "2g",
+      "matched": 24,
+      "gateFailures": {
+        "noProj": 0,
+        "noProfile": 0,
+        "noGameForDate": 1,
+        "noDkfp": 0,
+        "noStdDev": 0,
+        "totalScanned": 25,
+        "projSource": "nba-rollup.json.gz (main_dk)"
+      }
+    },
+    {
+      "date": "2026-04-30",
+      "gameCount": 3,
+      "isShowdown": false,
+      "bucket": "3g",
+      "matched": 36,
+      "gateFailures": {
+        "noProj": 0,
+        "noProfile": 0,
+        "noGameForDate": 4,
+        "noDkfp": 0,
+        "noStdDev": 0,
+        "totalScanned": 40,
+        "projSource": "nba-rollup.json.gz (main_dk)"
+      }
+    },
+    {
+      "date": "2026-04-28",
+      "gameCount": 3,
+      "isShowdown": false,
+      "bucket": "3g",
+      "matched": 39,
+      "gateFailures": {
+        "noProj": 0,
+        "noProfile": 0,
+        "noGameForDate": 1,
+        "noDkfp": 0,
+        "noStdDev": 0,
+        "totalScanned": 40,
+        "projSource": "nba-rollup.json.gz (main_dk)"
+      }
+    },
+    {
+      "date": "2026-04-24",
+      "gameCount": 3,
+      "isShowdown": false,
+      "bucket": "3g",
+      "matched": 0,
+      "gateFailures": {
+        "totalScanned": 0,
+        "noArchive": 1
+      },
+      "note": "no projection snapshot in archive or nba-rollup.json.gz"
+    },
+    {
+      "date": "2026-05-11",
+      "gameCount": 2,
+      "isShowdown": false,
+      "bucket": "2g",
+      "matched": 25,
+      "gateFailures": {
+        "noProj": 0,
+        "noProfile": 0,
+        "noGameForDate": 0,
+        "noDkfp": 0,
+        "noStdDev": 0,
+        "totalScanned": 25,
+        "projSource": "nba-rollup.json.gz (main_dk)"
+      }
+    },
+    {
       "date": "2026-05-09",
       "gameCount": 2,
       "isShowdown": false,
@@ -539,6 +641,22 @@
         "noDkfp": 0,
         "noStdDev": 0,
         "totalScanned": 25,
+        "projSource": "nba-rollup.json.gz (main_dk)"
+      }
+    },
+    {
+      "date": "2026-05-08",
+      "gameCount": 2,
+      "isShowdown": false,
+      "bucket": "2g",
+      "matched": 25,
+      "gateFailures": {
+        "noProj": 0,
+        "noProfile": 0,
+        "noGameForDate": 1,
+        "noDkfp": 0,
+        "noStdDev": 0,
+        "totalScanned": 26,
         "projSource": "nba-rollup.json.gz (main_dk)"
       }
     },
@@ -575,54 +693,6 @@
       }
     },
     {
-      "date": "2026-05-03",
-      "gameCount": 2,
-      "isShowdown": false,
-      "bucket": "2g",
-      "matched": 22,
-      "gateFailures": {
-        "noProj": 0,
-        "noProfile": 0,
-        "noGameForDate": 0,
-        "noDkfp": 0,
-        "noStdDev": 0,
-        "totalScanned": 22,
-        "projSource": "nba-rollup.json.gz (main_dk)"
-      }
-    },
-    {
-      "date": "2026-04-26",
-      "gameCount": 4,
-      "isShowdown": false,
-      "bucket": "4g",
-      "matched": 51,
-      "gateFailures": {
-        "noProj": 0,
-        "noProfile": 0,
-        "noGameForDate": 2,
-        "noDkfp": 0,
-        "noStdDev": 0,
-        "totalScanned": 53,
-        "projSource": "nba-rollup.json.gz (main_dk)"
-      }
-    },
-    {
-      "date": "2026-05-08",
-      "gameCount": 2,
-      "isShowdown": false,
-      "bucket": "2g",
-      "matched": 25,
-      "gateFailures": {
-        "noProj": 0,
-        "noProfile": 0,
-        "noGameForDate": 1,
-        "noDkfp": 0,
-        "noStdDev": 0,
-        "totalScanned": 26,
-        "projSource": "nba-rollup.json.gz (main_dk)"
-      }
-    },
-    {
       "date": "2026-05-05",
       "gameCount": 2,
       "isShowdown": false,
@@ -639,18 +709,18 @@
       }
     },
     {
-      "date": "2026-05-04",
+      "date": "2026-05-03",
       "gameCount": 2,
       "isShowdown": false,
       "bucket": "2g",
-      "matched": 24,
+      "matched": 22,
       "gateFailures": {
         "noProj": 0,
         "noProfile": 0,
-        "noGameForDate": 1,
+        "noGameForDate": 0,
         "noDkfp": 0,
         "noStdDev": 0,
-        "totalScanned": 25,
+        "totalScanned": 22,
         "projSource": "nba-rollup.json.gz (main_dk)"
       }
     },
@@ -667,6 +737,70 @@
         "noDkfp": 0,
         "noStdDev": 0,
         "totalScanned": 37,
+        "projSource": "nba-rollup.json.gz (main_dk)"
+      }
+    },
+    {
+      "date": "2026-05-01",
+      "gameCount": 3,
+      "isShowdown": false,
+      "bucket": "3g",
+      "matched": 37,
+      "gateFailures": {
+        "noProj": 0,
+        "noProfile": 0,
+        "noGameForDate": 0,
+        "noDkfp": 0,
+        "noStdDev": 0,
+        "totalScanned": 37,
+        "projSource": "nba-rollup.json.gz (main_dk)"
+      }
+    },
+    {
+      "date": "2026-04-29",
+      "gameCount": 3,
+      "isShowdown": false,
+      "bucket": "3g",
+      "matched": 36,
+      "gateFailures": {
+        "noProj": 0,
+        "noProfile": 0,
+        "noGameForDate": 0,
+        "noDkfp": 0,
+        "noStdDev": 0,
+        "totalScanned": 36,
+        "projSource": "nba-rollup.json.gz (main_dk)"
+      }
+    },
+    {
+      "date": "2026-04-27",
+      "gameCount": 3,
+      "isShowdown": false,
+      "bucket": "3g",
+      "matched": 37,
+      "gateFailures": {
+        "noProj": 0,
+        "noProfile": 0,
+        "noGameForDate": 4,
+        "noDkfp": 0,
+        "noStdDev": 0,
+        "totalScanned": 41,
+        "projSource": "nba-rollup.json.gz (main_dk)"
+      }
+    },
+    {
+      "date": "2026-04-26",
+      "gameCount": 4,
+      "isShowdown": false,
+      "bucket": "4g",
+      "matched": 51,
+      "gateFailures": {
+        "noProj": 0,
+        "noProfile": 0,
+        "noGameForDate": 2,
+        "noDkfp": 0,
+        "noStdDev": 0,
+        "totalScanned": 53,
         "projSource": "nba-rollup.json.gz (main_dk)"
       }
     },
@@ -695,110 +829,6 @@
       "note": "no projection snapshot in archive or nba-rollup.json.gz"
     },
     {
-      "date": "2026-04-24",
-      "gameCount": 3,
-      "isShowdown": false,
-      "bucket": "3g",
-      "matched": 0,
-      "gateFailures": {
-        "totalScanned": 0,
-        "noArchive": 1
-      },
-      "note": "no projection snapshot in archive or nba-rollup.json.gz"
-    },
-    {
-      "date": "2026-04-21",
-      "gameCount": 3,
-      "isShowdown": false,
-      "bucket": "3g",
-      "matched": 0,
-      "gateFailures": {
-        "totalScanned": 0,
-        "noArchive": 1
-      },
-      "note": "no projection snapshot in archive or nba-rollup.json.gz"
-    },
-    {
-      "date": "2026-05-01",
-      "gameCount": 3,
-      "isShowdown": false,
-      "bucket": "3g",
-      "matched": 36,
-      "gateFailures": {
-        "noProj": 0,
-        "noProfile": 0,
-        "noGameForDate": 1,
-        "noDkfp": 0,
-        "noStdDev": 0,
-        "totalScanned": 37,
-        "projSource": "nba-rollup.json.gz (main_dk)"
-      }
-    },
-    {
-      "date": "2026-04-30",
-      "gameCount": 3,
-      "isShowdown": false,
-      "bucket": "3g",
-      "matched": 36,
-      "gateFailures": {
-        "noProj": 0,
-        "noProfile": 0,
-        "noGameForDate": 4,
-        "noDkfp": 0,
-        "noStdDev": 0,
-        "totalScanned": 40,
-        "projSource": "nba-rollup.json.gz (main_dk)"
-      }
-    },
-    {
-      "date": "2026-04-29",
-      "gameCount": 3,
-      "isShowdown": false,
-      "bucket": "3g",
-      "matched": 36,
-      "gateFailures": {
-        "noProj": 0,
-        "noProfile": 0,
-        "noGameForDate": 0,
-        "noDkfp": 0,
-        "noStdDev": 0,
-        "totalScanned": 36,
-        "projSource": "nba-rollup.json.gz (main_dk)"
-      }
-    },
-    {
-      "date": "2026-04-28",
-      "gameCount": 3,
-      "isShowdown": false,
-      "bucket": "3g",
-      "matched": 39,
-      "gateFailures": {
-        "noProj": 0,
-        "noProfile": 0,
-        "noGameForDate": 1,
-        "noDkfp": 0,
-        "noStdDev": 0,
-        "totalScanned": 40,
-        "projSource": "nba-rollup.json.gz (main_dk)"
-      }
-    },
-    {
-      "date": "2026-04-27",
-      "gameCount": 3,
-      "isShowdown": false,
-      "bucket": "3g",
-      "matched": 37,
-      "gateFailures": {
-        "noProj": 0,
-        "noProfile": 0,
-        "noGameForDate": 4,
-        "noDkfp": 0,
-        "noStdDev": 0,
-        "totalScanned": 41,
-        "projSource": "nba-rollup.json.gz (main_dk)"
-      }
-    },
-    {
       "date": "2026-04-22",
       "gameCount": 2,
       "isShowdown": false,
@@ -811,22 +841,10 @@
       "note": "no projection snapshot in archive or nba-rollup.json.gz"
     },
     {
-      "date": "2026-04-15",
-      "gameCount": 2,
+      "date": "2026-04-21",
+      "gameCount": 3,
       "isShowdown": false,
-      "bucket": "2g",
-      "matched": 0,
-      "gateFailures": {
-        "totalScanned": 0,
-        "noArchive": 1
-      },
-      "note": "no projection snapshot in archive or nba-rollup.json.gz"
-    },
-    {
-      "date": "2026-04-19",
-      "gameCount": 4,
-      "isShowdown": false,
-      "bucket": "4g",
+      "bucket": "3g",
       "matched": 0,
       "gateFailures": {
         "totalScanned": 0,
@@ -859,6 +877,18 @@
       "note": "no projection snapshot in archive or nba-rollup.json.gz"
     },
     {
+      "date": "2026-04-17",
+      "gameCount": 2,
+      "isShowdown": false,
+      "bucket": "2g",
+      "matched": 0,
+      "gateFailures": {
+        "totalScanned": 0,
+        "noArchive": 1
+      },
+      "note": "no projection snapshot in archive or nba-rollup.json.gz"
+    },
+    {
       "date": "2026-04-14",
       "gameCount": 2,
       "isShowdown": false,
@@ -871,7 +901,19 @@
       "note": "no projection snapshot in archive or nba-rollup.json.gz"
     },
     {
-      "date": "2026-04-17",
+      "date": "2026-04-19",
+      "gameCount": 4,
+      "isShowdown": false,
+      "bucket": "4g",
+      "matched": 0,
+      "gateFailures": {
+        "totalScanned": 0,
+        "noArchive": 1
+      },
+      "note": "no projection snapshot in archive or nba-rollup.json.gz"
+    },
+    {
+      "date": "2026-04-15",
       "gameCount": 2,
       "isShowdown": false,
       "bucket": "2g",
@@ -900,6 +942,7 @@
     "2026-05-09",
     "2026-05-10",
     "2026-05-11",
-    "2026-05-12"
+    "2026-05-12",
+    "2026-05-13"
   ]
 }
