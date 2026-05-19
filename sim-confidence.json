@@ -2,6 +2,83 @@
   "schemaVersion": 1,
   "runs": [
     {
+      "date": "2026-05-18",
+      "matched": 19,
+      "generatedAt": "2026-05-19T12:30:45.957Z",
+      "projFile": "nba-rollup.json.gz",
+      "projSource": "nba-rollup.json.gz (showdown_sas_okc_dk)",
+      "overall": {
+        "bias": 2.816,
+        "mae": 10.679,
+        "r": 0.845,
+        "rmse": 13.901,
+        "medianBias": -2.7,
+        "medianAbsErr": 6.8,
+        "pctActualOverProj": 0.4211
+      },
+      "byPosition": {
+        "SG": {
+          "fifty": 0.7143,
+          "eighty": 0.8571,
+          "n": 7,
+          "bias": 1.657,
+          "mae": 8.857,
+          "r": 0.755,
+          "medianBias": -2.7,
+          "medianAbsErr": 6.5,
+          "pctActualOverProj": 0.2857
+        },
+        "SF": {
+          "fifty": 0.375,
+          "eighty": 0.75,
+          "n": 8,
+          "bias": 4.7,
+          "mae": 9,
+          "r": 0.763,
+          "medianBias": 3.85,
+          "medianAbsErr": 6.55,
+          "pctActualOverProj": 0.625
+        }
+      },
+      "byPriceTier": {
+        "stud": {
+          "fifty": 0.5,
+          "eighty": 0.8333,
+          "n": 6,
+          "bias": 5.567,
+          "mae": 12.033,
+          "r": 0.901,
+          "medianBias": 4.45,
+          "medianAbsErr": 10.75,
+          "pctActualOverProj": 0.5
+        },
+        "value": {
+          "fifty": 0.3333,
+          "eighty": 0.7778,
+          "n": 9,
+          "bias": -0.933,
+          "mae": 8.133,
+          "r": 0.734,
+          "medianBias": -6.2,
+          "medianAbsErr": 6.4,
+          "pctActualOverProj": 0.2222
+        }
+      },
+      "byOwnership": {
+        "chalk": {
+          "fifty": 0.3333,
+          "eighty": 0.7333,
+          "n": 15,
+          "bias": 4.3,
+          "mae": 12.193,
+          "r": 0.808,
+          "medianBias": -2.7,
+          "medianAbsErr": 8.4,
+          "pctActualOverProj": 0.4667
+        }
+      }
+    },
+    {
       "date": "2026-05-17",
       "matched": 17,
       "generatedAt": "2026-05-18T12:41:19.949Z",
@@ -2434,28 +2511,28 @@
     }
   ],
   "averaged": {
-    "lastUpdated": "2026-05-18T12:41:19.949Z",
-    "slatesIncluded": 24,
+    "lastUpdated": "2026-05-19T12:30:45.957Z",
+    "slatesIncluded": 25,
     "byPosition": {
+      "SG": {
+        "fifty": 0.492,
+        "eighty": 0.8,
+        "nTotal": 250
+      },
+      "SF": {
+        "fifty": 0.5077,
+        "eighty": 0.7898,
+        "nTotal": 195
+      },
       "PG": {
         "fifty": 0.5073,
         "eighty": 0.8195,
         "nTotal": 205
       },
-      "SG": {
-        "fifty": 0.4856,
-        "eighty": 0.7983,
-        "nTotal": 243
-      },
       "C": {
         "fifty": 0.6087,
         "eighty": 0.8509,
         "nTotal": 161
-      },
-      "SF": {
-        "fifty": 0.5133,
-        "eighty": 0.7915,
-        "nTotal": 187
       },
       "PF": {
         "fifty": 0.5697,
@@ -2465,26 +2542,26 @@
     },
     "byPriceTier": {
       "stud": {
-        "fifty": 0.6174,
-        "eighty": 0.9195,
-        "nTotal": 149
+        "fifty": 0.6129,
+        "eighty": 0.9161,
+        "nTotal": 155
+      },
+      "value": {
+        "fifty": 0.4351,
+        "eighty": 0.7101,
+        "nTotal": 331
       },
       "mid": {
         "fifty": 0.5825,
         "eighty": 0.8384,
         "nTotal": 297
-      },
-      "value": {
-        "fifty": 0.4379,
-        "eighty": 0.7082,
-        "nTotal": 322
       }
     },
     "byOwnership": {
       "chalk": {
-        "fifty": 0.4766,
-        "eighty": 0.8411,
-        "nTotal": 107
+        "fifty": 0.459,
+        "eighty": 0.8279,
+        "nTotal": 122
       },
       "mid": {
         "fifty": 0.4,
@@ -5377,6 +5454,12 @@
             "proj": 56.7,
             "actual": 33.5,
             "err": -23.2
+          },
+          {
+            "date": "2026-05-18",
+            "proj": 54.5,
+            "actual": 84,
+            "err": 29.5
           }
         ]
       },
@@ -5500,6 +5583,12 @@
             "proj": 37.8,
             "actual": 57.8,
             "err": 20
+          },
+          {
+            "date": "2026-05-18",
+            "proj": 42.2,
+            "actual": 39.5,
+            "err": -2.7
           }
         ]
       },
@@ -5621,6 +5710,12 @@
             "proj": 23.3,
             "actual": 25.2,
             "err": 1.9
+          },
+          {
+            "date": "2026-05-18",
+            "proj": 29.9,
+            "actual": 62.2,
+            "err": 32.3
           }
         ]
       },
@@ -5691,6 +5786,12 @@
             "proj": 21.3,
             "actual": 33.2,
             "err": 11.9
+          },
+          {
+            "date": "2026-05-18",
+            "proj": 23.3,
+            "actual": 30.8,
+            "err": 7.5
           }
         ]
       },
@@ -5744,6 +5845,12 @@
             "proj": 17,
             "actual": 3,
             "err": -14
+          },
+          {
+            "date": "2026-05-18",
+            "proj": 20.6,
+            "actual": 14,
+            "err": -6.6
           }
         ]
       },
@@ -5814,6 +5921,12 @@
             "proj": 24,
             "actual": 26.2,
             "err": 2.2
+          },
+          {
+            "date": "2026-05-18",
+            "proj": 26.3,
+            "actual": 29.5,
+            "err": 3.2
           }
         ]
       },
@@ -5860,6 +5973,12 @@
             "proj": 35.8,
             "actual": 28.8,
             "err": -7
+          },
+          {
+            "date": "2026-05-18",
+            "proj": 34.4,
+            "actual": 24.5,
+            "err": -9.9
           }
         ]
       },
@@ -6008,6 +6127,12 @@
             "proj": 17.7,
             "actual": 20.5,
             "err": 2.8
+          },
+          {
+            "date": "2026-05-18",
+            "proj": 18.1,
+            "actual": 46,
+            "err": 27.9
           }
         ]
       },
@@ -6043,6 +6168,12 @@
             "proj": 15,
             "actual": 9.5,
             "err": -5.5
+          },
+          {
+            "date": "2026-05-18",
+            "proj": 13.4,
+            "actual": 10.8,
+            "err": -2.6
           }
         ]
       },
@@ -6078,6 +6209,12 @@
             "proj": 29.1,
             "actual": 29.5,
             "err": 0.4
+          },
+          {
+            "date": "2026-05-18",
+            "proj": 27.5,
+            "actual": 13,
+            "err": -14.5
           }
         ]
       },
@@ -6113,6 +6250,12 @@
             "proj": 18.6,
             "actual": 7.5,
             "err": -11.1
+          },
+          {
+            "date": "2026-05-18",
+            "proj": 15.5,
+            "actual": 20,
+            "err": 4.5
           }
         ]
       },
@@ -6148,6 +6291,12 @@
             "proj": 48.4,
             "actual": 49.2,
             "err": 0.8
+          },
+          {
+            "date": "2026-05-18",
+            "proj": 46.6,
+            "actual": 58.2,
+            "err": 11.6
           }
         ]
       },
@@ -6194,6 +6343,12 @@
             "proj": 32.4,
             "actual": 45.8,
             "err": 13.4
+          },
+          {
+            "date": "2026-05-18",
+            "proj": 27.3,
+            "actual": 20.5,
+            "err": -6.8
           }
         ]
       },
@@ -6422,6 +6577,12 @@
             "proj": 5.1,
             "actual": 2.8,
             "err": -2.3
+          },
+          {
+            "date": "2026-05-18",
+            "proj": 8.4,
+            "actual": 0,
+            "err": -8.4
           }
         ]
       },
@@ -6433,6 +6594,12 @@
             "proj": 12,
             "actual": 6,
             "err": -6
+          },
+          {
+            "date": "2026-05-18",
+            "proj": 11.2,
+            "actual": 4.8,
+            "err": -6.4
           }
         ]
       },
@@ -6444,6 +6611,12 @@
             "proj": 7.5,
             "actual": 11,
             "err": 3.5
+          },
+          {
+            "date": "2026-05-18",
+            "proj": 11.6,
+            "actual": 7.5,
+            "err": -4.1
           }
         ]
       },
@@ -6513,8 +6686,41 @@
             "err": 10.4
           }
         ]
+      },
+      "jalen williams": {
+        "name": "Jalen Williams",
+        "recent": [
+          {
+            "date": "2026-05-18",
+            "proj": 31.1,
+            "actual": 42.8,
+            "err": 11.7
+          }
+        ]
+      },
+      "isaiah joe": {
+        "name": "Isaiah Joe",
+        "recent": [
+          {
+            "date": "2026-05-18",
+            "proj": 6.5,
+            "actual": 0,
+            "err": -6.5
+          }
+        ]
+      },
+      "jaylin williams": {
+        "name": "Jaylin Williams",
+        "recent": [
+          {
+            "date": "2026-05-18",
+            "proj": 9.4,
+            "actual": 3.2,
+            "err": -6.2
+          }
+        ]
       }
     },
-    "lastUpdated": "2026-05-18T12:41:19.949Z"
+    "lastUpdated": "2026-05-19T12:30:45.957Z"
   }
 }
