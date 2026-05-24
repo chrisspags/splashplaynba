@@ -2,6 +2,105 @@
   "schemaVersion": 1,
   "runs": [
     {
+      "date": "2026-05-23",
+      "matched": 19,
+      "generatedAt": "2026-05-24T12:43:27.559Z",
+      "projFile": "nba-rollup.json.gz",
+      "projSource": "nba-rollup.json.gz (showdown_nyk_cle_dk)",
+      "overall": {
+        "bias": -1.116,
+        "mae": 6.653,
+        "r": 0.871,
+        "rmse": 7.573,
+        "medianBias": -4.3,
+        "medianAbsErr": 6.7,
+        "pctActualOverProj": 0.3684
+      },
+      "byPosition": {
+        "PG": {
+          "fifty": 0.4,
+          "eighty": 1,
+          "n": 5,
+          "bias": -4.76,
+          "mae": 5.04,
+          "r": 0.987,
+          "medianBias": -5.5,
+          "medianAbsErr": 5.5,
+          "pctActualOverProj": 0.2
+        },
+        "SG": {
+          "fifty": 0.4286,
+          "eighty": 0.5714,
+          "n": 7,
+          "bias": 1.157,
+          "mae": 7.5,
+          "r": 0.807,
+          "medianBias": -2.3,
+          "medianAbsErr": 6.7,
+          "pctActualOverProj": 0.4286
+        },
+        "PF": {
+          "fifty": 0.6,
+          "eighty": 0.8,
+          "n": 5,
+          "bias": -1.72,
+          "mae": 5.16,
+          "r": 0.932,
+          "medianBias": -4.2,
+          "medianAbsErr": 4.3,
+          "pctActualOverProj": 0.4
+        },
+        "SF": {
+          "fifty": 0.3333,
+          "eighty": 0.3333,
+          "n": 6,
+          "bias": 2.733,
+          "mae": 7.867,
+          "r": 0.926,
+          "medianBias": 2.95,
+          "medianAbsErr": 7.7,
+          "pctActualOverProj": 0.6667
+        }
+      },
+      "byPriceTier": {
+        "stud": {
+          "fifty": 0.8571,
+          "eighty": 1,
+          "n": 7,
+          "bias": -1.443,
+          "mae": 5.157,
+          "r": 0.33,
+          "medianBias": -4.2,
+          "medianAbsErr": 4.8,
+          "pctActualOverProj": 0.4286
+        },
+        "value": {
+          "fifty": 0.2222,
+          "eighty": 0.6667,
+          "n": 9,
+          "bias": -3.589,
+          "mae": 6.633,
+          "r": 0.187,
+          "medianBias": -5.5,
+          "medianAbsErr": 6.7,
+          "pctActualOverProj": 0.2222
+        }
+      },
+      "byOwnership": {
+        "chalk": {
+          "fifty": 0.5714,
+          "eighty": 0.7857,
+          "n": 14,
+          "bias": -1.307,
+          "mae": 6.864,
+          "r": 0.827,
+          "medianBias": -4.25,
+          "medianAbsErr": 7.2,
+          "pctActualOverProj": 0.3571
+        }
+      }
+    },
+    {
       "date": "2026-05-22",
       "matched": 19,
       "generatedAt": "2026-05-23T11:28:48.154Z",
@@ -2504,168 +2603,60 @@
           "pctActualOverProj": 0.3571
         }
       }
-    },
-    {
-      "date": "2026-05-01",
-      "matched": 37,
-      "generatedAt": "2026-05-02T17:34:11.528Z",
-      "projFile": "nba-rollup.json.gz",
-      "projSource": "nba-rollup.json.gz (main_dk)",
-      "overall": {
-        "bias": -2.281,
-        "mae": 8.195,
-        "r": 0.755,
-        "rmse": 9.816,
-        "medianBias": -4.1,
-        "medianAbsErr": 7.2,
-        "pctActualOverProj": 0.4054
-      },
-      "byPosition": {
-        "PF": {
-          "fifty": 0.625,
-          "eighty": 0.875,
-          "n": 8,
-          "bias": 6.013,
-          "mae": 9.037,
-          "r": 0.642,
-          "medianBias": 5.4,
-          "medianAbsErr": 7.55,
-          "pctActualOverProj": 0.75
-        },
-        "C": {
-          "fifty": 0.6,
-          "eighty": 1,
-          "n": 10,
-          "bias": -2.8,
-          "mae": 8.8,
-          "r": 0.559,
-          "medianBias": -3.9,
-          "medianAbsErr": 6.55,
-          "pctActualOverProj": 0.4
-        },
-        "PG": {
-          "fifty": 0.5455,
-          "eighty": 0.9091,
-          "n": 11,
-          "bias": -5.064,
-          "mae": 9.645,
-          "r": 0.749,
-          "medianBias": -7.2,
-          "medianAbsErr": 8.2,
-          "pctActualOverProj": 0.2727
-        },
-        "SG": {
-          "fifty": 0.4286,
-          "eighty": 0.8571,
-          "n": 14,
-          "bias": -5.057,
-          "mae": 9.143,
-          "r": 0.562,
-          "medianBias": -5.25,
-          "medianAbsErr": 7.95,
-          "pctActualOverProj": 0.2143
-        },
-        "SF": {
-          "fifty": 0.75,
-          "eighty": 0.75,
-          "n": 8,
-          "bias": -0.325,
-          "mae": 6.425,
-          "r": 0.784,
-          "medianBias": -0.7,
-          "medianAbsErr": 4.15,
-          "pctActualOverProj": 0.5
-        }
-      },
-      "byPriceTier": {
-        "stud": {
-          "fifty": 0.75,
-          "eighty": 1,
-          "n": 8,
-          "bias": -1.438,
-          "mae": 8.038,
-          "r": 0.507,
-          "medianBias": -2.4,
-          "medianAbsErr": 7.25,
-          "pctActualOverProj": 0.5
-        },
-        "mid": {
-          "fifty": 0.6471,
-          "eighty": 1,
-          "n": 17,
-          "bias": -2.788,
-          "mae": 7.624,
-          "r": 0.338,
-          "medianBias": -3.5,
-          "medianAbsErr": 5.7,
-          "pctActualOverProj": 0.4706
-        },
-        "value": {
-          "fifty": 0.5,
-          "eighty": 0.75,
-          "n": 12,
-          "bias": -2.125,
-          "mae": 9.108,
-          "r": 0.376,
-          "medianBias": -4.8,
-          "medianAbsErr": 8.8,
-          "pctActualOverProj": 0.25
-        }
-      }
     }
   ],
   "averaged": {
-    "lastUpdated": "2026-05-23T11:28:48.154Z",
+    "lastUpdated": "2026-05-24T12:43:27.559Z",
     "slatesIncluded": 25,
     "byPosition": {
-      "SG": {
-        "fifty": 0.5197,
-        "eighty": 0.8384,
-        "nTotal": 229
-      },
-      "SF": {
-        "fifty": 0.516,
-        "eighty": 0.8085,
-        "nTotal": 188
-      },
       "PG": {
-        "fifty": 0.5325,
+        "fifty": 0.5276,
         "eighty": 0.8343,
-        "nTotal": 169
+        "nTotal": 163
+      },
+      "SG": {
+        "fifty": 0.5225,
+        "eighty": 0.8288,
+        "nTotal": 222
       },
       "PF": {
-        "fifty": 0.6029,
-        "eighty": 0.8162,
-        "nTotal": 136
+        "fifty": 0.6015,
+        "eighty": 0.812,
+        "nTotal": 133
+      },
+      "SF": {
+        "fifty": 0.5,
+        "eighty": 0.7957,
+        "nTotal": 186
       },
       "C": {
-        "fifty": 0.672,
-        "eighty": 0.912,
-        "nTotal": 125
+        "fifty": 0.6783,
+        "eighty": 0.9043,
+        "nTotal": 115
       }
     },
     "byPriceTier": {
-      "mid": {
-        "fifty": 0.5725,
-        "eighty": 0.8321,
-        "nTotal": 262
+      "stud": {
+        "fifty": 0.6267,
+        "eighty": 0.9,
+        "nTotal": 150
       },
       "value": {
-        "fifty": 0.52,
-        "eighty": 0.8311,
-        "nTotal": 225
+        "fifty": 0.509,
+        "eighty": 0.8288,
+        "nTotal": 222
       },
-      "stud": {
-        "fifty": 0.6225,
-        "eighty": 0.9007,
-        "nTotal": 151
+      "mid": {
+        "fifty": 0.5674,
+        "eighty": 0.8204,
+        "nTotal": 245
       }
     },
     "byOwnership": {
       "chalk": {
-        "fifty": 0.4971,
-        "eighty": 0.8171,
-        "nTotal": 175
+        "fifty": 0.5026,
+        "eighty": 0.8148,
+        "nTotal": 189
       },
       "mid": {
         "fifty": 0.5,
@@ -2679,12 +2670,6 @@
       "lebron james": {
         "name": "LeBron James",
         "recent": [
-          {
-            "date": "2026-05-01",
-            "proj": 45.2,
-            "actual": 48.2,
-            "err": 3
-          },
           {
             "date": "2026-04-29",
             "proj": 47.9,
@@ -2727,12 +2712,6 @@
         "name": "Alperen Sengun",
         "recent": [
           {
-            "date": "2026-05-01",
-            "proj": 51,
-            "actual": 35.8,
-            "err": -15.2
-          },
-          {
             "date": "2026-04-29",
             "proj": 50.1,
             "actual": 40.8,
@@ -2749,12 +2728,6 @@
       "paolo banchero": {
         "name": "Paolo Banchero",
         "recent": [
-          {
-            "date": "2026-05-01",
-            "proj": 50.8,
-            "actual": 43.5,
-            "err": -7.3
-          },
           {
             "date": "2026-04-29",
             "proj": 41.6,
@@ -2778,12 +2751,6 @@
       "austin reaves": {
         "name": "Austin Reaves",
         "recent": [
-          {
-            "date": "2026-05-01",
-            "proj": 45.3,
-            "actual": 26.8,
-            "err": -18.5
-          },
           {
             "date": "2026-04-29",
             "proj": 28,
@@ -2819,12 +2786,6 @@
       "james harden": {
         "name": "James Harden",
         "recent": [
-          {
-            "date": "2026-05-01",
-            "proj": 40.5,
-            "actual": 45.2,
-            "err": 4.7
-          },
           {
             "date": "2026-04-29",
             "proj": 39.9,
@@ -2896,18 +2857,18 @@
             "proj": 39.7,
             "actual": 34,
             "err": -5.7
+          },
+          {
+            "date": "2026-05-23",
+            "proj": 39.1,
+            "actual": 32.2,
+            "err": -6.9
           }
         ]
       },
       "jabari smith jr.": {
         "name": "Jabari Smith Jr.",
         "recent": [
-          {
-            "date": "2026-05-01",
-            "proj": 35.3,
-            "actual": 30.5,
-            "err": -4.8
-          },
           {
             "date": "2026-04-29",
             "proj": 34.1,
@@ -2925,12 +2886,6 @@
       "evan mobley": {
         "name": "Evan Mobley",
         "recent": [
-          {
-            "date": "2026-05-01",
-            "proj": 35.3,
-            "actual": 51.5,
-            "err": 16.2
-          },
           {
             "date": "2026-04-29",
             "proj": 37.5,
@@ -3002,18 +2957,18 @@
             "proj": 37.9,
             "actual": 30.5,
             "err": -7.4
+          },
+          {
+            "date": "2026-05-23",
+            "proj": 38.7,
+            "actual": 34.5,
+            "err": -4.2
           }
         ]
       },
       "desmond bane": {
         "name": "Desmond Bane",
         "recent": [
-          {
-            "date": "2026-05-01",
-            "proj": 31.9,
-            "actual": 27.8,
-            "err": -4.1
-          },
           {
             "date": "2026-04-29",
             "proj": 32.4,
@@ -3037,12 +2992,6 @@
       "max strus": {
         "name": "Max Strus",
         "recent": [
-          {
-            "date": "2026-05-01",
-            "proj": 22,
-            "actual": 17.2,
-            "err": -4.8
-          },
           {
             "date": "2026-04-29",
             "proj": 22.6,
@@ -3114,18 +3063,18 @@
             "proj": 21.1,
             "actual": 15.5,
             "err": -5.6
+          },
+          {
+            "date": "2026-05-23",
+            "proj": 21.9,
+            "actual": 34.8,
+            "err": 12.9
           }
         ]
       },
       "donovan mitchell": {
         "name": "Donovan Mitchell",
         "recent": [
-          {
-            "date": "2026-05-01",
-            "proj": 42,
-            "actual": 34.8,
-            "err": -7.2
-          },
           {
             "date": "2026-04-29",
             "proj": 43.9,
@@ -3197,18 +3146,18 @@
             "proj": 43.1,
             "actual": 35,
             "err": -8.1
+          },
+          {
+            "date": "2026-05-23",
+            "proj": 42.9,
+            "actual": 35.2,
+            "err": -7.7
           }
         ]
       },
       "rj barrett": {
         "name": "RJ Barrett",
         "recent": [
-          {
-            "date": "2026-05-01",
-            "proj": 39.9,
-            "actual": 41.2,
-            "err": 1.3
-          },
           {
             "date": "2026-04-29",
             "proj": 34.1,
@@ -3233,12 +3182,6 @@
         "name": "Jalen Suggs",
         "recent": [
           {
-            "date": "2026-05-01",
-            "proj": 33.4,
-            "actual": 26.2,
-            "err": -7.2
-          },
-          {
             "date": "2026-04-29",
             "proj": 35.8,
             "actual": 26.5,
@@ -3261,12 +3204,6 @@
       "ausar thompson": {
         "name": "Ausar Thompson",
         "recent": [
-          {
-            "date": "2026-05-01",
-            "proj": 29.3,
-            "actual": 35.5,
-            "err": 6.2
-          },
           {
             "date": "2026-04-29",
             "proj": 28.4,
@@ -3333,12 +3270,6 @@
         "name": "Reed Sheppard",
         "recent": [
           {
-            "date": "2026-05-01",
-            "proj": 34.5,
-            "actual": 19.5,
-            "err": -15
-          },
-          {
             "date": "2026-04-29",
             "proj": 36.9,
             "actual": 27.5,
@@ -3355,12 +3286,6 @@
       "luke kennard": {
         "name": "Luke Kennard",
         "recent": [
-          {
-            "date": "2026-05-01",
-            "proj": 18.9,
-            "actual": 13.2,
-            "err": -5.7
-          },
           {
             "date": "2026-04-29",
             "proj": 27.1,
@@ -3402,12 +3327,6 @@
       "jarrett allen": {
         "name": "Jarrett Allen",
         "recent": [
-          {
-            "date": "2026-05-01",
-            "proj": 27.5,
-            "actual": 30.2,
-            "err": 2.7
-          },
           {
             "date": "2026-04-29",
             "proj": 30.3,
@@ -3479,18 +3398,18 @@
             "proj": 29.1,
             "actual": 33,
             "err": 3.9
+          },
+          {
+            "date": "2026-05-23",
+            "proj": 30.5,
+            "actual": 25.8,
+            "err": -4.7
           }
         ]
       },
       "jakob poeltl": {
         "name": "Jakob Poeltl",
         "recent": [
-          {
-            "date": "2026-05-01",
-            "proj": 19.8,
-            "actual": 14.5,
-            "err": -5.3
-          },
           {
             "date": "2026-04-29",
             "proj": 18,
@@ -3515,12 +3434,6 @@
         "name": "Jamal Cain",
         "recent": [
           {
-            "date": "2026-05-01",
-            "proj": 17.7,
-            "actual": 15,
-            "err": -2.7
-          },
-          {
             "date": "2026-04-29",
             "proj": 18.2,
             "actual": 11,
@@ -3531,12 +3444,6 @@
       "collin murray-boyles": {
         "name": "Collin Murray-Boyles",
         "recent": [
-          {
-            "date": "2026-05-01",
-            "proj": 29,
-            "actual": 36.8,
-            "err": 7.8
-          },
           {
             "date": "2026-04-29",
             "proj": 28.1,
@@ -3561,12 +3468,6 @@
         "name": "Jamal Shead",
         "recent": [
           {
-            "date": "2026-05-01",
-            "proj": 28.1,
-            "actual": 19.2,
-            "err": -8.9
-          },
-          {
             "date": "2026-04-29",
             "proj": 21.9,
             "actual": 34.2,
@@ -3589,12 +3490,6 @@
       "anthony black": {
         "name": "Anthony Black",
         "recent": [
-          {
-            "date": "2026-05-01",
-            "proj": 26.4,
-            "actual": 13.8,
-            "err": -12.6
-          },
           {
             "date": "2026-04-29",
             "proj": 23.7,
@@ -3619,12 +3514,6 @@
         "name": "Caris LeVert",
         "recent": [
           {
-            "date": "2026-05-01",
-            "proj": 16,
-            "actual": 0,
-            "err": -16
-          },
-          {
             "date": "2026-05-13",
             "proj": 19.2,
             "actual": 13.8,
@@ -3641,12 +3530,6 @@
       "rui hachimura": {
         "name": "Rui Hachimura",
         "recent": [
-          {
-            "date": "2026-05-01",
-            "proj": 20.9,
-            "actual": 36,
-            "err": 15.1
-          },
           {
             "date": "2026-04-29",
             "proj": 21.1,
@@ -3689,12 +3572,6 @@
         "name": "Sandro Mamukelashvili",
         "recent": [
           {
-            "date": "2026-05-01",
-            "proj": 15.5,
-            "actual": 12.5,
-            "err": -3
-          },
-          {
             "date": "2026-04-29",
             "proj": 15.3,
             "actual": 16.8,
@@ -3711,12 +3588,6 @@
       "dennis schroder": {
         "name": "Dennis Schroder",
         "recent": [
-          {
-            "date": "2026-05-01",
-            "proj": 16.3,
-            "actual": 11.5,
-            "err": -4.8
-          },
           {
             "date": "2026-05-11",
             "proj": 15.3,
@@ -3746,18 +3617,18 @@
             "proj": 14.4,
             "actual": 13.5,
             "err": -0.9
+          },
+          {
+            "date": "2026-05-23",
+            "proj": 14.2,
+            "actual": 6.5,
+            "err": -7.7
           }
         ]
       },
       "duncan robinson": {
         "name": "Duncan Robinson",
         "recent": [
-          {
-            "date": "2026-05-01",
-            "proj": 17.1,
-            "actual": 25.8,
-            "err": 8.7
-          },
           {
             "date": "2026-04-29",
             "proj": 19.4,
@@ -3812,12 +3683,6 @@
         "name": "Sam Merrill",
         "recent": [
           {
-            "date": "2026-05-01",
-            "proj": 15.5,
-            "actual": 6.2,
-            "err": -9.3
-          },
-          {
             "date": "2026-05-13",
             "proj": 11.9,
             "actual": 10.5,
@@ -3840,18 +3705,18 @@
             "proj": 16.4,
             "actual": 3.5,
             "err": -12.9
+          },
+          {
+            "date": "2026-05-23",
+            "proj": 16.5,
+            "actual": 14.2,
+            "err": -2.3
           }
         ]
       },
       "wendell carter jr.": {
         "name": "Wendell Carter Jr.",
         "recent": [
-          {
-            "date": "2026-05-01",
-            "proj": 26.9,
-            "actual": 15.5,
-            "err": -11.4
-          },
           {
             "date": "2026-04-29",
             "proj": 26.9,
@@ -3876,12 +3741,6 @@
         "name": "Amen Thompson",
         "recent": [
           {
-            "date": "2026-05-01",
-            "proj": 45.7,
-            "actual": 37.5,
-            "err": -8.2
-          },
-          {
             "date": "2026-04-29",
             "proj": 44.5,
             "actual": 37.2,
@@ -3898,12 +3757,6 @@
       "marcus smart": {
         "name": "Marcus Smart",
         "recent": [
-          {
-            "date": "2026-05-01",
-            "proj": 29.3,
-            "actual": 25.8,
-            "err": -3.5
-          },
           {
             "date": "2026-04-29",
             "proj": 31.1,
@@ -3946,12 +3799,6 @@
         "name": "Scottie Barnes",
         "recent": [
           {
-            "date": "2026-05-01",
-            "proj": 50.5,
-            "actual": 66.8,
-            "err": 16.3
-          },
-          {
             "date": "2026-04-29",
             "proj": 47.9,
             "actual": 51,
@@ -3974,12 +3821,6 @@
       "deandre ayton": {
         "name": "Deandre Ayton",
         "recent": [
-          {
-            "date": "2026-05-01",
-            "proj": 27.2,
-            "actual": 30.5,
-            "err": 3.3
-          },
           {
             "date": "2026-04-29",
             "proj": 25.3,
@@ -4022,12 +3863,6 @@
         "name": "Ja'Kobe Walter",
         "recent": [
           {
-            "date": "2026-05-01",
-            "proj": 22.1,
-            "actual": 40.2,
-            "err": 18.1
-          },
-          {
             "date": "2026-04-29",
             "proj": 17.5,
             "actual": 37.2,
@@ -4050,12 +3885,6 @@
       "cade cunningham": {
         "name": "Cade Cunningham",
         "recent": [
-          {
-            "date": "2026-05-01",
-            "proj": 57.1,
-            "actual": 59.5,
-            "err": 2.4
-          },
           {
             "date": "2026-04-29",
             "proj": 55.8,
@@ -4122,12 +3951,6 @@
         "name": "Jalen Duren",
         "recent": [
           {
-            "date": "2026-05-01",
-            "proj": 38.1,
-            "actual": 19.8,
-            "err": -18.3
-          },
-          {
             "date": "2026-04-29",
             "proj": 38.2,
             "actual": 28.8,
@@ -4193,12 +4016,6 @@
         "name": "Tari Eason",
         "recent": [
           {
-            "date": "2026-05-01",
-            "proj": 30.4,
-            "actual": 32.2,
-            "err": 1.8
-          },
-          {
             "date": "2026-04-29",
             "proj": 29.8,
             "actual": 28.8,
@@ -4215,12 +4032,6 @@
       "tobias harris": {
         "name": "Tobias Harris",
         "recent": [
-          {
-            "date": "2026-05-01",
-            "proj": 35.2,
-            "actual": 37,
-            "err": 1.8
-          },
           {
             "date": "2026-04-29",
             "proj": 35.3,
@@ -4367,6 +4178,12 @@
             "proj": 46,
             "actual": 38.8,
             "err": -7.2
+          },
+          {
+            "date": "2026-05-23",
+            "proj": 46.3,
+            "actual": 42,
+            "err": -4.3
           }
         ]
       },
@@ -4619,6 +4436,12 @@
             "proj": 42.2,
             "actual": 44.2,
             "err": 2
+          },
+          {
+            "date": "2026-05-23",
+            "proj": 42.1,
+            "actual": 42.8,
+            "err": 0.7
           }
         ]
       },
@@ -5078,6 +4901,12 @@
             "proj": 26.9,
             "actual": 29.8,
             "err": 2.9
+          },
+          {
+            "date": "2026-05-23",
+            "proj": 28.5,
+            "actual": 41.5,
+            "err": 13
           }
         ]
       },
@@ -5247,6 +5076,12 @@
             "proj": 18.2,
             "actual": 10.5,
             "err": -7.7
+          },
+          {
+            "date": "2026-05-23",
+            "proj": 16.5,
+            "actual": 5.8,
+            "err": -10.7
           }
         ]
       },
@@ -5480,6 +5315,12 @@
             "proj": 30.2,
             "actual": 32.5,
             "err": 2.3
+          },
+          {
+            "date": "2026-05-23",
+            "proj": 29.3,
+            "actual": 36.8,
+            "err": 7.5
           }
         ]
       },
@@ -5574,6 +5415,12 @@
             "proj": 12.8,
             "actual": 15,
             "err": 2.2
+          },
+          {
+            "date": "2026-05-23",
+            "proj": 13,
+            "actual": 7.5,
+            "err": -5.5
           }
         ]
       },
@@ -5627,6 +5474,12 @@
             "proj": 31.5,
             "actual": 47.5,
             "err": 16
+          },
+          {
+            "date": "2026-05-23",
+            "proj": 33,
+            "actual": 37.8,
+            "err": 4.8
           }
         ]
       },
@@ -5679,6 +5532,12 @@
             "proj": 6.5,
             "actual": 0,
             "err": -6.5
+          },
+          {
+            "date": "2026-05-23",
+            "proj": 6.7,
+            "actual": 7.8,
+            "err": 1.1
           }
         ]
       },
@@ -6858,6 +6717,12 @@
             "proj": 15.1,
             "actual": 10.8,
             "err": -4.3
+          },
+          {
+            "date": "2026-05-23",
+            "proj": 14.7,
+            "actual": 6,
+            "err": -8.7
           }
         ]
       },
@@ -7240,6 +7105,12 @@
             "proj": 10.7,
             "actual": 7,
             "err": -3.7
+          },
+          {
+            "date": "2026-05-23",
+            "proj": 8.2,
+            "actual": 20.8,
+            "err": 12.6
           }
         ]
       },
@@ -7257,6 +7128,12 @@
             "proj": 9.1,
             "actual": 3.5,
             "err": -5.6
+          },
+          {
+            "date": "2026-05-23",
+            "proj": 6.7,
+            "actual": 0,
+            "err": -6.7
           }
         ]
       },
@@ -7274,6 +7151,12 @@
             "proj": 6.3,
             "actual": 4.8,
             "err": -1.5
+          },
+          {
+            "date": "2026-05-23",
+            "proj": 5.9,
+            "actual": 1.5,
+            "err": -4.4
           }
         ]
       },
@@ -7295,6 +7178,6 @@
         ]
       }
     },
-    "lastUpdated": "2026-05-23T11:28:48.154Z"
+    "lastUpdated": "2026-05-24T12:43:27.559Z"
   }
 }
