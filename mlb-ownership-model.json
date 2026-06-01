@@ -1,0 +1,293 @@
+{
+  "version": 1,
+  "schema": "mlb-ownership-model.v1",
+  "sport": "mlb",
+  "trainedAt": "2026-06-01T19:56:43.125Z",
+  "target": "top100CohortOwnership",
+  "scale": 100,
+  "intercept": -1.714987,
+  "coefficients": {
+    "valuePerK": -0.102241,
+    "projRankInPos": -0.178261,
+    "valueRankInPos": -0.254504,
+    "priceRankInPos": -0.245045,
+    "ceilingRate": -0.064552,
+    "salTier_lt3k": -0.172213,
+    "salTier_3to4_5": -0.181875,
+    "salTier_4_5to7": -0.326397,
+    "salTier_7plus": 0.151735,
+    "pos_P": 0.154973,
+    "pos_C": -0.153997,
+    "pos_1B": -0.105486,
+    "pos_2B": -0.150155,
+    "pos_3B": -0.11725,
+    "pos_SS": -0.080888,
+    "pos_OF": -0.075947,
+    "games_small": 0.265102,
+    "games_main": -0.303103,
+    "games_large": -0.490749,
+    "isTopValueAtPos": 0.132143,
+    "isTopProjAtPos": 0.088831
+  },
+  "featureNames": [
+    "valuePerK",
+    "projRankInPos",
+    "valueRankInPos",
+    "priceRankInPos",
+    "ceilingRate",
+    "salTier_lt3k",
+    "salTier_3to4_5",
+    "salTier_4_5to7",
+    "salTier_7plus",
+    "pos_P",
+    "pos_C",
+    "pos_1B",
+    "pos_2B",
+    "pos_3B",
+    "pos_SS",
+    "pos_OF",
+    "games_small",
+    "games_main",
+    "games_large",
+    "isTopValueAtPos",
+    "isTopProjAtPos"
+  ],
+  "featureMeans": {
+    "valuePerK": 1.822498,
+    "projRankInPos": 0.425857,
+    "valueRankInPos": 0.454699,
+    "priceRankInPos": 0.454409,
+    "ceilingRate": 2.112527
+  },
+  "featureStds": {
+    "valuePerK": 0.359689,
+    "projRankInPos": 0.285411,
+    "valueRankInPos": 0.294856,
+    "priceRankInPos": 0.293589,
+    "ceilingRate": 0.181225
+  },
+  "training": {
+    "splitMethod": "80/20 chronological",
+    "slateCount": 11,
+    "trainRows": 1118,
+    "evalRows": 223,
+    "trainDates": [
+      "2026-05-18",
+      "2026-05-19",
+      "2026-05-20",
+      "2026-05-21",
+      "2026-05-22",
+      "2026-05-26",
+      "2026-05-27",
+      "2026-05-28",
+      "2026-05-29",
+      "2026-05-30",
+      "2026-05-31"
+    ],
+    "perSlateStats": [
+      {
+        "date": "2026-05-18",
+        "contestId": 190577305,
+        "n": 92,
+        "cohortCount": 100
+      },
+      {
+        "date": "2026-05-19",
+        "contestId": 190606742,
+        "n": 115,
+        "cohortCount": 100
+      },
+      {
+        "date": "2026-05-20",
+        "contestId": 190636361,
+        "n": 88,
+        "cohortCount": 100
+      },
+      {
+        "date": "2026-05-21",
+        "contestId": 190661483,
+        "n": 56,
+        "cohortCount": 100
+      },
+      {
+        "date": "2026-05-22",
+        "contestId": 190687965,
+        "n": 162,
+        "cohortCount": 100
+      },
+      {
+        "date": "2026-05-26",
+        "contestId": 190802884,
+        "n": 81,
+        "cohortCount": 100
+      },
+      {
+        "date": "2026-05-27",
+        "contestId": 190834023,
+        "n": 110,
+        "cohortCount": 100
+      },
+      {
+        "date": "2026-05-28",
+        "contestId": 190858327,
+        "n": 55,
+        "cohortCount": 100
+      },
+      {
+        "date": "2026-05-29",
+        "contestId": 190883166,
+        "n": 136,
+        "cohortCount": 100
+      },
+      {
+        "date": "2026-05-30",
+        "contestId": 190911480,
+        "n": 96,
+        "cohortCount": 100
+      },
+      {
+        "date": "2026-05-31",
+        "contestId": 190934501,
+        "n": 127,
+        "cohortCount": 100
+      }
+    ],
+    "skipped": [
+      {
+        "date": "2026-04-27",
+        "reason": "no rollup slate"
+      },
+      {
+        "date": "2026-04-28",
+        "reason": "no rollup slate"
+      },
+      {
+        "date": "2026-04-29",
+        "reason": "no rollup slate"
+      },
+      {
+        "date": "2026-04-30",
+        "reason": "no rollup slate"
+      },
+      {
+        "date": "2026-05-01",
+        "reason": "no rollup slate"
+      },
+      {
+        "date": "2026-05-04",
+        "reason": "no rollup slate"
+      },
+      {
+        "date": "2026-05-05",
+        "reason": "no rollup slate"
+      },
+      {
+        "date": "2026-05-06",
+        "reason": "no rollup slate"
+      },
+      {
+        "date": "2026-05-07",
+        "reason": "no rollup slate"
+      },
+      {
+        "date": "2026-05-08",
+        "reason": "no rollup slate"
+      },
+      {
+        "date": "2026-05-11",
+        "reason": "no rollup slate"
+      },
+      {
+        "date": "2026-05-13",
+        "reason": "no rollup slate"
+      },
+      {
+        "date": "2026-05-14",
+        "reason": "no rollup slate"
+      },
+      {
+        "date": "2026-05-15",
+        "reason": "no rollup slate"
+      },
+      {
+        "date": "2026-05-16",
+        "reason": "no rollup slate"
+      },
+      {
+        "date": "2026-05-17",
+        "reason": "no rollup slate"
+      }
+    ]
+  },
+  "backtest": {
+    "overall": {
+      "n": 223,
+      "rmse": 11.503,
+      "mae": 8.391,
+      "r2": 0.155
+    },
+    "byPosition": {
+      "P": {
+        "n": 26,
+        "rmse": 18.26,
+        "mae": 14.09,
+        "r2": 0.185
+      },
+      "2B": {
+        "n": 24,
+        "rmse": 12.187,
+        "mae": 9.169,
+        "r2": 0.1
+      },
+      "OF": {
+        "n": 69,
+        "rmse": 11.809,
+        "mae": 8.686,
+        "r2": 0.078
+      },
+      "C": {
+        "n": 23,
+        "rmse": 11.015,
+        "mae": 8.422,
+        "r2": -0.021
+      },
+      "SS": {
+        "n": 17,
+        "rmse": 8.826,
+        "mae": 6.434,
+        "r2": 0.286
+      },
+      "3B": {
+        "n": 27,
+        "rmse": 6.234,
+        "mae": 5.447,
+        "r2": -0.494
+      },
+      "1B": {
+        "n": 37,
+        "rmse": 8.192,
+        "mae": 6.361,
+        "r2": 0.212
+      }
+    },
+    "vsBaselines": {
+      "predictStokastic": {
+        "n": 223,
+        "rmse": 10.87,
+        "mae": 7.017,
+        "r2": 0.245
+      }
+    },
+    "improvementOverStokastic": {
+      "n": 223,
+      "modelRmse": 11.503,
+      "stokRmse": 10.87,
+      "delta": -0.633
+    },
+    "agreementWithStokastic": {
+      "n": 223,
+      "correlation": 0.782,
+      "meanAbsDiff": 4.013
+    }
+  }
+}
