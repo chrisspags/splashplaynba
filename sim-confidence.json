@@ -2,6 +2,105 @@
   "schemaVersion": 1,
   "runs": [
     {
+      "date": "2026-06-08",
+      "matched": 17,
+      "generatedAt": "2026-06-09T12:44:01.755Z",
+      "projFile": "nba-rollup.json.gz",
+      "projSource": "nba-rollup.json.gz (showdown_sas_nyk_dk)",
+      "overall": {
+        "bias": -1.506,
+        "mae": 5.847,
+        "r": 0.901,
+        "rmse": 7.139,
+        "medianBias": 1.5,
+        "medianAbsErr": 4.4,
+        "pctActualOverProj": 0.5294
+      },
+      "byPosition": {
+        "PG": {
+          "fifty": 0.8,
+          "eighty": 0.8,
+          "n": 5,
+          "bias": -0.84,
+          "mae": 4.48,
+          "r": 0.944,
+          "medianBias": 1.7,
+          "medianAbsErr": 2.4,
+          "pctActualOverProj": 0.8
+        },
+        "SG": {
+          "fifty": 0.8333,
+          "eighty": 0.8333,
+          "n": 6,
+          "bias": -1.083,
+          "mae": 5.55,
+          "r": 0.976,
+          "medianBias": 0.25,
+          "medianAbsErr": 4,
+          "pctActualOverProj": 0.5
+        },
+        "SF": {
+          "fifty": 0.6,
+          "eighty": 0.8,
+          "n": 5,
+          "bias": -4.58,
+          "mae": 6.78,
+          "r": 0.681,
+          "medianBias": -3.6,
+          "medianAbsErr": 5.5,
+          "pctActualOverProj": 0.2
+        }
+      },
+      "byPriceTier": {
+        "stud": {
+          "fifty": 0.8,
+          "eighty": 0.8,
+          "n": 5,
+          "bias": 1.42,
+          "mae": 6.46,
+          "r": 0.69,
+          "medianBias": 3.1,
+          "medianAbsErr": 4.4,
+          "pctActualOverProj": 0.8
+        },
+        "mid": {
+          "fifty": 0.6667,
+          "eighty": 0.8333,
+          "n": 6,
+          "bias": -2.35,
+          "mae": 5.917,
+          "r": 0.696,
+          "medianBias": -0.2,
+          "medianAbsErr": 4.5,
+          "pctActualOverProj": 0.5
+        },
+        "value": {
+          "fifty": 0.6667,
+          "eighty": 0.8333,
+          "n": 6,
+          "bias": -3.1,
+          "mae": 5.267,
+          "r": 0.015,
+          "medianBias": -3.3,
+          "medianAbsErr": 4.3,
+          "pctActualOverProj": 0.3333
+        }
+      },
+      "byOwnership": {
+        "chalk": {
+          "fifty": 0.7692,
+          "eighty": 0.8462,
+          "n": 13,
+          "bias": -1.215,
+          "mae": 5.892,
+          "r": 0.885,
+          "medianBias": 1.7,
+          "medianAbsErr": 4.4,
+          "pctActualOverProj": 0.5385
+        }
+      }
+    },
+    {
       "date": "2026-06-05",
       "matched": 19,
       "generatedAt": "2026-06-08T13:44:50.917Z",
@@ -2439,157 +2538,60 @@
           "pctActualOverProj": 0.8333
         }
       }
-    },
-    {
-      "date": "2026-05-02",
-      "matched": 18,
-      "generatedAt": "2026-05-03T14:34:40.631Z",
-      "projFile": "nba-dk-showdown.json",
-      "projSource": "per-slate: nba-dk-showdown.json",
-      "overall": {
-        "bias": -1.094,
-        "mae": 9.172,
-        "r": 0.916,
-        "rmse": 10.122,
-        "medianBias": -3.8,
-        "medianAbsErr": 9.35,
-        "pctActualOverProj": 0.4444
-      },
-      "byPosition": {
-        "SG": {
-          "fifty": 0.8333,
-          "eighty": 1,
-          "n": 6,
-          "bias": -0.567,
-          "mae": 5.367,
-          "r": 0.935,
-          "medianBias": -0.75,
-          "medianAbsErr": 4.95,
-          "pctActualOverProj": 0.5
-        },
-        "SF": {
-          "fifty": 0.2857,
-          "eighty": 0.7143,
-          "n": 7,
-          "bias": -5.314,
-          "mae": 8.086,
-          "r": 0.916,
-          "medianBias": -6.9,
-          "medianAbsErr": 6.9,
-          "pctActualOverProj": 0.2857
-        },
-        "PF": {
-          "fifty": 0,
-          "eighty": 0.4,
-          "n": 5,
-          "bias": -7.32,
-          "mae": 9,
-          "r": 0.744,
-          "medianBias": -8.5,
-          "medianAbsErr": 8.5,
-          "pctActualOverProj": 0.2
-        },
-        "PG": {
-          "fifty": 0.6,
-          "eighty": 1,
-          "n": 5,
-          "bias": 6.26,
-          "mae": 7.54,
-          "r": 0.913,
-          "medianBias": 7.2,
-          "medianAbsErr": 7.2,
-          "pctActualOverProj": 0.8
-        },
-        "C": {
-          "fifty": 0.2,
-          "eighty": 0.6,
-          "n": 5,
-          "bias": -1.06,
-          "mae": 12.46,
-          "r": 0.924,
-          "medianBias": -6.1,
-          "medianAbsErr": 13.9,
-          "pctActualOverProj": 0.4
-        }
-      },
-      "byPriceTier": {
-        "stud": {
-          "fifty": 0.6,
-          "eighty": 0.8,
-          "n": 5,
-          "bias": 5.24,
-          "mae": 11,
-          "r": 0.831,
-          "medianBias": 7.2,
-          "medianAbsErr": 13.9,
-          "pctActualOverProj": 0.8
-        },
-        "value": {
-          "fifty": 0.2222,
-          "eighty": 0.6667,
-          "n": 9,
-          "bias": -6.522,
-          "mae": 7.833,
-          "r": 0.512,
-          "medianBias": -6.9,
-          "medianAbsErr": 6.9,
-          "pctActualOverProj": 0.2222
-        }
-      }
     }
   ],
   "averaged": {
-    "lastUpdated": "2026-06-08T13:44:50.917Z",
+    "lastUpdated": "2026-06-09T12:44:01.755Z",
     "slatesIncluded": 25,
     "byPosition": {
       "PG": {
-        "fifty": 0.5818,
-        "eighty": 0.8909,
+        "fifty": 0.5909,
+        "eighty": 0.8818,
         "nTotal": 110
       },
       "SG": {
         "fifty": 0.558,
-        "eighty": 0.8508,
+        "eighty": 0.8453,
         "nTotal": 181
       },
       "SF": {
-        "fifty": 0.4875,
-        "eighty": 0.7937,
-        "nTotal": 160
+        "fifty": 0.5,
+        "eighty": 0.7975,
+        "nTotal": 158
       },
       "PF": {
-        "fifty": 0.5632,
-        "eighty": 0.7816,
-        "nTotal": 87
+        "fifty": 0.5976,
+        "eighty": 0.8049,
+        "nTotal": 82
       },
       "C": {
-        "fifty": 0.5789,
-        "eighty": 0.8552,
-        "nTotal": 76
+        "fifty": 0.6056,
+        "eighty": 0.8732,
+        "nTotal": 71
       }
     },
     "byPriceTier": {
       "stud": {
-        "fifty": 0.582,
+        "fifty": 0.5902,
         "eighty": 0.8934,
         "nTotal": 122
       },
       "mid": {
-        "fifty": 0.5676,
-        "eighty": 0.8324,
-        "nTotal": 185
+        "fifty": 0.5707,
+        "eighty": 0.8325,
+        "nTotal": 191
       },
       "value": {
-        "fifty": 0.5105,
-        "eighty": 0.8316,
-        "nTotal": 190
+        "fifty": 0.5294,
+        "eighty": 0.8396,
+        "nTotal": 187
       }
     },
     "byOwnership": {
       "chalk": {
-        "fifty": 0.5336,
-        "eighty": 0.8221,
-        "nTotal": 253
+        "fifty": 0.5451,
+        "eighty": 0.8233,
+        "nTotal": 266
       },
       "mid": {
         "fifty": 0.5,
@@ -3694,29 +3696,18 @@
             "proj": 43.1,
             "actual": 49.2,
             "err": 6.1
-          }
-        ]
-      },
-      "jaylen brown": {
-        "name": "Jaylen Brown",
-        "recent": [
+          },
           {
-            "date": "2026-05-02",
-            "proj": 50.7,
-            "actual": 56.2,
-            "err": 5.5
+            "date": "2026-06-08",
+            "proj": 44.6,
+            "actual": 32,
+            "err": -12.6
           }
         ]
       },
       "joel embiid": {
         "name": "Joel Embiid",
         "recent": [
-          {
-            "date": "2026-05-02",
-            "proj": 47.6,
-            "actual": 61.5,
-            "err": 13.9
-          },
           {
             "date": "2026-05-04",
             "proj": 47.7,
@@ -3881,29 +3872,18 @@
             "proj": 41.3,
             "actual": 44.2,
             "err": 2.9
-          }
-        ]
-      },
-      "nikola vucevic": {
-        "name": "Nikola Vucevic",
-        "recent": [
+          },
           {
-            "date": "2026-05-02",
-            "proj": 14.8,
-            "actual": 0,
-            "err": -14.8
+            "date": "2026-06-08",
+            "proj": 42.4,
+            "actual": 44.8,
+            "err": 2.4
           }
         ]
       },
       "paul george": {
         "name": "Paul George",
         "recent": [
-          {
-            "date": "2026-05-02",
-            "proj": 32.6,
-            "actual": 18.2,
-            "err": -14.4
-          },
           {
             "date": "2026-05-04",
             "proj": 31.8,
@@ -3975,12 +3955,6 @@
         "name": "VJ Edgecombe",
         "recent": [
           {
-            "date": "2026-05-02",
-            "proj": 30.3,
-            "actual": 37.5,
-            "err": 7.2
-          },
-          {
             "date": "2026-05-04",
             "proj": 31,
             "actual": 18.8,
@@ -4006,26 +3980,9 @@
           }
         ]
       },
-      "payton pritchard": {
-        "name": "Payton Pritchard",
-        "recent": [
-          {
-            "date": "2026-05-02",
-            "proj": 36,
-            "actual": 32.8,
-            "err": -3.2
-          }
-        ]
-      },
       "kelly oubre jr.": {
         "name": "Kelly Oubre Jr.",
         "recent": [
-          {
-            "date": "2026-05-02",
-            "proj": 25,
-            "actual": 14.8,
-            "err": -10.2
-          },
           {
             "date": "2026-05-04",
             "proj": 24.1,
@@ -4114,29 +4071,18 @@
             "proj": 25.2,
             "actual": 40,
             "err": 14.8
-          }
-        ]
-      },
-      "sam hauser": {
-        "name": "Sam Hauser",
-        "recent": [
+          },
           {
-            "date": "2026-05-02",
-            "proj": 13.6,
-            "actual": 17.8,
-            "err": 4.2
+            "date": "2026-06-08",
+            "proj": 27,
+            "actual": 12.8,
+            "err": -14.2
           }
         ]
       },
       "quentin grimes": {
         "name": "Quentin Grimes",
         "recent": [
-          {
-            "date": "2026-05-02",
-            "proj": 14.8,
-            "actual": 16.5,
-            "err": 1.7
-          },
           {
             "date": "2026-05-04",
             "proj": 15.8,
@@ -4230,29 +4176,18 @@
             "proj": 13.7,
             "actual": 14.2,
             "err": 0.5
-          }
-        ]
-      },
-      "derrick white": {
-        "name": "Derrick White",
-        "recent": [
+          },
           {
-            "date": "2026-05-02",
-            "proj": 36.4,
-            "actual": 48,
-            "err": 11.6
+            "date": "2026-06-08",
+            "proj": 15.2,
+            "actual": 10,
+            "err": -5.2
           }
         ]
       },
       "tyrese maxey": {
         "name": "Tyrese Maxey",
         "recent": [
-          {
-            "date": "2026-05-02",
-            "proj": 42.2,
-            "actual": 56.2,
-            "err": 14
-          },
           {
             "date": "2026-05-04",
             "proj": 43.4,
@@ -4276,17 +4211,6 @@
             "proj": 45.7,
             "actual": 25,
             "err": -20.7
-          }
-        ]
-      },
-      "neemias queta": {
-        "name": "Neemias Queta",
-        "recent": [
-          {
-            "date": "2026-05-02",
-            "proj": 19.9,
-            "actual": 34.5,
-            "err": 14.6
           }
         ]
       },
@@ -4375,6 +4299,12 @@
             "proj": 29.4,
             "actual": 35.5,
             "err": 6.1
+          },
+          {
+            "date": "2026-06-08",
+            "proj": 31,
+            "actual": 40.8,
+            "err": 9.8
           }
         ]
       },
@@ -4469,6 +4399,12 @@
             "proj": 13,
             "actual": 10,
             "err": -3
+          },
+          {
+            "date": "2026-06-08",
+            "proj": 12.8,
+            "actual": -0.5,
+            "err": -13.3
           }
         ]
       },
@@ -4534,6 +4470,12 @@
             "proj": 34.3,
             "actual": 16.5,
             "err": -17.8
+          },
+          {
+            "date": "2026-06-08",
+            "proj": 30.3,
+            "actual": 35.8,
+            "err": 5.5
           }
         ]
       },
@@ -4658,6 +4600,12 @@
             "proj": 59.5,
             "actual": 54.2,
             "err": -5.3
+          },
+          {
+            "date": "2026-06-08",
+            "proj": 58.4,
+            "actual": 61.5,
+            "err": 3.1
           }
         ]
       },
@@ -4729,6 +4677,12 @@
             "proj": 31.8,
             "actual": 34.2,
             "err": 2.4
+          },
+          {
+            "date": "2026-06-08",
+            "proj": 31.1,
+            "actual": 32.8,
+            "err": 1.7
           }
         ]
       },
@@ -4812,6 +4766,12 @@
             "proj": 36.5,
             "actual": 26,
             "err": -10.5
+          },
+          {
+            "date": "2026-06-08",
+            "proj": 36.4,
+            "actual": 40.8,
+            "err": 4.4
           }
         ]
       },
@@ -4895,6 +4855,12 @@
             "proj": 27.1,
             "actual": 28,
             "err": 0.9
+          },
+          {
+            "date": "2026-06-08",
+            "proj": 27.3,
+            "actual": 30.8,
+            "err": 3.5
           }
         ]
       },
@@ -4978,6 +4944,12 @@
             "proj": 22.1,
             "actual": 17.5,
             "err": -4.6
+          },
+          {
+            "date": "2026-06-08",
+            "proj": 23.3,
+            "actual": 21.2,
+            "err": -2.1
           }
         ]
       },
@@ -5061,6 +5033,12 @@
             "proj": 14.8,
             "actual": 12.5,
             "err": -2.3
+          },
+          {
+            "date": "2026-06-08",
+            "proj": 14.1,
+            "actual": 10.5,
+            "err": -3.6
           }
         ]
       },
@@ -5144,6 +5122,12 @@
             "proj": 26.2,
             "actual": 36.2,
             "err": 10
+          },
+          {
+            "date": "2026-06-08",
+            "proj": 25.5,
+            "actual": 17,
+            "err": -8.5
           }
         ]
       },
@@ -5647,75 +5631,14 @@
           }
         ]
       },
-      "jordan walsh": {
-        "name": "Jordan Walsh",
-        "recent": [
-          {
-            "date": "2026-05-02",
-            "proj": 8.5,
-            "actual": 0,
-            "err": -8.5
-          }
-        ]
-      },
-      "justin edwards": {
-        "name": "Justin Edwards",
-        "recent": [
-          {
-            "date": "2026-05-02",
-            "proj": 6.9,
-            "actual": 0,
-            "err": -6.9
-          }
-        ]
-      },
-      "luka garza": {
-        "name": "Luka Garza",
-        "recent": [
-          {
-            "date": "2026-05-02",
-            "proj": 14.4,
-            "actual": 1.5,
-            "err": -12.9
-          }
-        ]
-      },
-      "baylor scheierman": {
-        "name": "Baylor Scheierman",
-        "recent": [
-          {
-            "date": "2026-05-02",
-            "proj": 16.9,
-            "actual": 12.5,
-            "err": -4.4
-          }
-        ]
-      },
       "andre drummond": {
         "name": "Andre Drummond",
         "recent": [
-          {
-            "date": "2026-05-02",
-            "proj": 8.9,
-            "actual": 2.8,
-            "err": -6.1
-          },
           {
             "date": "2026-05-06",
             "proj": 22.4,
             "actual": 19.5,
             "err": -2.9
-          }
-        ]
-      },
-      "ron harper jr.": {
-        "name": "Ron Harper Jr.",
-        "recent": [
-          {
-            "date": "2026-05-02",
-            "proj": 15,
-            "actual": 4,
-            "err": -11
           }
         ]
       },
@@ -5886,6 +5809,12 @@
             "proj": 8.9,
             "actual": 6.8,
             "err": -2.1
+          },
+          {
+            "date": "2026-06-08",
+            "proj": 8.2,
+            "actual": 13.2,
+            "err": 5
           }
         ]
       },
@@ -6128,6 +6057,12 @@
             "proj": 14.2,
             "actual": 22,
             "err": 7.8
+          },
+          {
+            "date": "2026-06-08",
+            "proj": 16.5,
+            "actual": 13.5,
+            "err": -3
           }
         ]
       },
@@ -6198,6 +6133,12 @@
             "proj": 7.2,
             "actual": 8.8,
             "err": 1.6
+          },
+          {
+            "date": "2026-06-08",
+            "proj": 7.7,
+            "actual": 9.2,
+            "err": 1.5
           }
         ]
       },
@@ -6248,6 +6189,6 @@
         ]
       }
     },
-    "lastUpdated": "2026-06-08T13:44:50.917Z"
+    "lastUpdated": "2026-06-09T12:44:01.755Z"
   }
 }
