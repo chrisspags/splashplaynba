@@ -1,7 +1,38 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-10T15:26:29.024Z",
-  "empirical": null,
+  "generatedAt": "2026-06-10T18:50:24.629Z",
+  "empirical": {
+    "tables": {
+      "ALL": {
+        "q": [
+          -0.071,
+          0.2438,
+          0.4058,
+          0.508,
+          0.6009,
+          0.6723,
+          0.7314,
+          0.7881,
+          0.8367,
+          0.8853,
+          0.9329,
+          0.9767,
+          1.0236,
+          1.0779,
+          1.1324,
+          1.1945,
+          1.2621,
+          1.3555,
+          1.4816,
+          1.724,
+          4.4042
+        ],
+        "cv": 0.596,
+        "nGames": 3450,
+        "avgPlayerCv": 0.466
+      }
+    }
+  },
   "slatesProcessed": 45,
   "slatesByBucket": {
     "unknown": 0,
@@ -158,16 +189,16 @@
       "nSlates": 14,
       "status": "active",
       "byPosition": {
-        "PG": {
-          "biasMult": 1.003,
-          "stdevMult": 0.957,
-          "n": 31,
-          "cov50": 0.581,
-          "cov80": 0.903,
-          "bias": 0.56,
-          "biasRaw": 1.016,
-          "stdevRaw": 0.873,
-          "shrinkW": 0.341
+        "C": {
+          "biasMult": 0.986,
+          "stdevMult": 0.942,
+          "n": 28,
+          "cov50": 0.679,
+          "cov80": 0.893,
+          "bias": -3.23,
+          "biasRaw": 0.912,
+          "stdevRaw": 0.816,
+          "shrinkW": 0.318
         },
         "SG": {
           "biasMult": 1.009,
@@ -180,27 +211,16 @@
           "stdevRaw": 1.003,
           "shrinkW": 0.417
         },
-        "PF": {
+        "PG": {
           "biasMult": 1.003,
           "stdevMult": 0.957,
-          "n": 29,
-          "cov50": 0.621,
-          "cov80": 0.862,
-          "bias": 0.52,
-          "biasRaw": 1.018,
-          "stdevRaw": 0.867,
-          "shrinkW": 0.326
-        },
-        "C": {
-          "biasMult": 0.986,
-          "stdevMult": 0.942,
-          "n": 28,
-          "cov50": 0.679,
-          "cov80": 0.893,
-          "bias": -3.23,
-          "biasRaw": 0.912,
-          "stdevRaw": 0.816,
-          "shrinkW": 0.318
+          "n": 31,
+          "cov50": 0.581,
+          "cov80": 0.903,
+          "bias": 0.56,
+          "biasRaw": 1.016,
+          "stdevRaw": 0.873,
+          "shrinkW": 0.341
         },
         "SF": {
           "biasMult": 1.012,
@@ -212,6 +232,17 @@
           "biasRaw": 1.057,
           "stdevRaw": 0.934,
           "shrinkW": 0.406
+        },
+        "PF": {
+          "biasMult": 1.003,
+          "stdevMult": 0.957,
+          "n": 29,
+          "cov50": 0.621,
+          "cov80": 0.862,
+          "bias": 0.52,
+          "biasRaw": 1.018,
+          "stdevRaw": 0.867,
+          "shrinkW": 0.326
         }
       },
       "byPriceTier": {
@@ -278,17 +309,6 @@
       "nSlates": 9,
       "status": "active",
       "byPosition": {
-        "C": {
-          "biasMult": 1.007,
-          "stdevMult": 0.965,
-          "n": 10,
-          "cov50": 0.7,
-          "cov80": 1,
-          "bias": 3.38,
-          "biasRaw": 1.1,
-          "stdevRaw": 0.757,
-          "shrinkW": 0.143
-        },
         "PG": {
           "biasMult": 1,
           "stdevMult": 0.966,
@@ -300,17 +320,6 @@
           "stdevRaw": 0.784,
           "shrinkW": 0.155
         },
-        "SG": {
-          "biasMult": 0.975,
-          "stdevMult": 1.049,
-          "n": 14,
-          "cov50": 0.357,
-          "cov80": 0.714,
-          "bias": -6.93,
-          "biasRaw": 0.733,
-          "stdevRaw": 1.26,
-          "shrinkW": 0.189
-        },
         "PF": {
           "biasMult": 1.02,
           "stdevMult": 1,
@@ -321,6 +330,28 @@
           "biasRaw": 1.276,
           "stdevRaw": 1,
           "shrinkW": 0.143
+        },
+        "C": {
+          "biasMult": 1.007,
+          "stdevMult": 0.965,
+          "n": 10,
+          "cov50": 0.7,
+          "cov80": 1,
+          "bias": 3.38,
+          "biasRaw": 1.1,
+          "stdevRaw": 0.757,
+          "shrinkW": 0.143
+        },
+        "SG": {
+          "biasMult": 0.975,
+          "stdevMult": 1.049,
+          "n": 14,
+          "cov50": 0.357,
+          "cov80": 0.714,
+          "bias": -6.93,
+          "biasRaw": 0.733,
+          "stdevRaw": 1.26,
+          "shrinkW": 0.189
         },
         "SF": {
           "biasMult": 0.996,
@@ -370,6 +401,11 @@
         }
       },
       "byOwnership": {
+        "leverage": {
+          "biasMult": 1,
+          "stdevMult": 1,
+          "n": 5
+        },
         "mid": {
           "biasMult": 1.006,
           "stdevMult": 0.943,
@@ -391,11 +427,6 @@
           "biasRaw": 0.981,
           "stdevRaw": 1.26,
           "shrinkW": 0.189
-        },
-        "leverage": {
-          "biasMult": 1,
-          "stdevMult": 1,
-          "n": 5
         }
       }
     },
@@ -617,82 +648,6 @@
       }
     },
     {
-      "date": "2026-05-18",
-      "gameCount": 1,
-      "isShowdown": true,
-      "bucket": "showdown",
-      "matched": 18,
-      "gateFailures": {
-        "noProj": 0,
-        "noProfile": 0,
-        "noGameForDate": 0,
-        "noDkfp": 1,
-        "noStdDev": 0,
-        "totalScanned": 19,
-        "projSource": "nba-rollup.json.gz (sa-okc_fd)"
-      }
-    },
-    {
-      "date": "2026-05-07",
-      "gameCount": 2,
-      "isShowdown": false,
-      "bucket": "2g",
-      "matched": 14,
-      "gateFailures": {
-        "noProj": 0,
-        "noProfile": 12,
-        "noGameForDate": 0,
-        "noDkfp": 0,
-        "noStdDev": 0,
-        "totalScanned": 26,
-        "projSource": "nba-rollup.json.gz (main_dk)"
-      }
-    },
-    {
-      "date": "2026-05-04",
-      "gameCount": 2,
-      "isShowdown": false,
-      "bucket": "2g",
-      "matched": 13,
-      "gateFailures": {
-        "noProj": 0,
-        "noProfile": 12,
-        "noGameForDate": 0,
-        "noDkfp": 0,
-        "noStdDev": 0,
-        "totalScanned": 25,
-        "projSource": "nba-rollup.json.gz (main_dk)"
-      }
-    },
-    {
-      "date": "2026-04-28",
-      "gameCount": 3,
-      "isShowdown": false,
-      "bucket": "3g",
-      "matched": 14,
-      "gateFailures": {
-        "noProj": 0,
-        "noProfile": 26,
-        "noGameForDate": 0,
-        "noDkfp": 0,
-        "noStdDev": 0,
-        "totalScanned": 40,
-        "projSource": "nba-rollup.json.gz (main_dk)"
-      }
-    },
-    {
-      "date": "2026-04-21",
-      "gameCount": 3,
-      "isShowdown": false,
-      "bucket": "3g",
-      "matched": 0,
-      "gateFailures": {
-        "totalScanned": 0,
-        "noArchive": 1
-      },
-      "note": "no projection snapshot in archive or nba-rollup.json.gz"
-    },
-    {
       "date": "2026-05-19",
       "gameCount": 1,
       "isShowdown": true,
@@ -706,6 +661,22 @@
         "noStdDev": 0,
         "totalScanned": 19,
         "projSource": "nba-rollup.json.gz (cle-ny_fd)"
+      }
+    },
+    {
+      "date": "2026-05-18",
+      "gameCount": 1,
+      "isShowdown": true,
+      "bucket": "showdown",
+      "matched": 18,
+      "gateFailures": {
+        "noProj": 0,
+        "noProfile": 0,
+        "noGameForDate": 0,
+        "noDkfp": 1,
+        "noStdDev": 0,
+        "totalScanned": 19,
+        "projSource": "nba-rollup.json.gz (sa-okc_fd)"
       }
     },
     {
@@ -737,6 +708,54 @@
         "noDkfp": 0,
         "noStdDev": 0,
         "totalScanned": 24,
+        "projSource": "nba-rollup.json.gz (main_dk)"
+      }
+    },
+    {
+      "date": "2026-05-10",
+      "gameCount": 2,
+      "isShowdown": false,
+      "bucket": "2g",
+      "matched": 13,
+      "gateFailures": {
+        "noProj": 0,
+        "noProfile": 13,
+        "noGameForDate": 0,
+        "noDkfp": 0,
+        "noStdDev": 0,
+        "totalScanned": 26,
+        "projSource": "nba-rollup.json.gz (main_dk)"
+      }
+    },
+    {
+      "date": "2026-05-11",
+      "gameCount": 2,
+      "isShowdown": false,
+      "bucket": "2g",
+      "matched": 13,
+      "gateFailures": {
+        "noProj": 0,
+        "noProfile": 12,
+        "noGameForDate": 0,
+        "noDkfp": 0,
+        "noStdDev": 0,
+        "totalScanned": 25,
+        "projSource": "nba-rollup.json.gz (main_dk)"
+      }
+    },
+    {
+      "date": "2026-05-08",
+      "gameCount": 2,
+      "isShowdown": false,
+      "bucket": "2g",
+      "matched": 13,
+      "gateFailures": {
+        "noProj": 0,
+        "noProfile": 13,
+        "noGameForDate": 0,
+        "noDkfp": 0,
+        "noStdDev": 0,
+        "totalScanned": 26,
         "projSource": "nba-rollup.json.gz (main_dk)"
       }
     },
@@ -773,38 +792,6 @@
       }
     },
     {
-      "date": "2026-05-11",
-      "gameCount": 2,
-      "isShowdown": false,
-      "bucket": "2g",
-      "matched": 13,
-      "gateFailures": {
-        "noProj": 0,
-        "noProfile": 12,
-        "noGameForDate": 0,
-        "noDkfp": 0,
-        "noStdDev": 0,
-        "totalScanned": 25,
-        "projSource": "nba-rollup.json.gz (main_dk)"
-      }
-    },
-    {
-      "date": "2026-05-10",
-      "gameCount": 2,
-      "isShowdown": false,
-      "bucket": "2g",
-      "matched": 13,
-      "gateFailures": {
-        "noProj": 0,
-        "noProfile": 13,
-        "noGameForDate": 0,
-        "noDkfp": 0,
-        "noStdDev": 0,
-        "totalScanned": 26,
-        "projSource": "nba-rollup.json.gz (main_dk)"
-      }
-    },
-    {
       "date": "2026-05-09",
       "gameCount": 2,
       "isShowdown": false,
@@ -821,14 +808,14 @@
       }
     },
     {
-      "date": "2026-05-08",
+      "date": "2026-05-07",
       "gameCount": 2,
       "isShowdown": false,
       "bucket": "2g",
-      "matched": 13,
+      "matched": 14,
       "gateFailures": {
         "noProj": 0,
-        "noProfile": 13,
+        "noProfile": 12,
         "noGameForDate": 0,
         "noDkfp": 0,
         "noStdDev": 0,
@@ -865,6 +852,22 @@
         "noDkfp": 0,
         "noStdDev": 0,
         "totalScanned": 24,
+        "projSource": "nba-rollup.json.gz (main_dk)"
+      }
+    },
+    {
+      "date": "2026-05-04",
+      "gameCount": 2,
+      "isShowdown": false,
+      "bucket": "2g",
+      "matched": 13,
+      "gateFailures": {
+        "noProj": 0,
+        "noProfile": 12,
+        "noGameForDate": 0,
+        "noDkfp": 0,
+        "noStdDev": 0,
+        "totalScanned": 25,
         "projSource": "nba-rollup.json.gz (main_dk)"
       }
     },
@@ -933,18 +936,18 @@
       }
     },
     {
-      "date": "2026-04-29",
+      "date": "2026-04-28",
       "gameCount": 3,
       "isShowdown": false,
       "bucket": "3g",
-      "matched": 6,
+      "matched": 14,
       "gateFailures": {
         "noProj": 0,
-        "noProfile": 30,
+        "noProfile": 26,
         "noGameForDate": 0,
         "noDkfp": 0,
         "noStdDev": 0,
-        "totalScanned": 36,
+        "totalScanned": 40,
         "projSource": "nba-rollup.json.gz (main_dk)"
       }
     },
@@ -961,6 +964,22 @@
         "noDkfp": 0,
         "noStdDev": 0,
         "totalScanned": 41,
+        "projSource": "nba-rollup.json.gz (main_dk)"
+      }
+    },
+    {
+      "date": "2026-04-29",
+      "gameCount": 3,
+      "isShowdown": false,
+      "bucket": "3g",
+      "matched": 6,
+      "gateFailures": {
+        "noProj": 0,
+        "noProfile": 30,
+        "noGameForDate": 0,
+        "noDkfp": 0,
+        "noStdDev": 0,
+        "totalScanned": 36,
         "projSource": "nba-rollup.json.gz (main_dk)"
       }
     },
@@ -1029,6 +1048,18 @@
       "note": "no projection snapshot in archive or nba-rollup.json.gz"
     },
     {
+      "date": "2026-04-21",
+      "gameCount": 3,
+      "isShowdown": false,
+      "bucket": "3g",
+      "matched": 0,
+      "gateFailures": {
+        "totalScanned": 0,
+        "noArchive": 1
+      },
+      "note": "no projection snapshot in archive or nba-rollup.json.gz"
+    },
+    {
       "date": "2026-04-20",
       "gameCount": 3,
       "isShowdown": false,
@@ -1045,18 +1076,6 @@
       "gameCount": 4,
       "isShowdown": false,
       "bucket": "4g",
-      "matched": 0,
-      "gateFailures": {
-        "totalScanned": 0,
-        "noArchive": 1
-      },
-      "note": "no projection snapshot in archive or nba-rollup.json.gz"
-    },
-    {
-      "date": "2026-04-15",
-      "gameCount": 2,
-      "isShowdown": false,
-      "bucket": "2g",
       "matched": 0,
       "gateFailures": {
         "totalScanned": 0,
@@ -1089,7 +1108,7 @@
       "note": "no projection snapshot in archive or nba-rollup.json.gz"
     },
     {
-      "date": "2026-04-14",
+      "date": "2026-04-15",
       "gameCount": 2,
       "isShowdown": false,
       "bucket": "2g",
@@ -1101,20 +1120,16 @@
       "note": "no projection snapshot in archive or nba-rollup.json.gz"
     },
     {
-      "date": "2026-06-08",
-      "gameCount": 1,
-      "isShowdown": true,
-      "bucket": "showdown",
-      "matched": 17,
+      "date": "2026-04-14",
+      "gameCount": 2,
+      "isShowdown": false,
+      "bucket": "2g",
+      "matched": 0,
       "gateFailures": {
-        "noProj": 0,
-        "noProfile": 0,
-        "noGameForDate": 0,
-        "noDkfp": 0,
-        "noStdDev": 0,
-        "totalScanned": 17,
-        "projSource": "nba-rollup.json.gz (showdown_sas_nyk_dk)"
-      }
+        "totalScanned": 0,
+        "noArchive": 1
+      },
+      "note": "no projection snapshot in archive or nba-rollup.json.gz"
     },
     {
       "date": "2026-06-05",
@@ -1133,19 +1148,19 @@
       }
     },
     {
-      "date": "2026-05-22",
+      "date": "2026-06-03",
       "gameCount": 1,
       "isShowdown": true,
       "bucket": "showdown",
-      "matched": 19,
+      "matched": 18,
       "gateFailures": {
         "noProj": 0,
         "noProfile": 0,
-        "noGameForDate": 1,
+        "noGameForDate": 0,
         "noDkfp": 0,
         "noStdDev": 0,
-        "totalScanned": 20,
-        "projSource": "nba-rollup.json.gz (okc-sa_fd)"
+        "totalScanned": 18,
+        "projSource": "nba-rollup.json.gz (ny-sa_fd)"
       }
     },
     {
@@ -1165,19 +1180,35 @@
       }
     },
     {
-      "date": "2026-05-24",
+      "date": "2026-05-22",
       "gameCount": 1,
       "isShowdown": true,
       "bucket": "showdown",
-      "matched": 18,
+      "matched": 19,
+      "gateFailures": {
+        "noProj": 0,
+        "noProfile": 0,
+        "noGameForDate": 1,
+        "noDkfp": 0,
+        "noStdDev": 0,
+        "totalScanned": 20,
+        "projSource": "nba-rollup.json.gz (okc-sa_fd)"
+      }
+    },
+    {
+      "date": "2026-06-08",
+      "gameCount": 1,
+      "isShowdown": true,
+      "bucket": "showdown",
+      "matched": 17,
       "gateFailures": {
         "noProj": 0,
         "noProfile": 0,
         "noGameForDate": 0,
         "noDkfp": 0,
         "noStdDev": 0,
-        "totalScanned": 18,
-        "projSource": "nba-rollup.json.gz (okc-sa_fd)"
+        "totalScanned": 17,
+        "projSource": "nba-rollup.json.gz (showdown_sas_nyk_dk)"
       }
     },
     {
@@ -1197,22 +1228,6 @@
       }
     },
     {
-      "date": "2026-05-30",
-      "gameCount": 1,
-      "isShowdown": true,
-      "bucket": "showdown",
-      "matched": 19,
-      "gateFailures": {
-        "noProj": 0,
-        "noProfile": 0,
-        "noGameForDate": 0,
-        "noDkfp": 0,
-        "noStdDev": 0,
-        "totalScanned": 19,
-        "projSource": "nba-rollup.json.gz (sa-okc_fd)"
-      }
-    },
-    {
       "date": "2026-05-23",
       "gameCount": 1,
       "isShowdown": true,
@@ -1226,6 +1241,22 @@
         "noStdDev": 0,
         "totalScanned": 19,
         "projSource": "nba-rollup.json.gz (ny-cle_fd)"
+      }
+    },
+    {
+      "date": "2026-05-24",
+      "gameCount": 1,
+      "isShowdown": true,
+      "bucket": "showdown",
+      "matched": 18,
+      "gateFailures": {
+        "noProj": 0,
+        "noProfile": 0,
+        "noGameForDate": 0,
+        "noDkfp": 0,
+        "noStdDev": 0,
+        "totalScanned": 18,
+        "projSource": "nba-rollup.json.gz (okc-sa_fd)"
       }
     },
     {
@@ -1261,19 +1292,19 @@
       }
     },
     {
-      "date": "2026-06-03",
+      "date": "2026-05-30",
       "gameCount": 1,
       "isShowdown": true,
       "bucket": "showdown",
-      "matched": 18,
+      "matched": 19,
       "gateFailures": {
         "noProj": 0,
         "noProfile": 0,
         "noGameForDate": 0,
         "noDkfp": 0,
         "noStdDev": 0,
-        "totalScanned": 18,
-        "projSource": "nba-rollup.json.gz (ny-sa_fd)"
+        "totalScanned": 19,
+        "projSource": "nba-rollup.json.gz (sa-okc_fd)"
       }
     }
   ],
