@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "sport": "mlb",
-  "generatedAt": "2026-06-10T12:54:19.575Z",
+  "generatedAt": "2026-06-10T13:56:35.916Z",
   "slatesProcessed": 36,
   "slatesByBucket": {
     "unknown": 0,
@@ -268,6 +268,94 @@
       "note": "Need ≥3 slates; falling back to global"
     }
   },
+  "knobChangelog": [
+    {
+      "id": "posCV.raise",
+      "date": "2026-05-28",
+      "axes": [
+        "byPosition"
+      ],
+      "anchor": "mlb/index.html ~L155-178 + POS_CV in mlb-sim-calibration-build.js",
+      "desc": "CV ceiling 0.6→1.4, offCV 0.18→0.45, POS_CV totals raised — variance model rebuilt"
+    },
+    {
+      "id": "softCeil.vegasScale",
+      "date": "2026-05-28",
+      "axes": [
+        "byPosition",
+        "byTeamTotal"
+      ],
+      "anchor": "mlb/index.html ~L1087-1094",
+      "desc": "Soft projection ceiling scaled by team Vegas total (was flat 11 DK)"
+    },
+    {
+      "id": "vegasMult.dampen",
+      "date": "2026-06-01",
+      "axes": [
+        "byTeamTotal"
+      ],
+      "anchor": "mlb/index.html ~L830",
+      "desc": "W3: vegasMult 0.2+0.8·(vt/4) → 0.5+0.5·(vt/4) — Vegas weight dampened"
+    },
+    {
+      "id": "orderMult.flatten",
+      "date": "2026-06-09",
+      "axes": [
+        "byBattingOrder"
+      ],
+      "anchor": "mlb/index.html ~L782-789",
+      "desc": "RBI_MULT/RUNS_MULT flattened — slots 5-9 raised toward the heart (35-slate backtest). Chris dates the deploy Jun 7-9; cutoff seeded at the latest plausible date."
+    },
+    {
+      "id": "vegasMult.slope-restore",
+      "date": "2026-06-11",
+      "axes": [
+        "byTeamTotal"
+      ],
+      "anchor": "mlb/index.html ~L845 (vegasMult)",
+      "desc": "W4: 0.5+0.5·(vt/4) → 0.4+0.6·(vt/4). Elite (5.0+) band still +1.00 under-projected across 9 post-W3 slates (n=175) — restores ~half the differential the W3 dampening over-removed."
+    },
+    {
+      "id": "pitcherIP.trim",
+      "date": "2026-06-11",
+      "axes": [
+        "byPosition"
+      ],
+      "anchor": "mlb/index.html ~L1188 (baseIP)",
+      "desc": "P1: baseIP 4.85 → 4.65 (≈ -0.45 DK pts). Pitchers -1.02 mean over-projection confirmed in both windows (15 slates / 9 since 06-01, n=160); half-gap at formula level, rest stays with biasMult."
+    }
+  ],
+  "windowPolicy": "all",
+  "windowSinceDate": "2026-06-11",
+  "bucketsWindowed": {
+    "small": {
+      "nSlates": 0,
+      "status": "starved",
+      "note": "Need ≥3 post-change slates (since 2026-06-11); falling back to windowed global, then global"
+    },
+    "main": {
+      "nSlates": 0,
+      "status": "starved",
+      "note": "Need ≥3 post-change slates (since 2026-06-11); falling back to windowed global, then global"
+    },
+    "large": {
+      "nSlates": 0,
+      "status": "starved",
+      "note": "Need ≥3 post-change slates (since 2026-06-11); falling back to windowed global, then global"
+    },
+    "showdown": {
+      "nSlates": 0,
+      "status": "starved",
+      "note": "Need ≥3 post-change slates (since 2026-06-11); falling back to windowed global, then global"
+    }
+  },
+  "globalWindowed": {
+    "sinceDate": "2026-06-11",
+    "nSlates": 0,
+    "byPosition": {},
+    "byPriceTier": {},
+    "byOwnership": {}
+  },
   "global": {
     "byPosition": {
       "P": {
@@ -473,6 +561,287 @@
         "shrinkW": 0.927
       }
     },
+    "windows": {
+      "byBattingOrder": {
+        "knobId": "orderMult.flatten",
+        "changeDate": "2026-06-09",
+        "knobDesc": "RBI_MULT/RUNS_MULT flattened — slots 5-9 raised toward the heart (35-slate backtest). Chris dates the deploy Jun 7-9; cutoff seeded at the latest plausible date.",
+        "nSlatesPost": 1,
+        "nSlatesPre": 14,
+        "segments": {
+          "top (1-2)": {
+            "biasMult": 0.991,
+            "stdevMult": 1.101,
+            "n": 36,
+            "cov50": 0.389,
+            "cov80": 0.639,
+            "bias": -0.43,
+            "meanProj": 8.8,
+            "meanAct": 8.36,
+            "biasRaw": 0.951,
+            "stdevRaw": 1.269,
+            "shrinkW": 0.375
+          },
+          "heart (3-4)": {
+            "biasMult": 1.021,
+            "stdevMult": 1.119,
+            "n": 36,
+            "cov50": 0.361,
+            "cov80": 0.639,
+            "bias": 0.98,
+            "meanProj": 8.66,
+            "meanAct": 9.64,
+            "biasRaw": 1.113,
+            "stdevRaw": 1.318,
+            "shrinkW": 0.375
+          },
+          "mid (5-6)": {
+            "biasMult": 1.017,
+            "stdevMult": 1.115,
+            "n": 35,
+            "cov50": 0.343,
+            "cov80": 0.686,
+            "bias": 0.67,
+            "meanProj": 7.13,
+            "meanAct": 7.8,
+            "biasRaw": 1.094,
+            "stdevRaw": 1.313,
+            "shrinkW": 0.368
+          },
+          "bottom (7-9)": {
+            "biasMult": 0.971,
+            "stdevMult": 1.197,
+            "n": 53,
+            "cov50": 0.34,
+            "cov80": 0.585,
+            "bias": -0.67,
+            "meanProj": 5.46,
+            "meanAct": 4.79,
+            "biasRaw": 0.877,
+            "stdevRaw": 1.42,
+            "shrinkW": 0.469
+          }
+        },
+        "rank": {
+          "top (1-2)": {
+            "n": 36,
+            "slates": 1,
+            "spearman": -0.013,
+            "topDecile": {
+              "hits": 1,
+              "possible": 4,
+              "rate": 0.25
+            }
+          },
+          "heart (3-4)": {
+            "n": 36,
+            "slates": 1,
+            "spearman": -0.029,
+            "topDecile": {
+              "hits": 0,
+              "possible": 4,
+              "rate": 0
+            }
+          },
+          "mid (5-6)": {
+            "n": 35,
+            "slates": 1,
+            "spearman": 0.075,
+            "topDecile": {
+              "hits": 0,
+              "possible": 4,
+              "rate": 0
+            }
+          },
+          "bottom (7-9)": {
+            "n": 53,
+            "slates": 1,
+            "spearman": 0.274,
+            "topDecile": {
+              "hits": 0,
+              "possible": 6,
+              "rate": 0
+            }
+          }
+        }
+      },
+      "byTeamTotal": {
+        "knobId": "vegasMult.slope-restore",
+        "changeDate": "2026-06-11",
+        "knobDesc": "W4: 0.5+0.5·(vt/4) → 0.4+0.6·(vt/4). Elite (5.0+) band still +1.00 under-projected across 9 post-W3 slates (n=175) — restores ~half the differential the W3 dampening over-removed.",
+        "nSlatesPost": 0,
+        "nSlatesPre": 15,
+        "segments": {},
+        "rank": {}
+      },
+      "byPosition": {
+        "knobId": "pitcherIP.trim",
+        "changeDate": "2026-06-11",
+        "knobDesc": "P1: baseIP 4.85 → 4.65 (≈ -0.45 DK pts). Pitchers -1.02 mean over-projection confirmed in both windows (15 slates / 9 since 06-01, n=160); half-gap at formula level, rest stays with biasMult.",
+        "nSlatesPost": 0,
+        "nSlatesPre": 15,
+        "segments": {},
+        "rank": {}
+      }
+    },
+    "rankOverall": {
+      "overall": {
+        "n": 2592,
+        "slates": 15,
+        "spearman": 0.236,
+        "topDecile": {
+          "hits": 67,
+          "possible": 262,
+          "rate": 0.256
+        }
+      }
+    },
+    "rankByPosition": {
+      "P": {
+        "n": 256,
+        "slates": 14,
+        "spearman": 0.338,
+        "topDecile": {
+          "hits": 6,
+          "possible": 30,
+          "rate": 0.2
+        }
+      },
+      "3B": {
+        "n": 276,
+        "slates": 14,
+        "spearman": 0.075,
+        "topDecile": {
+          "hits": 5,
+          "possible": 34,
+          "rate": 0.147
+        }
+      },
+      "SS": {
+        "n": 194,
+        "slates": 13,
+        "spearman": 0.26,
+        "topDecile": {
+          "hits": 8,
+          "possible": 26,
+          "rate": 0.308
+        }
+      },
+      "C": {
+        "n": 283,
+        "slates": 14,
+        "spearman": 0.106,
+        "topDecile": {
+          "hits": 10,
+          "possible": 33,
+          "rate": 0.303
+        }
+      },
+      "OF": {
+        "n": 868,
+        "slates": 15,
+        "spearman": 0.156,
+        "topDecile": {
+          "hits": 15,
+          "possible": 93,
+          "rate": 0.161
+        }
+      },
+      "1B": {
+        "n": 362,
+        "slates": 14,
+        "spearman": 0.226,
+        "topDecile": {
+          "hits": 8,
+          "possible": 42,
+          "rate": 0.19
+        }
+      },
+      "2B": {
+        "n": 310,
+        "slates": 14,
+        "spearman": 0.148,
+        "topDecile": {
+          "hits": 7,
+          "possible": 38,
+          "rate": 0.184
+        }
+      }
+    },
+    "rankByTeamTotal": {
+      "mid": {
+        "n": 1317,
+        "slates": 15,
+        "spearman": 0.125,
+        "topDecile": {
+          "hits": 22,
+          "possible": 138,
+          "rate": 0.159
+        }
+      },
+      "high": {
+        "n": 200,
+        "slates": 8,
+        "spearman": 0.033,
+        "topDecile": {
+          "hits": 0,
+          "possible": 23,
+          "rate": 0
+        }
+      },
+      "low": {
+        "n": 780,
+        "slates": 14,
+        "spearman": 0.149,
+        "topDecile": {
+          "hits": 17,
+          "possible": 85,
+          "rate": 0.2
+        }
+      }
+    },
+    "rankByBattingOrder": {
+      "heart (3-4)": {
+        "n": 522,
+        "slates": 15,
+        "spearman": 0.09,
+        "topDecile": {
+          "hits": 9,
+          "possible": 58,
+          "rate": 0.155
+        }
+      },
+      "top (1-2)": {
+        "n": 519,
+        "slates": 15,
+        "spearman": 0.108,
+        "topDecile": {
+          "hits": 10,
+          "possible": 58,
+          "rate": 0.172
+        }
+      },
+      "mid (5-6)": {
+        "n": 519,
+        "slates": 15,
+        "spearman": 0.089,
+        "topDecile": {
+          "hits": 11,
+          "possible": 58,
+          "rate": 0.19
+        }
+      },
+      "bottom (7-9)": {
+        "n": 761,
+        "slates": 15,
+        "spearman": 0.133,
+        "topDecile": {
+          "hits": 12,
+          "possible": 81,
+          "rate": 0.148
+        }
+      }
+    },
     "stackBiasMult": {
       "mid": 1.054,
       "high": 1.067,
@@ -482,30 +851,6 @@
   "slateSummaries": [
     {
       "date": "2026-05-11",
-      "bucket": null,
-      "matched": 0,
-      "note": "no projection snapshot in rollup or per-slate files"
-    },
-    {
-      "date": "2026-05-01",
-      "bucket": null,
-      "matched": 0,
-      "note": "no projection snapshot in rollup or per-slate files"
-    },
-    {
-      "date": "2026-05-15",
-      "bucket": null,
-      "matched": 0,
-      "note": "no projection snapshot in rollup or per-slate files"
-    },
-    {
-      "date": "2026-05-07",
-      "bucket": null,
-      "matched": 0,
-      "note": "no projection snapshot in rollup or per-slate files"
-    },
-    {
-      "date": "2026-05-14",
       "bucket": null,
       "matched": 0,
       "note": "no projection snapshot in rollup or per-slate files"
@@ -523,13 +868,19 @@
       "note": "no projection snapshot in rollup or per-slate files"
     },
     {
-      "date": "2026-05-20",
+      "date": "2026-05-22",
       "bucket": null,
       "matched": 0,
       "note": "no projection snapshot in rollup or per-slate files"
     },
     {
-      "date": "2026-05-18",
+      "date": "2026-05-19",
+      "bucket": null,
+      "matched": 0,
+      "note": "no projection snapshot in rollup or per-slate files"
+    },
+    {
+      "date": "2026-05-14",
       "bucket": null,
       "matched": 0,
       "note": "no projection snapshot in rollup or per-slate files"
@@ -541,13 +892,25 @@
       "note": "no projection snapshot in rollup or per-slate files"
     },
     {
+      "date": "2026-05-08",
+      "bucket": null,
+      "matched": 0,
+      "note": "no projection snapshot in rollup or per-slate files"
+    },
+    {
       "date": "2026-04-29",
       "bucket": null,
       "matched": 0,
       "note": "no projection snapshot in rollup or per-slate files"
     },
     {
-      "date": "2026-05-13",
+      "date": "2026-05-18",
+      "bucket": null,
+      "matched": 0,
+      "note": "no projection snapshot in rollup or per-slate files"
+    },
+    {
+      "date": "2026-05-01",
       "bucket": null,
       "matched": 0,
       "note": "no projection snapshot in rollup or per-slate files"
@@ -565,7 +928,7 @@
       "note": "no projection snapshot in rollup or per-slate files"
     },
     {
-      "date": "2026-05-19",
+      "date": "2026-05-20",
       "bucket": null,
       "matched": 0,
       "note": "no projection snapshot in rollup or per-slate files"
@@ -577,19 +940,37 @@
       "note": "no projection snapshot in rollup or per-slate files"
     },
     {
-      "date": "2026-05-08",
+      "date": "2026-05-04",
       "bucket": null,
       "matched": 0,
       "note": "no projection snapshot in rollup or per-slate files"
     },
     {
-      "date": "2026-04-30",
+      "date": "2026-05-07",
+      "bucket": null,
+      "matched": 0,
+      "note": "no projection snapshot in rollup or per-slate files"
+    },
+    {
+      "date": "2026-05-15",
+      "bucket": null,
+      "matched": 0,
+      "note": "no projection snapshot in rollup or per-slate files"
+    },
+    {
+      "date": "2026-05-13",
       "bucket": null,
       "matched": 0,
       "note": "no projection snapshot in rollup or per-slate files"
     },
     {
       "date": "2026-05-16",
+      "bucket": null,
+      "matched": 0,
+      "note": "no projection snapshot in rollup or per-slate files"
+    },
+    {
+      "date": "2026-04-30",
       "bucket": null,
       "matched": 0,
       "note": "no projection snapshot in rollup or per-slate files"
@@ -611,18 +992,6 @@
       "source": "mlb-rollup.json.gz (main_dk)"
     },
     {
-      "date": "2026-05-22",
-      "bucket": null,
-      "matched": 0,
-      "note": "no projection snapshot in rollup or per-slate files"
-    },
-    {
-      "date": "2026-05-04",
-      "bucket": null,
-      "matched": 0,
-      "note": "no projection snapshot in rollup or per-slate files"
-    },
-    {
       "date": "2026-05-26",
       "slate": "main_dk",
       "gameCount": 15,
@@ -635,22 +1004,6 @@
         "noGameForDate": 0,
         "noDkfp": 0,
         "totalScanned": 199
-      },
-      "source": "mlb-rollup.json.gz (main_dk)"
-    },
-    {
-      "date": "2026-06-08",
-      "slate": "main_dk",
-      "gameCount": 8,
-      "isShowdown": false,
-      "bucket": "main",
-      "matched": 158,
-      "gateFailures": {
-        "noProj": 0,
-        "noProfile": 0,
-        "noGameForDate": 0,
-        "noDkfp": 0,
-        "totalScanned": 158
       },
       "source": "mlb-rollup.json.gz (main_dk)"
     },
@@ -671,18 +1024,34 @@
       "source": "mlb-rollup.json.gz (main_dk)"
     },
     {
-      "date": "2026-06-02",
+      "date": "2026-06-05",
       "slate": "main_dk",
       "gameCount": 15,
       "isShowdown": false,
       "bucket": "large",
-      "matched": 219,
+      "matched": 239,
       "gateFailures": {
         "noProj": 0,
         "noProfile": 0,
         "noGameForDate": 0,
         "noDkfp": 0,
-        "totalScanned": 219
+        "totalScanned": 239
+      },
+      "source": "mlb-rollup.json.gz (main_dk)"
+    },
+    {
+      "date": "2026-06-08",
+      "slate": "main_dk",
+      "gameCount": 8,
+      "isShowdown": false,
+      "bucket": "main",
+      "matched": 158,
+      "gateFailures": {
+        "noProj": 0,
+        "noProfile": 0,
+        "noGameForDate": 0,
+        "noDkfp": 0,
+        "totalScanned": 158
       },
       "source": "mlb-rollup.json.gz (main_dk)"
     },
@@ -703,22 +1072,6 @@
       "source": "mlb-rollup.json.gz (main_dk)"
     },
     {
-      "date": "2026-06-05",
-      "slate": "main_dk",
-      "gameCount": 15,
-      "isShowdown": false,
-      "bucket": "large",
-      "matched": 239,
-      "gateFailures": {
-        "noProj": 0,
-        "noProfile": 0,
-        "noGameForDate": 0,
-        "noDkfp": 0,
-        "totalScanned": 239
-      },
-      "source": "mlb-rollup.json.gz (main_dk)"
-    },
-    {
       "date": "2026-06-01",
       "slate": "main_dk",
       "gameCount": 9,
@@ -735,18 +1088,18 @@
       "source": "mlb-rollup.json.gz (main_dk)"
     },
     {
-      "date": "2026-05-29",
+      "date": "2026-06-02",
       "slate": "main_dk",
       "gameCount": 15,
       "isShowdown": false,
       "bucket": "large",
-      "matched": 237,
+      "matched": 219,
       "gateFailures": {
         "noProj": 0,
         "noProfile": 0,
         "noGameForDate": 0,
         "noDkfp": 0,
-        "totalScanned": 237
+        "totalScanned": 219
       },
       "source": "mlb-rollup.json.gz (main_dk)"
     },
@@ -763,6 +1116,38 @@
         "noGameForDate": 2,
         "noDkfp": 0,
         "totalScanned": 176
+      },
+      "source": "mlb-rollup.json.gz (main_dk)"
+    },
+    {
+      "date": "2026-06-03",
+      "slate": "main_dk",
+      "gameCount": 15,
+      "isShowdown": false,
+      "bucket": "large",
+      "matched": 178,
+      "gateFailures": {
+        "noProj": 0,
+        "noProfile": 0,
+        "noGameForDate": 0,
+        "noDkfp": 0,
+        "totalScanned": 178
+      },
+      "source": "mlb-rollup.json.gz (main_dk)"
+    },
+    {
+      "date": "2026-05-29",
+      "slate": "main_dk",
+      "gameCount": 15,
+      "isShowdown": false,
+      "bucket": "large",
+      "matched": 237,
+      "gateFailures": {
+        "noProj": 0,
+        "noProfile": 0,
+        "noGameForDate": 0,
+        "noDkfp": 0,
+        "totalScanned": 237
       },
       "source": "mlb-rollup.json.gz (main_dk)"
     },
@@ -784,22 +1169,6 @@
     },
     {
       "date": "2026-06-09",
-      "slate": "main_dk",
-      "gameCount": 15,
-      "isShowdown": false,
-      "bucket": "large",
-      "matched": 178,
-      "gateFailures": {
-        "noProj": 0,
-        "noProfile": 0,
-        "noGameForDate": 0,
-        "noDkfp": 0,
-        "totalScanned": 178
-      },
-      "source": "mlb-rollup.json.gz (main_dk)"
-    },
-    {
-      "date": "2026-06-03",
       "slate": "main_dk",
       "gameCount": 15,
       "isShowdown": false,
