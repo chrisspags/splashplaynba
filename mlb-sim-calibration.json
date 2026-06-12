@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "sport": "mlb",
-  "generatedAt": "2026-06-12T13:00:08.108Z",
+  "generatedAt": "2026-06-12T13:22:20.721Z",
   "slatesProcessed": 39,
   "slatesByBucket": {
     "unknown": 0,
@@ -161,6 +161,19 @@
           "stdevRaw": 1.516,
           "shrinkW": 0.538
         },
+        "2B": {
+          "biasMult": 1.01,
+          "stdevMult": 1.238,
+          "n": 84,
+          "cov50": 0.333,
+          "cov80": 0.607,
+          "bias": 0.22,
+          "meanProj": 6.08,
+          "meanAct": 6.3,
+          "biasRaw": 1.035,
+          "stdevRaw": 1.409,
+          "shrinkW": 0.583
+        },
         "C": {
           "biasMult": 1.082,
           "stdevMult": 1.756,
@@ -174,31 +187,18 @@
           "stdevRaw": 2.345,
           "shrinkW": 0.562
         },
-        "SS": {
-          "biasMult": 1.062,
-          "stdevMult": 1.328,
-          "n": 56,
-          "cov50": 0.25,
-          "cov80": 0.589,
-          "bias": 1.61,
-          "meanProj": 6.26,
-          "meanAct": 7.88,
-          "biasRaw": 1.257,
-          "stdevRaw": 1.679,
-          "shrinkW": 0.483
-        },
-        "2B": {
-          "biasMult": 1.01,
-          "stdevMult": 1.238,
-          "n": 84,
-          "cov50": 0.333,
-          "cov80": 0.607,
-          "bias": 0.22,
-          "meanProj": 6.08,
-          "meanAct": 6.3,
-          "biasRaw": 1.035,
-          "stdevRaw": 1.409,
-          "shrinkW": 0.583
+        "OF": {
+          "biasMult": 0.99,
+          "stdevMult": 1.279,
+          "n": 239,
+          "cov50": 0.36,
+          "cov80": 0.611,
+          "bias": -0.18,
+          "meanProj": 6.77,
+          "meanAct": 6.6,
+          "biasRaw": 0.974,
+          "stdevRaw": 1.35,
+          "shrinkW": 0.799
         },
         "3B": {
           "biasMult": 1.029,
@@ -213,18 +213,18 @@
           "stdevRaw": 1.442,
           "shrinkW": 0.549
         },
-        "OF": {
-          "biasMult": 0.99,
-          "stdevMult": 1.279,
-          "n": 239,
-          "cov50": 0.36,
-          "cov80": 0.611,
-          "bias": -0.18,
-          "meanProj": 6.77,
-          "meanAct": 6.6,
-          "biasRaw": 0.974,
-          "stdevRaw": 1.35,
-          "shrinkW": 0.799
+        "SS": {
+          "biasMult": 1.062,
+          "stdevMult": 1.328,
+          "n": 56,
+          "cov50": 0.25,
+          "cov80": 0.589,
+          "bias": 1.61,
+          "meanProj": 6.26,
+          "meanAct": 7.88,
+          "biasRaw": 1.257,
+          "stdevRaw": 1.679,
+          "shrinkW": 0.483
         },
         "1B": {
           "biasMult": 1.099,
@@ -257,9 +257,9 @@
         }
       },
       "stackBiasMult": {
-        "low": 1.05,
+        "high": 1.019,
         "mid": 1.048,
-        "high": 1.019
+        "low": 1.05
       }
     },
     "showdown": {
@@ -2816,6 +2816,47 @@
         }
       }
     },
+    "fieldRealism": {
+      "nSlates": 3,
+      "dates": [
+        "2026-06-10",
+        "2026-06-11",
+        "2026-06-11"
+      ],
+      "metrics": {
+        "dupes": {
+          "avg": 10.9,
+          "n": 3,
+          "sameDir": 2,
+          "sameDirPct": 0.67
+        },
+        "shape:5-3": {
+          "avg": -12,
+          "n": 2,
+          "sameDir": 2,
+          "sameDirPct": 1
+        },
+        "shape:5-2": {
+          "avg": -9.4,
+          "n": 2,
+          "sameDir": 2,
+          "sameDirPct": 1
+        },
+        "shape:scattered": {
+          "avg": 5.6,
+          "n": 2,
+          "sameDir": 1,
+          "sameDirPct": 0.5
+        },
+        "shape:4-3": {
+          "avg": 16.4,
+          "n": 2,
+          "sameDir": 1,
+          "sameDirPct": 0.5
+        }
+      },
+      "recs": []
+    },
     "rankOverall": {
       "overall": {
         "n": 2517,
@@ -2982,85 +3023,13 @@
   },
   "slateSummaries": [
     {
-      "date": "2026-05-21",
-      "bucket": null,
-      "matched": 0,
-      "note": "no projection snapshot in rollup or per-slate files"
-    },
-    {
-      "date": "2026-05-06",
-      "bucket": null,
-      "matched": 0,
-      "note": "no projection snapshot in rollup or per-slate files"
-    },
-    {
-      "date": "2026-05-08",
-      "bucket": null,
-      "matched": 0,
-      "note": "no projection snapshot in rollup or per-slate files"
-    },
-    {
-      "date": "2026-05-19",
-      "bucket": null,
-      "matched": 0,
-      "note": "no projection snapshot in rollup or per-slate files"
-    },
-    {
-      "date": "2026-05-20",
-      "bucket": null,
-      "matched": 0,
-      "note": "no projection snapshot in rollup or per-slate files"
-    },
-    {
-      "date": "2026-05-22",
-      "bucket": null,
-      "matched": 0,
-      "note": "no projection snapshot in rollup or per-slate files"
-    },
-    {
-      "date": "2026-05-11",
-      "bucket": null,
-      "matched": 0,
-      "note": "no projection snapshot in rollup or per-slate files"
-    },
-    {
-      "date": "2026-05-01",
-      "bucket": null,
-      "matched": 0,
-      "note": "no projection snapshot in rollup or per-slate files"
-    },
-    {
       "date": "2026-05-07",
       "bucket": null,
       "matched": 0,
       "note": "no projection snapshot in rollup or per-slate files"
     },
     {
-      "date": "2026-05-13",
-      "bucket": null,
-      "matched": 0,
-      "note": "no projection snapshot in rollup or per-slate files"
-    },
-    {
-      "date": "2026-05-05",
-      "bucket": null,
-      "matched": 0,
-      "note": "no projection snapshot in rollup or per-slate files"
-    },
-    {
-      "date": "2026-04-27",
-      "bucket": null,
-      "matched": 0,
-      "note": "no projection snapshot in rollup or per-slate files"
-    },
-    {
-      "date": "2026-05-14",
-      "bucket": null,
-      "matched": 0,
-      "note": "no projection snapshot in rollup or per-slate files"
-    },
-    {
-      "date": "2026-05-15",
+      "date": "2026-04-30",
       "bucket": null,
       "matched": 0,
       "note": "no projection snapshot in rollup or per-slate files"
@@ -3072,31 +3041,67 @@
       "note": "no projection snapshot in rollup or per-slate files"
     },
     {
+      "date": "2026-05-05",
+      "bucket": null,
+      "matched": 0,
+      "note": "no projection snapshot in rollup or per-slate files"
+    },
+    {
+      "date": "2026-05-06",
+      "bucket": null,
+      "matched": 0,
+      "note": "no projection snapshot in rollup or per-slate files"
+    },
+    {
+      "date": "2026-05-15",
+      "bucket": null,
+      "matched": 0,
+      "note": "no projection snapshot in rollup or per-slate files"
+    },
+    {
+      "date": "2026-05-08",
+      "bucket": null,
+      "matched": 0,
+      "note": "no projection snapshot in rollup or per-slate files"
+    },
+    {
+      "date": "2026-05-20",
+      "bucket": null,
+      "matched": 0,
+      "note": "no projection snapshot in rollup or per-slate files"
+    },
+    {
+      "date": "2026-05-19",
+      "bucket": null,
+      "matched": 0,
+      "note": "no projection snapshot in rollup or per-slate files"
+    },
+    {
+      "date": "2026-04-28",
+      "bucket": null,
+      "matched": 0,
+      "note": "no projection snapshot in rollup or per-slate files"
+    },
+    {
+      "date": "2026-05-11",
+      "bucket": null,
+      "matched": 0,
+      "note": "no projection snapshot in rollup or per-slate files"
+    },
+    {
       "date": "2026-05-04",
       "bucket": null,
       "matched": 0,
       "note": "no projection snapshot in rollup or per-slate files"
     },
     {
-      "date": "2026-05-16",
+      "date": "2026-05-21",
       "bucket": null,
       "matched": 0,
       "note": "no projection snapshot in rollup or per-slate files"
     },
     {
       "date": "2026-05-27",
-      "bucket": null,
-      "matched": 0,
-      "note": "no projection snapshot in rollup or per-slate files"
-    },
-    {
-      "date": "2026-05-18",
-      "bucket": null,
-      "matched": 0,
-      "note": "no projection snapshot in rollup or per-slate files"
-    },
-    {
-      "date": "2026-04-30",
       "bucket": null,
       "matched": 0,
       "note": "no projection snapshot in rollup or per-slate files"
@@ -3114,7 +3119,43 @@
       "note": "no projection snapshot in rollup or per-slate files"
     },
     {
-      "date": "2026-04-28",
+      "date": "2026-04-27",
+      "bucket": null,
+      "matched": 0,
+      "note": "no projection snapshot in rollup or per-slate files"
+    },
+    {
+      "date": "2026-05-16",
+      "bucket": null,
+      "matched": 0,
+      "note": "no projection snapshot in rollup or per-slate files"
+    },
+    {
+      "date": "2026-05-22",
+      "bucket": null,
+      "matched": 0,
+      "note": "no projection snapshot in rollup or per-slate files"
+    },
+    {
+      "date": "2026-05-14",
+      "bucket": null,
+      "matched": 0,
+      "note": "no projection snapshot in rollup or per-slate files"
+    },
+    {
+      "date": "2026-05-18",
+      "bucket": null,
+      "matched": 0,
+      "note": "no projection snapshot in rollup or per-slate files"
+    },
+    {
+      "date": "2026-05-01",
+      "bucket": null,
+      "matched": 0,
+      "note": "no projection snapshot in rollup or per-slate files"
+    },
+    {
+      "date": "2026-05-13",
       "bucket": null,
       "matched": 0,
       "note": "no projection snapshot in rollup or per-slate files"
@@ -3132,38 +3173,6 @@
         "noGameForDate": 0,
         "noDkfp": 0,
         "totalScanned": 160
-      },
-      "source": "mlb-rollup.json.gz (main_dk)"
-    },
-    {
-      "date": "2026-06-02",
-      "slate": "main_dk",
-      "gameCount": 11,
-      "isShowdown": false,
-      "bucket": "large",
-      "matched": 219,
-      "gateFailures": {
-        "noProj": 0,
-        "noProfile": 0,
-        "noGameForDate": 0,
-        "noDkfp": 0,
-        "totalScanned": 219
-      },
-      "source": "mlb-rollup.json.gz (main_dk)"
-    },
-    {
-      "date": "2026-05-28",
-      "slate": "main_dk",
-      "gameCount": 3,
-      "isShowdown": false,
-      "bucket": "small",
-      "matched": 59,
-      "gateFailures": {
-        "noProj": 0,
-        "noProfile": 0,
-        "noGameForDate": 0,
-        "noDkfp": 0,
-        "totalScanned": 59
       },
       "source": "mlb-rollup.json.gz (main_dk)"
     },
@@ -3212,6 +3221,38 @@
         "noGameForDate": 0,
         "noDkfp": 0,
         "totalScanned": 239
+      },
+      "source": "mlb-rollup.json.gz (main_dk)"
+    },
+    {
+      "date": "2026-05-28",
+      "slate": "main_dk",
+      "gameCount": 3,
+      "isShowdown": false,
+      "bucket": "small",
+      "matched": 59,
+      "gateFailures": {
+        "noProj": 0,
+        "noProfile": 0,
+        "noGameForDate": 0,
+        "noDkfp": 0,
+        "totalScanned": 59
+      },
+      "source": "mlb-rollup.json.gz (main_dk)"
+    },
+    {
+      "date": "2026-06-02",
+      "slate": "main_dk",
+      "gameCount": 11,
+      "isShowdown": false,
+      "bucket": "large",
+      "matched": 219,
+      "gateFailures": {
+        "noProj": 0,
+        "noProfile": 0,
+        "noGameForDate": 0,
+        "noDkfp": 0,
+        "totalScanned": 219
       },
       "source": "mlb-rollup.json.gz (main_dk)"
     },
@@ -3280,18 +3321,18 @@
       "source": "mlb-rollup.json.gz (main_dk)"
     },
     {
-      "date": "2026-06-06",
+      "date": "2026-06-10",
       "slate": "main_dk",
-      "gameCount": 9,
+      "gameCount": 7,
       "isShowdown": false,
       "bucket": "main",
-      "matched": 179,
+      "matched": 139,
       "gateFailures": {
         "noProj": 0,
         "noProfile": 0,
         "noGameForDate": 0,
         "noDkfp": 0,
-        "totalScanned": 179
+        "totalScanned": 139
       },
       "source": "mlb-rollup.json.gz (main_dk)"
     },
@@ -3312,18 +3353,18 @@
       "source": "mlb-rollup.json.gz (main_dk)"
     },
     {
-      "date": "2026-06-10",
+      "date": "2026-06-06",
       "slate": "main_dk",
-      "gameCount": 7,
+      "gameCount": 9,
       "isShowdown": false,
       "bucket": "main",
-      "matched": 139,
+      "matched": 179,
       "gateFailures": {
         "noProj": 0,
         "noProfile": 0,
         "noGameForDate": 0,
         "noDkfp": 0,
-        "totalScanned": 139
+        "totalScanned": 179
       },
       "source": "mlb-rollup.json.gz (main_dk)"
     },
