@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "sport": "mlb",
-  "generatedAt": "2026-06-23T11:40:48.589Z",
+  "generatedAt": "2026-06-23T12:48:08.445Z",
   "slatesProcessed": 65,
   "slatesByBucket": {
     "unknown": 0,
@@ -286,32 +286,6 @@
           "stdevRaw": 1.873,
           "shrinkW": 0.549
         },
-        "OF": {
-          "biasMult": 0.987,
-          "stdevMult": 1.169,
-          "n": 227,
-          "cov50": 0.414,
-          "cov80": 0.656,
-          "bias": -0.23,
-          "meanProj": 7.22,
-          "meanAct": 6.99,
-          "biasRaw": 0.968,
-          "stdevRaw": 1.213,
-          "shrinkW": 0.791
-        },
-        "3B": {
-          "biasMult": 0.95,
-          "stdevMult": 1.28,
-          "n": 71,
-          "cov50": 0.31,
-          "cov80": 0.563,
-          "bias": -1.25,
-          "meanProj": 6.79,
-          "meanAct": 5.54,
-          "biasRaw": 0.815,
-          "stdevRaw": 1.517,
-          "shrinkW": 0.542
-        },
         "2B": {
           "biasMult": 0.99,
           "stdevMult": 1.313,
@@ -325,18 +299,18 @@
           "stdevRaw": 1.508,
           "shrinkW": 0.615
         },
-        "SS": {
-          "biasMult": 1.027,
-          "stdevMult": 1.233,
-          "n": 66,
-          "cov50": 0.318,
-          "cov80": 0.606,
-          "bias": 0.71,
-          "meanProj": 6.84,
-          "meanAct": 7.55,
-          "biasRaw": 1.104,
-          "stdevRaw": 1.446,
-          "shrinkW": 0.524
+        "OF": {
+          "biasMult": 0.987,
+          "stdevMult": 1.169,
+          "n": 227,
+          "cov50": 0.414,
+          "cov80": 0.656,
+          "bias": -0.23,
+          "meanProj": 7.22,
+          "meanAct": 6.99,
+          "biasRaw": 0.968,
+          "stdevRaw": 1.213,
+          "shrinkW": 0.791
         },
         "C": {
           "biasMult": 0.96,
@@ -351,6 +325,19 @@
           "stdevRaw": 1.305,
           "shrinkW": 0.595
         },
+        "3B": {
+          "biasMult": 0.95,
+          "stdevMult": 1.28,
+          "n": 71,
+          "cov50": 0.31,
+          "cov80": 0.563,
+          "bias": -1.25,
+          "meanProj": 6.79,
+          "meanAct": 5.54,
+          "biasRaw": 0.815,
+          "stdevRaw": 1.517,
+          "shrinkW": 0.542
+        },
         "1B": {
           "biasMult": 1.022,
           "stdevMult": 1.316,
@@ -363,6 +350,19 @@
           "biasRaw": 1.067,
           "stdevRaw": 1.494,
           "shrinkW": 0.641
+        },
+        "SS": {
+          "biasMult": 1.027,
+          "stdevMult": 1.233,
+          "n": 66,
+          "cov50": 0.318,
+          "cov80": 0.606,
+          "bias": 0.71,
+          "meanProj": 6.84,
+          "meanAct": 7.55,
+          "biasRaw": 1.104,
+          "stdevRaw": 1.446,
+          "shrinkW": 0.524
         }
       },
       "byPriceTier": {},
@@ -388,9 +388,9 @@
       },
       "batOrderBiasMult": {
         "bottom (7-9)": 1.027,
-        "mid (5-6)": 0.983,
         "heart (3-4)": 0.976,
-        "top (1-2)": 1.01
+        "top (1-2)": 1.01,
+        "mid (5-6)": 0.983
       }
     },
     "showdown": {
@@ -2694,393 +2694,50 @@
       ],
       "anchor": "mlb/index.html ~L1191 (RBI_MULT[3-4])",
       "desc": "Heart (3-4) re-emerged over-projected -1.0 pts (-12%) across the 54-slate windowed backtest (orderMult.flatten raised 5-9 but LEFT 3-4 untouched). RBI_MULT 3: 1.15→1.08, 4: 1.28→1.20 — half the gap at the formula; the rest is carried by the new batOrderBiasMult sim corrector. RUNS_MULT[3-4] graded clean → untouched. Chris: set date to the actual deploy date if it slips past 06-19."
+    },
+    {
+      "id": "ceiling.unsuppress",
+      "date": "2026-06-23",
+      "axes": [
+        "byPosition",
+        "byTeamTotal"
+      ],
+      "anchor": "mlb/index.html softCeil ~L1560-1566 + CV clamp ~L174 + offCV ~L183",
+      "desc": "Ceiling-unsuppress factory-line fix (real-money backtest: ceiling capture 1/26, best lineup ~59 DKfp below the winning score, 0 wins). Three coupled changes: (1) soft projection ceiling raised 11/14→12.5/15.5 DK and excess-compression eased 70%→45% — the old cap DELETED the boom games that win GPPs; _ceilEnv cap 1.30→1.35. (2) per-player CV clamp 1.4→1.85. (3) team-offense offCV 0.45→0.55 (pairwise stack corr ~0.30→~0.38) so a 5-stack actually spikes together. Raw projections AND variance both shift up → REBUILD MLB Sim Calibration after the first slate grades on the new formula. Chris: set date to the real deploy date if it slips past 06-23."
     }
   ],
   "windowPolicy": "sinceKnobChange",
-  "windowSinceDate": "2026-06-19",
+  "windowSinceDate": "2026-06-23",
   "bucketsWindowed": {
     "small": {
-      "nSlates": 6,
-      "status": "active",
-      "byPosition": {
-        "P": {
-          "biasMult": 0.989,
-          "stdevMult": 1.291,
-          "n": 40,
-          "cov50": 0.25,
-          "cov80": 0.55,
-          "bias": -0.69,
-          "meanProj": 13.08,
-          "meanAct": 12.39,
-          "biasRaw": 0.947,
-          "stdevRaw": 1.727,
-          "shrinkW": 0.4
-        },
-        "OF": {
-          "biasMult": 1.044,
-          "stdevMult": 1.303,
-          "n": 125,
-          "cov50": 0.336,
-          "cov80": 0.568,
-          "bias": 0.86,
-          "meanProj": 6.59,
-          "meanAct": 7.45,
-          "biasRaw": 1.131,
-          "stdevRaw": 1.448,
-          "shrinkW": 0.676
-        },
-        "C": {
-          "biasMult": 0.978,
-          "stdevMult": 1.241,
-          "n": 47,
-          "cov50": 0.383,
-          "cov80": 0.447,
-          "bias": -0.59,
-          "meanProj": 5.87,
-          "meanAct": 5.28,
-          "biasRaw": 0.899,
-          "stdevRaw": 1.548,
-          "shrinkW": 0.439
-        },
-        "2B": {
-          "biasMult": 1.025,
-          "stdevMult": 1.305,
-          "n": 48,
-          "cov50": 0.25,
-          "cov80": 0.583,
-          "bias": 0.69,
-          "meanProj": 6.08,
-          "meanAct": 6.77,
-          "biasRaw": 1.114,
-          "stdevRaw": 1.686,
-          "shrinkW": 0.444
-        },
-        "SS": {
-          "biasMult": 1.053,
-          "stdevMult": 1.151,
-          "n": 33,
-          "cov50": 0.303,
-          "cov80": 0.667,
-          "bias": 2.15,
-          "meanProj": 7.15,
-          "meanAct": 9.3,
-          "biasRaw": 1.301,
-          "stdevRaw": 1.425,
-          "shrinkW": 0.355
-        },
-        "1B": {
-          "biasMult": 0.985,
-          "stdevMult": 1.048,
-          "n": 55,
-          "cov50": 0.455,
-          "cov80": 0.727,
-          "bias": -0.49,
-          "meanProj": 8.02,
-          "meanAct": 7.53,
-          "biasRaw": 0.939,
-          "stdevRaw": 1.1,
-          "shrinkW": 0.478
-        },
-        "3B": {
-          "biasMult": 1.074,
-          "stdevMult": 1.309,
-          "n": 45,
-          "cov50": 0.267,
-          "cov80": 0.511,
-          "bias": 2.16,
-          "meanProj": 6.26,
-          "meanAct": 8.42,
-          "biasRaw": 1.345,
-          "stdevRaw": 1.72,
-          "shrinkW": 0.429
-        }
-      },
-      "byPriceTier": {},
-      "byOwnership": {
-        "leverage": {
-          "biasMult": 1.036,
-          "stdevMult": 1.391,
-          "n": 392,
-          "cov50": 0.329,
-          "cov80": 0.579,
-          "bias": 0.6,
-          "meanProj": 7.3,
-          "meanAct": 7.9,
-          "biasRaw": 1.082,
-          "stdevRaw": 1.45,
-          "shrinkW": 0.867
-        }
-      },
-      "stackBiasMult": {
-        "high": 0.939,
-        "low": 1.037,
-        "mid": 1.096
-      },
-      "batOrderBiasMult": {
-        "top (1-2)": 1.022,
-        "heart (3-4)": 1.022,
-        "mid (5-6)": 1.032,
-        "bottom (7-9)": 1.081
-      }
+      "nSlates": 0,
+      "status": "starved",
+      "note": "Need ≥3 post-change slates (since 2026-06-23); falling back to windowed global, then global"
     },
     "main": {
-      "nSlates": 4,
-      "status": "active",
-      "byPosition": {
-        "P": {
-          "biasMult": 1.049,
-          "stdevMult": 1.324,
-          "n": 60,
-          "cov50": 0.25,
-          "cov80": 0.617,
-          "bias": 2.42,
-          "meanProj": 12.3,
-          "meanAct": 14.71,
-          "biasRaw": 1.196,
-          "stdevRaw": 1.649,
-          "shrinkW": 0.5
-        },
-        "OF": {
-          "biasMult": 0.974,
-          "stdevMult": 1.379,
-          "n": 195,
-          "cov50": 0.318,
-          "cov80": 0.564,
-          "bias": -0.47,
-          "meanProj": 6.86,
-          "meanAct": 6.39,
-          "biasRaw": 0.931,
-          "stdevRaw": 1.495,
-          "shrinkW": 0.765
-        },
-        "3B": {
-          "biasMult": 0.978,
-          "stdevMult": 1.308,
-          "n": 63,
-          "cov50": 0.317,
-          "cov80": 0.492,
-          "bias": -0.57,
-          "meanProj": 6.73,
-          "meanAct": 6.16,
-          "biasRaw": 0.915,
-          "stdevRaw": 1.6,
-          "shrinkW": 0.512
-        },
-        "2B": {
-          "biasMult": 1.031,
-          "stdevMult": 1.259,
-          "n": 66,
-          "cov50": 0.348,
-          "cov80": 0.515,
-          "bias": 0.77,
-          "meanProj": 6.54,
-          "meanAct": 7.3,
-          "biasRaw": 1.117,
-          "stdevRaw": 1.494,
-          "shrinkW": 0.524
-        },
-        "1B": {
-          "biasMult": 0.969,
-          "stdevMult": 1.077,
-          "n": 85,
-          "cov50": 0.435,
-          "cov80": 0.718,
-          "bias": -0.83,
-          "meanProj": 7.99,
-          "meanAct": 7.15,
-          "biasRaw": 0.896,
-          "stdevRaw": 1.132,
-          "shrinkW": 0.586
-        },
-        "C": {
-          "biasMult": 0.951,
-          "stdevMult": 1.414,
-          "n": 69,
-          "cov50": 0.304,
-          "cov80": 0.42,
-          "bias": -1.09,
-          "meanProj": 5.96,
-          "meanAct": 4.87,
-          "biasRaw": 0.818,
-          "stdevRaw": 1.773,
-          "shrinkW": 0.535
-        },
-        "SS": {
-          "biasMult": 1.011,
-          "stdevMult": 1.276,
-          "n": 50,
-          "cov50": 0.28,
-          "cov80": 0.56,
-          "bias": 0.31,
-          "meanProj": 6.37,
-          "meanAct": 6.68,
-          "biasRaw": 1.049,
-          "stdevRaw": 1.607,
-          "shrinkW": 0.455
-        }
-      },
-      "byPriceTier": {},
-      "byOwnership": {
-        "leverage": {
-          "biasMult": 0.996,
-          "stdevMult": 1.445,
-          "n": 580,
-          "cov50": 0.322,
-          "cov80": 0.559,
-          "bias": -0.06,
-          "meanProj": 7.4,
-          "meanAct": 7.34,
-          "biasRaw": 0.992,
-          "stdevRaw": 1.491,
-          "shrinkW": 0.906
-        }
-      },
-      "stackBiasMult": {
-        "high": 0.892,
-        "mid": 1.004,
-        "low": 1.015
-      },
-      "batOrderBiasMult": {
-        "heart (3-4)": 0.949,
-        "mid (5-6)": 0.978,
-        "top (1-2)": 1.007,
-        "bottom (7-9)": 0.993
-      }
+      "nSlates": 0,
+      "status": "starved",
+      "note": "Need ≥3 post-change slates (since 2026-06-23); falling back to windowed global, then global"
     },
     "large": {
-      "nSlates": 1,
+      "nSlates": 0,
       "status": "starved",
-      "note": "Need ≥3 post-change slates (since 2026-06-19); falling back to windowed global, then global"
+      "note": "Need ≥3 post-change slates (since 2026-06-23); falling back to windowed global, then global"
     },
     "showdown": {
       "nSlates": 0,
       "status": "starved",
-      "note": "Need ≥3 post-change slates (since 2026-06-19); falling back to windowed global, then global"
+      "note": "Need ≥3 post-change slates (since 2026-06-23); falling back to windowed global, then global"
     }
   },
   "globalWindowed": {
-    "sinceDate": "2026-06-19",
-    "nSlates": 11,
-    "byPosition": {
-      "P": {
-        "biasMult": 1.034,
-        "stdevMult": 1.437,
-        "n": 124,
-        "cov50": 0.258,
-        "cov80": 0.589,
-        "bias": 1.26,
-        "meanProj": 12.5,
-        "meanAct": 13.75,
-        "biasRaw": 1.101,
-        "stdevRaw": 1.648,
-        "shrinkW": 0.674
-      },
-      "OF": {
-        "biasMult": 1.007,
-        "stdevMult": 1.345,
-        "n": 395,
-        "cov50": 0.352,
-        "cov80": 0.582,
-        "bias": 0.11,
-        "meanProj": 6.81,
-        "meanAct": 6.92,
-        "biasRaw": 1.017,
-        "stdevRaw": 1.397,
-        "shrinkW": 0.868
-      },
-      "C": {
-        "biasMult": 0.939,
-        "stdevMult": 1.39,
-        "n": 144,
-        "cov50": 0.361,
-        "cov80": 0.465,
-        "bias": -1.02,
-        "meanProj": 5.97,
-        "meanAct": 4.94,
-        "biasRaw": 0.829,
-        "stdevRaw": 1.552,
-        "shrinkW": 0.706
-      },
-      "2B": {
-        "biasMult": 1.037,
-        "stdevMult": 1.333,
-        "n": 148,
-        "cov50": 0.324,
-        "cov80": 0.574,
-        "bias": 0.66,
-        "meanProj": 6.38,
-        "meanAct": 7.04,
-        "biasRaw": 1.103,
-        "stdevRaw": 1.467,
-        "shrinkW": 0.712
-      },
-      "SS": {
-        "biasMult": 1.079,
-        "stdevMult": 1.297,
-        "n": 105,
-        "cov50": 0.305,
-        "cov80": 0.619,
-        "bias": 1.66,
-        "meanProj": 6.68,
-        "meanAct": 8.34,
-        "biasRaw": 1.248,
-        "stdevRaw": 1.466,
-        "shrinkW": 0.636
-      },
-      "1B": {
-        "biasMult": 0.991,
-        "stdevMult": 1.138,
-        "n": 176,
-        "cov50": 0.415,
-        "cov80": 0.688,
-        "bias": -0.2,
-        "meanProj": 7.98,
-        "meanAct": 7.78,
-        "biasRaw": 0.975,
-        "stdevRaw": 1.185,
-        "shrinkW": 0.746
-      },
-      "3B": {
-        "biasMult": 1.028,
-        "stdevMult": 1.379,
-        "n": 128,
-        "cov50": 0.32,
-        "cov80": 0.516,
-        "bias": 0.53,
-        "meanProj": 6.5,
-        "meanAct": 7.03,
-        "biasRaw": 1.081,
-        "stdevRaw": 1.556,
-        "shrinkW": 0.681
-      }
-    },
+    "sinceDate": "2026-06-23",
+    "nSlates": 0,
+    "byPosition": {},
     "byPriceTier": {},
-    "byOwnership": {
-      "leverage": {
-        "biasMult": 1.021,
-        "stdevMult": 1.407,
-        "n": 1208,
-        "cov50": 0.34,
-        "cov80": 0.578,
-        "bias": 0.32,
-        "meanProj": 7.37,
-        "meanAct": 7.7,
-        "biasRaw": 1.044,
-        "stdevRaw": 1.427,
-        "shrinkW": 0.953
-      }
-    },
-    "stackBiasMult": {
-      "high": 0.899,
-      "low": 1.027,
-      "mid": 1.058
-    },
-    "batOrderBiasMult": {
-      "top (1-2)": 1.015,
-      "heart (3-4)": 0.982,
-      "mid (5-6)": 1.016,
-      "bottom (7-9)": 1.052
-    }
+    "byOwnership": {},
+    "stackBiasMult": {},
+    "batOrderBiasMult": {}
   },
   "global": {
     "byPosition": {
@@ -3359,16 +3016,6 @@
               "rate": 0.175
             }
           },
-          "mid (5-6)": {
-            "n": 233,
-            "slates": 10,
-            "spearman": 0.036,
-            "topDecile": {
-              "hits": 4,
-              "possible": 28,
-              "rate": 0.143
-            }
-          },
           "top (1-2)": {
             "n": 238,
             "slates": 10,
@@ -3388,260 +3035,36 @@
               "possible": 29,
               "rate": 0.103
             }
+          },
+          "mid (5-6)": {
+            "n": 233,
+            "slates": 10,
+            "spearman": 0.036,
+            "topDecile": {
+              "hits": 4,
+              "possible": 28,
+              "rate": 0.143
+            }
           }
         }
       },
       "byTeamTotal": {
-        "knobId": "vegasMult.slope-restore",
-        "changeDate": "2026-06-11",
-        "knobDesc": "W4: 0.5+0.5·(vt/4) → 0.4+0.6·(vt/4). Elite (5.0+) band still +1.00 under-projected across 9 post-W3 slates (n=175) — restores ~half the differential the W3 dampening over-removed.",
-        "nSlatesPost": 28,
-        "nSlatesPre": 3,
-        "segments": {
-          "high": {
-            "biasMult": 0.949,
-            "stdevMult": 1.221,
-            "n": 746,
-            "cov50": 0.397,
-            "cov80": 0.657,
-            "bias": -0.96,
-            "meanProj": 8.72,
-            "meanAct": 7.76,
-            "biasRaw": 0.89,
-            "stdevRaw": 1.239,
-            "shrinkW": 0.926
-          },
-          "low": {
-            "biasMult": 0.976,
-            "stdevMult": 1.457,
-            "n": 549,
-            "cov50": 0.333,
-            "cov80": 0.528,
-            "bias": -0.31,
-            "meanProj": 5.7,
-            "meanAct": 5.39,
-            "biasRaw": 0.946,
-            "stdevRaw": 1.507,
-            "shrinkW": 0.901
-          },
-          "mid": {
-            "biasMult": 1.023,
-            "stdevMult": 1.44,
-            "n": 1551,
-            "cov50": 0.331,
-            "cov80": 0.571,
-            "bias": 0.33,
-            "meanProj": 6.8,
-            "meanAct": 7.13,
-            "biasRaw": 1.048,
-            "stdevRaw": 1.457,
-            "shrinkW": 0.963
-          }
-        },
-        "rank": {
-          "low": {
-            "n": 496,
-            "slates": 16,
-            "spearman": 0.18,
-            "topDecile": {
-              "hits": 6,
-              "possible": 56,
-              "rate": 0.107
-            }
-          },
-          "high": {
-            "n": 710,
-            "slates": 21,
-            "spearman": 0.147,
-            "topDecile": {
-              "hits": 19,
-              "possible": 80,
-              "rate": 0.237
-            }
-          },
-          "mid": {
-            "n": 1542,
-            "slates": 27,
-            "spearman": 0.193,
-            "topDecile": {
-              "hits": 34,
-              "possible": 167,
-              "rate": 0.204
-            }
-          }
-        }
+        "knobId": "ceiling.unsuppress",
+        "changeDate": "2026-06-23",
+        "knobDesc": "Ceiling-unsuppress factory-line fix (real-money backtest: ceiling capture 1/26, best lineup ~59 DKfp below the winning score, 0 wins). Three coupled changes: (1) soft projection ceiling raised 11/14→12.5/15.5 DK and excess-compression eased 70%→45% — the old cap DELETED the boom games that win GPPs; _ceilEnv cap 1.30→1.35. (2) per-player CV clamp 1.4→1.85. (3) team-offense offCV 0.45→0.55 (pairwise stack corr ~0.30→~0.38) so a 5-stack actually spikes together. Raw projections AND variance both shift up → REBUILD MLB Sim Calibration after the first slate grades on the new formula. Chris: set date to the real deploy date if it slips past 06-23.",
+        "nSlatesPost": 0,
+        "nSlatesPre": 31,
+        "segments": {},
+        "rank": {}
       },
       "byPosition": {
-        "knobId": "pitcherIP.trim",
-        "changeDate": "2026-06-11",
-        "knobDesc": "P1: baseIP 4.85 → 4.65 (≈ -0.45 DK pts). Pitchers -1.02 mean over-projection confirmed in both windows (15 slates / 9 since 06-01, n=160); half-gap at formula level, rest stays with biasMult.",
-        "nSlatesPost": 28,
-        "nSlatesPre": 3,
-        "segments": {
-          "P": {
-            "biasMult": 1.015,
-            "stdevMult": 1.573,
-            "n": 311,
-            "cov50": 0.27,
-            "cov80": 0.527,
-            "bias": 0.43,
-            "meanProj": 12.19,
-            "meanAct": 12.62,
-            "biasRaw": 1.035,
-            "stdevRaw": 1.684,
-            "shrinkW": 0.838
-          },
-          "OF": {
-            "biasMult": 0.994,
-            "stdevMult": 1.342,
-            "n": 1011,
-            "cov50": 0.362,
-            "cov80": 0.595,
-            "bias": -0.1,
-            "meanProj": 7.18,
-            "meanAct": 7.08,
-            "biasRaw": 0.987,
-            "stdevRaw": 1.362,
-            "shrinkW": 0.944
-          },
-          "C": {
-            "biasMult": 0.965,
-            "stdevMult": 1.382,
-            "n": 382,
-            "cov50": 0.359,
-            "cov80": 0.537,
-            "bias": -0.5,
-            "meanProj": 6.3,
-            "meanAct": 5.8,
-            "biasRaw": 0.92,
-            "stdevRaw": 1.442,
-            "shrinkW": 0.864
-          },
-          "2B": {
-            "biasMult": 1.014,
-            "stdevMult": 1.521,
-            "n": 403,
-            "cov50": 0.28,
-            "cov80": 0.566,
-            "bias": 0.22,
-            "meanProj": 6.67,
-            "meanAct": 6.89,
-            "biasRaw": 1.032,
-            "stdevRaw": 1.599,
-            "shrinkW": 0.87
-          },
-          "SS": {
-            "biasMult": 1.011,
-            "stdevMult": 1.385,
-            "n": 280,
-            "cov50": 0.311,
-            "cov80": 0.604,
-            "bias": 0.19,
-            "meanProj": 7.02,
-            "meanAct": 7.21,
-            "biasRaw": 1.027,
-            "stdevRaw": 1.467,
-            "shrinkW": 0.824
-          },
-          "1B": {
-            "biasMult": 0.959,
-            "stdevMult": 1.18,
-            "n": 440,
-            "cov50": 0.418,
-            "cov80": 0.659,
-            "bias": -0.77,
-            "meanProj": 8.3,
-            "meanAct": 7.53,
-            "biasRaw": 0.907,
-            "stdevRaw": 1.205,
-            "shrinkW": 0.88
-          },
-          "3B": {
-            "biasMult": 1.021,
-            "stdevMult": 1.472,
-            "n": 330,
-            "cov50": 0.318,
-            "cov80": 0.518,
-            "bias": 0.33,
-            "meanProj": 6.73,
-            "meanAct": 7.06,
-            "biasRaw": 1.049,
-            "stdevRaw": 1.558,
-            "shrinkW": 0.846
-          }
-        },
-        "rank": {
-          "OF": {
-            "n": 1011,
-            "slates": 28,
-            "spearman": 0.184,
-            "topDecile": {
-              "hits": 28,
-              "possible": 114,
-              "rate": 0.246
-            }
-          },
-          "1B": {
-            "n": 380,
-            "slates": 20,
-            "spearman": 0.206,
-            "topDecile": {
-              "hits": 16,
-              "possible": 50,
-              "rate": 0.32
-            }
-          },
-          "2B": {
-            "n": 348,
-            "slates": 20,
-            "spearman": 0.223,
-            "topDecile": {
-              "hits": 7,
-              "possible": 44,
-              "rate": 0.159
-            }
-          },
-          "C": {
-            "n": 298,
-            "slates": 17,
-            "spearman": 0.243,
-            "topDecile": {
-              "hits": 8,
-              "possible": 37,
-              "rate": 0.216
-            }
-          },
-          "3B": {
-            "n": 226,
-            "slates": 14,
-            "spearman": 0.049,
-            "topDecile": {
-              "hits": 6,
-              "possible": 27,
-              "rate": 0.222
-            }
-          },
-          "P": {
-            "n": 222,
-            "slates": 14,
-            "spearman": 0.335,
-            "topDecile": {
-              "hits": 10,
-              "possible": 28,
-              "rate": 0.357
-            }
-          },
-          "SS": {
-            "n": 175,
-            "slates": 12,
-            "spearman": 0.296,
-            "topDecile": {
-              "hits": 6,
-              "possible": 26,
-              "rate": 0.231
-            }
-          }
-        }
+        "knobId": "ceiling.unsuppress",
+        "changeDate": "2026-06-23",
+        "knobDesc": "Ceiling-unsuppress factory-line fix (real-money backtest: ceiling capture 1/26, best lineup ~59 DKfp below the winning score, 0 wins). Three coupled changes: (1) soft projection ceiling raised 11/14→12.5/15.5 DK and excess-compression eased 70%→45% — the old cap DELETED the boom games that win GPPs; _ceilEnv cap 1.30→1.35. (2) per-player CV clamp 1.4→1.85. (3) team-offense offCV 0.45→0.55 (pairwise stack corr ~0.30→~0.38) so a 5-stack actually spikes together. Raw projections AND variance both shift up → REBUILD MLB Sim Calibration after the first slate grades on the new formula. Chris: set date to the real deploy date if it slips past 06-23.",
+        "nSlatesPost": 0,
+        "nSlatesPre": 31,
+        "segments": {},
+        "rank": {}
       }
     },
     "fieldRealism": {
@@ -3712,7 +3135,7 @@
       "recs": [
         {
           "title": "Top-1% shape 5-2 gap",
-          "sev": 12.779999999999998,
+          "sev": 12.780000000000003,
           "confirmed": true,
           "text": "Top-1% shape 5-2 gap: avg +12.8pts over 20 slates (14/20 same direction) — field generator OVER-produces 5-2 in its top-1%",
           "knob": "buildStackedFieldLU secondary-stack forcing (mlb/index.html ~L6558-6564 sizing + ~L7033 retry)"
@@ -3742,16 +3165,6 @@
           "rate": 0.229
         }
       },
-      "1B": {
-        "n": 444,
-        "slates": 23,
-        "spearman": 0.211,
-        "topDecile": {
-          "hits": 17,
-          "possible": 58,
-          "rate": 0.293
-        }
-      },
       "2B": {
         "n": 409,
         "slates": 23,
@@ -3760,6 +3173,16 @@
           "hits": 8,
           "possible": 51,
           "rate": 0.157
+        }
+      },
+      "1B": {
+        "n": 444,
+        "slates": 23,
+        "spearman": 0.211,
+        "topDecile": {
+          "hits": 17,
+          "possible": 58,
+          "rate": 0.293
         }
       },
       "C": {
@@ -3814,16 +3237,6 @@
           "rate": 0.121
         }
       },
-      "high": {
-        "n": 843,
-        "slates": 24,
-        "spearman": 0.133,
-        "topDecile": {
-          "hits": 19,
-          "possible": 95,
-          "rate": 0.2
-        }
-      },
       "mid": {
         "n": 1746,
         "slates": 30,
@@ -3832,6 +3245,16 @@
           "hits": 39,
           "possible": 189,
           "rate": 0.206
+        }
+      },
+      "high": {
+        "n": 843,
+        "slates": 24,
+        "spearman": 0.133,
+        "topDecile": {
+          "hits": 19,
+          "possible": 95,
+          "rate": 0.2
         }
       }
     },
@@ -3844,16 +3267,6 @@
           "hits": 19,
           "possible": 118,
           "rate": 0.161
-        }
-      },
-      "mid (5-6)": {
-        "n": 701,
-        "slates": 29,
-        "spearman": 0.106,
-        "topDecile": {
-          "hits": 10,
-          "possible": 85,
-          "rate": 0.118
         }
       },
       "top (1-2)": {
@@ -3874,6 +3287,16 @@
           "hits": 13,
           "possible": 87,
           "rate": 0.149
+        }
+      },
+      "mid (5-6)": {
+        "n": 701,
+        "slates": 29,
+        "spearman": 0.106,
+        "topDecile": {
+          "hits": 10,
+          "possible": 85,
+          "rate": 0.118
         }
       }
     },
@@ -3923,22 +3346,6 @@
       "source": "mlb-rollup.json.gz (night_dk)"
     },
     {
-      "date": "2026-06-10",
-      "slate": "main_dk",
-      "gameCount": 7,
-      "isShowdown": false,
-      "bucket": "main",
-      "matched": 139,
-      "gateFailures": {
-        "noProj": 0,
-        "noProfile": 0,
-        "noGameForDate": 0,
-        "noDkfp": 0,
-        "totalScanned": 139
-      },
-      "source": "mlb-rollup.json.gz (main_dk)"
-    },
-    {
       "date": "2026-06-13",
       "slate": "night_dk",
       "gameCount": 5,
@@ -3971,18 +3378,18 @@
       "source": "mlb-rollup.json.gz (main_dk)"
     },
     {
-      "date": "2026-06-08",
+      "date": "2026-06-10",
       "slate": "main_dk",
-      "gameCount": 8,
+      "gameCount": 7,
       "isShowdown": false,
       "bucket": "main",
-      "matched": 158,
+      "matched": 139,
       "gateFailures": {
         "noProj": 0,
         "noProfile": 0,
         "noGameForDate": 0,
         "noDkfp": 0,
-        "totalScanned": 158
+        "totalScanned": 139
       },
       "source": "mlb-rollup.json.gz (main_dk)"
     },
@@ -4003,49 +3410,23 @@
       "source": "mlb-rollup.json.gz (main_dk)"
     },
     {
-      "date": "2026-06-02",
-      "bucket": null,
-      "matched": 0,
-      "note": "no projection snapshot in rollup or per-slate files"
+      "date": "2026-06-08",
+      "slate": "main_dk",
+      "gameCount": 8,
+      "isShowdown": false,
+      "bucket": "main",
+      "matched": 158,
+      "gateFailures": {
+        "noProj": 0,
+        "noProfile": 0,
+        "noGameForDate": 0,
+        "noDkfp": 0,
+        "totalScanned": 158
+      },
+      "source": "mlb-rollup.json.gz (main_dk)"
     },
     {
-      "date": "2026-05-20",
-      "bucket": null,
-      "matched": 0,
-      "note": "no projection snapshot in rollup or per-slate files"
-    },
-    {
-      "date": "2026-05-14",
-      "bucket": null,
-      "matched": 0,
-      "note": "no projection snapshot in rollup or per-slate files"
-    },
-    {
-      "date": "2026-05-11",
-      "bucket": null,
-      "matched": 0,
-      "note": "no projection snapshot in rollup or per-slate files"
-    },
-    {
-      "date": "2026-05-18",
-      "bucket": null,
-      "matched": 0,
-      "note": "no projection snapshot in rollup or per-slate files"
-    },
-    {
-      "date": "2026-05-19",
-      "bucket": null,
-      "matched": 0,
-      "note": "no projection snapshot in rollup or per-slate files"
-    },
-    {
-      "date": "2026-06-05",
-      "bucket": null,
-      "matched": 0,
-      "note": "no projection snapshot in rollup or per-slate files"
-    },
-    {
-      "date": "2026-06-07",
+      "date": "2026-05-21",
       "bucket": null,
       "matched": 0,
       "note": "no projection snapshot in rollup or per-slate files"
@@ -4057,67 +3438,7 @@
       "note": "no projection snapshot in rollup or per-slate files"
     },
     {
-      "date": "2026-05-21",
-      "bucket": null,
-      "matched": 0,
-      "note": "no projection snapshot in rollup or per-slate files"
-    },
-    {
-      "date": "2026-05-22",
-      "bucket": null,
-      "matched": 0,
-      "note": "no projection snapshot in rollup or per-slate files"
-    },
-    {
-      "date": "2026-06-01",
-      "bucket": null,
-      "matched": 0,
-      "note": "no projection snapshot in rollup or per-slate files"
-    },
-    {
       "date": "2026-05-27",
-      "bucket": null,
-      "matched": 0,
-      "note": "no projection snapshot in rollup or per-slate files"
-    },
-    {
-      "date": "2026-05-04",
-      "bucket": null,
-      "matched": 0,
-      "note": "no projection snapshot in rollup or per-slate files"
-    },
-    {
-      "date": "2026-04-30",
-      "bucket": null,
-      "matched": 0,
-      "note": "no projection snapshot in rollup or per-slate files"
-    },
-    {
-      "date": "2026-05-08",
-      "bucket": null,
-      "matched": 0,
-      "note": "no projection snapshot in rollup or per-slate files"
-    },
-    {
-      "date": "2026-05-28",
-      "bucket": null,
-      "matched": 0,
-      "note": "no projection snapshot in rollup or per-slate files"
-    },
-    {
-      "date": "2026-04-28",
-      "bucket": null,
-      "matched": 0,
-      "note": "no projection snapshot in rollup or per-slate files"
-    },
-    {
-      "date": "2026-05-13",
-      "bucket": null,
-      "matched": 0,
-      "note": "no projection snapshot in rollup or per-slate files"
-    },
-    {
-      "date": "2026-05-17",
       "bucket": null,
       "matched": 0,
       "note": "no projection snapshot in rollup or per-slate files"
@@ -4129,7 +3450,61 @@
       "note": "no projection snapshot in rollup or per-slate files"
     },
     {
-      "date": "2026-06-03",
+      "date": "2026-05-22",
+      "bucket": null,
+      "matched": 0,
+      "note": "no projection snapshot in rollup or per-slate files"
+    },
+    {
+      "date": "2026-05-20",
+      "bucket": null,
+      "matched": 0,
+      "note": "no projection snapshot in rollup or per-slate files"
+    },
+    {
+      "date": "2026-05-08",
+      "bucket": null,
+      "matched": 0,
+      "note": "no projection snapshot in rollup or per-slate files"
+    },
+    {
+      "date": "2026-05-13",
+      "bucket": null,
+      "matched": 0,
+      "note": "no projection snapshot in rollup or per-slate files"
+    },
+    {
+      "date": "2026-05-07",
+      "bucket": null,
+      "matched": 0,
+      "note": "no projection snapshot in rollup or per-slate files"
+    },
+    {
+      "date": "2026-05-04",
+      "bucket": null,
+      "matched": 0,
+      "note": "no projection snapshot in rollup or per-slate files"
+    },
+    {
+      "date": "2026-05-19",
+      "bucket": null,
+      "matched": 0,
+      "note": "no projection snapshot in rollup or per-slate files"
+    },
+    {
+      "date": "2026-05-15",
+      "bucket": null,
+      "matched": 0,
+      "note": "no projection snapshot in rollup or per-slate files"
+    },
+    {
+      "date": "2026-05-18",
+      "bucket": null,
+      "matched": 0,
+      "note": "no projection snapshot in rollup or per-slate files"
+    },
+    {
+      "date": "2026-06-05",
       "bucket": null,
       "matched": 0,
       "note": "no projection snapshot in rollup or per-slate files"
@@ -4141,13 +3516,25 @@
       "note": "no projection snapshot in rollup or per-slate files"
     },
     {
-      "date": "2026-06-06",
+      "date": "2026-06-07",
+      "bucket": null,
+      "matched": 0,
+      "note": "no projection snapshot in rollup or per-slate files"
+    },
+    {
+      "date": "2026-06-02",
       "bucket": null,
       "matched": 0,
       "note": "no projection snapshot in rollup or per-slate files"
     },
     {
       "date": "2026-05-30",
+      "bucket": null,
+      "matched": 0,
+      "note": "no projection snapshot in rollup or per-slate files"
+    },
+    {
+      "date": "2026-05-14",
       "bucket": null,
       "matched": 0,
       "note": "no projection snapshot in rollup or per-slate files"
@@ -4165,31 +3552,13 @@
       "note": "no projection snapshot in rollup or per-slate files"
     },
     {
-      "date": "2026-05-05",
+      "date": "2026-06-03",
       "bucket": null,
       "matched": 0,
       "note": "no projection snapshot in rollup or per-slate files"
     },
     {
-      "date": "2026-05-15",
-      "bucket": null,
-      "matched": 0,
-      "note": "no projection snapshot in rollup or per-slate files"
-    },
-    {
-      "date": "2026-05-07",
-      "bucket": null,
-      "matched": 0,
-      "note": "no projection snapshot in rollup or per-slate files"
-    },
-    {
-      "date": "2026-05-01",
-      "bucket": null,
-      "matched": 0,
-      "note": "no projection snapshot in rollup or per-slate files"
-    },
-    {
-      "date": "2026-05-06",
+      "date": "2026-05-28",
       "bucket": null,
       "matched": 0,
       "note": "no projection snapshot in rollup or per-slate files"
@@ -4201,154 +3570,64 @@
       "note": "no projection snapshot in rollup or per-slate files"
     },
     {
+      "date": "2026-05-17",
+      "bucket": null,
+      "matched": 0,
+      "note": "no projection snapshot in rollup or per-slate files"
+    },
+    {
+      "date": "2026-04-28",
+      "bucket": null,
+      "matched": 0,
+      "note": "no projection snapshot in rollup or per-slate files"
+    },
+    {
+      "date": "2026-04-30",
+      "bucket": null,
+      "matched": 0,
+      "note": "no projection snapshot in rollup or per-slate files"
+    },
+    {
+      "date": "2026-06-06",
+      "bucket": null,
+      "matched": 0,
+      "note": "no projection snapshot in rollup or per-slate files"
+    },
+    {
+      "date": "2026-05-01",
+      "bucket": null,
+      "matched": 0,
+      "note": "no projection snapshot in rollup or per-slate files"
+    },
+    {
+      "date": "2026-06-01",
+      "bucket": null,
+      "matched": 0,
+      "note": "no projection snapshot in rollup or per-slate files"
+    },
+    {
+      "date": "2026-05-05",
+      "bucket": null,
+      "matched": 0,
+      "note": "no projection snapshot in rollup or per-slate files"
+    },
+    {
       "date": "2026-04-29",
       "bucket": null,
       "matched": 0,
       "note": "no projection snapshot in rollup or per-slate files"
     },
     {
-      "date": "2026-06-19",
-      "slate": "main_dk",
-      "gameCount": 12,
-      "isShowdown": false,
-      "bucket": "large",
-      "matched": 239,
-      "gateFailures": {
-        "noProj": 0,
-        "noProfile": 0,
-        "noGameForDate": 0,
-        "noDkfp": 0,
-        "totalScanned": 239
-      },
-      "source": "mlb-rollup.json.gz (main_dk)"
+      "date": "2026-05-11",
+      "bucket": null,
+      "matched": 0,
+      "note": "no projection snapshot in rollup or per-slate files"
     },
     {
-      "date": "2026-06-19",
-      "slate": "night_dk",
-      "gameCount": 4,
-      "isShowdown": false,
-      "bucket": "small",
-      "matched": 79,
-      "gateFailures": {
-        "noProj": 0,
-        "noProfile": 0,
-        "noGameForDate": 0,
-        "noDkfp": 0,
-        "totalScanned": 79
-      },
-      "source": "mlb-rollup.json.gz (night_dk)"
-    },
-    {
-      "date": "2026-06-14",
-      "slate": "night_dk",
-      "gameCount": 5,
-      "isShowdown": false,
-      "bucket": "main",
-      "matched": 82,
-      "gateFailures": {
-        "noProj": 0,
-        "noProfile": 0,
-        "noGameForDate": 18,
-        "noDkfp": 0,
-        "totalScanned": 100
-      },
-      "source": "mlb-rollup.json.gz (night_dk)"
-    },
-    {
-      "date": "2026-06-14",
-      "slate": "afternoon_dk",
-      "gameCount": 3,
-      "isShowdown": false,
-      "bucket": "small",
-      "matched": 59,
-      "gateFailures": {
-        "noProj": 0,
-        "noProfile": 0,
-        "noGameForDate": 1,
-        "noDkfp": 0,
-        "totalScanned": 60
-      },
-      "source": "mlb-rollup.json.gz (afternoon_dk)"
-    },
-    {
-      "date": "2026-06-14",
-      "slate": "main_dk",
-      "gameCount": 8,
-      "isShowdown": false,
-      "bucket": "main",
-      "matched": 158,
-      "gateFailures": {
-        "noProj": 0,
-        "noProfile": 0,
-        "noGameForDate": 0,
-        "noDkfp": 0,
-        "totalScanned": 158
-      },
-      "source": "mlb-rollup.json.gz (main_dk)"
-    },
-    {
-      "date": "2026-06-15",
-      "slate": "night_dk",
-      "gameCount": 3,
-      "isShowdown": false,
-      "bucket": "small",
-      "matched": 60,
-      "gateFailures": {
-        "noProj": 0,
-        "noProfile": 0,
-        "noGameForDate": 0,
-        "noDkfp": 0,
-        "totalScanned": 60
-      },
-      "source": "mlb-rollup.json.gz (night_dk)"
-    },
-    {
-      "date": "2026-06-15",
-      "slate": "main_dk",
-      "gameCount": 8,
-      "isShowdown": false,
-      "bucket": "main",
-      "matched": 159,
-      "gateFailures": {
-        "noProj": 0,
-        "noProfile": 0,
-        "noGameForDate": 0,
-        "noDkfp": 0,
-        "totalScanned": 159
-      },
-      "source": "mlb-rollup.json.gz (main_dk)"
-    },
-    {
-      "date": "2026-06-11",
-      "slate": "main_dk",
-      "gameCount": 5,
-      "isShowdown": false,
-      "bucket": "main",
-      "matched": 100,
-      "gateFailures": {
-        "noProj": 0,
-        "noProfile": 0,
-        "noGameForDate": 0,
-        "noDkfp": 0,
-        "totalScanned": 100
-      },
-      "source": "mlb-rollup.json.gz (main_dk)"
-    },
-    {
-      "date": "2026-06-11",
-      "slate": "night_dk",
-      "gameCount": 3,
-      "isShowdown": false,
-      "bucket": "small",
-      "matched": 59,
-      "gateFailures": {
-        "noProj": 0,
-        "noProfile": 0,
-        "noGameForDate": 0,
-        "noDkfp": 0,
-        "totalScanned": 59
-      },
-      "source": "mlb-rollup.json.gz (night_dk)"
+      "date": "2026-05-06",
+      "bucket": null,
+      "matched": 0,
+      "note": "no projection snapshot in rollup or per-slate files"
     },
     {
       "date": "2026-06-21",
@@ -4399,6 +3678,54 @@
       "source": "mlb-rollup.json.gz (afternoon_dk)"
     },
     {
+      "date": "2026-06-14",
+      "slate": "night_dk",
+      "gameCount": 5,
+      "isShowdown": false,
+      "bucket": "main",
+      "matched": 82,
+      "gateFailures": {
+        "noProj": 0,
+        "noProfile": 0,
+        "noGameForDate": 18,
+        "noDkfp": 0,
+        "totalScanned": 100
+      },
+      "source": "mlb-rollup.json.gz (night_dk)"
+    },
+    {
+      "date": "2026-06-14",
+      "slate": "afternoon_dk",
+      "gameCount": 3,
+      "isShowdown": false,
+      "bucket": "small",
+      "matched": 59,
+      "gateFailures": {
+        "noProj": 0,
+        "noProfile": 0,
+        "noGameForDate": 1,
+        "noDkfp": 0,
+        "totalScanned": 60
+      },
+      "source": "mlb-rollup.json.gz (afternoon_dk)"
+    },
+    {
+      "date": "2026-06-14",
+      "slate": "main_dk",
+      "gameCount": 8,
+      "isShowdown": false,
+      "bucket": "main",
+      "matched": 158,
+      "gateFailures": {
+        "noProj": 0,
+        "noProfile": 0,
+        "noGameForDate": 0,
+        "noDkfp": 0,
+        "totalScanned": 158
+      },
+      "source": "mlb-rollup.json.gz (main_dk)"
+    },
+    {
       "date": "2026-06-16",
       "slate": "main_dk",
       "gameCount": 12,
@@ -4431,36 +3758,100 @@
       "source": "mlb-rollup.json.gz (night_dk)"
     },
     {
-      "date": "2026-06-18",
+      "date": "2026-06-11",
       "slate": "main_dk",
-      "gameCount": 4,
+      "gameCount": 5,
       "isShowdown": false,
-      "bucket": "small",
-      "matched": 80,
+      "bucket": "main",
+      "matched": 100,
       "gateFailures": {
         "noProj": 0,
         "noProfile": 0,
         "noGameForDate": 0,
         "noDkfp": 0,
-        "totalScanned": 80
+        "totalScanned": 100
       },
       "source": "mlb-rollup.json.gz (main_dk)"
     },
     {
-      "date": "2026-06-18",
-      "slate": "early_dk",
-      "gameCount": 4,
+      "date": "2026-06-11",
+      "slate": "night_dk",
+      "gameCount": 3,
       "isShowdown": false,
       "bucket": "small",
-      "matched": 80,
+      "matched": 59,
       "gateFailures": {
         "noProj": 0,
         "noProfile": 0,
         "noGameForDate": 0,
         "noDkfp": 0,
-        "totalScanned": 80
+        "totalScanned": 59
       },
-      "source": "mlb-rollup.json.gz (early_dk)"
+      "source": "mlb-rollup.json.gz (night_dk)"
+    },
+    {
+      "date": "2026-06-12",
+      "slate": "night_dk",
+      "gameCount": 3,
+      "isShowdown": false,
+      "bucket": "small",
+      "matched": 59,
+      "gateFailures": {
+        "noProj": 0,
+        "noProfile": 0,
+        "noGameForDate": 0,
+        "noDkfp": 0,
+        "totalScanned": 59
+      },
+      "source": "mlb-rollup.json.gz (night_dk)"
+    },
+    {
+      "date": "2026-06-12",
+      "slate": "main_dk",
+      "gameCount": 13,
+      "isShowdown": false,
+      "bucket": "large",
+      "matched": 254,
+      "gateFailures": {
+        "noProj": 0,
+        "noProfile": 0,
+        "noGameForDate": 0,
+        "noDkfp": 0,
+        "totalScanned": 254
+      },
+      "source": "mlb-rollup.json.gz (main_dk)"
+    },
+    {
+      "date": "2026-06-19",
+      "slate": "main_dk",
+      "gameCount": 12,
+      "isShowdown": false,
+      "bucket": "large",
+      "matched": 239,
+      "gateFailures": {
+        "noProj": 0,
+        "noProfile": 0,
+        "noGameForDate": 0,
+        "noDkfp": 0,
+        "totalScanned": 239
+      },
+      "source": "mlb-rollup.json.gz (main_dk)"
+    },
+    {
+      "date": "2026-06-19",
+      "slate": "night_dk",
+      "gameCount": 4,
+      "isShowdown": false,
+      "bucket": "small",
+      "matched": 79,
+      "gateFailures": {
+        "noProj": 0,
+        "noProfile": 0,
+        "noGameForDate": 0,
+        "noDkfp": 0,
+        "totalScanned": 79
+      },
+      "source": "mlb-rollup.json.gz (night_dk)"
     },
     {
       "date": "2026-06-17",
@@ -4495,36 +3886,68 @@
       "source": "mlb-rollup.json.gz (early_dk)"
     },
     {
-      "date": "2026-06-12",
+      "date": "2026-06-15",
       "slate": "night_dk",
       "gameCount": 3,
       "isShowdown": false,
       "bucket": "small",
-      "matched": 59,
+      "matched": 60,
       "gateFailures": {
         "noProj": 0,
         "noProfile": 0,
         "noGameForDate": 0,
         "noDkfp": 0,
-        "totalScanned": 59
+        "totalScanned": 60
       },
       "source": "mlb-rollup.json.gz (night_dk)"
     },
     {
-      "date": "2026-06-12",
+      "date": "2026-06-15",
       "slate": "main_dk",
-      "gameCount": 13,
+      "gameCount": 8,
       "isShowdown": false,
-      "bucket": "large",
-      "matched": 254,
+      "bucket": "main",
+      "matched": 159,
       "gateFailures": {
         "noProj": 0,
         "noProfile": 0,
         "noGameForDate": 0,
         "noDkfp": 0,
-        "totalScanned": 254
+        "totalScanned": 159
       },
       "source": "mlb-rollup.json.gz (main_dk)"
+    },
+    {
+      "date": "2026-06-18",
+      "slate": "main_dk",
+      "gameCount": 4,
+      "isShowdown": false,
+      "bucket": "small",
+      "matched": 80,
+      "gateFailures": {
+        "noProj": 0,
+        "noProfile": 0,
+        "noGameForDate": 0,
+        "noDkfp": 0,
+        "totalScanned": 80
+      },
+      "source": "mlb-rollup.json.gz (main_dk)"
+    },
+    {
+      "date": "2026-06-18",
+      "slate": "early_dk",
+      "gameCount": 4,
+      "isShowdown": false,
+      "bucket": "small",
+      "matched": 80,
+      "gateFailures": {
+        "noProj": 0,
+        "noProfile": 0,
+        "noGameForDate": 0,
+        "noDkfp": 0,
+        "totalScanned": 80
+      },
+      "source": "mlb-rollup.json.gz (early_dk)"
     },
     {
       "date": "2026-06-20",
