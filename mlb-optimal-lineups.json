@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "sport": "mlb",
-  "generatedAt": "2026-06-25T14:03:30.434Z",
+  "generatedAt": "2026-06-25T14:20:41.501Z",
   "salaryCap": 50000,
   "shapes": [
     "5-3",
@@ -589,10 +589,28 @@
   },
   "proposals": [
     {
-      "knob": "optimalShapeWeight",
+      "knob": "optimalTeamWeight",
+      "label": "optimal team-selection",
       "value": 0.6,
-      "rationale": "Steer toward the ACHIEVABLE optimal structure — shapes [4-2 63%/3-3 32%/5-2 5%], primary-stack Vegas rank p50≈5 (NOT the rank-1 chalk nuke).",
-      "evidence": "19 slates · optimal beat the field champion by avg 30.2 pts · primary-stack Vegas rank 4–9 (p50 5)"
+      "schemaVersion": 2,
+      "rationale": "Steer primary 5-stacks toward the Vegas-rank band winners actually erupt (per-slate-size target from the file). Complements vegasLean (Vegas total).",
+      "evidence": "Winners high-Vegas 60% chalk-5man / 4% pivot · optimal stack Vegas-rank 4–9 (p50 5)"
+    },
+    {
+      "knob": "optimalPitcherWeight",
+      "label": "optimal pitcher ownership",
+      "value": 0.6,
+      "schemaVersion": 2,
+      "rationale": "Anchor the 2-pitcher own-sum to what WON (per-slate-size target from the file; global ~52%, chalk-ish aces — NOT the optimal's hindsight value pitchers).",
+      "evidence": "Winners n=6812 pitcher own-sum p50 52% (varies by slate size — see the DNA table)"
+    },
+    {
+      "knob": "optimalVsAceWeight",
+      "label": "stack vs chalk ace",
+      "value": 0.6,
+      "schemaVersion": 2,
+      "rationale": "Bonus for stacking hitters against a TOP-3 owned pitcher — fires ONLY on the slate sizes where it recurs (>20% of winning stacks; e.g. small slates, not main/large).",
+      "evidence": "Winners stack-vs-top3-pitcher: global 4% (per-slate-size in the DNA table — it recurs most on small slates)"
     }
   ],
   "slatesProcessed": 19,
