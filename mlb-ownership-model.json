@@ -2,35 +2,35 @@
   "version": 2,
   "schema": "mlb-ownership-model.v2",
   "sport": "mlb",
-  "trainedAt": "2026-06-26T15:00:12.197Z",
+  "trainedAt": "2026-06-26T21:06:04.178Z",
   "target": "leverageOverStokastic",
   "link": "linear",
   "leverageShrink": 0.5,
   "baselineStokMean": 4.9976,
   "scale": 100,
-  "intercept": 4.787912,
+  "intercept": 3.506389,
   "coefficients": {
-    "valuePerK": -0.649473,
-    "projRankInPos": -2.418631,
-    "valueRankInPos": -0.649023,
-    "priceRankInPos": 1.563279,
-    "ceilingRate": 6.311004,
-    "salTier_lt3k": -0.556291,
-    "salTier_3to4_5": -0.721868,
-    "salTier_4_5to7": -0.631278,
-    "salTier_7plus": 3.40061,
-    "pos_P": 2.427128,
-    "pos_C": -0.364855,
-    "pos_1B": 0.184054,
-    "pos_2B": -0.889042,
-    "pos_3B": -0.280861,
-    "pos_SS": 0.557932,
-    "pos_OF": -0.143183,
-    "games_small": 15.297576,
-    "games_main": -6.683944,
-    "games_large": -7.12246,
-    "isTopValueAtPos": -0.270469,
-    "isTopProjAtPos": 0.792003
+    "valuePerK": -0.791615,
+    "projRankInPos": -2.530003,
+    "valueRankInPos": -0.655464,
+    "priceRankInPos": 1.723497,
+    "ceilingRate": -1.14446,
+    "salTier_lt3k": -0.618778,
+    "salTier_3to4_5": -0.766767,
+    "salTier_4_5to7": -0.611117,
+    "salTier_7plus": 3.040409,
+    "pos_P": -1.012632,
+    "pos_C": 0.132025,
+    "pos_1B": 0.70905,
+    "pos_2B": -0.452218,
+    "pos_3B": 0.199589,
+    "pos_SS": 1.079329,
+    "pos_OF": 0.388605,
+    "games_small": 4.058556,
+    "games_main": -1.502034,
+    "games_large": -1.512774,
+    "isTopValueAtPos": -0.222065,
+    "isTopProjAtPos": 0.709844
   },
   "featureNames": [
     "valuePerK",
@@ -352,52 +352,52 @@
   "backtest": {
     "overall": {
       "n": 476,
-      "rmse": 12.77,
-      "mae": 7.378,
-      "r2": 0.198
+      "rmse": 12.794,
+      "mae": 7.29,
+      "r2": 0.195
     },
     "byPosition": {
       "P": {
         "n": 44,
-        "rmse": 17.542,
-        "mae": 12.232,
-        "r2": 0.271
+        "rmse": 17.675,
+        "mae": 12.439,
+        "r2": 0.26
       },
       "OF": {
         "n": 153,
-        "rmse": 12.74,
-        "mae": 7.057,
-        "r2": 0.163
+        "rmse": 12.75,
+        "mae": 6.952,
+        "r2": 0.162
       },
       "3B": {
         "n": 59,
-        "rmse": 10.792,
-        "mae": 6.037,
-        "r2": 0.037
+        "rmse": 10.812,
+        "mae": 5.92,
+        "r2": 0.034
       },
       "2B": {
         "n": 59,
-        "rmse": 11.769,
-        "mae": 7.337,
-        "r2": 0.023
+        "rmse": 11.781,
+        "mae": 7.246,
+        "r2": 0.021
       },
       "1B": {
         "n": 64,
-        "rmse": 11.631,
-        "mae": 6.304,
-        "r2": 0.289
+        "rmse": 11.624,
+        "mae": 6.137,
+        "r2": 0.29
       },
       "C": {
         "n": 56,
-        "rmse": 10.032,
-        "mae": 6.36,
-        "r2": 0.054
+        "rmse": 10.028,
+        "mae": 6.249,
+        "r2": 0.055
       },
       "SS": {
         "n": 41,
-        "rmse": 15.551,
-        "mae": 8.422,
-        "r2": 0.026
+        "rmse": 15.566,
+        "mae": 8.28,
+        "r2": 0.024
       }
     },
     "vsBaselines": {
@@ -410,14 +410,14 @@
     },
     "improvementOverStokastic": {
       "n": 476,
-      "modelRmse": 12.77,
+      "modelRmse": 12.794,
       "stokRmse": 12.766,
-      "delta": -0.004
+      "delta": -0.028
     },
     "agreementWithStokastic": {
       "n": 476,
-      "correlation": 0.987,
-      "meanAbsDiff": 1.135
+      "correlation": 0.988,
+      "meanAbsDiff": 1.115
     }
   }
 }
