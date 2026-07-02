@@ -1,7 +1,7 @@
 {
-  "schemaVersion": 3,
+  "schemaVersion": 4,
   "sport": "mlb",
-  "generatedAt": "2026-07-02T13:10:32.325Z",
+  "generatedAt": "2026-07-02T14:27:32.409Z",
   "salaryCap": 50000,
   "shapes": [
     "5-3",
@@ -784,8 +784,8 @@
       },
       "fiveManRate": 0.683,
       "bringBack": 0.234,
-      "pitcherOwnAvg": 23.6,
-      "hitterOwnAvg": 7.4,
+      "pitcherOwnAvg": 0.246,
+      "hitterOwnAvg": 0.089,
       "vsChalkAceRate": 0.076,
       "pitcherTierMix": {
         "ace+mid": 0.345,
@@ -797,7 +797,11 @@
         "value": 0.001,
         "ace": 0.002,
         "value+value": 0.008
-      }
+      },
+      "chalkTeamStackRate": 0.16,
+      "stackTeamOwnPctl": 0.239,
+      "secondaryTeamOwnPctl": 0.355,
+      "salOwnCorr": -0.066
     },
     "byBucket": {
       "small": {
@@ -817,8 +821,8 @@
         },
         "fiveManRate": 0.595,
         "bringBack": 0.344,
-        "pitcherOwnAvg": 41,
-        "hitterOwnAvg": 12.4,
+        "pitcherOwnAvg": 0.406,
+        "hitterOwnAvg": 0.158,
         "vsChalkAceRate": 0.193,
         "pitcherTierMix": {
           "ace+mid": 0.535,
@@ -829,7 +833,12 @@
           "mid": 0.07,
           "value": 0.007,
           "ace": 0.012
-        }
+        },
+        "chalkTeamStackRate": 0.034,
+        "stackTeamOwnPctl": 0.463,
+        "secondaryTeamOwnPctl": 0.492,
+        "salOwnCorr": 0.247,
+        "nSlates": 5
       },
       "main": {
         "_source": "winners",
@@ -848,8 +857,8 @@
         },
         "fiveManRate": 0.649,
         "bringBack": 0.208,
-        "pitcherOwnAvg": 23.8,
-        "hitterOwnAvg": 7.6,
+        "pitcherOwnAvg": 0.234,
+        "hitterOwnAvg": 0.091,
         "vsChalkAceRate": 0.127,
         "pitcherTierMix": {
           "mid+mid": 0.328,
@@ -860,7 +869,12 @@
           "ace+value": 0.119,
           "ace": 0.003,
           "ace+ace": 0.049
-        }
+        },
+        "chalkTeamStackRate": 0.327,
+        "stackTeamOwnPctl": 0.246,
+        "secondaryTeamOwnPctl": 0.405,
+        "salOwnCorr": 0.19,
+        "nSlates": 7
       },
       "large": {
         "_source": "winners",
@@ -879,8 +893,8 @@
         },
         "fiveManRate": 0.722,
         "bringBack": 0.228,
-        "pitcherOwnAvg": 21.7,
-        "hitterOwnAvg": 6.7,
+        "pitcherOwnAvg": 0.221,
+        "hitterOwnAvg": 0.073,
         "vsChalkAceRate": 0.018,
         "pitcherTierMix": {
           "ace+value": 0.18,
@@ -891,7 +905,12 @@
           "mid+mid": 0.204,
           "mid": 0,
           "ace": 0
-        }
+        },
+        "chalkTeamStackRate": 0.101,
+        "stackTeamOwnPctl": 0.109,
+        "secondaryTeamOwnPctl": 0.24,
+        "salOwnCorr": -0.068,
+        "nSlates": 9
       }
     }
   },
@@ -900,7 +919,7 @@
       "knob": "optimalTeamWeight",
       "label": "optimal team-selection",
       "value": 0.6,
-      "schemaVersion": 3,
+      "schemaVersion": 4,
       "rationale": "Steer primary 5-stacks toward the Vegas-rank band winners actually erupt (per-slate-size target from the file). Complements vegasLean (Vegas total).",
       "evidence": "Winners high-Vegas 63% chalk-5man / 3% pivot · optimal stack Vegas-rank 2–7 (p50 5)"
     },
@@ -908,7 +927,7 @@
       "knob": "optimalPitcherWeight",
       "label": "optimal pitcher ownership",
       "value": 0.6,
-      "schemaVersion": 3,
+      "schemaVersion": 4,
       "rationale": "Anchor the 2-pitcher own-sum to what WON (per-slate-size target from the file; global ~47%, chalk-ish aces — NOT the optimal's hindsight value pitchers).",
       "evidence": "Winners n=7649 pitcher own-sum p50 47% (varies by slate size — see the DNA table)"
     },
@@ -916,12 +935,13 @@
       "knob": "optimalVsAceWeight",
       "label": "stack vs chalk ace",
       "value": 0.6,
-      "schemaVersion": 3,
+      "schemaVersion": 4,
       "rationale": "Bonus for stacking hitters against a TOP-3 owned pitcher — fires ONLY on the slate sizes where it recurs (>20% of winning stacks; e.g. small slates, not main/large).",
       "evidence": "Winners stack-vs-top3-pitcher: global 8% (per-slate-size in the DNA table — it recurs most on small slates)"
     }
   ],
   "slatesProcessed": 21,
+  "truncated": false,
   "perSlate": [
     {
       "date": "2026-07-01",
@@ -1578,7 +1598,17 @@
   "joinHealthSummary": {
     "slates": 21,
     "avgPctWithActuals": 100,
-    "championReproducedRate": 1
+    "championReproducedRate": 1,
+    "winnerResolution": {
+      "nWinners": 8091,
+      "resolved8of8Pct": 0.937,
+      "histogram": {
+        "7": 386,
+        "8": 7583,
+        "le6": 122
+      },
+      "nameCollisions": 5
+    }
   },
   "skipped": [
     {
@@ -1718,6 +1748,154 @@
       "sk": "night_dk",
       "reason": "no-matching-contest",
       "slateId": "149555"
+    },
+    {
+      "date": "2026-06-16",
+      "reason": "no-rollup-snapshot"
+    },
+    {
+      "date": "2026-06-15",
+      "reason": "no-rollup-snapshot"
+    },
+    {
+      "date": "2026-06-14",
+      "reason": "no-rollup-snapshot"
+    },
+    {
+      "date": "2026-06-13",
+      "reason": "no-rollup-snapshot"
+    },
+    {
+      "date": "2026-06-12",
+      "reason": "no-rollup-snapshot"
+    },
+    {
+      "date": "2026-06-11",
+      "reason": "no-rollup-snapshot"
+    },
+    {
+      "date": "2026-06-10",
+      "reason": "no-rollup-snapshot"
+    },
+    {
+      "date": "2026-06-09",
+      "reason": "no-rollup-snapshot"
+    },
+    {
+      "date": "2026-06-08",
+      "reason": "no-rollup-snapshot"
+    },
+    {
+      "date": "2026-06-07",
+      "reason": "no-rollup-snapshot"
+    },
+    {
+      "date": "2026-06-06",
+      "reason": "no-rollup-snapshot"
+    },
+    {
+      "date": "2026-06-05",
+      "reason": "no-rollup-snapshot"
+    },
+    {
+      "date": "2026-06-04",
+      "reason": "no-rollup-snapshot"
+    },
+    {
+      "date": "2026-06-03",
+      "reason": "no-rollup-snapshot"
+    },
+    {
+      "date": "2026-06-02",
+      "reason": "no-rollup-snapshot"
+    },
+    {
+      "date": "2026-06-01",
+      "reason": "no-rollup-snapshot"
+    },
+    {
+      "date": "2026-05-31",
+      "reason": "no-rollup-snapshot"
+    },
+    {
+      "date": "2026-05-30",
+      "reason": "no-rollup-snapshot"
+    },
+    {
+      "date": "2026-05-29",
+      "reason": "no-rollup-snapshot"
+    },
+    {
+      "date": "2026-05-28",
+      "reason": "no-rollup-snapshot"
+    },
+    {
+      "date": "2026-05-27",
+      "reason": "no-rollup-snapshot"
+    },
+    {
+      "date": "2026-05-26",
+      "reason": "no-rollup-snapshot"
+    },
+    {
+      "date": "2026-05-22",
+      "reason": "no-rollup-snapshot"
+    },
+    {
+      "date": "2026-05-21",
+      "reason": "no-rollup-snapshot"
+    },
+    {
+      "date": "2026-05-20",
+      "reason": "no-rollup-snapshot"
+    },
+    {
+      "date": "2026-05-19",
+      "reason": "no-rollup-snapshot"
+    },
+    {
+      "date": "2026-05-18",
+      "reason": "no-rollup-snapshot"
+    },
+    {
+      "date": "2026-05-17",
+      "reason": "no-rollup-snapshot"
+    },
+    {
+      "date": "2026-05-16",
+      "reason": "no-rollup-snapshot"
+    },
+    {
+      "date": "2026-05-15",
+      "reason": "no-rollup-snapshot"
+    },
+    {
+      "date": "2026-05-14",
+      "reason": "no-rollup-snapshot"
+    },
+    {
+      "date": "2026-05-13",
+      "reason": "no-rollup-snapshot"
+    },
+    {
+      "date": "2026-05-11",
+      "reason": "no-rollup-snapshot"
+    },
+    {
+      "date": "2026-05-08",
+      "reason": "no-rollup-snapshot"
+    },
+    {
+      "date": "2026-05-07",
+      "reason": "no-rollup-snapshot"
+    },
+    {
+      "date": "2026-05-06",
+      "reason": "no-rollup-snapshot"
+    },
+    {
+      "date": "2026-05-05",
+      "reason": "no-rollup-snapshot"
     }
   ]
 }
