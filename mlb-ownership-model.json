@@ -2,35 +2,35 @@
   "version": 2,
   "schema": "mlb-ownership-model.v2",
   "sport": "mlb",
-  "trainedAt": "2026-07-03T13:33:46.256Z",
+  "trainedAt": "2026-07-04T14:43:42.508Z",
   "target": "leverageOverStokastic",
   "link": "linear",
   "leverageShrink": 0.5,
-  "baselineStokMean": 6.53,
+  "baselineStokMean": 6.2908,
   "scale": 100,
-  "intercept": 1.350102,
+  "intercept": 1.106395,
   "coefficients": {
-    "valuePerK": 1.366419,
-    "projRankInPos": -0.526492,
-    "valueRankInPos": 0.46882,
-    "priceRankInPos": -0.38521,
-    "ceilingRate": 0.145463,
-    "salTier_lt3k": 0.998385,
-    "salTier_3to4_5": 0.948616,
-    "salTier_4_5to7": -0.153481,
-    "salTier_7plus": -1.395749,
-    "pos_P": 3.310401,
-    "pos_C": -0.357587,
-    "pos_1B": -0.604275,
-    "pos_2B": -0.528594,
-    "pos_3B": -0.471284,
-    "pos_SS": 0.320592,
-    "pos_OF": -1.271483,
-    "games_small": 0.975158,
-    "games_main": -0.260347,
-    "games_large": -0.317041,
-    "isTopValueAtPos": 0.905059,
-    "isTopProjAtPos": -1.285168
+    "valuePerK": 1.196259,
+    "projRankInPos": -0.742906,
+    "valueRankInPos": 0.523632,
+    "priceRankInPos": 0.337169,
+    "ceilingRate": 0.926978,
+    "salTier_lt3k": -0.001155,
+    "salTier_3to4_5": 0.488258,
+    "salTier_4_5to7": 0.340712,
+    "salTier_7plus": -0.489185,
+    "pos_P": 4.2929,
+    "pos_C": -0.526341,
+    "pos_1B": -0.802345,
+    "pos_2B": -0.663742,
+    "pos_3B": -0.220086,
+    "pos_SS": -0.318185,
+    "pos_OF": -1.423571,
+    "games_small": 0,
+    "games_main": 0.25619,
+    "games_large": 0.08244,
+    "isTopValueAtPos": 0.415778,
+    "isTopProjAtPos": -1.054119
   },
   "featureNames": [
     "valuePerK",
@@ -56,27 +56,25 @@
     "isTopProjAtPos"
   ],
   "featureMeans": {
-    "valuePerK": 1.953926,
-    "projRankInPos": 0.446003,
-    "valueRankInPos": 0.469808,
-    "priceRankInPos": 0.466344,
-    "ceilingRate": 2.287726
+    "valuePerK": 1.951338,
+    "projRankInPos": 0.449009,
+    "valueRankInPos": 0.469371,
+    "priceRankInPos": 0.469228,
+    "ceilingRate": 2.286888
   },
   "featureStds": {
-    "valuePerK": 0.418041,
-    "projRankInPos": 0.294995,
-    "valueRankInPos": 0.295148,
-    "priceRankInPos": 0.299965,
-    "ceilingRate": 0.085524
+    "valuePerK": 0.414548,
+    "projRankInPos": 0.295298,
+    "valueRankInPos": 0.294796,
+    "priceRankInPos": 0.300859,
+    "ceilingRate": 0.087248
   },
   "training": {
     "splitMethod": "80/20 chronological",
-    "slateCount": 15,
-    "trainRows": 1928,
-    "evalRows": 373,
+    "slateCount": 14,
+    "trainRows": 1891,
+    "evalRows": 278,
     "trainDates": [
-      "2026-06-18",
-      "2026-06-19",
       "2026-06-20",
       "2026-06-21",
       "2026-06-22",
@@ -89,21 +87,10 @@
       "2026-06-29",
       "2026-06-30",
       "2026-07-01",
-      "2026-07-02"
+      "2026-07-02",
+      "2026-07-03"
     ],
     "perSlateStats": [
-      {
-        "date": "2026-06-18",
-        "contestId": 191452847,
-        "n": 60,
-        "cohortCount": 179
-      },
-      {
-        "date": "2026-06-19",
-        "contestId": 191489652,
-        "n": 154,
-        "cohortCount": 250
-      },
       {
         "date": "2026-06-20",
         "contestId": 191513306,
@@ -181,6 +168,12 @@
         "contestId": 191896237,
         "n": 101,
         "cohortCount": 238
+      },
+      {
+        "date": "2026-07-03",
+        "contestId": 191925535,
+        "n": 177,
+        "cohortCount": 250
       }
     ],
     "skipped": [
@@ -359,78 +352,86 @@
       {
         "date": "2026-06-17",
         "reason": "no rollup or snapshot slate"
+      },
+      {
+        "date": "2026-06-18",
+        "reason": "no rollup or snapshot slate"
+      },
+      {
+        "date": "2026-06-19",
+        "reason": "no rollup or snapshot slate"
       }
     ]
   },
   "backtest": {
     "overall": {
-      "n": 373,
-      "rmse": 11.469,
-      "mae": 6.892,
-      "r2": 0.286
+      "n": 278,
+      "rmse": 11.136,
+      "mae": 6.492,
+      "r2": 0.239
     },
     "byPosition": {
       "P": {
-        "n": 39,
-        "rmse": 14.531,
-        "mae": 9.677,
-        "r2": 0.585
-      },
-      "C": {
-        "n": 45,
-        "rmse": 11.33,
-        "mae": 6.401,
-        "r2": 0.129
-      },
-      "1B": {
-        "n": 60,
-        "rmse": 11.788,
-        "mae": 6.562,
-        "r2": 0.135
-      },
-      "OF": {
-        "n": 119,
-        "rmse": 9.088,
-        "mae": 5.55,
-        "r2": 0.158
+        "n": 29,
+        "rmse": 12.354,
+        "mae": 8.773,
+        "r2": 0.662
       },
       "SS": {
-        "n": 32,
-        "rmse": 12.069,
-        "mae": 6.89,
-        "r2": 0.082
-      },
-      "2B": {
-        "n": 47,
-        "rmse": 11.236,
-        "mae": 6.907,
-        "r2": 0.11
+        "n": 24,
+        "rmse": 10.545,
+        "mae": 6.768,
+        "r2": -0.188
       },
       "3B": {
-        "n": 31,
-        "rmse": 14.244,
-        "mae": 9.871,
-        "r2": -0.001
+        "n": 29,
+        "rmse": 13.502,
+        "mae": 8.628,
+        "r2": -0.097
+      },
+      "1B": {
+        "n": 45,
+        "rmse": 6.428,
+        "mae": 5.264,
+        "r2": 0.209
+      },
+      "2B": {
+        "n": 36,
+        "rmse": 7.731,
+        "mae": 4.72,
+        "r2": 0.094
+      },
+      "OF": {
+        "n": 86,
+        "rmse": 12.611,
+        "mae": 6.327,
+        "r2": 0.051
+      },
+      "C": {
+        "n": 29,
+        "rmse": 12.328,
+        "mae": 6.445,
+        "r2": 0.024
       }
     },
     "vsBaselines": {
       "predictStokastic": {
-        "n": 373,
-        "rmse": 11.545,
-        "mae": 6.699,
-        "r2": 0.277
+        "n": 278,
+        "rmse": 11.12,
+        "mae": 6.313,
+        "r2": 0.241
       }
     },
     "improvementOverStokastic": {
-      "n": 373,
-      "modelRmse": 11.469,
-      "stokRmse": 11.545,
-      "delta": 0.076
+      "n": 278,
+      "modelRmse": 11.136,
+      "stokRmse": 11.12,
+      "delta": -0.016
     },
     "agreementWithStokastic": {
-      "n": 373,
-      "correlation": 0.996,
-      "meanAbsDiff": 0.665
+      "n": 278,
+      "correlation": 0.995,
+      "meanAbsDiff": 0.767
     }
   }
 }
