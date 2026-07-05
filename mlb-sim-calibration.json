@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "sport": "mlb",
-  "generatedAt": "2026-07-05T15:06:05.647Z",
+  "generatedAt": "2026-07-05T16:24:02.206Z",
   "slatesProcessed": 90,
   "slatesByBucket": {
     "unknown": 0,
@@ -3257,6 +3257,239 @@
     "pairs": [],
     "note": "depScale for the sim worker's SHARED factors (team offense/adjacency/game env/team bias). d<1 shrinks joint stack tails ~d² while calibrated idio marginals barely move. Flip status to 'off' to revert (client falls back to ×1)."
   },
+  "gppRoiCal": {
+    "status": "active",
+    "levKick": null,
+    "levKickEvidence": {
+      "spearmanMed": 0.77,
+      "spearmanSelMed": null,
+      "n": 1,
+      "selReady": false
+    },
+    "nSlates": 1,
+    "nSlatesWindow": 1,
+    "buckets": {
+      "small": {
+        "n": 0
+      },
+      "main": {
+        "n": 0
+      },
+      "large": {
+        "n": 1,
+        "nAll": 1,
+        "windowDates": [
+          "2026-07-04",
+          "2026-07-04"
+        ],
+        "map": [
+          [
+            -57.4,
+            -87.1
+          ],
+          [
+            -43.5,
+            -58.7
+          ],
+          [
+            -24.7,
+            -58.7
+          ],
+          [
+            10.2,
+            -15.1
+          ],
+          [
+            78.8,
+            -15.1
+          ]
+        ],
+        "spearmanMed": 0.77,
+        "spearmanSelMed": null,
+        "orderingHeldK": 1
+      },
+      "showdown": {
+        "n": 0
+      }
+    },
+    "global": {
+      "n": 1,
+      "nAll": 1,
+      "windowDates": [
+        "2026-07-04",
+        "2026-07-04"
+      ],
+      "map": [
+        [
+          -57.4,
+          -87.1
+        ],
+        [
+          -43.5,
+          -58.7
+        ],
+        [
+          -24.7,
+          -58.7
+        ],
+        [
+          10.2,
+          -15.1
+        ],
+        [
+          78.8,
+          -15.1
+        ]
+      ],
+      "spearmanMed": 0.77,
+      "spearmanSelMed": null,
+      "orderingHeldK": 1
+    },
+    "orderingHeld": "1/1",
+    "deepTailHeld": "1/1",
+    "posShare": {
+      "pickedMed": null,
+      "poolMed": null
+    },
+    "boundaryDiag": -14.7,
+    "byDepRegime": {
+      "depLt1": 0.77
+    },
+    "recentSlates": [
+      {
+        "date": "2026-07-04",
+        "bucket": "large",
+        "cloneHandle": "optimal",
+        "depScaleAtBuild": null,
+        "nJoined": 220,
+        "spearmanGppRoi": 0.773,
+        "spearmanGppRoiSel": null,
+        "quintiles": [
+          {
+            "predLo": -90.6,
+            "predHi": -52.4,
+            "predMed": -57.4,
+            "n": 44,
+            "realizedRoiMean": -87.1,
+            "cashRate": 6.8
+          },
+          {
+            "predLo": -52.4,
+            "predHi": -32.9,
+            "predMed": -43.5,
+            "n": 44,
+            "realizedRoiMean": -53.8,
+            "cashRate": 22.7
+          },
+          {
+            "predLo": -32.9,
+            "predHi": -3.2,
+            "predMed": -24.7,
+            "n": 44,
+            "realizedRoiMean": -63.6,
+            "cashRate": 18.2
+          },
+          {
+            "predLo": -3.2,
+            "predHi": 35.1,
+            "predMed": 10.2,
+            "n": 44,
+            "realizedRoiMean": -5.1,
+            "cashRate": 36.4
+          },
+          {
+            "predLo": 35.7,
+            "predHi": 206.4,
+            "predMed": 78.8,
+            "n": 44,
+            "realizedRoiMean": -25,
+            "cashRate": 20.5
+          }
+        ],
+        "posNeg": {
+          "nPos": 83,
+          "nNeg": 137,
+          "posRealized": -13.6,
+          "negRealized": -67.2,
+          "gapPts": 53.6
+        },
+        "deepTail": {
+          "cut": -40,
+          "n": 73,
+          "realized": -74,
+          "restRealized": -33.5
+        },
+        "zeroCross": -14.7,
+        "bookMeanRealized": -46.9,
+        "posPoolShareMed": null,
+        "posPickShare": null,
+        "evFloorActive": false,
+        "contests": [
+          {
+            "contestId": "191955092",
+            "entryFee": 1,
+            "n": 20,
+            "spearman": 0.235,
+            "posNeg": {
+              "nPos": 4,
+              "nNeg": 16,
+              "posRealized": -62.5,
+              "negRealized": -59.4
+            }
+          },
+          {
+            "contestId": "191955090",
+            "entryFee": 4,
+            "n": 20,
+            "spearman": 0.152,
+            "posNeg": {
+              "nPos": 6,
+              "nNeg": 14,
+              "posRealized": -12.5,
+              "negRealized": -85.7
+            }
+          },
+          {
+            "contestId": "191955093",
+            "entryFee": 0.5,
+            "n": 150,
+            "spearman": 0.235,
+            "posNeg": {
+              "nPos": 62,
+              "nNeg": 88,
+              "posRealized": -3.2,
+              "negRealized": -70.5
+            }
+          },
+          {
+            "contestId": "191955094",
+            "entryFee": 0.25,
+            "n": 20,
+            "spearman": -0.018,
+            "posNeg": {
+              "nPos": 8,
+              "nNeg": 12,
+              "posRealized": -37.5,
+              "negRealized": -50
+            }
+          },
+          {
+            "contestId": "191955211",
+            "entryFee": 17.76,
+            "n": 10,
+            "spearman": 0.406,
+            "posNeg": {
+              "nPos": 3,
+              "nNeg": 7,
+              "posRealized": -100,
+              "negRealized": -35.7
+            }
+          }
+        ]
+      }
+    ],
+    "note": "Predicted→realized GPP-ROI truth. Per-slate tables journaled durably in mlb-gpp-roi-journal.json; this rollup is cross-slate MEDIANS of per-slate stats — picks are never pooled across slates. Display + evFloor-threshold consumer ONLY (the map is monotone; selection ordering is untouched). levKick: human sets 0 here to retire the 0.35 leverage kicker once levKickEvidence.selReady."
+  },
   "bucketsWindowed": {
     "small": {
       "nSlates": 0,
@@ -3670,16 +3903,6 @@
               "rate": 0.204
             }
           },
-          "top (1-2)": {
-            "n": 770,
-            "slates": 32,
-            "spearman": 0.064,
-            "topDecile": {
-              "hits": 16,
-              "possible": 95,
-              "rate": 0.168
-            }
-          },
           "heart (3-4)": {
             "n": 770,
             "slates": 32,
@@ -3688,6 +3911,16 @@
               "hits": 27,
               "possible": 95,
               "rate": 0.284
+            }
+          },
+          "top (1-2)": {
+            "n": 770,
+            "slates": 32,
+            "spearman": 0.064,
+            "topDecile": {
+              "hits": 16,
+              "possible": 95,
+              "rate": 0.168
             }
           },
           "mid (5-6)": {
@@ -3935,16 +4168,6 @@
           "rate": 0.204
         }
       },
-      "top (1-2)": {
-        "n": 770,
-        "slates": 32,
-        "spearman": 0.064,
-        "topDecile": {
-          "hits": 16,
-          "possible": 95,
-          "rate": 0.168
-        }
-      },
       "heart (3-4)": {
         "n": 770,
         "slates": 32,
@@ -3953,6 +4176,16 @@
           "hits": 27,
           "possible": 95,
           "rate": 0.284
+        }
+      },
+      "top (1-2)": {
+        "n": 770,
+        "slates": 32,
+        "spearman": 0.064,
+        "topDecile": {
+          "hits": 16,
+          "possible": 95,
+          "rate": 0.168
         }
       },
       "mid (5-6)": {
@@ -4012,73 +4245,7 @@
       "source": "mlb-rollup.json.gz (night_dk)"
     },
     {
-      "date": "2026-06-20",
-      "bucket": null,
-      "matched": 0,
-      "note": "no projection snapshot in rollup or per-slate files"
-    },
-    {
-      "date": "2026-06-10",
-      "bucket": null,
-      "matched": 0,
-      "note": "no projection snapshot in rollup or per-slate files"
-    },
-    {
-      "date": "2026-06-09",
-      "bucket": null,
-      "matched": 0,
-      "note": "no projection snapshot in rollup or per-slate files"
-    },
-    {
-      "date": "2026-06-12",
-      "bucket": null,
-      "matched": 0,
-      "note": "no projection snapshot in rollup or per-slate files"
-    },
-    {
-      "date": "2026-06-07",
-      "bucket": null,
-      "matched": 0,
-      "note": "no projection snapshot in rollup or per-slate files"
-    },
-    {
-      "date": "2026-06-18",
-      "bucket": null,
-      "matched": 0,
-      "note": "no projection snapshot in rollup or per-slate files"
-    },
-    {
-      "date": "2026-05-29",
-      "bucket": null,
-      "matched": 0,
-      "note": "no projection snapshot in rollup or per-slate files"
-    },
-    {
-      "date": "2026-06-16",
-      "bucket": null,
-      "matched": 0,
-      "note": "no projection snapshot in rollup or per-slate files"
-    },
-    {
-      "date": "2026-05-27",
-      "bucket": null,
-      "matched": 0,
-      "note": "no projection snapshot in rollup or per-slate files"
-    },
-    {
-      "date": "2026-06-02",
-      "bucket": null,
-      "matched": 0,
-      "note": "no projection snapshot in rollup or per-slate files"
-    },
-    {
-      "date": "2026-05-06",
-      "bucket": null,
-      "matched": 0,
-      "note": "no projection snapshot in rollup or per-slate files"
-    },
-    {
-      "date": "2026-06-03",
+      "date": "2026-06-13",
       "bucket": null,
       "matched": 0,
       "note": "no projection snapshot in rollup or per-slate files"
@@ -4090,7 +4257,31 @@
       "note": "no projection snapshot in rollup or per-slate files"
     },
     {
-      "date": "2026-05-05",
+      "date": "2026-04-29",
+      "bucket": null,
+      "matched": 0,
+      "note": "no projection snapshot in rollup or per-slate files"
+    },
+    {
+      "date": "2026-05-14",
+      "bucket": null,
+      "matched": 0,
+      "note": "no projection snapshot in rollup or per-slate files"
+    },
+    {
+      "date": "2026-05-27",
+      "bucket": null,
+      "matched": 0,
+      "note": "no projection snapshot in rollup or per-slate files"
+    },
+    {
+      "date": "2026-05-08",
+      "bucket": null,
+      "matched": 0,
+      "note": "no projection snapshot in rollup or per-slate files"
+    },
+    {
+      "date": "2026-06-16",
       "bucket": null,
       "matched": 0,
       "note": "no projection snapshot in rollup or per-slate files"
@@ -4102,43 +4293,7 @@
       "note": "no projection snapshot in rollup or per-slate files"
     },
     {
-      "date": "2026-04-29",
-      "bucket": null,
-      "matched": 0,
-      "note": "no projection snapshot in rollup or per-slate files"
-    },
-    {
-      "date": "2026-05-07",
-      "bucket": null,
-      "matched": 0,
-      "note": "no projection snapshot in rollup or per-slate files"
-    },
-    {
-      "date": "2026-06-01",
-      "bucket": null,
-      "matched": 0,
-      "note": "no projection snapshot in rollup or per-slate files"
-    },
-    {
-      "date": "2026-05-01",
-      "bucket": null,
-      "matched": 0,
-      "note": "no projection snapshot in rollup or per-slate files"
-    },
-    {
-      "date": "2026-04-28",
-      "bucket": null,
-      "matched": 0,
-      "note": "no projection snapshot in rollup or per-slate files"
-    },
-    {
-      "date": "2026-06-04",
-      "bucket": null,
-      "matched": 0,
-      "note": "no projection snapshot in rollup or per-slate files"
-    },
-    {
-      "date": "2026-06-06",
+      "date": "2026-06-05",
       "bucket": null,
       "matched": 0,
       "note": "no projection snapshot in rollup or per-slate files"
@@ -4150,13 +4305,97 @@
       "note": "no projection snapshot in rollup or per-slate files"
     },
     {
+      "date": "2026-06-03",
+      "bucket": null,
+      "matched": 0,
+      "note": "no projection snapshot in rollup or per-slate files"
+    },
+    {
+      "date": "2026-06-07",
+      "bucket": null,
+      "matched": 0,
+      "note": "no projection snapshot in rollup or per-slate files"
+    },
+    {
+      "date": "2026-06-04",
+      "bucket": null,
+      "matched": 0,
+      "note": "no projection snapshot in rollup or per-slate files"
+    },
+    {
+      "date": "2026-05-15",
+      "bucket": null,
+      "matched": 0,
+      "note": "no projection snapshot in rollup or per-slate files"
+    },
+    {
+      "date": "2026-06-14",
+      "bucket": null,
+      "matched": 0,
+      "note": "no projection snapshot in rollup or per-slate files"
+    },
+    {
+      "date": "2026-05-11",
+      "bucket": null,
+      "matched": 0,
+      "note": "no projection snapshot in rollup or per-slate files"
+    },
+    {
+      "date": "2026-05-13",
+      "bucket": null,
+      "matched": 0,
+      "note": "no projection snapshot in rollup or per-slate files"
+    },
+    {
+      "date": "2026-04-28",
+      "bucket": null,
+      "matched": 0,
+      "note": "no projection snapshot in rollup or per-slate files"
+    },
+    {
+      "date": "2026-06-20",
+      "bucket": null,
+      "matched": 0,
+      "note": "no projection snapshot in rollup or per-slate files"
+    },
+    {
+      "date": "2026-05-16",
+      "bucket": null,
+      "matched": 0,
+      "note": "no projection snapshot in rollup or per-slate files"
+    },
+    {
       "date": "2026-06-19",
       "bucket": null,
       "matched": 0,
       "note": "no projection snapshot in rollup or per-slate files"
     },
     {
-      "date": "2026-05-20",
+      "date": "2026-06-17",
+      "bucket": null,
+      "matched": 0,
+      "note": "no projection snapshot in rollup or per-slate files"
+    },
+    {
+      "date": "2026-06-09",
+      "bucket": null,
+      "matched": 0,
+      "note": "no projection snapshot in rollup or per-slate files"
+    },
+    {
+      "date": "2026-06-02",
+      "bucket": null,
+      "matched": 0,
+      "note": "no projection snapshot in rollup or per-slate files"
+    },
+    {
+      "date": "2026-06-12",
+      "bucket": null,
+      "matched": 0,
+      "note": "no projection snapshot in rollup or per-slate files"
+    },
+    {
+      "date": "2026-06-18",
       "bucket": null,
       "matched": 0,
       "note": "no projection snapshot in rollup or per-slate files"
@@ -4168,13 +4407,7 @@
       "note": "no projection snapshot in rollup or per-slate files"
     },
     {
-      "date": "2026-05-22",
-      "bucket": null,
-      "matched": 0,
-      "note": "no projection snapshot in rollup or per-slate files"
-    },
-    {
-      "date": "2026-06-05",
+      "date": "2026-06-10",
       "bucket": null,
       "matched": 0,
       "note": "no projection snapshot in rollup or per-slate files"
@@ -4186,7 +4419,25 @@
       "note": "no projection snapshot in rollup or per-slate files"
     },
     {
-      "date": "2026-06-17",
+      "date": "2026-06-06",
+      "bucket": null,
+      "matched": 0,
+      "note": "no projection snapshot in rollup or per-slate files"
+    },
+    {
+      "date": "2026-05-19",
+      "bucket": null,
+      "matched": 0,
+      "note": "no projection snapshot in rollup or per-slate files"
+    },
+    {
+      "date": "2026-05-18",
+      "bucket": null,
+      "matched": 0,
+      "note": "no projection snapshot in rollup or per-slate files"
+    },
+    {
+      "date": "2026-05-29",
       "bucket": null,
       "matched": 0,
       "note": "no projection snapshot in rollup or per-slate files"
@@ -4204,19 +4455,25 @@
       "note": "no projection snapshot in rollup or per-slate files"
     },
     {
-      "date": "2026-06-13",
+      "date": "2026-05-21",
       "bucket": null,
       "matched": 0,
       "note": "no projection snapshot in rollup or per-slate files"
     },
     {
-      "date": "2026-05-19",
+      "date": "2026-05-22",
       "bucket": null,
       "matched": 0,
       "note": "no projection snapshot in rollup or per-slate files"
     },
     {
-      "date": "2026-06-14",
+      "date": "2026-05-20",
+      "bucket": null,
+      "matched": 0,
+      "note": "no projection snapshot in rollup or per-slate files"
+    },
+    {
+      "date": "2026-06-01",
       "bucket": null,
       "matched": 0,
       "note": "no projection snapshot in rollup or per-slate files"
@@ -4228,19 +4485,7 @@
       "note": "no projection snapshot in rollup or per-slate files"
     },
     {
-      "date": "2026-05-18",
-      "bucket": null,
-      "matched": 0,
-      "note": "no projection snapshot in rollup or per-slate files"
-    },
-    {
-      "date": "2026-05-21",
-      "bucket": null,
-      "matched": 0,
-      "note": "no projection snapshot in rollup or per-slate files"
-    },
-    {
-      "date": "2026-05-04",
+      "date": "2026-05-07",
       "bucket": null,
       "matched": 0,
       "note": "no projection snapshot in rollup or per-slate files"
@@ -4252,94 +4497,34 @@
       "note": "no projection snapshot in rollup or per-slate files"
     },
     {
-      "date": "2026-05-15",
-      "bucket": null,
-      "matched": 0,
-      "note": "no projection snapshot in rollup or per-slate files"
-    },
-    {
-      "date": "2026-05-13",
-      "bucket": null,
-      "matched": 0,
-      "note": "no projection snapshot in rollup or per-slate files"
-    },
-    {
-      "date": "2026-05-08",
-      "bucket": null,
-      "matched": 0,
-      "note": "no projection snapshot in rollup or per-slate files"
-    },
-    {
-      "date": "2026-05-16",
-      "bucket": null,
-      "matched": 0,
-      "note": "no projection snapshot in rollup or per-slate files"
-    },
-    {
-      "date": "2026-05-11",
-      "bucket": null,
-      "matched": 0,
-      "note": "no projection snapshot in rollup or per-slate files"
-    },
-    {
       "date": "2026-04-30",
       "bucket": null,
       "matched": 0,
       "note": "no projection snapshot in rollup or per-slate files"
     },
     {
-      "date": "2026-05-14",
+      "date": "2026-05-06",
       "bucket": null,
       "matched": 0,
       "note": "no projection snapshot in rollup or per-slate files"
     },
     {
-      "date": "2026-06-21",
-      "slate": "main_dk",
-      "gameCount": 8,
-      "isShowdown": false,
-      "bucket": "large",
-      "matched": 160,
-      "gateFailures": {
-        "noProj": 0,
-        "noProfile": 0,
-        "noGameForDate": 0,
-        "noDkfp": 0,
-        "totalScanned": 160
-      },
-      "source": "mlb-rollup.json.gz (main_dk)"
+      "date": "2026-05-04",
+      "bucket": null,
+      "matched": 0,
+      "note": "no projection snapshot in rollup or per-slate files"
     },
     {
-      "date": "2026-06-21",
-      "slate": "turbo_dk",
-      "gameCount": 3,
-      "isShowdown": false,
-      "bucket": "small",
-      "matched": 59,
-      "gateFailures": {
-        "noProj": 0,
-        "noProfile": 0,
-        "noGameForDate": 0,
-        "noDkfp": 0,
-        "totalScanned": 59
-      },
-      "source": "mlb-rollup.json.gz (turbo_dk)"
+      "date": "2026-05-01",
+      "bucket": null,
+      "matched": 0,
+      "note": "no projection snapshot in rollup or per-slate files"
     },
     {
-      "date": "2026-06-21",
-      "slate": "afternoon_dk",
-      "gameCount": 3,
-      "isShowdown": false,
-      "bucket": "small",
-      "matched": 57,
-      "gateFailures": {
-        "noProj": 0,
-        "noProfile": 0,
-        "noGameForDate": 2,
-        "noDkfp": 0,
-        "totalScanned": 59
-      },
-      "source": "mlb-rollup.json.gz (afternoon_dk)"
+      "date": "2026-05-05",
+      "bucket": null,
+      "matched": 0,
+      "note": "no projection snapshot in rollup or per-slate files"
     },
     {
       "date": "2026-06-24",
@@ -4406,150 +4591,6 @@
       "source": "mlb-rollup.json.gz (early_dk)"
     },
     {
-      "date": "2026-07-02",
-      "slate": "main_dk",
-      "gameCount": 6,
-      "isShowdown": false,
-      "bucket": "main",
-      "matched": 120,
-      "gateFailures": {
-        "noProj": 0,
-        "noProfile": 0,
-        "noGameForDate": 0,
-        "noDkfp": 0,
-        "totalScanned": 120
-      },
-      "source": "mlb-rollup.json.gz (main_dk)"
-    },
-    {
-      "date": "2026-07-02",
-      "slate": "early_dk",
-      "gameCount": 3,
-      "isShowdown": false,
-      "bucket": "small",
-      "matched": 60,
-      "gateFailures": {
-        "noProj": 0,
-        "noProfile": 0,
-        "noGameForDate": 0,
-        "noDkfp": 0,
-        "totalScanned": 60
-      },
-      "source": "mlb-rollup.json.gz (early_dk)"
-    },
-    {
-      "date": "2026-07-02",
-      "slate": "night_dk",
-      "gameCount": 2,
-      "isShowdown": false,
-      "bucket": "small",
-      "matched": 40,
-      "gateFailures": {
-        "noProj": 0,
-        "noProfile": 0,
-        "noGameForDate": 0,
-        "noDkfp": 0,
-        "totalScanned": 40
-      },
-      "source": "mlb-rollup.json.gz (night_dk)"
-    },
-    {
-      "date": "2026-07-03",
-      "slate": "main_dk",
-      "gameCount": 11,
-      "isShowdown": false,
-      "bucket": "large",
-      "matched": 219,
-      "gateFailures": {
-        "noProj": 0,
-        "noProfile": 0,
-        "noGameForDate": 0,
-        "noDkfp": 0,
-        "totalScanned": 219
-      },
-      "source": "mlb-rollup.json.gz (main_dk)"
-    },
-    {
-      "date": "2026-07-03",
-      "slate": "turbo_dk",
-      "gameCount": 2,
-      "isShowdown": false,
-      "bucket": "small",
-      "matched": 40,
-      "gateFailures": {
-        "noProj": 0,
-        "noProfile": 0,
-        "noGameForDate": 0,
-        "noDkfp": 0,
-        "totalScanned": 40
-      },
-      "source": "mlb-rollup.json.gz (turbo_dk)"
-    },
-    {
-      "date": "2026-07-03",
-      "slate": "night_dk",
-      "gameCount": 5,
-      "isShowdown": false,
-      "bucket": "small",
-      "matched": 99,
-      "gateFailures": {
-        "noProj": 0,
-        "noProfile": 0,
-        "noGameForDate": 0,
-        "noDkfp": 0,
-        "totalScanned": 99
-      },
-      "source": "mlb-rollup.json.gz (night_dk)"
-    },
-    {
-      "date": "2026-07-04",
-      "slate": "main_dk",
-      "gameCount": 11,
-      "isShowdown": false,
-      "bucket": "large",
-      "matched": 221,
-      "gateFailures": {
-        "noProj": 0,
-        "noProfile": 0,
-        "noGameForDate": 0,
-        "noDkfp": 0,
-        "totalScanned": 221
-      },
-      "source": "mlb-rollup.json.gz (main_dk)"
-    },
-    {
-      "date": "2026-07-04",
-      "slate": "early_dk",
-      "gameCount": 3,
-      "isShowdown": false,
-      "bucket": "small",
-      "matched": 60,
-      "gateFailures": {
-        "noProj": 0,
-        "noProfile": 0,
-        "noGameForDate": 0,
-        "noDkfp": 0,
-        "totalScanned": 60
-      },
-      "source": "mlb-rollup.json.gz (early_dk)"
-    },
-    {
-      "date": "2026-07-04",
-      "slate": "night_dk",
-      "gameCount": 4,
-      "isShowdown": false,
-      "bucket": "small",
-      "matched": 81,
-      "gateFailures": {
-        "noProj": 0,
-        "noProfile": 0,
-        "noGameForDate": 0,
-        "noDkfp": 0,
-        "totalScanned": 81
-      },
-      "source": "mlb-rollup.json.gz (night_dk)"
-    },
-    {
       "date": "2026-06-25",
       "slate": "main_dk",
       "gameCount": 6,
@@ -4582,196 +4623,52 @@
       "source": "mlb-rollup.json.gz (early_dk)"
     },
     {
-      "date": "2026-06-23",
+      "date": "2026-06-21",
       "slate": "main_dk",
-      "gameCount": 9,
+      "gameCount": 8,
       "isShowdown": false,
       "bucket": "large",
-      "matched": 178,
+      "matched": 160,
       "gateFailures": {
         "noProj": 0,
         "noProfile": 0,
         "noGameForDate": 0,
         "noDkfp": 0,
-        "totalScanned": 178
+        "totalScanned": 160
       },
       "source": "mlb-rollup.json.gz (main_dk)"
     },
     {
-      "date": "2026-06-23",
+      "date": "2026-06-21",
       "slate": "turbo_dk",
-      "gameCount": 5,
-      "isShowdown": false,
-      "bucket": "small",
-      "matched": 98,
-      "gateFailures": {
-        "noProj": 0,
-        "noProfile": 0,
-        "noGameForDate": 1,
-        "noDkfp": 0,
-        "totalScanned": 99
-      },
-      "source": "mlb-rollup.json.gz (turbo_dk)"
-    },
-    {
-      "date": "2026-06-23",
-      "slate": "night_dk",
       "gameCount": 3,
       "isShowdown": false,
       "bucket": "small",
-      "matched": 58,
+      "matched": 59,
       "gateFailures": {
         "noProj": 0,
         "noProfile": 0,
         "noGameForDate": 0,
         "noDkfp": 0,
-        "totalScanned": 58
-      },
-      "source": "mlb-rollup.json.gz (night_dk)"
-    },
-    {
-      "date": "2026-06-28",
-      "slate": "main_dk",
-      "gameCount": 11,
-      "isShowdown": false,
-      "bucket": "large",
-      "matched": 221,
-      "gateFailures": {
-        "noProj": 0,
-        "noProfile": 0,
-        "noGameForDate": 0,
-        "noDkfp": 0,
-        "totalScanned": 221
-      },
-      "source": "mlb-rollup.json.gz (main_dk)"
-    },
-    {
-      "date": "2026-06-28",
-      "slate": "turbo_dk",
-      "gameCount": 4,
-      "isShowdown": false,
-      "bucket": "small",
-      "matched": 81,
-      "gateFailures": {
-        "noProj": 0,
-        "noProfile": 0,
-        "noGameForDate": 0,
-        "noDkfp": 0,
-        "totalScanned": 81
+        "totalScanned": 59
       },
       "source": "mlb-rollup.json.gz (turbo_dk)"
     },
     {
-      "date": "2026-06-28",
+      "date": "2026-06-21",
       "slate": "afternoon_dk",
-      "gameCount": 2,
+      "gameCount": 3,
       "isShowdown": false,
       "bucket": "small",
-      "matched": 40,
+      "matched": 57,
       "gateFailures": {
         "noProj": 0,
         "noProfile": 0,
-        "noGameForDate": 0,
+        "noGameForDate": 2,
         "noDkfp": 0,
-        "totalScanned": 40
+        "totalScanned": 59
       },
       "source": "mlb-rollup.json.gz (afternoon_dk)"
-    },
-    {
-      "date": "2026-06-30",
-      "slate": "main_dk",
-      "gameCount": 12,
-      "isShowdown": false,
-      "bucket": "large",
-      "matched": 239,
-      "gateFailures": {
-        "noProj": 0,
-        "noProfile": 0,
-        "noGameForDate": 0,
-        "noDkfp": 0,
-        "totalScanned": 239
-      },
-      "source": "mlb-rollup.json.gz (main_dk)"
-    },
-    {
-      "date": "2026-06-30",
-      "slate": "turbo_dk",
-      "gameCount": 3,
-      "isShowdown": false,
-      "bucket": "small",
-      "matched": 59,
-      "gateFailures": {
-        "noProj": 0,
-        "noProfile": 0,
-        "noGameForDate": 1,
-        "noDkfp": 0,
-        "totalScanned": 60
-      },
-      "source": "mlb-rollup.json.gz (turbo_dk)"
-    },
-    {
-      "date": "2026-06-30",
-      "slate": "night_dk",
-      "gameCount": 3,
-      "isShowdown": false,
-      "bucket": "small",
-      "matched": 59,
-      "gateFailures": {
-        "noProj": 0,
-        "noProfile": 0,
-        "noGameForDate": 0,
-        "noDkfp": 0,
-        "totalScanned": 59
-      },
-      "source": "mlb-rollup.json.gz (night_dk)"
-    },
-    {
-      "date": "2026-06-26",
-      "slate": "main_dk",
-      "gameCount": 13,
-      "isShowdown": false,
-      "bucket": "large",
-      "matched": 258,
-      "gateFailures": {
-        "noProj": 0,
-        "noProfile": 0,
-        "noGameForDate": 0,
-        "noDkfp": 0,
-        "totalScanned": 258
-      },
-      "source": "mlb-rollup.json.gz (main_dk)"
-    },
-    {
-      "date": "2026-06-26",
-      "slate": "turbo_dk",
-      "gameCount": 2,
-      "isShowdown": false,
-      "bucket": "small",
-      "matched": 40,
-      "gateFailures": {
-        "noProj": 0,
-        "noProfile": 0,
-        "noGameForDate": 0,
-        "noDkfp": 0,
-        "totalScanned": 40
-      },
-      "source": "mlb-rollup.json.gz (turbo_dk)"
-    },
-    {
-      "date": "2026-06-26",
-      "slate": "night_dk",
-      "gameCount": 3,
-      "isShowdown": false,
-      "bucket": "small",
-      "matched": 59,
-      "gateFailures": {
-        "noProj": 0,
-        "noProfile": 0,
-        "noGameForDate": 0,
-        "noDkfp": 0,
-        "totalScanned": 59
-      },
-      "source": "mlb-rollup.json.gz (night_dk)"
     },
     {
       "date": "2026-07-01",
@@ -4838,23 +4735,167 @@
       "source": "mlb-rollup.json.gz (night_dk)"
     },
     {
-      "date": "2026-06-29",
+      "date": "2026-06-28",
       "slate": "main_dk",
       "gameCount": 11,
       "isShowdown": false,
       "bucket": "large",
-      "matched": 219,
+      "matched": 221,
       "gateFailures": {
         "noProj": 0,
         "noProfile": 0,
         "noGameForDate": 0,
         "noDkfp": 0,
-        "totalScanned": 219
+        "totalScanned": 221
       },
       "source": "mlb-rollup.json.gz (main_dk)"
     },
     {
-      "date": "2026-06-29",
+      "date": "2026-06-28",
+      "slate": "turbo_dk",
+      "gameCount": 4,
+      "isShowdown": false,
+      "bucket": "small",
+      "matched": 81,
+      "gateFailures": {
+        "noProj": 0,
+        "noProfile": 0,
+        "noGameForDate": 0,
+        "noDkfp": 0,
+        "totalScanned": 81
+      },
+      "source": "mlb-rollup.json.gz (turbo_dk)"
+    },
+    {
+      "date": "2026-06-28",
+      "slate": "afternoon_dk",
+      "gameCount": 2,
+      "isShowdown": false,
+      "bucket": "small",
+      "matched": 40,
+      "gateFailures": {
+        "noProj": 0,
+        "noProfile": 0,
+        "noGameForDate": 0,
+        "noDkfp": 0,
+        "totalScanned": 40
+      },
+      "source": "mlb-rollup.json.gz (afternoon_dk)"
+    },
+    {
+      "date": "2026-07-02",
+      "slate": "main_dk",
+      "gameCount": 6,
+      "isShowdown": false,
+      "bucket": "main",
+      "matched": 120,
+      "gateFailures": {
+        "noProj": 0,
+        "noProfile": 0,
+        "noGameForDate": 0,
+        "noDkfp": 0,
+        "totalScanned": 120
+      },
+      "source": "mlb-rollup.json.gz (main_dk)"
+    },
+    {
+      "date": "2026-07-02",
+      "slate": "early_dk",
+      "gameCount": 3,
+      "isShowdown": false,
+      "bucket": "small",
+      "matched": 60,
+      "gateFailures": {
+        "noProj": 0,
+        "noProfile": 0,
+        "noGameForDate": 0,
+        "noDkfp": 0,
+        "totalScanned": 60
+      },
+      "source": "mlb-rollup.json.gz (early_dk)"
+    },
+    {
+      "date": "2026-07-02",
+      "slate": "night_dk",
+      "gameCount": 2,
+      "isShowdown": false,
+      "bucket": "small",
+      "matched": 40,
+      "gateFailures": {
+        "noProj": 0,
+        "noProfile": 0,
+        "noGameForDate": 0,
+        "noDkfp": 0,
+        "totalScanned": 40
+      },
+      "source": "mlb-rollup.json.gz (night_dk)"
+    },
+    {
+      "date": "2026-07-04",
+      "slate": "main_dk",
+      "gameCount": 11,
+      "isShowdown": false,
+      "bucket": "large",
+      "matched": 221,
+      "gateFailures": {
+        "noProj": 0,
+        "noProfile": 0,
+        "noGameForDate": 0,
+        "noDkfp": 0,
+        "totalScanned": 221
+      },
+      "source": "mlb-rollup.json.gz (main_dk)"
+    },
+    {
+      "date": "2026-07-04",
+      "slate": "early_dk",
+      "gameCount": 3,
+      "isShowdown": false,
+      "bucket": "small",
+      "matched": 60,
+      "gateFailures": {
+        "noProj": 0,
+        "noProfile": 0,
+        "noGameForDate": 0,
+        "noDkfp": 0,
+        "totalScanned": 60
+      },
+      "source": "mlb-rollup.json.gz (early_dk)"
+    },
+    {
+      "date": "2026-07-04",
+      "slate": "night_dk",
+      "gameCount": 4,
+      "isShowdown": false,
+      "bucket": "small",
+      "matched": 81,
+      "gateFailures": {
+        "noProj": 0,
+        "noProfile": 0,
+        "noGameForDate": 0,
+        "noDkfp": 0,
+        "totalScanned": 81
+      },
+      "source": "mlb-rollup.json.gz (night_dk)"
+    },
+    {
+      "date": "2026-06-26",
+      "slate": "main_dk",
+      "gameCount": 13,
+      "isShowdown": false,
+      "bucket": "large",
+      "matched": 258,
+      "gateFailures": {
+        "noProj": 0,
+        "noProfile": 0,
+        "noGameForDate": 0,
+        "noDkfp": 0,
+        "totalScanned": 258
+      },
+      "source": "mlb-rollup.json.gz (main_dk)"
+    },
+    {
+      "date": "2026-06-26",
       "slate": "turbo_dk",
       "gameCount": 2,
       "isShowdown": false,
@@ -4870,7 +4911,7 @@
       "source": "mlb-rollup.json.gz (turbo_dk)"
     },
     {
-      "date": "2026-06-29",
+      "date": "2026-06-26",
       "slate": "night_dk",
       "gameCount": 3,
       "isShowdown": false,
@@ -4882,6 +4923,150 @@
         "noGameForDate": 0,
         "noDkfp": 0,
         "totalScanned": 59
+      },
+      "source": "mlb-rollup.json.gz (night_dk)"
+    },
+    {
+      "date": "2026-06-30",
+      "slate": "main_dk",
+      "gameCount": 12,
+      "isShowdown": false,
+      "bucket": "large",
+      "matched": 239,
+      "gateFailures": {
+        "noProj": 0,
+        "noProfile": 0,
+        "noGameForDate": 0,
+        "noDkfp": 0,
+        "totalScanned": 239
+      },
+      "source": "mlb-rollup.json.gz (main_dk)"
+    },
+    {
+      "date": "2026-06-30",
+      "slate": "turbo_dk",
+      "gameCount": 3,
+      "isShowdown": false,
+      "bucket": "small",
+      "matched": 59,
+      "gateFailures": {
+        "noProj": 0,
+        "noProfile": 0,
+        "noGameForDate": 1,
+        "noDkfp": 0,
+        "totalScanned": 60
+      },
+      "source": "mlb-rollup.json.gz (turbo_dk)"
+    },
+    {
+      "date": "2026-06-30",
+      "slate": "night_dk",
+      "gameCount": 3,
+      "isShowdown": false,
+      "bucket": "small",
+      "matched": 59,
+      "gateFailures": {
+        "noProj": 0,
+        "noProfile": 0,
+        "noGameForDate": 0,
+        "noDkfp": 0,
+        "totalScanned": 59
+      },
+      "source": "mlb-rollup.json.gz (night_dk)"
+    },
+    {
+      "date": "2026-07-03",
+      "slate": "main_dk",
+      "gameCount": 11,
+      "isShowdown": false,
+      "bucket": "large",
+      "matched": 219,
+      "gateFailures": {
+        "noProj": 0,
+        "noProfile": 0,
+        "noGameForDate": 0,
+        "noDkfp": 0,
+        "totalScanned": 219
+      },
+      "source": "mlb-rollup.json.gz (main_dk)"
+    },
+    {
+      "date": "2026-07-03",
+      "slate": "turbo_dk",
+      "gameCount": 2,
+      "isShowdown": false,
+      "bucket": "small",
+      "matched": 40,
+      "gateFailures": {
+        "noProj": 0,
+        "noProfile": 0,
+        "noGameForDate": 0,
+        "noDkfp": 0,
+        "totalScanned": 40
+      },
+      "source": "mlb-rollup.json.gz (turbo_dk)"
+    },
+    {
+      "date": "2026-07-03",
+      "slate": "night_dk",
+      "gameCount": 5,
+      "isShowdown": false,
+      "bucket": "small",
+      "matched": 99,
+      "gateFailures": {
+        "noProj": 0,
+        "noProfile": 0,
+        "noGameForDate": 0,
+        "noDkfp": 0,
+        "totalScanned": 99
+      },
+      "source": "mlb-rollup.json.gz (night_dk)"
+    },
+    {
+      "date": "2026-06-23",
+      "slate": "main_dk",
+      "gameCount": 9,
+      "isShowdown": false,
+      "bucket": "large",
+      "matched": 178,
+      "gateFailures": {
+        "noProj": 0,
+        "noProfile": 0,
+        "noGameForDate": 0,
+        "noDkfp": 0,
+        "totalScanned": 178
+      },
+      "source": "mlb-rollup.json.gz (main_dk)"
+    },
+    {
+      "date": "2026-06-23",
+      "slate": "turbo_dk",
+      "gameCount": 5,
+      "isShowdown": false,
+      "bucket": "small",
+      "matched": 98,
+      "gateFailures": {
+        "noProj": 0,
+        "noProfile": 0,
+        "noGameForDate": 1,
+        "noDkfp": 0,
+        "totalScanned": 99
+      },
+      "source": "mlb-rollup.json.gz (turbo_dk)"
+    },
+    {
+      "date": "2026-06-23",
+      "slate": "night_dk",
+      "gameCount": 3,
+      "isShowdown": false,
+      "bucket": "small",
+      "matched": 58,
+      "gateFailures": {
+        "noProj": 0,
+        "noProfile": 0,
+        "noGameForDate": 0,
+        "noDkfp": 0,
+        "totalScanned": 58
       },
       "source": "mlb-rollup.json.gz (night_dk)"
     },
@@ -4946,6 +5131,54 @@
         "noGameForDate": 0,
         "noDkfp": 0,
         "totalScanned": 60
+      },
+      "source": "mlb-rollup.json.gz (night_dk)"
+    },
+    {
+      "date": "2026-06-29",
+      "slate": "main_dk",
+      "gameCount": 11,
+      "isShowdown": false,
+      "bucket": "large",
+      "matched": 219,
+      "gateFailures": {
+        "noProj": 0,
+        "noProfile": 0,
+        "noGameForDate": 0,
+        "noDkfp": 0,
+        "totalScanned": 219
+      },
+      "source": "mlb-rollup.json.gz (main_dk)"
+    },
+    {
+      "date": "2026-06-29",
+      "slate": "turbo_dk",
+      "gameCount": 2,
+      "isShowdown": false,
+      "bucket": "small",
+      "matched": 40,
+      "gateFailures": {
+        "noProj": 0,
+        "noProfile": 0,
+        "noGameForDate": 0,
+        "noDkfp": 0,
+        "totalScanned": 40
+      },
+      "source": "mlb-rollup.json.gz (turbo_dk)"
+    },
+    {
+      "date": "2026-06-29",
+      "slate": "night_dk",
+      "gameCount": 3,
+      "isShowdown": false,
+      "bucket": "small",
+      "matched": 59,
+      "gateFailures": {
+        "noProj": 0,
+        "noProfile": 0,
+        "noGameForDate": 0,
+        "noDkfp": 0,
+        "totalScanned": 59
       },
       "source": "mlb-rollup.json.gz (night_dk)"
     }
