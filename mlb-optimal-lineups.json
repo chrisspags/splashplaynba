@@ -1,7 +1,7 @@
 {
   "schemaVersion": 4,
   "sport": "mlb",
-  "generatedAt": "2026-07-06T15:39:33.980Z",
+  "generatedAt": "2026-07-06T17:15:25.800Z",
   "salaryCap": 50000,
   "shapes": [
     "5-3",
@@ -22,20 +22,95 @@
       }
     },
     "small": {
-      "nSlates": 2,
-      "status": "starved",
+      "status": "active",
+      "nSlates": 5,
+      "shapeMix": {
+        "5-1": 0.6,
+        "5-3": 0.2,
+        "4-2": 0.2
+      },
+      "shapeAchievable": {
+        "5-3": 1,
+        "5-2": 1,
+        "5-1": 1,
+        "4-4": 1,
+        "4-3": 1,
+        "4-2": 1,
+        "3-3": 0.8
+      },
+      "shapeBeatFieldRate": {
+        "5-1": 0.8,
+        "4-3": 0.6,
+        "3-3": 0.6,
+        "5-3": 0.6,
+        "5-2": 0.4,
+        "4-2": 0.4,
+        "4-4": 0.2
+      },
+      "stackVegasRank": {
+        "n": 5,
+        "p25": 2,
+        "p50": 5,
+        "p75": 5,
+        "mean": 3.8
+      },
+      "secondaryVegasRank": {
+        "n": 5,
+        "p25": 2,
+        "p50": 3,
+        "p75": 4,
+        "mean": 3.2
+      },
+      "chalkCount": {
+        "n": 5,
+        "p25": 1,
+        "p50": 2,
+        "p75": 3,
+        "mean": 2
+      },
+      "leverageCount": {
+        "n": 5,
+        "p25": 1,
+        "p50": 1,
+        "p75": 2,
+        "mean": 1.8
+      },
+      "sumOwn": {
+        "n": 5,
+        "p25": 112.6,
+        "p50": 128.8,
+        "p75": 129.5,
+        "mean": 124.52
+      },
+      "salary": {
+        "n": 5,
+        "p25": 46000,
+        "p50": 47800,
+        "p75": 48900,
+        "mean": 46760
+      },
+      "ceilingGapVsField": {
+        "n": 5,
+        "p25": 2.45,
+        "p50": 5.65,
+        "p75": 9.9,
+        "mean": 12.2
+      },
       "taxonomy": {
         "optimal": {
-          "n": 2,
+          "n": 5,
           "typeMix": {
-            "high-chalk": 0.5,
-            "mid-chalk": 0.5
+            "high-chalk": 0.2,
+            "mid-chalk": 0.4,
+            "mid-balanced": 0.2,
+            "mid-pivot": 0.2
           },
           "sizeMix": {
-            "5": 1
+            "4": 0.2,
+            "5": 0.8
           },
-          "vsChalkAceRate": 0,
-          "bringBackRate": 1,
+          "vsChalkAceRate": 0.2,
+          "bringBackRate": 0.8,
           "highVegasOwnSplit": {
             "chalk": 1,
             "pivot": 0,
@@ -43,90 +118,97 @@
             "n": 1
           },
           "battingOrderMix": {
-            "top": 0.3,
-            "heart": 0.4,
-            "bottom": 0.3
-          },
-          "pitcherOwnSum": {
-            "n": 2,
-            "p25": 42.4,
-            "p50": 64.9,
-            "p75": 64.9,
-            "mean": 53.65
-          },
-          "stackOwnSum": {
-            "n": 2,
-            "p25": 61.5,
-            "p50": 91.8,
-            "p75": 91.8,
-            "mean": 76.65
-          },
-          "pitcherTierMix": {
-            "ace+value": 0.5,
-            "mid+mid": 0.5
-          }
-        },
-        "winners": {
-          "n": 328,
-          "typeMix": {
-            "high-chalk": 0.143,
-            "high-balanced": 0.067,
-            "high-pivot": 0.003,
-            "low-chalk": 0.058,
-            "mid-chalk": 0.314,
-            "mid-balanced": 0.332,
-            "low-balanced": 0.061,
-            "mid-pivot": 0.021
-          },
-          "sizeMix": {
-            "3": 0.085,
-            "4": 0.268,
-            "5": 0.646
-          },
-          "vsChalkAceRate": 0.223,
-          "bringBackRate": 0.378,
-          "highVegasOwnSplit": {
-            "chalk": 0.671,
-            "pivot": 0.014,
-            "balanced": 0.314,
-            "n": 70
-          },
-          "battingOrderMix": {
-            "top": 0.257,
-            "heart": 0.344,
+            "top": 0.267,
+            "heart": 0.333,
             "bottom": 0.4
           },
           "pitcherOwnSum": {
-            "n": 328,
-            "p25": 69.5,
-            "p50": 82,
-            "p75": 90.1,
-            "mean": 78.4
+            "n": 5,
+            "p25": 58.4,
+            "p50": 64.9,
+            "p75": 85.4,
+            "mean": 67.8
           },
           "stackOwnSum": {
-            "n": 328,
-            "p25": 50.6,
-            "p50": 60.6,
-            "p75": 71.4,
-            "mean": 60.35
+            "n": 5,
+            "p25": 61.5,
+            "p50": 64.8,
+            "p75": 91.8,
+            "mean": 74
           },
           "pitcherTierMix": {
-            "ace+value": 0.192,
-            "value+value": 0.024,
-            "ace+ace": 0.162,
-            "ace+mid": 0.494,
-            "mid+mid": 0.128
+            "ace+value": 0.2,
+            "mid+mid": 0.4,
+            "mid+value": 0.2,
+            "ace+mid": 0.2
+          }
+        },
+        "winners": {
+          "n": 862,
+          "typeMix": {
+            "high-chalk": 0.104,
+            "high-balanced": 0.049,
+            "high-pivot": 0.002,
+            "low-chalk": 0.028,
+            "mid-chalk": 0.459,
+            "mid-balanced": 0.291,
+            "low-balanced": 0.034,
+            "mid-pivot": 0.029,
+            "low-pivot": 0.003
+          },
+          "sizeMix": {
+            "3": 0.092,
+            "4": 0.276,
+            "5": 0.632
+          },
+          "vsChalkAceRate": 0.209,
+          "bringBackRate": 0.382,
+          "highVegasOwnSplit": {
+            "chalk": 0.672,
+            "pivot": 0.015,
+            "balanced": 0.313,
+            "n": 134
+          },
+          "battingOrderMix": {
+            "top": 0.251,
+            "heart": 0.347,
+            "bottom": 0.402
+          },
+          "pitcherOwnSum": {
+            "n": 862,
+            "p25": 59.1,
+            "p50": 85.4,
+            "p75": 87.9,
+            "mean": 78.65
+          },
+          "stackOwnSum": {
+            "n": 862,
+            "p25": 55.6,
+            "p50": 64.5,
+            "p75": 72.1,
+            "mean": 66.08
+          },
+          "pitcherTierMix": {
+            "ace+value": 0.095,
+            "value+value": 0.009,
+            "ace+ace": 0.061,
+            "ace+mid": 0.514,
+            "mid+mid": 0.158,
+            "mid+value": 0.073,
+            "mid": 0.071,
+            "value": 0.007,
+            "ace": 0.012
           }
         }
       }
     },
     "main": {
       "status": "active",
-      "nSlates": 3,
+      "nSlates": 7,
       "shapeMix": {
-        "3-3": 0.333,
-        "4-2": 0.333,
-        "5-1": 0.333
+        "3-3": 0.571,
+        "4-2": 0.143,
+        "5-1": 0.286
       },
       "shapeAchievable": {
         "5-3": 1,
@@ -138,172 +220,178 @@
         "3-3": 1
       },
       "shapeBeatFieldRate": {
-        "5-2": 1,
+        "5-2": 0.857,
         "5-1": 1,
         "4-3": 1,
         "4-2": 1,
-        "3-3": 0.667,
-        "5-3": 0.333
+        "3-3": 0.857,
+        "5-3": 0.571,
+        "4-4": 0.143
       },
       "stackVegasRank": {
-        "n": 3,
-        "p25": 5,
+        "n": 7,
+        "p25": 4,
         "p50": 5,
         "p75": 7,
-        "mean": 4.33
+        "mean": 5.14
       },
       "secondaryVegasRank": {
-        "n": 3,
+        "n": 7,
         "p25": 3,
-        "p50": 3,
-        "p75": 6,
-        "mean": 3.67
+        "p50": 6,
+        "p75": 9,
+        "mean": 5.57
       },
       "chalkCount": {
-        "n": 3,
+        "n": 7,
         "p25": 0,
         "p50": 0,
         "p75": 0,
         "mean": 0
       },
       "leverageCount": {
-        "n": 3,
-        "p25": 4,
+        "n": 7,
+        "p25": 3,
         "p50": 4,
         "p75": 6,
-        "mean": 3.67
+        "mean": 4
       },
       "sumOwn": {
-        "n": 3,
-        "p25": 69.8,
-        "p50": 69.8,
-        "p75": 69.9,
-        "mean": 59.1
+        "n": 7,
+        "p25": 61.9,
+        "p50": 62.4,
+        "p75": 69.8,
+        "mean": 59.23
       },
       "salary": {
-        "n": 3,
+        "n": 7,
         "p25": 45000,
-        "p50": 45000,
-        "p75": 49600,
-        "mean": 45366.67
+        "p50": 48600,
+        "p75": 49900,
+        "mean": 46842.86
       },
       "ceilingGapVsField": {
-        "n": 3,
+        "n": 7,
         "p25": 26,
-        "p50": 26,
-        "p75": 26.85,
-        "mean": 19.62
+        "p50": 26.85,
+        "p75": 32,
+        "mean": 29.11
       },
       "taxonomy": {
         "optimal": {
-          "n": 3,
+          "n": 7,
           "typeMix": {
-            "mid-balanced": 0.333,
-            "high-balanced": 0.333,
-            "high-pivot": 0.333
+            "mid-balanced": 0.286,
+            "high-balanced": 0.143,
+            "high-pivot": 0.143,
+            "low-balanced": 0.143,
+            "high-chalk": 0.143,
+            "mid-chalk": 0.143
           },
           "sizeMix": {
-            "3": 0.333,
-            "4": 0.333,
-            "5": 0.333
+            "3": 0.571,
+            "4": 0.143,
+            "5": 0.286
           },
-          "vsChalkAceRate": 0,
-          "bringBackRate": 0.333,
+          "vsChalkAceRate": 0.143,
+          "bringBackRate": 0.429,
           "highVegasOwnSplit": {
-            "chalk": 0,
-            "pivot": 0.5,
-            "balanced": 0.5,
-            "n": 2
+            "chalk": 0.333,
+            "pivot": 0.333,
+            "balanced": 0.333,
+            "n": 3
           },
           "battingOrderMix": {
-            "top": 0.083,
-            "heart": 0.5,
-            "bottom": 0.417
+            "top": 0.111,
+            "heart": 0.556,
+            "bottom": 0.333
           },
           "pitcherOwnSum": {
-            "n": 3,
+            "n": 7,
             "p25": 37.8,
-            "p50": 37.8,
+            "p50": 47.5,
             "p75": 62.3,
-            "mean": 40
+            "mean": 43.57
           },
           "stackOwnSum": {
-            "n": 3,
+            "n": 7,
             "p25": 29.2,
-            "p50": 29.2,
-            "p75": 55.1,
-            "mean": 34.33
+            "p50": 30.5,
+            "p75": 42.4,
+            "mean": 32.09
           },
           "pitcherTierMix": {
-            "ace+mid": 0.333,
-            "mid+value": 0.667
+            "ace+mid": 0.429,
+            "mid+value": 0.286,
+            "ace+value": 0.143,
+            "value+value": 0.143
           }
         },
         "winners": {
-          "n": 1076,
+          "n": 2623,
           "typeMix": {
-            "low-chalk": 0.04,
-            "high-pivot": 0.087,
-            "low-balanced": 0.033,
-            "high-balanced": 0.183,
-            "high-chalk": 0.324,
-            "low-pivot": 0.008,
-            "mid-balanced": 0.081,
-            "mid-chalk": 0.234,
-            "mid-pivot": 0.008
+            "low-chalk": 0.05,
+            "high-pivot": 0.036,
+            "low-balanced": 0.021,
+            "high-balanced": 0.132,
+            "high-chalk": 0.27,
+            "low-pivot": 0.004,
+            "mid-balanced": 0.188,
+            "mid-chalk": 0.281,
+            "mid-pivot": 0.016
           },
           "sizeMix": {
-            "3": 0.089,
-            "4": 0.231,
-            "5": 0.679
+            "3": 0.091,
+            "4": 0.205,
+            "5": 0.704
           },
-          "vsChalkAceRate": 0.19,
-          "bringBackRate": 0.286,
+          "vsChalkAceRate": 0.12,
+          "bringBackRate": 0.257,
           "highVegasOwnSplit": {
-            "chalk": 0.545,
-            "pivot": 0.147,
-            "balanced": 0.308,
-            "n": 640
+            "chalk": 0.616,
+            "pivot": 0.083,
+            "balanced": 0.301,
+            "n": 1151
           },
           "battingOrderMix": {
-            "top": 0.249,
-            "heart": 0.355,
-            "bottom": 0.397
+            "top": 0.245,
+            "heart": 0.365,
+            "bottom": 0.39
           },
           "pitcherOwnSum": {
-            "n": 1076,
-            "p25": 43.2,
-            "p50": 55.7,
-            "p75": 93.9,
-            "mean": 59.57
+            "n": 2623,
+            "p25": 37.9,
+            "p50": 49.2,
+            "p75": 61.1,
+            "mean": 52.19
           },
           "stackOwnSum": {
-            "n": 1076,
-            "p25": 25.6,
-            "p50": 44.8,
-            "p75": 56.6,
-            "mean": 45.23
+            "n": 2623,
+            "p25": 28.9,
+            "p50": 37.8,
+            "p75": 52.2,
+            "mean": 41.57
           },
           "pitcherTierMix": {
-            "ace+ace": 0.259,
-            "ace+mid": 0.125,
-            "mid+mid": 0.46,
-            "ace+value": 0.008,
-            "mid+value": 0.139,
-            "ace": 0.004,
+            "ace+ace": 0.153,
+            "ace+mid": 0.287,
+            "mid+mid": 0.268,
+            "ace+value": 0.117,
+            "mid+value": 0.166,
+            "ace": 0.003,
             "value+value": 0.004,
-            "mid": 0.001
+            "mid": 0.003
           }
         }
       }
     },
     "large": {
       "status": "active",
-      "nSlates": 7,
+      "nSlates": 12,
       "shapeMix": {
-        "4-2": 0.429,
-        "3-3": 0.429,
-        "5-1": 0.143
+        "4-2": 0.417,
+        "3-3": 0.333,
+        "5-1": 0.25
       },
       "shapeAchievable": {
         "5-3": 1,
@@ -315,166 +403,171 @@
         "3-3": 1
       },
       "shapeBeatFieldRate": {
-        "5-3": 1,
+        "5-3": 0.833,
         "5-2": 1,
         "5-1": 1,
-        "4-4": 1,
+        "4-4": 0.833,
         "4-3": 1,
         "4-2": 1,
         "3-3": 1
       },
       "stackVegasRank": {
-        "n": 7,
-        "p25": 3,
-        "p50": 5,
-        "p75": 16,
-        "mean": 7.71
+        "n": 12,
+        "p25": 2,
+        "p50": 6,
+        "p75": 15,
+        "mean": 8.42
       },
       "secondaryVegasRank": {
-        "n": 7,
-        "p25": 2,
-        "p50": 4,
+        "n": 12,
+        "p25": 4,
+        "p50": 8,
         "p75": 8,
-        "mean": 4.71
+        "mean": 6.17
       },
       "chalkCount": {
-        "n": 7,
+        "n": 12,
         "p25": 0,
         "p50": 0,
         "p75": 0,
-        "mean": 0.14
+        "mean": 0.08
       },
       "leverageCount": {
-        "n": 7,
+        "n": 12,
         "p25": 4,
-        "p50": 5,
+        "p50": 7,
         "p75": 7,
-        "mean": 5.43
+        "mean": 5.42
       },
       "sumOwn": {
-        "n": 7,
+        "n": 12,
         "p25": 31.9,
         "p50": 50.6,
-        "p75": 60,
-        "mean": 46.67
+        "p75": 59.6,
+        "mean": 45.78
       },
       "salary": {
-        "n": 7,
-        "p25": 48400,
+        "n": 12,
+        "p25": 43900,
         "p50": 48500,
-        "p75": 49900,
-        "mean": 47885.71
+        "p75": 49600,
+        "mean": 46808.33
       },
       "ceilingGapVsField": {
-        "n": 7,
-        "p25": 48.35,
-        "p50": 49,
-        "p75": 52.05,
-        "mean": 50.07
+        "n": 12,
+        "p25": 36.35,
+        "p50": 48.35,
+        "p75": 50.6,
+        "mean": 42.83
       },
       "taxonomy": {
         "optimal": {
-          "n": 7,
+          "n": 12,
           "typeMix": {
-            "mid-chalk": 0.143,
-            "low-chalk": 0.143,
-            "high-balanced": 0.286,
-            "high-chalk": 0.143,
-            "mid-balanced": 0.143,
-            "mid-pivot": 0.143
+            "mid-chalk": 0.167,
+            "low-chalk": 0.167,
+            "high-balanced": 0.25,
+            "high-chalk": 0.083,
+            "mid-balanced": 0.167,
+            "mid-pivot": 0.083,
+            "low-pivot": 0.083
           },
           "sizeMix": {
-            "3": 0.429,
-            "4": 0.429,
-            "5": 0.143
+            "3": 0.333,
+            "4": 0.417,
+            "5": 0.25
           },
-          "vsChalkAceRate": 0,
-          "bringBackRate": 0.429,
+          "vsChalkAceRate": 0.083,
+          "bringBackRate": 0.333,
           "highVegasOwnSplit": {
-            "chalk": 0.333,
+            "chalk": 0.25,
             "pivot": 0,
-            "balanced": 0.667,
-            "n": 3
+            "balanced": 0.75,
+            "n": 4
           },
           "battingOrderMix": {
-            "top": 0.269,
-            "heart": 0.192,
-            "bottom": 0.538
+            "top": 0.273,
+            "heart": 0.273,
+            "bottom": 0.455
           },
           "pitcherOwnSum": {
-            "n": 7,
-            "p25": 27.5,
+            "n": 12,
+            "p25": 22.6,
             "p50": 33.3,
             "p75": 42.9,
-            "mean": 32.69
+            "mean": 32.2
           },
           "stackOwnSum": {
-            "n": 7,
+            "n": 12,
             "p25": 10.4,
-            "p50": 13.6,
-            "p75": 38.2,
-            "mean": 21.54
+            "p50": 20.2,
+            "p75": 36.5,
+            "mean": 23.43
           },
           "pitcherTierMix": {
-            "ace+value": 0.429,
-            "mid+mid": 0.429,
-            "ace+mid": 0.143
+            "ace+value": 0.333,
+            "mid+mid": 0.333,
+            "ace+mid": 0.167,
+            "value+value": 0.083,
+            "ace+ace": 0.083
           }
         },
         "winners": {
-          "n": 3234,
+          "n": 5387,
           "typeMix": {
-            "mid-chalk": 0.248,
-            "mid-balanced": 0.118,
-            "high-pivot": 0.023,
-            "high-balanced": 0.206,
-            "low-balanced": 0.013,
-            "low-chalk": 0.029,
-            "mid-pivot": 0.044,
-            "high-chalk": 0.318,
+            "mid-chalk": 0.285,
+            "mid-balanced": 0.186,
+            "high-pivot": 0.019,
+            "high-balanced": 0.176,
+            "low-balanced": 0.011,
+            "low-chalk": 0.02,
+            "mid-pivot": 0.038,
+            "high-chalk": 0.263,
             "low-pivot": 0.002
           },
           "sizeMix": {
-            "3": 0.095,
-            "4": 0.192,
-            "5": 0.711,
-            "6": 0.002
+            "3": 0.081,
+            "4": 0.187,
+            "5": 0.731,
+            "6": 0.001
           },
-          "vsChalkAceRate": 0.027,
-          "bringBackRate": 0.241,
+          "vsChalkAceRate": 0.021,
+          "bringBackRate": 0.249,
           "highVegasOwnSplit": {
-            "chalk": 0.582,
+            "chalk": 0.575,
             "pivot": 0.042,
-            "balanced": 0.376,
-            "n": 1770
+            "balanced": 0.383,
+            "n": 2467
           },
           "battingOrderMix": {
-            "top": 0.3,
-            "heart": 0.352,
-            "bottom": 0.348
+            "top": 0.311,
+            "heart": 0.357,
+            "bottom": 0.332
           },
           "pitcherOwnSum": {
-            "n": 3234,
-            "p25": 26.5,
-            "p50": 40,
-            "p75": 47.4,
-            "mean": 38.16
+            "n": 5387,
+            "p25": 31,
+            "p50": 42.9,
+            "p75": 53.6,
+            "mean": 42.84
           },
           "stackOwnSum": {
-            "n": 3234,
-            "p25": 19.2,
-            "p50": 29.2,
-            "p75": 38.4,
-            "mean": 29.79
+            "n": 5387,
+            "p25": 20.3,
+            "p50": 30.7,
+            "p75": 41.3,
+            "mean": 31.9
           },
           "pitcherTierMix": {
-            "ace+value": 0.189,
-            "ace+ace": 0.113,
-            "ace+mid": 0.325,
-            "mid+mid": 0.256,
-            "mid+value": 0.096,
-            "value+value": 0.02,
-            "value": 0
+            "ace+value": 0.192,
+            "ace+ace": 0.159,
+            "ace+mid": 0.342,
+            "mid+mid": 0.197,
+            "mid+value": 0.094,
+            "value+value": 0.015,
+            "value": 0,
+            "mid": 0,
+            "ace": 0
           }
         }
       }
@@ -482,11 +575,12 @@
   },
   "global": {
     "status": "active",
-    "nSlates": 12,
+    "nSlates": 24,
     "shapeMix": {
       "5-1": 0.333,
-      "3-3": 0.333,
-      "4-2": 0.333
+      "5-3": 0.042,
+      "4-2": 0.292,
+      "3-3": 0.333
     },
     "shapeAchievable": {
       "5-3": 1,
@@ -495,321 +589,331 @@
       "4-4": 1,
       "4-3": 1,
       "4-2": 1,
-      "3-3": 1
+      "3-3": 0.958
     },
     "shapeBeatFieldRate": {
-      "5-1": 1,
-      "4-3": 1,
-      "3-3": 0.917,
-      "5-3": 0.75,
-      "5-2": 0.917,
-      "4-2": 0.917,
-      "4-4": 0.583
+      "5-1": 0.958,
+      "4-3": 0.917,
+      "3-3": 0.875,
+      "5-3": 0.708,
+      "5-2": 0.833,
+      "4-2": 0.875,
+      "4-4": 0.5
     },
     "stackVegasRank": {
-      "n": 12,
+      "n": 24,
       "p25": 2,
       "p50": 5,
       "p75": 7,
-      "mean": 6.17
+      "mean": 6.5
     },
     "secondaryVegasRank": {
-      "n": 12,
+      "n": 24,
       "p25": 2,
-      "p50": 3,
-      "p75": 6,
-      "mean": 3.92
+      "p50": 6,
+      "p75": 8,
+      "mean": 5.38
     },
     "chalkCount": {
-      "n": 12,
+      "n": 24,
       "p25": 0,
       "p50": 0,
       "p75": 0,
-      "mean": 0.42
+      "mean": 0.46
     },
     "leverageCount": {
-      "n": 12,
+      "n": 24,
       "p25": 3,
       "p50": 4,
       "p75": 6,
-      "mean": 4.33
+      "mean": 4.25
     },
     "sumOwn": {
-      "n": 12,
+      "n": 24,
       "p25": 37.6,
       "p50": 60,
-      "p75": 69.9,
-      "mean": 62.17
+      "p75": 69.8,
+      "mean": 66.1
     },
     "salary": {
-      "n": 12,
-      "p25": 47000,
+      "n": 24,
+      "p25": 43900,
       "p50": 48500,
       "p75": 49600,
-      "mean": 47341.67
+      "mean": 46808.33
     },
     "ceilingGapVsField": {
-      "n": 12,
-      "p25": 26,
-      "p50": 47.4,
-      "p75": 49,
-      "mean": 35.41
+      "n": 24,
+      "p25": 15.3,
+      "p50": 36.1,
+      "p75": 48.35,
+      "mean": 32.45
     },
     "taxonomy": {
       "optimal": {
-        "n": 12,
+        "n": 24,
         "typeMix": {
-          "high-chalk": 0.167,
-          "mid-chalk": 0.167,
-          "mid-balanced": 0.167,
-          "high-balanced": 0.25,
-          "high-pivot": 0.083,
+          "high-chalk": 0.125,
+          "mid-chalk": 0.208,
+          "mid-balanced": 0.208,
+          "mid-pivot": 0.083,
+          "high-balanced": 0.167,
+          "high-pivot": 0.042,
+          "low-balanced": 0.042,
           "low-chalk": 0.083,
-          "mid-pivot": 0.083
+          "low-pivot": 0.042
         },
         "sizeMix": {
           "3": 0.333,
-          "4": 0.333,
-          "5": 0.333
+          "4": 0.292,
+          "5": 0.375
         },
-        "vsChalkAceRate": 0,
-        "bringBackRate": 0.5,
+        "vsChalkAceRate": 0.125,
+        "bringBackRate": 0.458,
         "highVegasOwnSplit": {
-          "chalk": 0.333,
-          "pivot": 0.167,
+          "chalk": 0.375,
+          "pivot": 0.125,
           "balanced": 0.5,
-          "n": 6
+          "n": 8
         },
         "battingOrderMix": {
-          "top": 0.229,
-          "heart": 0.313,
-          "bottom": 0.458
+          "top": 0.234,
+          "heart": 0.351,
+          "bottom": 0.416
         },
         "pitcherOwnSum": {
-          "n": 12,
-          "p25": 27.5,
-          "p50": 38.3,
-          "p75": 42.9,
-          "mean": 38.01
+          "n": 24,
+          "p25": 26.3,
+          "p50": 42.9,
+          "p75": 58.8,
+          "mean": 42.93
         },
         "stackOwnSum": {
-          "n": 12,
-          "p25": 13.6,
-          "p50": 29.2,
-          "p75": 51.2,
-          "mean": 33.92
+          "n": 24,
+          "p25": 17.8,
+          "p50": 35.5,
+          "p75": 49.8,
+          "mean": 36.49
         },
         "pitcherTierMix": {
-          "ace+value": 0.333,
-          "mid+mid": 0.333,
-          "ace+mid": 0.167,
-          "mid+value": 0.167
+          "ace+value": 0.25,
+          "mid+mid": 0.25,
+          "mid+value": 0.125,
+          "ace+mid": 0.25,
+          "value+value": 0.083,
+          "ace+ace": 0.042
         }
       },
       "winners": {
-        "n": 4638,
+        "n": 8872,
         "typeMix": {
-          "high-chalk": 0.307,
-          "high-balanced": 0.191,
-          "high-pivot": 0.037,
-          "low-chalk": 0.033,
-          "mid-chalk": 0.25,
-          "mid-balanced": 0.124,
-          "low-balanced": 0.021,
-          "mid-pivot": 0.034,
+          "high-chalk": 0.25,
+          "high-balanced": 0.15,
+          "high-pivot": 0.023,
+          "low-chalk": 0.03,
+          "mid-chalk": 0.301,
+          "mid-balanced": 0.197,
+          "low-balanced": 0.016,
+          "mid-pivot": 0.031,
           "low-pivot": 0.003
         },
         "sizeMix": {
-          "3": 0.093,
-          "4": 0.207,
-          "5": 0.699,
+          "3": 0.085,
+          "4": 0.201,
+          "5": 0.713,
           "6": 0.001
         },
-        "vsChalkAceRate": 0.079,
-        "bringBackRate": 0.262,
+        "vsChalkAceRate": 0.068,
+        "bringBackRate": 0.264,
         "highVegasOwnSplit": {
-          "chalk": 0.575,
-          "pivot": 0.069,
+          "chalk": 0.591,
+          "pivot": 0.053,
           "balanced": 0.356,
-          "n": 2480
+          "n": 3752
         },
         "battingOrderMix": {
-          "top": 0.285,
-          "heart": 0.352,
-          "bottom": 0.363
+          "top": 0.29,
+          "heart": 0.358,
+          "bottom": 0.351
         },
         "pitcherOwnSum": {
-          "n": 4638,
-          "p25": 31.2,
-          "p50": 42.9,
-          "p75": 55.1,
-          "mean": 45.97
+          "n": 8872,
+          "p25": 35.1,
+          "p50": 46.8,
+          "p75": 59.8,
+          "mean": 49.09
         },
         "stackOwnSum": {
-          "n": 4638,
-          "p25": 20.5,
-          "p50": 33,
-          "p75": 46.1,
-          "mean": 35.53
+          "n": 8872,
+          "p25": 23.5,
+          "p50": 34.9,
+          "p75": 48.4,
+          "mean": 38.08
         },
         "pitcherTierMix": {
-          "ace+value": 0.147,
-          "value+value": 0.017,
-          "ace+ace": 0.151,
-          "ace+mid": 0.291,
-          "mid+mid": 0.294,
-          "mid+value": 0.099,
-          "ace": 0.001,
-          "mid": 0,
-          "value": 0
+          "ace+value": 0.161,
+          "value+value": 0.011,
+          "ace+ace": 0.148,
+          "ace+mid": 0.343,
+          "mid+mid": 0.214,
+          "mid+value": 0.113,
+          "mid": 0.008,
+          "value": 0.001,
+          "ace": 0.002
         }
       }
     }
   },
   "winnersCloneProfile": {
     "source": "winners",
-    "n": 4638,
-    "nSlates": 12,
+    "n": 8872,
+    "nSlates": 24,
     "knobs": {
       "_source": "winners",
-      "nShapeLineups": 4978,
+      "nShapeLineups": 9394,
       "stackShapes": {
-        "3-2-1": 0.064,
-        "4-3": 0.076,
+        "3-2-1": 0.056,
+        "4-3": 0.075,
         "3-3": 0.023,
-        "5-3": 0.184,
-        "4-2": 0.075,
-        "5-2": 0.353,
-        "5-1": 0.115,
-        "4-4": 0.021,
-        "scattered": 0.069,
+        "5-3": 0.189,
+        "4-2": 0.071,
+        "5-2": 0.359,
+        "5-1": 0.124,
+        "4-4": 0.024,
+        "scattered": 0.059,
         "4-1": 0.02
       },
-      "fiveManRate": 0.652,
-      "bringBack": 0.262,
-      "pitcherOwnAvg": 0.228,
-      "hitterOwnAvg": 0.078,
-      "vsChalkAceRate": 0.079,
+      "fiveManRate": 0.672,
+      "bringBack": 0.264,
+      "pitcherOwnAvg": 0.244,
+      "hitterOwnAvg": 0.083,
+      "vsChalkAceRate": 0.068,
       "pitcherTierMix": {
-        "ace+value": 0.147,
-        "value+value": 0.017,
-        "ace+ace": 0.151,
-        "ace+mid": 0.291,
-        "mid+mid": 0.294,
-        "mid+value": 0.099,
-        "ace": 0.001,
-        "mid": 0,
-        "value": 0
+        "ace+value": 0.161,
+        "value+value": 0.011,
+        "ace+ace": 0.148,
+        "ace+mid": 0.343,
+        "mid+mid": 0.214,
+        "mid+value": 0.113,
+        "mid": 0.008,
+        "value": 0.001,
+        "ace": 0.002
       },
-      "chalkTeamStackRate": 0.16,
-      "stackTeamOwnPctl": 0.26,
-      "secondaryTeamOwnPctl": 0.305,
-      "salOwnCorr": 0.017
+      "chalkTeamStackRate": 0.152,
+      "stackTeamOwnPctl": 0.251,
+      "secondaryTeamOwnPctl": 0.351,
+      "salOwnCorr": -0.073
     },
     "byBucket": {
       "small": {
         "_source": "winners",
-        "nShapeLineups": 338,
+        "nShapeLineups": 877,
         "stackShapes": {
-          "3-2-1": 0.044,
-          "4-3": 0.112,
-          "3-3": 0.038,
-          "5-3": 0.178,
-          "4-2": 0.104,
-          "5-2": 0.379,
-          "5-1": 0.071,
-          "4-4": 0.03,
-          "scattered": 0.03,
-          "4-1": 0.015
+          "3-2-1": 0.046,
+          "4-3": 0.117,
+          "3-3": 0.044,
+          "5-3": 0.156,
+          "4-2": 0.109,
+          "5-2": 0.361,
+          "5-1": 0.104,
+          "4-4": 0.031,
+          "scattered": 0.017,
+          "4-1": 0.014
         },
-        "fiveManRate": 0.628,
-        "bringBack": 0.378,
-        "pitcherOwnAvg": 0.39,
-        "hitterOwnAvg": 0.143,
-        "vsChalkAceRate": 0.223,
+        "fiveManRate": 0.621,
+        "bringBack": 0.382,
+        "pitcherOwnAvg": 0.411,
+        "hitterOwnAvg": 0.162,
+        "vsChalkAceRate": 0.209,
         "pitcherTierMix": {
-          "ace+value": 0.192,
-          "value+value": 0.024,
-          "ace+ace": 0.162,
-          "ace+mid": 0.494,
-          "mid+mid": 0.128
+          "ace+value": 0.095,
+          "value+value": 0.009,
+          "ace+ace": 0.061,
+          "ace+mid": 0.514,
+          "mid+mid": 0.158,
+          "mid+value": 0.073,
+          "mid": 0.071,
+          "value": 0.007,
+          "ace": 0.012
         },
-        "chalkTeamStackRate": 0.084,
-        "stackTeamOwnPctl": 0.314,
-        "secondaryTeamOwnPctl": 0.243,
-        "salOwnCorr": 0.241,
-        "nSlates": 2
+        "chalkTeamStackRate": 0.039,
+        "stackTeamOwnPctl": 0.392,
+        "secondaryTeamOwnPctl": 0.421,
+        "salOwnCorr": 0.278,
+        "nSlates": 5
       },
       "main": {
         "_source": "winners",
-        "nShapeLineups": 1144,
+        "nShapeLineups": 2798,
         "stackShapes": {
-          "4-2": 0.094,
-          "4-3": 0.084,
-          "5-3": 0.148,
-          "3-2-1": 0.062,
-          "5-2": 0.369,
-          "5-1": 0.122,
-          "4-1": 0.021,
-          "3-3": 0.022,
-          "4-4": 0.019,
-          "scattered": 0.059
+          "4-2": 0.074,
+          "4-3": 0.073,
+          "5-3": 0.164,
+          "3-2-1": 0.061,
+          "5-2": 0.363,
+          "5-1": 0.125,
+          "4-1": 0.02,
+          "3-3": 0.023,
+          "4-4": 0.024,
+          "scattered": 0.073
         },
-        "fiveManRate": 0.639,
-        "bringBack": 0.286,
-        "pitcherOwnAvg": 0.296,
-        "hitterOwnAvg": 0.097,
-        "vsChalkAceRate": 0.19,
+        "fiveManRate": 0.652,
+        "bringBack": 0.257,
+        "pitcherOwnAvg": 0.259,
+        "hitterOwnAvg": 0.088,
+        "vsChalkAceRate": 0.12,
         "pitcherTierMix": {
-          "ace+ace": 0.259,
-          "ace+mid": 0.125,
-          "mid+mid": 0.46,
-          "ace+value": 0.008,
-          "mid+value": 0.139,
-          "ace": 0.004,
+          "ace+ace": 0.153,
+          "ace+mid": 0.287,
+          "mid+mid": 0.268,
+          "ace+value": 0.117,
+          "mid+value": 0.166,
+          "ace": 0.003,
           "value+value": 0.004,
-          "mid": 0.001
+          "mid": 0.003
         },
-        "chalkTeamStackRate": 0.366,
-        "stackTeamOwnPctl": 0.261,
-        "secondaryTeamOwnPctl": 0.366,
-        "salOwnCorr": 0.277,
-        "nSlates": 3
+        "chalkTeamStackRate": 0.325,
+        "stackTeamOwnPctl": 0.246,
+        "secondaryTeamOwnPctl": 0.418,
+        "salOwnCorr": 0.261,
+        "nSlates": 7
       },
       "large": {
         "_source": "winners",
-        "nShapeLineups": 3496,
+        "nShapeLineups": 5719,
         "stackShapes": {
-          "4-2": 0.066,
-          "3-2-1": 0.066,
-          "5-1": 0.117,
-          "scattered": 0.076,
-          "5-2": 0.346,
-          "4-3": 0.07,
-          "5-3": 0.196,
-          "3-3": 0.021,
+          "4-2": 0.064,
+          "3-2-1": 0.055,
+          "5-1": 0.127,
+          "scattered": 0.058,
+          "5-2": 0.357,
+          "4-3": 0.069,
+          "5-3": 0.206,
+          "3-3": 0.02,
           "4-1": 0.021,
-          "4-4": 0.021
+          "4-4": 0.022
         },
-        "fiveManRate": 0.659,
-        "bringBack": 0.241,
-        "pitcherOwnAvg": 0.19,
-        "hitterOwnAvg": 0.065,
-        "vsChalkAceRate": 0.027,
+        "fiveManRate": 0.69,
+        "bringBack": 0.249,
+        "pitcherOwnAvg": 0.213,
+        "hitterOwnAvg": 0.069,
+        "vsChalkAceRate": 0.021,
         "pitcherTierMix": {
-          "ace+value": 0.189,
-          "ace+ace": 0.113,
-          "ace+mid": 0.325,
-          "mid+mid": 0.256,
-          "mid+value": 0.096,
-          "value+value": 0.02,
-          "value": 0
+          "ace+value": 0.192,
+          "ace+ace": 0.159,
+          "ace+mid": 0.342,
+          "mid+mid": 0.197,
+          "mid+value": 0.094,
+          "value+value": 0.015,
+          "value": 0,
+          "mid": 0,
+          "ace": 0
         },
-        "chalkTeamStackRate": 0.093,
-        "stackTeamOwnPctl": 0.244,
-        "secondaryTeamOwnPctl": 0.297,
-        "salOwnCorr": 0.084,
-        "nSlates": 7
+        "chalkTeamStackRate": 0.098,
+        "stackTeamOwnPctl": 0.194,
+        "secondaryTeamOwnPctl": 0.282,
+        "salOwnCorr": -0.074,
+        "nSlates": 12
       }
     }
   },
@@ -820,15 +924,15 @@
       "value": 0.6,
       "schemaVersion": 4,
       "rationale": "Steer primary 5-stacks toward the Vegas-rank band winners actually erupt (per-slate-size target from the file). Complements vegasLean (Vegas total).",
-      "evidence": "Winners high-Vegas 57% chalk-5man / 7% pivot · optimal stack Vegas-rank 2–7 (p50 5)"
+      "evidence": "Winners high-Vegas 59% chalk-5man / 5% pivot · optimal stack Vegas-rank 2–7 (p50 5)"
     },
     {
       "knob": "optimalPitcherWeight",
       "label": "optimal pitcher ownership",
       "value": 0.6,
       "schemaVersion": 4,
-      "rationale": "Anchor the 2-pitcher own-sum to what WON (per-slate-size target from the file; global ~43%, chalk-ish aces — NOT the optimal's hindsight value pitchers).",
-      "evidence": "Winners n=4638 pitcher own-sum p50 43% (varies by slate size — see the DNA table)"
+      "rationale": "Anchor the 2-pitcher own-sum to what WON (per-slate-size target from the file; global ~47%, chalk-ish aces — NOT the optimal's hindsight value pitchers).",
+      "evidence": "Winners n=8872 pitcher own-sum p50 47% (varies by slate size — see the DNA table)"
     },
     {
       "knob": "optimalVsAceWeight",
@@ -836,11 +940,11 @@
       "value": 0.6,
       "schemaVersion": 4,
       "rationale": "Bonus for stacking hitters against a TOP-3 owned pitcher — fires ONLY on the slate sizes where it recurs (>20% of winning stacks; e.g. small slates, not main/large).",
-      "evidence": "Winners stack-vs-top3-pitcher: global 8% (per-slate-size in the DNA table — it recurs most on small slates)"
+      "evidence": "Winners stack-vs-top3-pitcher: global 7% (per-slate-size in the DNA table — it recurs most on small slates)"
     }
   ],
-  "slatesProcessed": 12,
-  "truncated": true,
+  "slatesProcessed": 24,
+  "truncated": false,
   "perSlate": [
     {
       "date": "2026-07-05",
@@ -1213,21 +1317,393 @@
         },
         "beatChampion": true
       }
+    },
+    {
+      "date": "2026-06-26",
+      "sk": "main_dk",
+      "bucket": "large",
+      "label": "Main: 6/26 7:05PM Eastern (13 games)",
+      "gameCount": 13,
+      "poolSize": 258,
+      "matched": 258,
+      "withActual": 258,
+      "pctWithActuals": 100,
+      "championScore": 246,
+      "cashLine": 127,
+      "globalOptimal": 284.1,
+      "championReproduced": true,
+      "bestStacked": {
+        "label": "5-1",
+        "actual": 282.1,
+        "signature": {
+          "teamA": "CWS",
+          "teamB": "MIL",
+          "primaryVegasRank": 6,
+          "secondaryVegasRank": 8,
+          "chalkCount": 0,
+          "leverageCount": 7,
+          "sumOwn": 28.2,
+          "salary": 43900,
+          "actual": 282.1
+        },
+        "beatChampion": true
+      }
+    },
+    {
+      "date": "2026-06-25",
+      "sk": "main_dk",
+      "bucket": "main",
+      "label": "Main: 6/25 6:40PM Eastern (6 games)",
+      "gameCount": 6,
+      "poolSize": 120,
+      "matched": 120,
+      "withActual": 120,
+      "pctWithActuals": 100,
+      "championScore": 189.85,
+      "cashLine": 96.75,
+      "globalOptimal": 217.15,
+      "championReproduced": true,
+      "bestStacked": {
+        "label": "3-3",
+        "actual": 205.15,
+        "signature": {
+          "teamA": "WSH",
+          "teamB": "PHI",
+          "primaryVegasRank": 11,
+          "secondaryVegasRank": 1,
+          "chalkCount": 0,
+          "leverageCount": 3,
+          "sumOwn": 62.9,
+          "salary": 50000,
+          "actual": 205.15
+        },
+        "beatChampion": true
+      }
+    },
+    {
+      "date": "2026-06-25",
+      "sk": "early_dk",
+      "bucket": "small",
+      "label": "Early: 6/25 12:10PM Eastern (2 games)",
+      "gameCount": 2,
+      "poolSize": 41,
+      "matched": 41,
+      "withActual": 41,
+      "pctWithActuals": 100,
+      "championScore": 210.15,
+      "cashLine": 140.95,
+      "globalOptimal": 212.6,
+      "championReproduced": true,
+      "bestStacked": {
+        "label": "5-3",
+        "actual": 212.6,
+        "signature": {
+          "teamA": "TB",
+          "teamB": "PIT",
+          "primaryVegasRank": 2,
+          "secondaryVegasRank": 3,
+          "chalkCount": 4,
+          "leverageCount": 0,
+          "sumOwn": 193.9,
+          "salary": 46000,
+          "actual": 212.6
+        },
+        "beatChampion": true
+      }
+    },
+    {
+      "date": "2026-06-24",
+      "sk": "main_dk",
+      "bucket": "main",
+      "label": "Main: 6/24 7:07PM Eastern (7 games)",
+      "gameCount": 7,
+      "poolSize": 138,
+      "matched": 138,
+      "withActual": 138,
+      "pctWithActuals": 100,
+      "championScore": 199.8,
+      "cashLine": 113.85,
+      "globalOptimal": 241.15,
+      "championReproduced": true,
+      "bestStacked": {
+        "label": "3-3",
+        "actual": 229.15,
+        "signature": {
+          "teamA": "MIL",
+          "teamB": "SD",
+          "primaryVegasRank": 1,
+          "secondaryVegasRank": 12,
+          "chalkCount": 0,
+          "leverageCount": 5,
+          "sumOwn": 61.9,
+          "salary": 49900,
+          "actual": 229.15
+        },
+        "beatChampion": true
+      }
+    },
+    {
+      "date": "2026-06-23",
+      "sk": "main_dk",
+      "bucket": "large",
+      "label": "Main: 6/23 7:10PM Eastern (9 games)",
+      "gameCount": 9,
+      "poolSize": 178,
+      "matched": 178,
+      "withActual": 178,
+      "pctWithActuals": 100,
+      "championScore": 198.25,
+      "cashLine": 119.299995,
+      "globalOptimal": 263.65,
+      "championReproduced": true,
+      "bestStacked": {
+        "label": "4-2",
+        "actual": 234.6,
+        "signature": {
+          "teamA": "BOS",
+          "teamB": "CHC",
+          "primaryVegasRank": 1,
+          "secondaryVegasRank": 8,
+          "chalkCount": 0,
+          "leverageCount": 3,
+          "sumOwn": 68.1,
+          "salary": 42200,
+          "actual": 234.6
+        },
+        "beatChampion": true
+      }
+    },
+    {
+      "date": "2026-06-22",
+      "sk": "main_dk",
+      "bucket": "large",
+      "label": "Main: 6/22 7:07PM Eastern (9 games)",
+      "gameCount": 9,
+      "poolSize": 160,
+      "matched": 160,
+      "withActual": 160,
+      "pctWithActuals": 100,
+      "championScore": 173.15,
+      "cashLine": 104.7,
+      "globalOptimal": 205.9,
+      "championReproduced": true,
+      "bestStacked": {
+        "label": "5-1",
+        "actual": 186.7,
+        "signature": {
+          "teamA": "TOR",
+          "teamB": "CLE",
+          "primaryVegasRank": 15,
+          "secondaryVegasRank": 11,
+          "chalkCount": 0,
+          "leverageCount": 7,
+          "sumOwn": 34.8,
+          "salary": 49600,
+          "actual": 186.7
+        },
+        "beatChampion": true
+      }
+    },
+    {
+      "date": "2026-06-21",
+      "sk": "main_dk",
+      "bucket": "large",
+      "label": "Main: 6/21 1:35PM Eastern (9 games)",
+      "gameCount": 9,
+      "poolSize": 160,
+      "matched": 160,
+      "withActual": 160,
+      "pctWithActuals": 100,
+      "championScore": 226.15,
+      "cashLine": 123.8,
+      "globalOptimal": 256.2,
+      "championReproduced": true,
+      "bestStacked": {
+        "label": "4-2",
+        "actual": 247.6,
+        "signature": {
+          "teamA": "STL",
+          "teamB": "MIL",
+          "primaryVegasRank": 1,
+          "secondaryVegasRank": 10,
+          "chalkCount": 0,
+          "leverageCount": 3,
+          "sumOwn": 59.6,
+          "salary": 48600,
+          "actual": 247.6
+        },
+        "beatChampion": true
+      }
+    },
+    {
+      "date": "2026-06-20",
+      "sk": "main_dk",
+      "bucket": "main",
+      "label": "Main: 6/20 7:15PM Eastern (7 games)",
+      "gameCount": 7,
+      "poolSize": 130,
+      "matched": 130,
+      "withActual": 130,
+      "pctWithActuals": 100,
+      "championScore": 236.65,
+      "cashLine": 111.4,
+      "globalOptimal": 309.95,
+      "championReproduced": true,
+      "bestStacked": {
+        "label": "5-1",
+        "actual": 304.95,
+        "signature": {
+          "teamA": "MIN",
+          "teamB": "PHI",
+          "primaryVegasRank": 7,
+          "secondaryVegasRank": 6,
+          "chalkCount": 0,
+          "leverageCount": 6,
+          "sumOwn": 50.1,
+          "salary": 43300,
+          "actual": 304.95
+        },
+        "beatChampion": true
+      }
+    },
+    {
+      "date": "2026-06-20",
+      "sk": "early_dk",
+      "bucket": "main",
+      "label": "Early: 6/20 1:10PM Eastern (7 games)",
+      "gameCount": 7,
+      "poolSize": 138,
+      "matched": 138,
+      "withActual": 138,
+      "pctWithActuals": 100,
+      "championScore": 177.65,
+      "cashLine": 113.9,
+      "globalOptimal": 236.95,
+      "championReproduced": true,
+      "bestStacked": {
+        "label": "3-3",
+        "actual": 209.65,
+        "signature": {
+          "teamA": "TOR",
+          "teamB": "CIN",
+          "primaryVegasRank": 4,
+          "secondaryVegasRank": 9,
+          "chalkCount": 0,
+          "leverageCount": 3,
+          "sumOwn": 62.4,
+          "salary": 48600,
+          "actual": 209.65
+        },
+        "beatChampion": true
+      }
+    },
+    {
+      "date": "2026-06-19",
+      "sk": "main_dk",
+      "bucket": "large",
+      "label": "Main: 6/19 7:05PM Eastern (12 games)",
+      "gameCount": 12,
+      "poolSize": 239,
+      "matched": 239,
+      "withActual": 239,
+      "pctWithActuals": 100,
+      "championScore": 215.4,
+      "cashLine": 127.35,
+      "globalOptimal": 305.4,
+      "championReproduced": true,
+      "bestStacked": {
+        "label": "3-3",
+        "actual": 271.4,
+        "signature": {
+          "teamA": "SD",
+          "teamB": "ATH",
+          "primaryVegasRank": 24,
+          "secondaryVegasRank": 4,
+          "chalkCount": 0,
+          "leverageCount": 7,
+          "sumOwn": 31.9,
+          "salary": 42200,
+          "actual": 271.4
+        },
+        "beatChampion": true
+      }
+    },
+    {
+      "date": "2026-06-18",
+      "sk": "main_dk",
+      "bucket": "small",
+      "label": "Main: 6/18 6:40PM Eastern (5 games)",
+      "gameCount": 5,
+      "poolSize": 80,
+      "matched": 80,
+      "withActual": 80,
+      "pctWithActuals": 100,
+      "championScore": 213.2,
+      "cashLine": 123.2,
+      "globalOptimal": 215.2,
+      "championReproduced": true,
+      "bestStacked": {
+        "label": "5-1",
+        "actual": 215.2,
+        "signature": {
+          "teamA": "KC",
+          "teamB": "NYM",
+          "primaryVegasRank": 5,
+          "secondaryVegasRank": 4,
+          "chalkCount": 2,
+          "leverageCount": 1,
+          "sumOwn": 128.8,
+          "salary": 48900,
+          "actual": 215.2
+        },
+        "beatChampion": true
+      }
+    },
+    {
+      "date": "2026-06-18",
+      "sk": "early_dk",
+      "bucket": "small",
+      "label": "Early: 6/18 1:35PM Eastern (4 games)",
+      "gameCount": 4,
+      "poolSize": 80,
+      "matched": 80,
+      "withActual": 80,
+      "pctWithActuals": 100,
+      "championScore": 162.65,
+      "cashLine": 111.649994,
+      "globalOptimal": 204.65,
+      "championReproduced": true,
+      "bestStacked": {
+        "label": "4-2",
+        "actual": 203.65,
+        "signature": {
+          "teamA": "MIN",
+          "teamB": "TEX",
+          "primaryVegasRank": 5,
+          "secondaryVegasRank": 6,
+          "chalkCount": 0,
+          "leverageCount": 5,
+          "sumOwn": 57.8,
+          "salary": 42100,
+          "actual": 203.65
+        },
+        "beatChampion": true
+      }
     }
   ],
   "joinHealthSummary": {
-    "slates": 12,
+    "slates": 24,
     "avgPctWithActuals": 100,
     "championReproducedRate": 1,
     "winnerResolution": {
-      "nWinners": 4983,
-      "resolved8of8Pct": 0.983,
+      "nWinners": 9433,
+      "resolved8of8Pct": 0.96,
       "histogram": {
-        "7": 78,
-        "8": 4900,
-        "le6": 5
+        "7": 338,
+        "8": 9056,
+        "le6": 39
       },
-      "nameCollisions": 2
+      "nameCollisions": 5
     }
   },
   "skipped": [
@@ -1334,20 +1810,202 @@
       "slateId": "150011"
     },
     {
-      "reason": "time-guard-truncated",
-      "remainingDates": 53,
-      "dates": [
-        "2026-06-26",
-        "2026-06-25",
-        "2026-06-24",
-        "2026-06-23",
-        "2026-06-22",
-        "2026-06-21",
-        "2026-06-20",
-        "2026-06-19",
-        "2026-06-18",
-        "2026-06-17"
-      ]
+      "date": "2026-06-26",
+      "sk": "turbo_dk",
+      "reason": "no-matching-contest",
+      "slateId": "149868"
+    },
+    {
+      "date": "2026-06-26",
+      "sk": "night_dk",
+      "reason": "no-matching-contest",
+      "slateId": "149875"
+    },
+    {
+      "date": "2026-06-24",
+      "sk": "turbo_dk",
+      "reason": "no-matching-contest",
+      "slateId": "149794"
+    },
+    {
+      "date": "2026-06-24",
+      "sk": "night_dk",
+      "reason": "no-matching-contest",
+      "slateId": "149800"
+    },
+    {
+      "date": "2026-06-24",
+      "sk": "early_dk",
+      "reason": "no-matching-contest",
+      "slateId": "149791"
+    },
+    {
+      "date": "2026-06-23",
+      "sk": "turbo_dk",
+      "reason": "no-matching-contest",
+      "slateId": "149778"
+    },
+    {
+      "date": "2026-06-23",
+      "sk": "night_dk",
+      "reason": "no-matching-contest",
+      "slateId": "149785"
+    },
+    {
+      "date": "2026-06-22",
+      "sk": "night_dk",
+      "reason": "no-matching-contest",
+      "slateId": "149666"
+    },
+    {
+      "date": "2026-06-21",
+      "sk": "turbo_dk",
+      "reason": "no-matching-contest",
+      "slateId": "149650"
+    },
+    {
+      "date": "2026-06-21",
+      "sk": "afternoon_dk",
+      "reason": "no-matching-contest",
+      "slateId": "149653"
+    },
+    {
+      "date": "2026-06-20",
+      "sk": "night_dk",
+      "reason": "no-matching-contest",
+      "slateId": "149642"
+    },
+    {
+      "date": "2026-06-20",
+      "sk": "afternoon_dk",
+      "reason": "no-matching-contest",
+      "slateId": "149635"
+    },
+    {
+      "date": "2026-06-19",
+      "sk": "night_dk",
+      "reason": "no-matching-contest",
+      "slateId": "149555"
+    },
+    {
+      "date": "2026-06-17",
+      "reason": "no-rollup-snapshot"
+    },
+    {
+      "date": "2026-06-16",
+      "reason": "no-rollup-snapshot"
+    },
+    {
+      "date": "2026-06-15",
+      "reason": "no-rollup-snapshot"
+    },
+    {
+      "date": "2026-06-14",
+      "reason": "no-rollup-snapshot"
+    },
+    {
+      "date": "2026-06-13",
+      "reason": "no-rollup-snapshot"
+    },
+    {
+      "date": "2026-06-12",
+      "reason": "no-rollup-snapshot"
+    },
+    {
+      "date": "2026-06-11",
+      "reason": "no-rollup-snapshot"
+    },
+    {
+      "date": "2026-06-10",
+      "reason": "no-rollup-snapshot"
+    },
+    {
+      "date": "2026-06-09",
+      "reason": "no-rollup-snapshot"
+    },
+    {
+      "date": "2026-06-08",
+      "reason": "no-rollup-snapshot"
+    },
+    {
+      "date": "2026-06-07",
+      "reason": "no-rollup-snapshot"
+    },
+    {
+      "date": "2026-06-06",
+      "reason": "no-rollup-snapshot"
+    },
+    {
+      "date": "2026-06-05",
+      "reason": "no-rollup-snapshot"
+    },
+    {
+      "date": "2026-06-04",
+      "reason": "no-rollup-snapshot"
+    },
+    {
+      "date": "2026-06-03",
+      "reason": "no-rollup-snapshot"
+    },
+    {
+      "date": "2026-06-02",
+      "reason": "no-rollup-snapshot"
+    },
+    {
+      "date": "2026-06-01",
+      "reason": "no-rollup-snapshot"
+    },
+    {
+      "date": "2026-05-31",
+      "reason": "no-rollup-snapshot"
+    },
+    {
+      "date": "2026-05-30",
+      "reason": "no-rollup-snapshot"
+    },
+    {
+      "date": "2026-05-29",
+      "reason": "no-rollup-snapshot"
+    },
+    {
+      "date": "2026-05-28",
+      "reason": "no-rollup-snapshot"
+    },
+    {
+      "date": "2026-05-27",
+      "reason": "no-rollup-snapshot"
+    },
+    {
+      "date": "2026-05-26",
+      "reason": "no-rollup-snapshot"
+    },
+    {
+      "date": "2026-05-22",
+      "reason": "no-rollup-snapshot"
+    },
+    {
+      "date": "2026-05-21",
+      "reason": "no-rollup-snapshot"
+    },
+    {
+      "date": "2026-05-20",
+      "reason": "no-rollup-snapshot"
+    },
+    {
+      "date": "2026-05-19",
+      "reason": "no-rollup-snapshot"
+    },
+    {
+      "date": "2026-05-18",
+      "reason": "no-rollup-snapshot"
+    },
+    {
+      "date": "2026-05-17",
+      "reason": "no-rollup-snapshot"
+    },
+    {
+      "date": "2026-05-16",
+      "reason": "no-rollup-snapshot"
     }
   ]
 }
