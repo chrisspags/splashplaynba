@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "sport": "mlb",
-  "generatedAt": "2026-07-10T11:38:33.935Z",
+  "generatedAt": "2026-07-10T12:36:43.324Z",
   "slatesProcessed": 102,
   "slatesByBucket": {
     "unknown": 0,
@@ -3281,18 +3281,27 @@
     "shrinkK": 3,
     "buckets": {
       "small": {
-        "status": "starved",
-        "n": 0,
-        "note": "Need ≥3 snapshot×contest pairs"
+        "status": "active",
+        "n": 4,
+        "dep": 1.114,
+        "depRawMedian": 1.2,
+        "realized": {
+          "wP50": 86.8,
+          "top1P50": 205.6
+        },
+        "sim": {
+          "wP50": 82.6,
+          "winP50": 206.5
+        }
       },
       "main": {
         "status": "active",
-        "n": 6,
-        "dep": 0.838,
-        "depRawMedian": 0.757,
+        "n": 8,
+        "dep": 0.834,
+        "depRawMedian": 0.772,
         "realized": {
-          "wP50": 83,
-          "top1P50": 192.5
+          "wP50": 85,
+          "top1P50": 198.6
         },
         "sim": {
           "wP50": 102.9,
@@ -3321,19 +3330,19 @@
     },
     "global": {
       "status": "active",
-      "n": 14,
-      "dep": 0.833,
-      "depRawMedian": 0.797,
+      "n": 20,
+      "dep": 0.828,
+      "depRawMedian": 0.802,
       "realized": {
-        "wP50": 83,
-        "top1P50": 192.5
+        "wP50": 85,
+        "top1P50": 198.6
       },
       "sim": {
-        "wP50": 124.2,
-        "winP50": 258.9
+        "wP50": 115.9,
+        "winP50": 245.5
       }
     },
-    "nPairs": 14,
+    "nPairs": 20,
     "pairs": [
       {
         "date": "2026-07-07",
@@ -3529,6 +3538,90 @@
         "top1": 180.45,
         "simWinP50": 235.7,
         "fsReal": 4458,
+        "fsSim": 9803
+      },
+      {
+        "date": "2026-07-09",
+        "bucket": "main",
+        "slate": "main_dk",
+        "contestId": 192108690,
+        "dPair": 0.782,
+        "depRan": 0.843,
+        "wReal": 85,
+        "wSim": 102.9,
+        "top1": 198.6,
+        "simWinP50": 235.7,
+        "fsReal": 4756,
+        "fsSim": 9803
+      },
+      {
+        "date": "2026-07-09",
+        "bucket": "main",
+        "slate": "main_dk",
+        "contestId": 192108685,
+        "dPair": 0.779,
+        "depRan": 0.843,
+        "wReal": 86.8,
+        "wSim": 102.9,
+        "top1": 205.6,
+        "simWinP50": 235.7,
+        "fsReal": 7843,
+        "fsSim": 9803
+      },
+      {
+        "date": "2026-07-09",
+        "bucket": "small",
+        "slate": "early_dk",
+        "contestId": 192108690,
+        "dPair": 0.873,
+        "depRan": 0.843,
+        "wReal": 85,
+        "wSim": 82.6,
+        "top1": 198.6,
+        "simWinP50": 206.5,
+        "fsReal": 4756,
+        "fsSim": 9803
+      },
+      {
+        "date": "2026-07-09",
+        "bucket": "small",
+        "slate": "early_dk",
+        "contestId": 192108685,
+        "dPair": 0.869,
+        "depRan": 0.843,
+        "wReal": 86.8,
+        "wSim": 82.6,
+        "top1": 205.6,
+        "simWinP50": 206.5,
+        "fsReal": 7843,
+        "fsSim": 9803
+      },
+      {
+        "date": "2026-07-09",
+        "bucket": "small",
+        "slate": "night_dk",
+        "contestId": 192108690,
+        "dPair": 1.2,
+        "depRan": 0.843,
+        "wReal": 85,
+        "wSim": 33.9,
+        "top1": 198.6,
+        "simWinP50": 144.4,
+        "fsReal": 4756,
+        "fsSim": 9803
+      },
+      {
+        "date": "2026-07-09",
+        "bucket": "small",
+        "slate": "night_dk",
+        "contestId": 192108685,
+        "dPair": 1.2,
+        "depRan": 0.843,
+        "wReal": 86.8,
+        "wSim": 33.9,
+        "top1": 205.6,
+        "simWinP50": 144.4,
+        "fsReal": 7843,
         "fsSim": 9803
       }
     ],
@@ -6167,6 +6260,12 @@
   },
   "slateSummaries": [
     {
+      "date": "2026-07-08",
+      "bucket": null,
+      "matched": 0,
+      "note": "no projection snapshot in rollup or per-slate files"
+    },
+    {
       "date": "2026-07-07",
       "slate": "main_dk",
       "gameCount": 9,
@@ -7311,12 +7410,6 @@
         "totalScanned": 40
       },
       "source": "mlb-rollup.json.gz (night_dk)"
-    },
-    {
-      "date": "2026-07-08",
-      "bucket": null,
-      "matched": 0,
-      "note": "no projection snapshot in rollup or per-slate files"
     }
   ],
   "rollupDates": [
