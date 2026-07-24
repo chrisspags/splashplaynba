@@ -2,7 +2,7 @@
   "version": 3,
   "schema": "mlb-ownership-model.v3",
   "sport": "mlb",
-  "trainedAt": "2026-07-23T13:47:57.448Z",
+  "trainedAt": "2026-07-24T12:41:11.796Z",
   "fieldOwn": {
     "version": 3,
     "target": "realizedFieldOwn",
@@ -46,6 +46,24 @@
         "nSlates": 8,
         "nRows": 1142,
         "rawMeanResid": -0.292
+      },
+      "games_small|chalk": {
+        "corr": 0,
+        "nSlates": 1,
+        "nRows": 29,
+        "shrunk": true
+      },
+      "games_small|mid": {
+        "corr": 0,
+        "nSlates": 1,
+        "nRows": 26,
+        "shrunk": true
+      },
+      "games_small|leverage": {
+        "corr": 0,
+        "nSlates": 1,
+        "nRows": 3,
+        "shrunk": true
       }
     },
     "perSlate": [
@@ -158,27 +176,38 @@
         "sumStokMatched": 1000,
         "pairedR": 0.995,
         "coverage": 0.995
+      },
+      {
+        "date": "2026-07-23",
+        "contestId": 192630724,
+        "n": 58,
+        "source": "rollup",
+        "bucket": "games_small",
+        "sumActualMatched": 955.4,
+        "sumStokMatched": 966.5,
+        "pairedR": 0.989,
+        "coverage": 0.955
       }
     ],
     "backtest": {
       "overall": {
         "model": {
-          "n": 1931,
-          "rmse": 2.269,
-          "mae": 1.549,
-          "r2": 0.841
+          "n": 1989,
+          "rmse": 2.355,
+          "mae": 1.603,
+          "r2": 0.86
         },
         "rawStok": {
-          "n": 1931,
-          "rmse": 2.296,
-          "mae": 1.587,
-          "r2": 0.837
+          "n": 1989,
+          "rmse": 2.374,
+          "mae": 1.637,
+          "r2": 0.858
         },
         "renormStok": {
-          "n": 1931,
-          "rmse": 2.294,
-          "mae": 1.588,
-          "r2": 0.837
+          "n": 1989,
+          "rmse": 2.379,
+          "mae": 1.641,
+          "r2": 0.857
         }
       },
       "byBucket": {
@@ -223,15 +252,36 @@
             "r2": 0.823
           },
           "slates": 8
+        },
+        "games_small": {
+          "model": {
+            "n": 58,
+            "rmse": 4.335,
+            "mae": 3.397,
+            "r2": 0.881
+          },
+          "rawStok": {
+            "n": 58,
+            "rmse": 4.219,
+            "mae": 3.303,
+            "r2": 0.887
+          },
+          "renormStok": {
+            "n": 58,
+            "rmse": 4.335,
+            "mae": 3.397,
+            "r2": 0.881
+          },
+          "slates": 1
         }
       },
-      "slateCount": 10,
+      "slateCount": 11,
       "gate": {
         "metric": "mae",
-        "overallDeltaVsRenorm": 0.039,
-        "slateCount": 10,
+        "overallDeltaVsRenorm": 0.038,
+        "slateCount": 11,
         "slateBar": 8,
-        "smallBucketSlates": 0,
+        "smallBucketSlates": 1,
         "smallEvaluable": false,
         "smallDeltaVsRenorm": null
       }
@@ -241,31 +291,31 @@
   "target": "leverageOverStokastic",
   "link": "linear",
   "leverageShrink": 0.5,
-  "baselineStokMean": 5.9932,
+  "baselineStokMean": 6.3666,
   "scale": 100,
-  "intercept": 0.564814,
+  "intercept": 1.734824,
   "coefficients": {
-    "valuePerK": 0.132107,
-    "projRankInPos": 0.377801,
-    "valueRankInPos": -1.385532,
-    "priceRankInPos": -0.272629,
-    "ceilingRate": -1.079001,
-    "salTier_lt3k": -0.465615,
-    "salTier_3to4_5": 0.308221,
-    "salTier_4_5to7": 0.85102,
-    "salTier_7plus": -0.523572,
-    "pos_P": -2.51938,
-    "pos_C": 0.807077,
-    "pos_1B": 0.350304,
-    "pos_2B": -0.144553,
-    "pos_3B": 0.954352,
-    "pos_SS": 0.273987,
-    "pos_OF": 0.448267,
-    "games_small": 0,
-    "games_main": 0.129966,
-    "games_large": 0.040088,
-    "isTopValueAtPos": 4.01246,
-    "isTopProjAtPos": 0.896683
+    "valuePerK": 0.537216,
+    "projRankInPos": -0.106679,
+    "valueRankInPos": -0.605075,
+    "priceRankInPos": 0.266286,
+    "ceilingRate": -0.981475,
+    "salTier_lt3k": -0.577939,
+    "salTier_3to4_5": 0.350531,
+    "salTier_4_5to7": 0.849337,
+    "salTier_7plus": -0.105493,
+    "pos_P": -2.276777,
+    "pos_C": 1.02492,
+    "pos_1B": 0.176564,
+    "pos_2B": 0.2074,
+    "pos_3B": 0.692246,
+    "pos_SS": 0.411328,
+    "pos_OF": 0.280758,
+    "games_small": 2.590563,
+    "games_main": -0.960739,
+    "games_large": -1.113386,
+    "isTopValueAtPos": 3.383276,
+    "isTopProjAtPos": 0.263144
   },
   "featureNames": [
     "valuePerK",
@@ -291,24 +341,24 @@
     "isTopProjAtPos"
   ],
   "featureMeans": {
-    "valuePerK": 1.957462,
-    "projRankInPos": 0.43684,
-    "valueRankInPos": 0.458277,
-    "priceRankInPos": 0.462194,
-    "ceilingRate": 2.283472
+    "valuePerK": 1.954688,
+    "projRankInPos": 0.438119,
+    "valueRankInPos": 0.459062,
+    "priceRankInPos": 0.462342,
+    "ceilingRate": 2.283333
   },
   "featureStds": {
-    "valuePerK": 0.373412,
-    "projRankInPos": 0.292752,
-    "valueRankInPos": 0.293297,
-    "priceRankInPos": 0.299331,
-    "ceilingRate": 0.095272
+    "valuePerK": 0.375717,
+    "projRankInPos": 0.293858,
+    "valueRankInPos": 0.294046,
+    "priceRankInPos": 0.300158,
+    "ceilingRate": 0.095842
   },
   "training": {
     "splitMethod": "80/20 chronological",
-    "slateCount": 10,
-    "trainRows": 1389,
-    "evalRows": 300,
+    "slateCount": 11,
+    "trainRows": 1432,
+    "evalRows": 188,
     "trainDates": [
       "2026-07-09",
       "2026-07-10",
@@ -319,7 +369,8 @@
       "2026-07-19",
       "2026-07-20",
       "2026-07-21",
-      "2026-07-22"
+      "2026-07-22",
+      "2026-07-23"
     ],
     "perSlateStats": [
       {
@@ -467,6 +518,13 @@
         "contestId": 192593121,
         "n": 145,
         "cohortCount": 250,
+        "source": "rollup"
+      },
+      {
+        "date": "2026-07-23",
+        "contestId": 192630724,
+        "n": 44,
+        "cohortCount": 96,
         "source": "rollup"
       }
     ],
@@ -691,73 +749,73 @@
   },
   "backtest": {
     "overall": {
-      "n": 300,
-      "rmse": 8.917,
-      "mae": 5.677,
-      "r2": 0.212
+      "n": 188,
+      "rmse": 12.144,
+      "mae": 7.481,
+      "r2": 0.425
     },
     "byPosition": {
       "P": {
-        "n": 34,
-        "rmse": 9.9,
-        "mae": 7.114,
-        "r2": 0.272
-      },
-      "C": {
-        "n": 31,
-        "rmse": 9.947,
-        "mae": 5.63,
-        "r2": 0.25
-      },
-      "SS": {
-        "n": 23,
-        "rmse": 13.668,
-        "mae": 7.378,
-        "r2": 0.132
-      },
-      "1B": {
-        "n": 49,
-        "rmse": 8.385,
-        "mae": 5.378,
-        "r2": 0.122
+        "n": 21,
+        "rmse": 11.739,
+        "mae": 8.195,
+        "r2": 0.724
       },
       "2B": {
-        "n": 32,
-        "rmse": 7.512,
-        "mae": 5.052,
-        "r2": 0.105
+        "n": 19,
+        "rmse": 17.94,
+        "mae": 10.463,
+        "r2": 0.294
       },
-      "OF": {
-        "n": 100,
-        "rmse": 7.558,
-        "mae": 5.144,
-        "r2": 0.194
+      "1B": {
+        "n": 31,
+        "rmse": 13.314,
+        "mae": 8.149,
+        "r2": 0.091
+      },
+      "C": {
+        "n": 18,
+        "rmse": 12.662,
+        "mae": 7.649,
+        "r2": 0.502
       },
       "3B": {
-        "n": 31,
-        "rmse": 8.413,
-        "mae": 5.727,
-        "r2": 0.129
+        "n": 21,
+        "rmse": 8.731,
+        "mae": 6.582,
+        "r2": 0.073
+      },
+      "OF": {
+        "n": 65,
+        "rmse": 10.939,
+        "mae": 6.426,
+        "r2": 0.359
+      },
+      "SS": {
+        "n": 13,
+        "rmse": 8.57,
+        "mae": 6.875,
+        "r2": 0.224
       }
     },
     "vsBaselines": {
       "predictStokastic": {
-        "n": 300,
-        "rmse": 8.984,
-        "mae": 5.562,
-        "r2": 0.2
+        "n": 188,
+        "rmse": 12.155,
+        "mae": 7.368,
+        "r2": 0.423
       }
     },
     "improvementOverStokastic": {
-      "n": 300,
-      "modelRmse": 8.917,
-      "stokRmse": 8.984,
-      "delta": 0.067
+      "n": 188,
+      "modelRmse": 12.144,
+      "stokRmse": 12.155,
+      "delta": 0.011
     },
     "agreementWithStokastic": {
-      "n": 300,
-      "correlation": 0.983,
-      "meanAbsDiff": 0.777
+      "n": 188,
+      "correlation": 0.995,
+      "meanAbsDiff": 0.798
     }
   }
 }
