@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "sport": "mlb",
-  "generatedAt": "2026-07-25T13:28:04.767Z",
+  "generatedAt": "2026-07-25T14:55:20.335Z",
   "slatesProcessed": 137,
   "slatesByBucket": {
     "unknown": 0,
@@ -38,19 +38,6 @@
           "stdevRaw": 1.583,
           "shrinkW": 0.856
         },
-        "1B": {
-          "biasMult": 0.99,
-          "stdevMult": 1.342,
-          "n": 487,
-          "cov50": 0.331,
-          "cov80": 0.637,
-          "bias": -0.17,
-          "meanProj": 7.97,
-          "meanAct": 7.8,
-          "biasRaw": 0.978,
-          "stdevRaw": 1.385,
-          "shrinkW": 0.89
-        },
         "OF": {
           "biasMult": 0.955,
           "stdevMult": 1.348,
@@ -76,6 +63,19 @@
           "biasRaw": 1.018,
           "stdevRaw": 1.492,
           "shrinkW": 0.819
+        },
+        "C": {
+          "biasMult": 0.999,
+          "stdevMult": 1.51,
+          "n": 390,
+          "cov50": 0.321,
+          "cov80": 0.495,
+          "bias": -0.01,
+          "meanProj": 6.26,
+          "meanAct": 6.26,
+          "biasRaw": 0.999,
+          "stdevRaw": 1.588,
+          "shrinkW": 0.867
         },
         "3B": {
           "biasMult": 0.977,
@@ -103,21 +103,34 @@
           "stdevRaw": 1.402,
           "shrinkW": 0.876
         },
-        "C": {
-          "biasMult": 0.999,
-          "stdevMult": 1.51,
-          "n": 390,
-          "cov50": 0.321,
-          "cov80": 0.495,
-          "bias": -0.01,
-          "meanProj": 6.26,
-          "meanAct": 6.26,
-          "biasRaw": 0.999,
-          "stdevRaw": 1.588,
-          "shrinkW": 0.867
+        "1B": {
+          "biasMult": 0.99,
+          "stdevMult": 1.342,
+          "n": 487,
+          "cov50": 0.331,
+          "cov80": 0.637,
+          "bias": -0.17,
+          "meanProj": 7.97,
+          "meanAct": 7.8,
+          "biasRaw": 0.978,
+          "stdevRaw": 1.385,
+          "shrinkW": 0.89
         }
       },
       "byPriceTier": {
+        "pit_ace": {
+          "biasMult": 1.027,
+          "stdevMult": 1.102,
+          "n": 57,
+          "cov50": 0.368,
+          "cov80": 0.754,
+          "bias": 2.08,
+          "meanProj": 18.63,
+          "meanAct": 20.71,
+          "biasRaw": 1.112,
+          "stdevRaw": 1.209,
+          "shrinkW": 0.487
+        },
         "pit_mid": {
           "biasMult": 1.02,
           "stdevMult": 1.551,
@@ -143,19 +156,6 @@
           "biasRaw": 0.818,
           "stdevRaw": 1.196,
           "shrinkW": 0.873
-        },
-        "pit_value": {
-          "biasMult": 0.994,
-          "stdevMult": 1.438,
-          "n": 153,
-          "cov50": 0.281,
-          "cov80": 0.556,
-          "bias": -0.17,
-          "meanProj": 9.57,
-          "meanAct": 9.4,
-          "biasRaw": 0.982,
-          "stdevRaw": 1.61,
-          "shrinkW": 0.718
         },
         "hit_mid": {
           "biasMult": 0.981,
@@ -183,18 +183,18 @@
           "stdevRaw": 1.552,
           "shrinkW": 0.959
         },
-        "pit_ace": {
-          "biasMult": 1.027,
-          "stdevMult": 1.102,
-          "n": 57,
-          "cov50": 0.368,
-          "cov80": 0.754,
-          "bias": 2.08,
-          "meanProj": 18.63,
-          "meanAct": 20.71,
-          "biasRaw": 1.112,
-          "stdevRaw": 1.209,
-          "shrinkW": 0.487
+        "pit_value": {
+          "biasMult": 0.994,
+          "stdevMult": 1.438,
+          "n": 153,
+          "cov50": 0.281,
+          "cov80": 0.556,
+          "bias": -0.17,
+          "meanProj": 9.57,
+          "meanAct": 9.4,
+          "biasRaw": 0.982,
+          "stdevRaw": 1.61,
+          "shrinkW": 0.718
         }
       },
       "byOwnership": {
@@ -239,9 +239,9 @@
         }
       },
       "stackBiasMult": {
-        "high": 0.97,
         "low": 1.006,
-        "mid": 0.985
+        "mid": 0.985,
+        "high": 0.97
       },
       "batOrderBiasMult": {
         "top (1-2)": 0.977,
@@ -3388,6 +3388,15 @@
       "desc": "v59.4 fix #6 (7/2 review #6, landed jointly with hitterSingles.perPA): the BA/OBP/ISO shrinkage target gains the league platoon delta for the batter-hand × pitcher-hand cell, PA-weighted from the uploaded vs-hand pools per upload (thin cells <1500 PA → 0; clamps ±0.030/±0.040 ISO). Small-split hitters stop inheriting a hand-blind target; big-split hitters ~unmoved."
     },
     {
+      "id": "pitcherWin.p5Bundle",
+      "date": "2026-07-25",
+      "axes": [
+        "byPosition"
+      ],
+      "anchor": "mlb/index.html ~L2213 (win bonus) + ~L2090 (estIP level add) + ipHist ~L9958",
+      "desc": "Joint pitcher bundle: DK win bonus winProb*4 → winProb*P5*0.855*4 (P5 = last-10 P(IP≥5) shrunk k=6 to lg 0.690; λ=P(W)/(P(teamWin)·P(IP≥5)), fit 7/24 n=3,058 starts, ≈ −0.82 DK) + estIP +0.35 level add pre-estBF (measured −0.39 IP vs trailing; the K gap is the IP gap via estBF; ≈ +0.86 DK with knock-ons). Net ≈ +0.04 by construction. FD win term untouched (follow-up). See scratchpad/replay/pitcher-bundle/SPEC.md — gates: |bias|≤1.0 over ≥8 slates, pit ρ≥0.30, ipRatio/kRatio 0.93-1.07 by 8 slates; single-commit revert of all three parts together."
+    },
+    {
       "id": "pitcherER.parkDecouple",
       "date": "2026-07-24",
       "axes": [
@@ -3399,7 +3408,7 @@
     }
   ],
   "windowPolicy": "sinceKnobChange",
-  "windowSinceDate": "2026-07-24",
+  "windowSinceDate": "2026-07-25",
   "fieldScoreCal": {
     "status": "active",
     "clamp": [
@@ -3473,6 +3482,34 @@
     },
     "nPairs": 57,
     "pairs": [
+      {
+        "date": "2026-07-23",
+        "bucket": "small",
+        "slate": "main_dk",
+        "contestId": 192630724,
+        "dPair": 0.993,
+        "depRan": 1.154,
+        "wReal": 46.5,
+        "wSim": 61.4,
+        "top1": 163.85,
+        "simWinP50": 186.8,
+        "fsReal": 9512,
+        "fsSim": 6274
+      },
+      {
+        "date": "2026-07-23",
+        "bucket": "small",
+        "slate": "main_dk",
+        "contestId": 192630720,
+        "dPair": 0.999,
+        "depRan": 1.154,
+        "wReal": 46,
+        "wSim": 61.4,
+        "top1": 164.85,
+        "simWinP50": 186.8,
+        "fsReal": 6274,
+        "fsSim": 6274
+      },
       {
         "date": "2026-07-22",
         "bucket": "large",
@@ -4200,34 +4237,6 @@
         "simWinP50": 258.9,
         "fsReal": 4458,
         "fsSim": 9803
-      },
-      {
-        "date": "2026-07-23",
-        "bucket": "small",
-        "slate": "main_dk",
-        "contestId": 192630724,
-        "dPair": 0.993,
-        "depRan": 1.154,
-        "wReal": 46.5,
-        "wSim": 61.4,
-        "top1": 163.85,
-        "simWinP50": 186.8,
-        "fsReal": 9512,
-        "fsSim": 6274
-      },
-      {
-        "date": "2026-07-23",
-        "bucket": "small",
-        "slate": "main_dk",
-        "contestId": 192630720,
-        "dPair": 0.999,
-        "depRan": 1.154,
-        "wReal": 46,
-        "wSim": 61.4,
-        "top1": 164.85,
-        "simWinP50": 186.8,
-        "fsReal": 6274,
-        "fsSim": 6274
       },
       {
         "date": "2026-07-24",
@@ -6648,238 +6657,34 @@
   },
   "bucketsWindowed": {
     "small": {
-      "nSlates": 2,
+      "nSlates": 0,
       "status": "starved",
-      "note": "Need ≥3 post-change slates (since 2026-07-24); falling back to windowed global, then global"
+      "note": "Need ≥3 post-change slates (since 2026-07-25); falling back to windowed global, then global"
     },
     "main": {
       "nSlates": 0,
       "status": "starved",
-      "note": "Need ≥3 post-change slates (since 2026-07-24); falling back to windowed global, then global"
+      "note": "Need ≥3 post-change slates (since 2026-07-25); falling back to windowed global, then global"
     },
     "large": {
-      "nSlates": 1,
+      "nSlates": 0,
       "status": "starved",
-      "note": "Need ≥3 post-change slates (since 2026-07-24); falling back to windowed global, then global"
+      "note": "Need ≥3 post-change slates (since 2026-07-25); falling back to windowed global, then global"
     },
     "showdown": {
       "nSlates": 0,
       "status": "starved",
-      "note": "Need ≥3 post-change slates (since 2026-07-24); falling back to windowed global, then global"
+      "note": "Need ≥3 post-change slates (since 2026-07-25); falling back to windowed global, then global"
     }
   },
   "globalWindowed": {
-    "sinceDate": "2026-07-24",
-    "nSlates": 3,
-    "byPosition": {
-      "P": {
-        "biasMult": 0.992,
-        "stdevMult": 1.282,
-        "n": 36,
-        "cov50": 0.222,
-        "cov80": 0.639,
-        "bias": -0.57,
-        "meanProj": 13.17,
-        "meanAct": 12.6,
-        "biasRaw": 0.957,
-        "stdevRaw": 1.751,
-        "shrinkW": 0.375
-      },
-      "2B": {
-        "biasMult": 1,
-        "stdevMult": 1.072,
-        "n": 41,
-        "cov50": 0.439,
-        "cov80": 0.659,
-        "bias": 0,
-        "meanProj": 6.07,
-        "meanAct": 6.07,
-        "biasRaw": 1,
-        "stdevRaw": 1.177,
-        "shrinkW": 0.406
-      },
-      "OF": {
-        "biasMult": 0.924,
-        "stdevMult": 1.279,
-        "n": 123,
-        "cov50": 0.341,
-        "cov80": 0.585,
-        "bias": -1.55,
-        "meanProj": 6.85,
-        "meanAct": 5.3,
-        "biasRaw": 0.773,
-        "stdevRaw": 1.415,
-        "shrinkW": 0.672
-      },
-      "C": {
-        "biasMult": 0.995,
-        "stdevMult": 1.254,
-        "n": 43,
-        "cov50": 0.302,
-        "cov80": 0.512,
-        "bias": -0.14,
-        "meanProj": 5.7,
-        "meanAct": 5.56,
-        "biasRaw": 0.975,
-        "stdevRaw": 1.609,
-        "shrinkW": 0.417
-      },
-      "SS": {
-        "biasMult": 0.976,
-        "stdevMult": 1.26,
-        "n": 29,
-        "cov50": 0.276,
-        "cov80": 0.448,
-        "bias": -1.02,
-        "meanProj": 6.82,
-        "meanAct": 5.79,
-        "biasRaw": 0.85,
-        "stdevRaw": 1.799,
-        "shrinkW": 0.326
-      },
-      "1B": {
-        "biasMult": 1.04,
-        "stdevMult": 1.308,
-        "n": 59,
-        "cov50": 0.254,
-        "cov80": 0.627,
-        "bias": 1.16,
-        "meanProj": 7.14,
-        "meanAct": 8.31,
-        "biasRaw": 1.163,
-        "stdevRaw": 1.621,
-        "shrinkW": 0.496
-      },
-      "3B": {
-        "biasMult": 1.007,
-        "stdevMult": 1.248,
-        "n": 29,
-        "cov50": 0.241,
-        "cov80": 0.552,
-        "bias": 0.29,
-        "meanProj": 6.54,
-        "meanAct": 6.83,
-        "biasRaw": 1.044,
-        "stdevRaw": 1.761,
-        "shrinkW": 0.326
-      }
-    },
-    "byPriceTier": {
-      "pit_ace": {
-        "biasMult": 1,
-        "stdevMult": 1,
-        "n": 8
-      },
-      "pit_mid": {
-        "biasMult": 1,
-        "stdevMult": 1,
-        "n": 13
-      },
-      "hit_stud": {
-        "biasMult": 0.947,
-        "stdevMult": 1.091,
-        "n": 44,
-        "cov50": 0.386,
-        "cov80": 0.705,
-        "bias": -2.16,
-        "meanProj": 8.66,
-        "meanAct": 6.5,
-        "biasRaw": 0.751,
-        "stdevRaw": 1.215,
-        "shrinkW": 0.423
-      },
-      "hit_mid": {
-        "biasMult": 0.96,
-        "stdevMult": 1.402,
-        "n": 137,
-        "cov50": 0.277,
-        "cov80": 0.591,
-        "bias": -0.84,
-        "meanProj": 7.19,
-        "meanAct": 6.35,
-        "biasRaw": 0.884,
-        "stdevRaw": 1.578,
-        "shrinkW": 0.695
-      },
-      "hit_value": {
-        "biasMult": 1.027,
-        "stdevMult": 1.357,
-        "n": 143,
-        "cov50": 0.336,
-        "cov80": 0.524,
-        "bias": 0.42,
-        "meanProj": 5.46,
-        "meanAct": 5.87,
-        "biasRaw": 1.076,
-        "stdevRaw": 1.507,
-        "shrinkW": 0.704
-      },
-      "pit_value": {
-        "biasMult": 0.999,
-        "stdevMult": 1.083,
-        "n": 15,
-        "cov50": 0.333,
-        "cov80": 0.6,
-        "bias": -0.13,
-        "meanProj": 9.48,
-        "meanAct": 9.35,
-        "biasRaw": 0.987,
-        "stdevRaw": 1.417,
-        "shrinkW": 0.2
-      }
-    },
-    "byOwnership": {
-      "chalk": {
-        "biasMult": 0.991,
-        "stdevMult": 1.092,
-        "n": 23,
-        "cov50": 0.304,
-        "cov80": 0.783,
-        "bias": -0.87,
-        "meanProj": 13.76,
-        "meanAct": 12.89,
-        "biasRaw": 0.937,
-        "stdevRaw": 1.333,
-        "shrinkW": 0.277
-      },
-      "mid": {
-        "biasMult": 0.915,
-        "stdevMult": 1.275,
-        "n": 129,
-        "cov50": 0.333,
-        "cov80": 0.612,
-        "bias": -1.92,
-        "meanProj": 7.69,
-        "meanAct": 5.77,
-        "biasRaw": 0.751,
-        "stdevRaw": 1.403,
-        "shrinkW": 0.683
-      },
-      "leverage": {
-        "biasMult": 1.029,
-        "stdevMult": 1.457,
-        "n": 208,
-        "cov50": 0.293,
-        "cov80": 0.543,
-        "bias": 0.47,
-        "meanProj": 6.31,
-        "meanAct": 6.77,
-        "biasRaw": 1.074,
-        "stdevRaw": 1.589,
-        "shrinkW": 0.776
-      }
-    },
-    "stackBiasMult": {
-      "high": 0.955,
-      "mid": 0.944,
-      "low": 1.056
-    },
-    "batOrderBiasMult": {
-      "top (1-2)": 0.961,
-      "heart (3-4)": 0.979,
-      "bottom (7-9)": 1.017,
-      "mid (5-6)": 0.985
-    }
+    "sinceDate": "2026-07-25",
+    "nSlates": 0,
+    "byPosition": {},
+    "byPriceTier": {},
+    "byOwnership": {},
+    "stackBiasMult": {},
+    "batOrderBiasMult": {}
   },
   "global": {
     "byPosition": {
@@ -6895,19 +6700,6 @@
         "biasRaw": 1.04,
         "stdevRaw": 1.567,
         "shrinkW": 0.94
-      },
-      "1B": {
-        "biasMult": 0.974,
-        "stdevMult": 1.311,
-        "n": 1307,
-        "cov50": 0.358,
-        "cov80": 0.637,
-        "bias": -0.43,
-        "meanProj": 7.97,
-        "meanAct": 7.54,
-        "biasRaw": 0.947,
-        "stdevRaw": 1.326,
-        "shrinkW": 0.956
       },
       "OF": {
         "biasMult": 0.973,
@@ -6935,6 +6727,19 @@
         "stdevRaw": 1.508,
         "shrinkW": 0.925
       },
+      "C": {
+        "biasMult": 0.984,
+        "stdevMult": 1.528,
+        "n": 1043,
+        "cov50": 0.323,
+        "cov80": 0.51,
+        "bias": -0.21,
+        "meanProj": 6.27,
+        "meanAct": 6.06,
+        "biasRaw": 0.966,
+        "stdevRaw": 1.558,
+        "shrinkW": 0.946
+      },
       "3B": {
         "biasMult": 1.017,
         "stdevMult": 1.455,
@@ -6961,21 +6766,34 @@
         "stdevRaw": 1.423,
         "shrinkW": 0.949
       },
-      "C": {
-        "biasMult": 0.984,
-        "stdevMult": 1.528,
-        "n": 1043,
-        "cov50": 0.323,
-        "cov80": 0.51,
-        "bias": -0.21,
-        "meanProj": 6.27,
-        "meanAct": 6.06,
-        "biasRaw": 0.966,
-        "stdevRaw": 1.558,
-        "shrinkW": 0.946
+      "1B": {
+        "biasMult": 0.974,
+        "stdevMult": 1.311,
+        "n": 1307,
+        "cov50": 0.358,
+        "cov80": 0.637,
+        "bias": -0.43,
+        "meanProj": 7.97,
+        "meanAct": 7.54,
+        "biasRaw": 0.947,
+        "stdevRaw": 1.326,
+        "shrinkW": 0.956
       }
     },
     "byPriceTier": {
+      "pit_ace": {
+        "biasMult": 1.011,
+        "stdevMult": 1.153,
+        "n": 151,
+        "cov50": 0.371,
+        "cov80": 0.742,
+        "bias": 0.55,
+        "meanProj": 18.24,
+        "meanAct": 18.79,
+        "biasRaw": 1.03,
+        "stdevRaw": 1.213,
+        "shrinkW": 0.716
+      },
       "pit_mid": {
         "biasMult": 1.028,
         "stdevMult": 1.599,
@@ -7001,19 +6819,6 @@
         "biasRaw": 0.857,
         "stdevRaw": 1.254,
         "shrinkW": 0.948
-      },
-      "pit_value": {
-        "biasMult": 1.006,
-        "stdevMult": 1.553,
-        "n": 385,
-        "cov50": 0.281,
-        "cov80": 0.535,
-        "bias": 0.13,
-        "meanProj": 9.88,
-        "meanAct": 10.01,
-        "biasRaw": 1.013,
-        "stdevRaw": 1.639,
-        "shrinkW": 0.865
       },
       "hit_mid": {
         "biasMult": 0.977,
@@ -7041,18 +6846,18 @@
         "stdevRaw": 1.549,
         "shrinkW": 0.984
       },
-      "pit_ace": {
-        "biasMult": 1.011,
-        "stdevMult": 1.153,
-        "n": 151,
-        "cov50": 0.371,
-        "cov80": 0.742,
-        "bias": 0.55,
-        "meanProj": 18.24,
-        "meanAct": 18.79,
-        "biasRaw": 1.03,
-        "stdevRaw": 1.213,
-        "shrinkW": 0.716
+      "pit_value": {
+        "biasMult": 1.006,
+        "stdevMult": 1.553,
+        "n": 385,
+        "cov50": 0.281,
+        "cov80": 0.535,
+        "bias": 0.13,
+        "meanProj": 9.88,
+        "meanAct": 10.01,
+        "biasRaw": 1.013,
+        "stdevRaw": 1.639,
+        "shrinkW": 0.865
       }
     },
     "byOwnership": {
@@ -7097,19 +6902,6 @@
       }
     },
     "byTeamTotal": {
-      "high": {
-        "biasMult": 0.962,
-        "stdevMult": 1.298,
-        "n": 1615,
-        "cov50": 0.37,
-        "cov80": 0.632,
-        "bias": -0.7,
-        "meanProj": 8.9,
-        "meanAct": 8.19,
-        "biasRaw": 0.921,
-        "stdevRaw": 1.309,
-        "shrinkW": 0.964
-      },
       "low": {
         "biasMult": 1.034,
         "stdevMult": 1.464,
@@ -7135,6 +6927,19 @@
         "biasRaw": 0.971,
         "stdevRaw": 1.438,
         "shrinkW": 0.988
+      },
+      "high": {
+        "biasMult": 0.962,
+        "stdevMult": 1.298,
+        "n": 1615,
+        "cov50": 0.37,
+        "cov80": 0.632,
+        "bias": -0.7,
+        "meanProj": 8.9,
+        "meanAct": 8.19,
+        "biasRaw": 0.921,
+        "stdevRaw": 1.309,
+        "shrinkW": 0.964
       }
     },
     "byBattingOrder": {
@@ -7366,176 +7171,13 @@
         }
       },
       "byPosition": {
-        "knobId": "hitterSingles.perPA",
-        "changeDate": "2026-07-24",
-        "knobDesc": "v59.4 fix #6c (7/2 review bug #3): BA (per-AB) was consumed as a per-PA hit rate — walk-heavy hitters carried ~+0.2-0.6 phantom singles pts. hitRate now = ba × (1 − bbRate − 0.008 HBP). Also corrects xH and the derived splash-stats props.",
-        "nSlatesPost": 3,
-        "nSlatesPre": 86,
-        "segments": {
-          "P": {
-            "biasMult": 0.992,
-            "stdevMult": 1.282,
-            "n": 36,
-            "cov50": 0.222,
-            "cov80": 0.639,
-            "bias": -0.57,
-            "meanProj": 13.17,
-            "meanAct": 12.6,
-            "biasRaw": 0.957,
-            "stdevRaw": 1.751,
-            "shrinkW": 0.375
-          },
-          "2B": {
-            "biasMult": 1,
-            "stdevMult": 1.072,
-            "n": 41,
-            "cov50": 0.439,
-            "cov80": 0.659,
-            "bias": 0,
-            "meanProj": 6.07,
-            "meanAct": 6.07,
-            "biasRaw": 1,
-            "stdevRaw": 1.177,
-            "shrinkW": 0.406
-          },
-          "OF": {
-            "biasMult": 0.924,
-            "stdevMult": 1.279,
-            "n": 123,
-            "cov50": 0.341,
-            "cov80": 0.585,
-            "bias": -1.55,
-            "meanProj": 6.85,
-            "meanAct": 5.3,
-            "biasRaw": 0.773,
-            "stdevRaw": 1.415,
-            "shrinkW": 0.672
-          },
-          "C": {
-            "biasMult": 0.995,
-            "stdevMult": 1.254,
-            "n": 43,
-            "cov50": 0.302,
-            "cov80": 0.512,
-            "bias": -0.14,
-            "meanProj": 5.7,
-            "meanAct": 5.56,
-            "biasRaw": 0.975,
-            "stdevRaw": 1.609,
-            "shrinkW": 0.417
-          },
-          "SS": {
-            "biasMult": 0.976,
-            "stdevMult": 1.26,
-            "n": 29,
-            "cov50": 0.276,
-            "cov80": 0.448,
-            "bias": -1.02,
-            "meanProj": 6.82,
-            "meanAct": 5.79,
-            "biasRaw": 0.85,
-            "stdevRaw": 1.799,
-            "shrinkW": 0.326
-          },
-          "1B": {
-            "biasMult": 1.04,
-            "stdevMult": 1.308,
-            "n": 59,
-            "cov50": 0.254,
-            "cov80": 0.627,
-            "bias": 1.16,
-            "meanProj": 7.14,
-            "meanAct": 8.31,
-            "biasRaw": 1.163,
-            "stdevRaw": 1.621,
-            "shrinkW": 0.496
-          },
-          "3B": {
-            "biasMult": 1.007,
-            "stdevMult": 1.248,
-            "n": 29,
-            "cov50": 0.241,
-            "cov80": 0.552,
-            "bias": 0.29,
-            "meanProj": 6.54,
-            "meanAct": 6.83,
-            "biasRaw": 1.044,
-            "stdevRaw": 1.761,
-            "shrinkW": 0.326
-          }
-        },
-        "rank": {
-          "2B": {
-            "n": 33,
-            "slates": 2,
-            "spearman": 0.172,
-            "topDecile": {
-              "hits": 1,
-              "possible": 4,
-              "rate": 0.25
-            }
-          },
-          "OF": {
-            "n": 123,
-            "slates": 3,
-            "spearman": 0.132,
-            "topDecile": {
-              "hits": 2,
-              "possible": 13,
-              "rate": 0.154
-            }
-          },
-          "1B": {
-            "n": 59,
-            "slates": 3,
-            "spearman": -0.046,
-            "topDecile": {
-              "hits": 2,
-              "possible": 8,
-              "rate": 0.25
-            }
-          },
-          "C": {
-            "n": 34,
-            "slates": 2,
-            "spearman": 0.027,
-            "topDecile": {
-              "hits": 0,
-              "possible": 4,
-              "rate": 0
-            }
-          },
-          "P": {
-            "n": 20,
-            "slates": 1,
-            "spearman": 0.063,
-            "topDecile": {
-              "hits": 0,
-              "possible": 2,
-              "rate": 0
-            }
-          },
-          "3B": {
-            "n": 15,
-            "slates": 1,
-            "spearman": 0.045,
-            "topDecile": {
-              "hits": 0,
-              "possible": 2,
-              "rate": 0
-            }
-          },
-          "SS": {
-            "n": 16,
-            "slates": 1,
-            "spearman": -0.205,
-            "topDecile": {
-              "hits": 0,
-              "possible": 2,
-              "rate": 0
-            }
-          }
-        }
+        "knobId": "pitcherWin.p5Bundle",
+        "changeDate": "2026-07-25",
+        "knobDesc": "Joint pitcher bundle: DK win bonus winProb*4 → winProb*P5*0.855*4 (P5 = last-10 P(IP≥5) shrunk k=6 to lg 0.690; λ=P(W)/(P(teamWin)·P(IP≥5)), fit 7/24 n=3,058 starts, ≈ −0.82 DK) + estIP +0.35 level add pre-estBF (measured −0.39 IP vs trailing; the K gap is the IP gap via estBF; ≈ +0.86 DK with knock-ons). Net ≈ +0.04 by construction. FD win term untouched (follow-up). See scratchpad/replay/pitcher-bundle/SPEC.md — gates: |bias|≤1.0 over ≥8 slates, pit ρ≥0.30, ipRatio/kRatio 0.93-1.07 by 8 slates; single-commit revert of all three parts together.",
+        "nSlatesPost": 0,
+        "nSlatesPre": 89,
+        "segments": {},
+        "rank": {}
       }
     },
     "fieldRealism": {
@@ -7684,16 +7326,6 @@
       }
     },
     "rankByPosition": {
-      "1B": {
-        "n": 1066,
-        "slates": 53,
-        "spearman": 0.115,
-        "topDecile": {
-          "hits": 29,
-          "possible": 129,
-          "rate": 0.225
-        }
-      },
       "OF": {
         "n": 3013,
         "slates": 89,
@@ -7702,6 +7334,16 @@
           "hits": 62,
           "possible": 343,
           "rate": 0.181
+        }
+      },
+      "1B": {
+        "n": 1066,
+        "slates": 53,
+        "spearman": 0.115,
+        "topDecile": {
+          "hits": 29,
+          "possible": 129,
+          "rate": 0.225
         }
       },
       "2B": {
@@ -7756,14 +7398,14 @@
       }
     },
     "rankByTeamTotal": {
-      "high": {
-        "n": 1322,
-        "slates": 41,
-        "spearman": 0.17,
+      "low": {
+        "n": 1417,
+        "slates": 46,
+        "spearman": 0.137,
         "topDecile": {
-          "hits": 33,
-          "possible": 148,
-          "rate": 0.223
+          "hits": 23,
+          "possible": 158,
+          "rate": 0.146
         }
       },
       "mid": {
@@ -7776,14 +7418,14 @@
           "rate": 0.133
         }
       },
-      "low": {
-        "n": 1417,
-        "slates": 46,
-        "spearman": 0.137,
+      "high": {
+        "n": 1322,
+        "slates": 41,
+        "spearman": 0.17,
         "topDecile": {
-          "hits": 23,
-          "possible": 158,
-          "rate": 0.146
+          "hits": 33,
+          "possible": 148,
+          "rate": 0.223
         }
       }
     },
@@ -7830,9 +7472,9 @@
       }
     },
     "stackBiasMult": {
-      "high": 0.962,
       "low": 1.034,
-      "mid": 0.986
+      "mid": 0.986,
+      "high": 0.962
     },
     "batOrderBiasMult": {
       "top (1-2)": 0.971,
@@ -7842,6 +7484,38 @@
     }
   },
   "slateSummaries": [
+    {
+      "date": "2026-07-23",
+      "slate": "main_dk",
+      "gameCount": 3,
+      "isShowdown": false,
+      "bucket": "small",
+      "matched": 62,
+      "gateFailures": {
+        "noProj": 0,
+        "noProfile": 0,
+        "noGameForDate": 0,
+        "noDkfp": 0,
+        "totalScanned": 62
+      },
+      "source": "mlb-rollup.json.gz (main_dk)"
+    },
+    {
+      "date": "2026-07-23",
+      "slate": "night_dk",
+      "gameCount": 2,
+      "isShowdown": false,
+      "bucket": "small",
+      "matched": 39,
+      "gateFailures": {
+        "noProj": 0,
+        "noProfile": 0,
+        "noGameForDate": 0,
+        "noDkfp": 0,
+        "totalScanned": 39
+      },
+      "source": "mlb-rollup.json.gz (night_dk)"
+    },
     {
       "date": "2026-07-22",
       "slate": "main_dk",
@@ -9473,38 +9147,6 @@
       "bucket": null,
       "matched": 0,
       "note": "no projection snapshot in rollup or per-slate files"
-    },
-    {
-      "date": "2026-07-23",
-      "slate": "main_dk",
-      "gameCount": 3,
-      "isShowdown": false,
-      "bucket": "small",
-      "matched": 62,
-      "gateFailures": {
-        "noProj": 0,
-        "noProfile": 0,
-        "noGameForDate": 0,
-        "noDkfp": 0,
-        "totalScanned": 62
-      },
-      "source": "mlb-rollup.json.gz (main_dk)"
-    },
-    {
-      "date": "2026-07-23",
-      "slate": "night_dk",
-      "gameCount": 2,
-      "isShowdown": false,
-      "bucket": "small",
-      "matched": 39,
-      "gateFailures": {
-        "noProj": 0,
-        "noProfile": 0,
-        "noGameForDate": 0,
-        "noDkfp": 0,
-        "totalScanned": 39
-      },
-      "source": "mlb-rollup.json.gz (night_dk)"
     },
     {
       "date": "2026-07-24",
