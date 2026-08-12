@@ -220,7 +220,11 @@
     "2026-08-10|193506030",
     "2026-08-10|193506033",
     "2026-08-10|193506038",
-    "2026-08-10|193506043"
+    "2026-08-10|193506043",
+    "2026-08-11|193565669",
+    "2026-08-11|193565677",
+    "2026-08-11|193565682",
+    "2026-08-11|193565685"
   ],
   "slates": [
     {
@@ -4235,12 +4239,202 @@
           }
         }
       ]
+    },
+    {
+      "sliceRealized": {
+        "ts": {
+          "n": 29,
+          "meanRoi": -29.3
+        },
+        "band10": {
+          "n": 42,
+          "meanRoi": -91.7
+        },
+        "mi": {
+          "n": 30,
+          "meanRoi": -53.3
+        },
+        "pc": {
+          "n": 43,
+          "meanRoi": -26.4
+        },
+        "cb": {
+          "n": 39,
+          "meanRoi": -56.4
+        },
+        "band69": {
+          "n": 12,
+          "meanRoi": -70.8
+        },
+        "topup2": {
+          "n": 10,
+          "meanRoi": -80
+        }
+      },
+      "poolTail": null,
+      "poolCeiling": null,
+      "poolCeilingByContest": null,
+      "bandShares": {
+        "b12": 0.185,
+        "b35": 0.314,
+        "b69": 0.219,
+        "b10p": 0.281,
+        "n": 210
+      },
+      "bookArmSal": [
+        {
+          "contestId": "193565669",
+          "p10": 14600,
+          "p50": 17600,
+          "p90": 19800,
+          "n": 20
+        },
+        {
+          "contestId": "193565677",
+          "p10": 15200,
+          "p50": 17500,
+          "p90": 19000,
+          "n": 20
+        },
+        {
+          "contestId": "193565682",
+          "p10": 16200,
+          "p50": 17500,
+          "p90": 18200,
+          "n": 20
+        },
+        {
+          "contestId": "193565685",
+          "p10": 16200,
+          "p50": 18000,
+          "p90": 19200,
+          "n": 150
+        }
+      ],
+      "date": "2026-08-11",
+      "bucket": "large",
+      "cloneHandle": "optimal",
+      "depScaleAtBuild": 0.622,
+      "nJoined": 205,
+      "spearmanGppRoi": -0.135,
+      "spearmanGppRoiSel": null,
+      "quintiles": [
+        {
+          "predLo": -67.2,
+          "predHi": -45.2,
+          "predMed": -53.8,
+          "n": 41,
+          "realizedRoiMean": -35.4,
+          "cashRate": 29.3
+        },
+        {
+          "predLo": -45,
+          "predHi": -26.1,
+          "predMed": -34.9,
+          "n": 41,
+          "realizedRoiMean": -36.6,
+          "cashRate": 26.8
+        },
+        {
+          "predLo": -24.8,
+          "predHi": -11.6,
+          "predMed": -18.5,
+          "n": 41,
+          "realizedRoiMean": -70.7,
+          "cashRate": 14.6
+        },
+        {
+          "predLo": -11.6,
+          "predHi": 8.8,
+          "predMed": -3,
+          "n": 41,
+          "realizedRoiMean": -87.8,
+          "cashRate": 7.3
+        },
+        {
+          "predLo": 10.2,
+          "predHi": 91.2,
+          "predMed": 26.4,
+          "n": 41,
+          "realizedRoiMean": -44.7,
+          "cashRate": 22
+        }
+      ],
+      "posNeg": {
+        "nPos": 54,
+        "nNeg": 151,
+        "posRealized": -52.5,
+        "negRealized": -56,
+        "gapPts": 3.5
+      },
+      "deepTail": {
+        "cut": -40,
+        "n": 50,
+        "realized": -31,
+        "restRealized": -62.8
+      },
+      "zeroCross": -26.1,
+      "bookMeanRealized": -55,
+      "bookMeanStamped": 19.74,
+      "posPoolShareMed": 0.103,
+      "posPickShare": 0.45,
+      "evFloorActive": false,
+      "contests": [
+        {
+          "contestId": "193565685",
+          "entryFee": 0.5,
+          "n": 147,
+          "spearman": -0.174,
+          "posNeg": {
+            "nPos": 31,
+            "nNeg": 116,
+            "posRealized": -41.9,
+            "negRealized": -45.7
+          }
+        },
+        {
+          "contestId": "193565669",
+          "entryFee": 18,
+          "n": 19,
+          "spearman": 0.348,
+          "posNeg": {
+            "nPos": 9,
+            "nNeg": 10,
+            "posRealized": -48.1,
+            "negRealized": -100
+          }
+        },
+        {
+          "contestId": "193565682",
+          "entryFee": 1,
+          "n": 20,
+          "spearman": -0.058,
+          "posNeg": {
+            "nPos": 6,
+            "nNeg": 14,
+            "posRealized": -75,
+            "negRealized": -89.3
+          }
+        },
+        {
+          "contestId": "193565677",
+          "entryFee": 4,
+          "n": 19,
+          "spearman": -0.072,
+          "posNeg": {
+            "nPos": 8,
+            "nNeg": 11,
+            "posRealized": -81.3,
+            "negRealized": -81.8
+          }
+        }
+      ]
     }
   ],
   "note": "spearman fields on rows dated before 2026-07-06 used non-tie-averaged ranks (inflated when most entries win $0); posNeg/quintiles are the decision gates and are unaffected.",
   "lastRun": {
-    "at": "2026-08-11T12:42:48.786Z",
-    "slates": 24,
+    "at": "2026-08-12T12:41:55.224Z",
+    "slates": 25,
     "rowsAdded": 1,
     "ungradableDates": []
   }
