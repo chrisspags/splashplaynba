@@ -3,6 +3,416 @@
   "sport": "mlb",
   "runs": [
     {
+      "date": "2026-08-11",
+      "matched": 239,
+      "generatedAt": "2026-08-12T12:41:00.073Z",
+      "projFile": "mlb-rollup.json.gz",
+      "projSource": "mlb-rollup.json.gz (main_dk)",
+      "slateKey": "main_dk",
+      "gameCount": 12,
+      "overall": {
+        "bias": -0.389,
+        "mae": 5.278,
+        "r": 0.376,
+        "rmse": 6.675,
+        "medianBias": -2.08,
+        "medianAbsErr": 4.49,
+        "pctActualOverProj": 0.3849,
+        "byRole": {
+          "hit": {
+            "n": 215,
+            "mae": 5.04,
+            "bias": -0.473,
+            "spearman": 0.196,
+            "topDecile": {
+              "hits": 6,
+              "possible": 22,
+              "rate": 0.273
+            }
+          },
+          "pit": {
+            "n": 24,
+            "mae": 7.405,
+            "bias": 0.363,
+            "spearman": 0.095,
+            "topDecile": {
+              "hits": 1,
+              "possible": 3,
+              "rate": 0.333
+            }
+          }
+        },
+        "teamSigma": {
+          "rho": -0.046,
+          "rhoTop": 0.392,
+          "nTeams": 24,
+          "nTop": 12
+        },
+        "tail": {
+          "hit": {
+            "n": 215,
+            "p10Obs": 0.0698,
+            "p5Obs": 0.1767,
+            "p10Implied": 0.0716,
+            "p5Implied": 0.1561
+          },
+          "pit": {
+            "n": 24,
+            "p10Obs": 0.1667,
+            "p5Obs": 0.375,
+            "p10Implied": 0.083,
+            "p5Implied": 0.209
+          }
+        }
+      },
+      "byPosition": {
+        "P": {
+          "fifty": 0.25,
+          "eighty": 0.6667,
+          "n": 24,
+          "bias": 0.363,
+          "mae": 7.405,
+          "r": 0.147,
+          "medianBias": 1.415,
+          "medianAbsErr": 6.365,
+          "pctActualOverProj": 0.5833,
+          "spearman": 0.095,
+          "topDecile": {
+            "hits": 1,
+            "possible": 3,
+            "rate": 0.333
+          }
+        },
+        "3B": {
+          "fifty": 0.4615,
+          "eighty": 0.6923,
+          "n": 26,
+          "bias": 0.643,
+          "mae": 4.748,
+          "r": 0.536,
+          "medianBias": -1.545,
+          "medianAbsErr": 3.634,
+          "pctActualOverProj": 0.4231,
+          "spearman": 0.62,
+          "topDecile": {
+            "hits": 1,
+            "possible": 3,
+            "rate": 0.333
+          }
+        },
+        "1B": {
+          "fifty": 0.6389,
+          "eighty": 0.8056,
+          "n": 36,
+          "bias": -0.81,
+          "mae": 5.453,
+          "r": 0.19,
+          "medianBias": -2.99,
+          "medianAbsErr": 4.475,
+          "pctActualOverProj": 0.3611,
+          "spearman": 0.069,
+          "topDecile": {
+            "hits": 1,
+            "possible": 4,
+            "rate": 0.25
+          }
+        },
+        "SS": {
+          "fifty": 0.3478,
+          "eighty": 0.5217,
+          "n": 23,
+          "bias": 2.524,
+          "mae": 5.945,
+          "r": 0.323,
+          "medianBias": -0.15,
+          "medianAbsErr": 4.33,
+          "pctActualOverProj": 0.4783,
+          "spearman": 0.35,
+          "topDecile": {
+            "hits": 1,
+            "possible": 3,
+            "rate": 0.333
+          }
+        },
+        "OF": {
+          "fifty": 0.6883,
+          "eighty": 0.8312,
+          "n": 77,
+          "bias": -0.831,
+          "mae": 4.759,
+          "r": 0.113,
+          "medianBias": -1.9,
+          "medianAbsErr": 4.43,
+          "pctActualOverProj": 0.3506,
+          "spearman": 0.088,
+          "topDecile": {
+            "hits": 2,
+            "possible": 8,
+            "rate": 0.25
+          }
+        },
+        "2B": {
+          "fifty": 0.3333,
+          "eighty": 0.5926,
+          "n": 27,
+          "bias": -1.971,
+          "mae": 4.752,
+          "r": 0.414,
+          "medianBias": -4.69,
+          "medianAbsErr": 5.03,
+          "pctActualOverProj": 0.3333,
+          "spearman": 0.406,
+          "topDecile": {
+            "hits": 1,
+            "possible": 3,
+            "rate": 0.333
+          }
+        },
+        "C": {
+          "fifty": 0.5,
+          "eighty": 0.5769,
+          "n": 26,
+          "bias": -1.159,
+          "mae": 5.095,
+          "r": -0.22,
+          "medianBias": -3.44,
+          "medianAbsErr": 3.925,
+          "pctActualOverProj": 0.2692,
+          "spearman": -0.068,
+          "topDecile": {
+            "hits": 0,
+            "possible": 3,
+            "rate": 0
+          }
+        }
+      },
+      "byPriceTier": {
+        "pit_ace": {
+          "fifty": 0.1667,
+          "eighty": 0.6667,
+          "n": 6,
+          "bias": -3.792,
+          "mae": 11.275,
+          "r": -0.185,
+          "medianBias": -5.155,
+          "medianAbsErr": 10.215,
+          "pctActualOverProj": 0.3333
+        },
+        "pit_mid": {
+          "fifty": 0.375,
+          "eighty": 0.875,
+          "n": 8,
+          "bias": 2.751,
+          "mae": 5.099,
+          "r": 0.441,
+          "medianBias": 2.885,
+          "medianAbsErr": 4.41,
+          "pctActualOverProj": 0.75
+        },
+        "hit_stud": {
+          "fifty": 0.6207,
+          "eighty": 0.7931,
+          "n": 29,
+          "bias": 0.26,
+          "mae": 5.518,
+          "r": 0.265,
+          "medianBias": -0.74,
+          "medianAbsErr": 4.46,
+          "pctActualOverProj": 0.4828,
+          "spearman": 0.105,
+          "topDecile": {
+            "hits": 1,
+            "possible": 3,
+            "rate": 0.333
+          }
+        },
+        "hit_mid": {
+          "fifty": 0.5773,
+          "eighty": 0.7216,
+          "n": 97,
+          "bias": -0.71,
+          "mae": 5.571,
+          "r": 0.006,
+          "medianBias": -3.12,
+          "medianAbsErr": 5.38,
+          "pctActualOverProj": 0.3299,
+          "spearman": 0.072,
+          "topDecile": {
+            "hits": 2,
+            "possible": 10,
+            "rate": 0.2
+          }
+        },
+        "hit_value": {
+          "fifty": 0.4944,
+          "eighty": 0.6854,
+          "n": 89,
+          "bias": -0.454,
+          "mae": 4.307,
+          "r": 0.309,
+          "medianBias": -1.88,
+          "medianAbsErr": 4.02,
+          "pctActualOverProj": 0.3596,
+          "spearman": 0.271,
+          "topDecile": {
+            "hits": 2,
+            "possible": 9,
+            "rate": 0.222
+          }
+        },
+        "pit_value": {
+          "fifty": 0.2,
+          "eighty": 0.5,
+          "n": 10,
+          "bias": 0.945,
+          "mae": 6.927,
+          "r": 0.093,
+          "medianBias": 2.545,
+          "medianAbsErr": 6.365,
+          "pctActualOverProj": 0.6,
+          "spearman": -0.152,
+          "topDecile": {
+            "hits": 0,
+            "possible": 1,
+            "rate": 0
+          }
+        }
+      },
+      "byOwnership": {
+        "mid": {
+          "fifty": 0.5714,
+          "eighty": 0.8286,
+          "n": 35,
+          "bias": -0.343,
+          "mae": 7.655,
+          "r": 0.168,
+          "medianBias": -2.45,
+          "medianAbsErr": 6.98,
+          "pctActualOverProj": 0.3714,
+          "spearman": 0.151,
+          "topDecile": {
+            "hits": 0,
+            "possible": 4,
+            "rate": 0
+          }
+        },
+        "leverage": {
+          "fifty": 0.5187,
+          "eighty": 0.6952,
+          "n": 187,
+          "bias": -0.55,
+          "mae": 4.863,
+          "r": 0.377,
+          "medianBias": -2.3,
+          "medianAbsErr": 4.38,
+          "pctActualOverProj": 0.3797,
+          "spearman": 0.33,
+          "topDecile": {
+            "hits": 7,
+            "possible": 19,
+            "rate": 0.368
+          }
+        }
+      },
+      "stackMetrics": {
+        "topStackHitRate": 0.2,
+        "stackBiasMult": {
+          "TB": 1.291,
+          "TEX": 0.503,
+          "ARI": 0.831,
+          "LAD": 0.874,
+          "BAL": 1.438,
+          "ATH": 0.722,
+          "MIN": 0.667,
+          "CWS": 1.118,
+          "COL": 0.925,
+          "LAA": 0.844,
+          "HOU": 0.454,
+          "NYM": 0.332,
+          "MIL": 0.511,
+          "ATL": 0.814,
+          "TOR": 1.16,
+          "CIN": 0.879,
+          "SEA": 0.453,
+          "PHI": 0.56,
+          "NYY": 0.943,
+          "KC": 1.033,
+          "SF": 1.413,
+          "SD": 2.508,
+          "STL": 0.823,
+          "BOS": 1.494
+        }
+      },
+      "pitcherCalibration": {
+        "pit_ace": {
+          "n": 6,
+          "avgIp": 5.45,
+          "avgK": 5.67,
+          "winRate": 0,
+          "avgEr": 2.67,
+          "dkfpBias": -3.79,
+          "dkfpRatio": 0.789,
+          "componentCoverage": {
+            "graded": 6,
+            "total": 6
+          },
+          "ipRatio": 0.982,
+          "kRatio": 0.94,
+          "erRatio": 0.889,
+          "winRateVsProb": {
+            "realizedW": 0,
+            "meanWinProb": 0.587,
+            "ratio": 0,
+            "n": 6
+          }
+        },
+        "pit_mid": {
+          "n": 8,
+          "avgIp": 6.54,
+          "avgK": 4.25,
+          "winRate": 0.25,
+          "avgEr": 1.63,
+          "dkfpBias": 2.75,
+          "dkfpRatio": 1.187,
+          "componentCoverage": {
+            "graded": 8,
+            "total": 8
+          },
+          "ipRatio": 1.111,
+          "kRatio": 1,
+          "erRatio": 0.377,
+          "winRateVsProb": {
+            "realizedW": 0.25,
+            "meanWinProb": 0.499,
+            "ratio": 0.501,
+            "n": 8
+          }
+        },
+        "pit_value": {
+          "n": 10,
+          "avgIp": 5.4,
+          "avgK": 3.6,
+          "winRate": 0.4,
+          "avgEr": 2.3,
+          "dkfpBias": 0.94,
+          "dkfpRatio": 1.085,
+          "componentCoverage": {
+            "graded": 10,
+            "total": 10
+          },
+          "ipRatio": 1.176,
+          "kRatio": 1,
+          "erRatio": 0.833,
+          "winRateVsProb": {
+            "realizedW": 0.4,
+            "meanWinProb": 0.449,
+            "ratio": 0.891,
+            "n": 10
+          }
+        }
+      }
+    },
+    {
       "date": "2026-08-10",
       "matched": 200,
       "generatedAt": "2026-08-11T12:40:15.989Z",
@@ -8484,268 +8894,90 @@
         }
       },
       "pitcherCalibration": {}
-    },
-    {
-      "date": "2026-06-20",
-      "matched": 130,
-      "generatedAt": "2026-06-23T12:56:30.348Z",
-      "projFile": "mlb-rollup.json.gz",
-      "projSource": "mlb-rollup.json.gz (main_dk)",
-      "slateKey": "main_dk",
-      "gameCount": 7,
-      "overall": {
-        "bias": 0.795,
-        "mae": 6.698,
-        "r": 0.23,
-        "rmse": 9.618,
-        "medianBias": -1.46,
-        "medianAbsErr": 4.91,
-        "pctActualOverProj": 0.4
-      },
-      "byPosition": {
-        "P": {
-          "fifty": 0.4286,
-          "eighty": 0.5714,
-          "n": 14,
-          "bias": 2.311,
-          "mae": 11.959,
-          "r": -0.053,
-          "medianBias": 3.765,
-          "medianAbsErr": 8.12,
-          "pctActualOverProj": 0.5714,
-          "spearman": -0.191,
-          "topDecile": {
-            "hits": 0,
-            "possible": 2,
-            "rate": 0
-          }
-        },
-        "1B": {
-          "fifty": 0.619,
-          "eighty": 0.7143,
-          "n": 21,
-          "bias": 1.28,
-          "mae": 6.738,
-          "r": 0.339,
-          "medianBias": -1.68,
-          "medianAbsErr": 4.67,
-          "pctActualOverProj": 0.381,
-          "spearman": 0.431,
-          "topDecile": {
-            "hits": 1,
-            "possible": 3,
-            "rate": 0.333
-          }
-        },
-        "C": {
-          "fifty": 0.5625,
-          "eighty": 0.625,
-          "n": 16,
-          "bias": 0.456,
-          "mae": 6.13,
-          "r": -0.279,
-          "medianBias": -1.275,
-          "medianAbsErr": 5.12,
-          "pctActualOverProj": 0.375,
-          "spearman": -0.275,
-          "topDecile": {
-            "hits": 0,
-            "possible": 2,
-            "rate": 0
-          }
-        },
-        "3B": {
-          "fifty": 0.6429,
-          "eighty": 0.7143,
-          "n": 14,
-          "bias": 1.95,
-          "mae": 6.507,
-          "r": 0.025,
-          "medianBias": -1.265,
-          "medianAbsErr": 5.195,
-          "pctActualOverProj": 0.4286,
-          "spearman": -0.125,
-          "topDecile": {
-            "hits": 1,
-            "possible": 2,
-            "rate": 0.5
-          }
-        },
-        "2B": {
-          "fifty": 0.7857,
-          "eighty": 0.8571,
-          "n": 14,
-          "bias": 0.244,
-          "mae": 6.283,
-          "r": 0.281,
-          "medianBias": -1.974,
-          "medianAbsErr": 4.82,
-          "pctActualOverProj": 0.2143,
-          "spearman": 0.289,
-          "topDecile": {
-            "hits": 0,
-            "possible": 2,
-            "rate": 0
-          }
-        },
-        "OF": {
-          "fifty": 0.65,
-          "eighty": 0.85,
-          "n": 40,
-          "bias": 0.64,
-          "mae": 6.018,
-          "r": 0.046,
-          "medianBias": -1.675,
-          "medianAbsErr": 4.875,
-          "pctActualOverProj": 0.425,
-          "spearman": 0.034,
-          "topDecile": {
-            "hits": 1,
-            "possible": 4,
-            "rate": 0.25
-          }
-        },
-        "SS": {
-          "fifty": 0.8182,
-          "eighty": 1,
-          "n": 11,
-          "bias": -1.773,
-          "mae": 3.998,
-          "r": 0.419,
-          "medianBias": -2.1,
-          "medianAbsErr": 4.37,
-          "pctActualOverProj": 0.3636,
-          "spearman": 0.341,
-          "topDecile": {
-            "hits": 1,
-            "possible": 2,
-            "rate": 0.5
-          }
-        }
-      },
-      "byPriceTier": {},
-      "byOwnership": {
-        "leverage": {
-          "fifty": 0.6299,
-          "eighty": 0.7638,
-          "n": 127,
-          "bias": 0.854,
-          "mae": 6.816,
-          "r": 0.221,
-          "medianBias": -1.25,
-          "medianAbsErr": 4.95,
-          "pctActualOverProj": 0.4094,
-          "spearman": 0.178,
-          "topDecile": {
-            "hits": 3,
-            "possible": 13,
-            "rate": 0.231
-          }
-        }
-      },
-      "stackMetrics": {
-        "topStackHitRate": 0.2,
-        "stackBiasMult": {
-          "MIN": 2.204,
-          "ATH": 0.319,
-          "LAD": 0.478,
-          "ARI": 1.021,
-          "CLE": 1.721,
-          "LAA": 1.617,
-          "SEA": 0.476,
-          "HOU": 0.289,
-          "BOS": 1.326,
-          "COL": 0.757,
-          "PHI": 2.323,
-          "BAL": 0.881,
-          "NYM": 1.141
-        }
-      },
-      "pitcherCalibration": {}
     }
   ],
   "averaged": {
-    "lastUpdated": "2026-08-11T12:40:15.989Z",
+    "lastUpdated": "2026-08-12T12:41:00.073Z",
     "slatesIncluded": 30,
     "byPosition": {
       "P": {
-        "fifty": 0.3438,
-        "eighty": 0.6174,
-        "nTotal": 541
-      },
-      "1B": {
-        "fifty": 0.5838,
-        "eighty": 0.7513,
-        "nTotal": 740
+        "fifty": 0.3376,
+        "eighty": 0.6207,
+        "nTotal": 551
       },
       "3B": {
-        "fifty": 0.5269,
-        "eighty": 0.6809,
-        "nTotal": 539
+        "fifty": 0.5209,
+        "eighty": 0.6806,
+        "nTotal": 551
       },
-      "2B": {
-        "fifty": 0.5187,
-        "eighty": 0.6931,
-        "nTotal": 642
-      },
-      "C": {
-        "fifty": 0.4917,
-        "eighty": 0.6341,
-        "nTotal": 604
-      },
-      "OF": {
-        "fifty": 0.6619,
-        "eighty": 0.8261,
-        "nTotal": 1754
+      "1B": {
+        "fifty": 0.5854,
+        "eighty": 0.755,
+        "nTotal": 755
       },
       "SS": {
-        "fifty": 0.4883,
-        "eighty": 0.6603,
-        "nTotal": 471
+        "fifty": 0.4741,
+        "eighty": 0.646,
+        "nTotal": 483
+      },
+      "OF": {
+        "fifty": 0.6633,
+        "eighty": 0.8258,
+        "nTotal": 1791
+      },
+      "2B": {
+        "fifty": 0.5053,
+        "eighty": 0.6855,
+        "nTotal": 655
+      },
+      "C": {
+        "fifty": 0.4902,
+        "eighty": 0.6319,
+        "nTotal": 614
       }
     },
     "byPriceTier": {
+      "pit_ace": {
+        "fifty": 0.3637,
+        "eighty": 0.7273,
+        "nTotal": 22
+      },
       "pit_mid": {
-        "fifty": 0.3548,
-        "eighty": 0.6129,
-        "nTotal": 124
+        "fifty": 0.3561,
+        "eighty": 0.6288,
+        "nTotal": 132
       },
       "hit_stud": {
-        "fifty": 0.5339,
-        "eighty": 0.7127,
-        "nTotal": 369
-      },
-      "hit_value": {
-        "fifty": 0.5478,
-        "eighty": 0.7041,
-        "nTotal": 1068
+        "fifty": 0.5402,
+        "eighty": 0.7186,
+        "nTotal": 398
       },
       "hit_mid": {
-        "fifty": 0.5261,
-        "eighty": 0.7091,
-        "nTotal": 1131
+        "fifty": 0.5301,
+        "eighty": 0.7101,
+        "nTotal": 1228
+      },
+      "hit_value": {
+        "fifty": 0.5437,
+        "eighty": 0.7027,
+        "nTotal": 1157
       },
       "pit_value": {
-        "fifty": 0.3207,
-        "eighty": 0.566,
-        "nTotal": 106
-      },
-      "pit_ace": {
-        "fifty": 0.4375,
-        "eighty": 0.75,
-        "nTotal": 16
+        "fifty": 0.3103,
+        "eighty": 0.5603,
+        "nTotal": 116
       }
     },
     "byOwnership": {
       "mid": {
-        "fifty": 0.5066,
-        "eighty": 0.7178,
-        "nTotal": 606
+        "fifty": 0.5101,
+        "eighty": 0.7239,
+        "nTotal": 641
       },
       "leverage": {
-        "fifty": 0.5609,
-        "eighty": 0.7275,
-        "nTotal": 4587
+        "fifty": 0.5573,
+        "eighty": 0.7252,
+        "nTotal": 4647
       },
       "chalk": {
         "fifty": 0.4857,
@@ -8754,9 +8986,16 @@
       }
     },
     "teamSigma": {
-      "spearmanMed": 0.188,
-      "spearmanTopMed": 0.152,
+      "spearmanMed": 0.166,
+      "spearmanTopMed": 0.189,
       "perSlate": [
+        {
+          "date": "2026-08-11",
+          "slateKey": "main_dk",
+          "rho": -0.046,
+          "rhoTop": 0.392,
+          "nTeams": 24
+        },
         {
           "date": "2026-08-10",
           "slateKey": "main_dk",
@@ -8889,6 +9128,12 @@
             "proj": 19.74,
             "actual": 17.45,
             "err": -2.29
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 16.31,
+            "actual": 15.7,
+            "err": -0.61
           }
         ]
       },
@@ -9027,6 +9272,12 @@
             "proj": 6.45,
             "actual": 20,
             "err": 13.55
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 6.53,
+            "actual": 0,
+            "err": -6.53
           }
         ]
       },
@@ -9159,6 +9410,12 @@
             "proj": 5.19,
             "actual": 0,
             "err": -5.19
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 5.62,
+            "actual": 7,
+            "err": 1.38
           }
         ]
       },
@@ -9381,6 +9638,12 @@
             "proj": 6.8,
             "actual": 9,
             "err": 2.2
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 7.5,
+            "actual": 10,
+            "err": 2.5
           }
         ]
       },
@@ -9471,6 +9734,12 @@
             "proj": 11.85,
             "actual": 18,
             "err": 6.15
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 13.94,
+            "actual": 20,
+            "err": 6.06
           }
         ]
       },
@@ -9687,6 +9956,12 @@
             "proj": 8.31,
             "actual": 19,
             "err": 10.69
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 7.48,
+            "actual": 12,
+            "err": 4.52
           }
         ]
       },
@@ -9777,6 +10052,12 @@
             "proj": 12.42,
             "actual": 15.65,
             "err": 3.23
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 14.31,
+            "actual": 7.4,
+            "err": -6.91
           }
         ]
       },
@@ -9837,6 +10118,12 @@
             "proj": 5.48,
             "actual": 19,
             "err": 13.52
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 7.75,
+            "actual": 12,
+            "err": 4.25
           }
         ]
       },
@@ -9921,6 +10208,12 @@
             "proj": 7.27,
             "actual": 20,
             "err": 12.73
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 9.13,
+            "actual": 8,
+            "err": -1.13
           }
         ]
       },
@@ -9928,12 +10221,6 @@
         "name": "Byron Buxton",
         "role": "BAT",
         "recent": [
-          {
-            "date": "2026-06-20",
-            "proj": 12.27,
-            "actual": 20,
-            "err": 7.73
-          },
           {
             "date": "2026-06-19",
             "proj": 9.48,
@@ -10107,6 +10394,12 @@
             "proj": 7.43,
             "actual": 11,
             "err": 3.57
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 7.67,
+            "actual": 14,
+            "err": 6.33
           }
         ]
       },
@@ -10473,6 +10766,12 @@
             "proj": 5.19,
             "actual": 6,
             "err": 0.81
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 5.17,
+            "actual": 7,
+            "err": 1.83
           }
         ]
       },
@@ -10539,6 +10838,12 @@
             "proj": 6.12,
             "actual": 12,
             "err": 5.88
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 8.57,
+            "actual": 0,
+            "err": -8.57
           }
         ]
       },
@@ -10677,6 +10982,12 @@
             "proj": 6.85,
             "actual": 14,
             "err": 7.15
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 7.7,
+            "actual": 2,
+            "err": -5.7
           }
         ]
       },
@@ -10684,12 +10995,6 @@
         "name": "Bo Bichette",
         "role": "BAT",
         "recent": [
-          {
-            "date": "2026-06-20",
-            "proj": 5.68,
-            "actual": 3,
-            "err": -2.68
-          },
           {
             "date": "2026-06-18",
             "proj": 9.08,
@@ -10785,6 +11090,12 @@
             "proj": 6.61,
             "actual": 11,
             "err": 4.39
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 6.61,
+            "actual": 2,
+            "err": -4.61
           }
         ]
       },
@@ -10893,6 +11204,12 @@
             "proj": 4.72,
             "actual": 2,
             "err": -2.72
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 5.25,
+            "actual": 2,
+            "err": -3.25
           }
         ]
       },
@@ -11075,12 +11392,6 @@
         "role": "BAT",
         "recent": [
           {
-            "date": "2026-06-20",
-            "proj": 7.22,
-            "actual": 29,
-            "err": 21.78
-          },
-          {
             "date": "2026-06-19",
             "proj": 5.64,
             "actual": 4,
@@ -11205,6 +11516,12 @@
             "proj": 5.59,
             "actual": 10,
             "err": 4.41
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 6.97,
+            "actual": 10,
+            "err": 3.03
           }
         ]
       },
@@ -11295,6 +11612,12 @@
             "proj": 8.23,
             "actual": 12,
             "err": 3.77
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 12.26,
+            "actual": 2,
+            "err": -10.26
           }
         ]
       },
@@ -11433,6 +11756,12 @@
             "proj": 7.05,
             "actual": 0,
             "err": -7.05
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 7.74,
+            "actual": 7,
+            "err": -0.74
           }
         ]
       },
@@ -11565,6 +11894,12 @@
             "proj": 5.71,
             "actual": 6,
             "err": 0.29
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 6.49,
+            "actual": 2,
+            "err": -4.49
           }
         ]
       },
@@ -11655,6 +11990,12 @@
             "proj": 10.3,
             "actual": 0,
             "err": -10.3
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 8.48,
+            "actual": 2,
+            "err": -6.48
           }
         ]
       },
@@ -11825,12 +12166,6 @@
         "role": "BAT",
         "recent": [
           {
-            "date": "2026-06-20",
-            "proj": 5.26,
-            "actual": 0,
-            "err": -5.26
-          },
-          {
             "date": "2026-06-18",
             "proj": 7.91,
             "actual": 15,
@@ -11883,6 +12218,12 @@
             "proj": 6.27,
             "actual": 3,
             "err": -3.27
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 5.94,
+            "actual": 0,
+            "err": -5.94
           }
         ]
       },
@@ -12051,6 +12392,12 @@
             "proj": 5.75,
             "actual": 16,
             "err": 10.25
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 6.84,
+            "actual": 0,
+            "err": -6.84
           }
         ]
       },
@@ -12165,6 +12512,12 @@
             "proj": 5.43,
             "actual": 21,
             "err": 15.57
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 6.05,
+            "actual": 17,
+            "err": 10.95
           }
         ]
       },
@@ -12183,6 +12536,12 @@
             "proj": 14.74,
             "actual": 9.15,
             "err": -5.59
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 11.12,
+            "actual": 14.8,
+            "err": 3.68
           }
         ]
       },
@@ -12190,12 +12549,6 @@
         "name": "Mark Vientos",
         "role": "BAT",
         "recent": [
-          {
-            "date": "2026-06-20",
-            "proj": 4.21,
-            "actual": 19,
-            "err": 14.79
-          },
           {
             "date": "2026-06-24",
             "proj": 7.21,
@@ -12279,6 +12632,12 @@
             "proj": 6.49,
             "actual": 14,
             "err": 7.51
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 9.31,
+            "actual": 19,
+            "err": 9.69
           }
         ]
       },
@@ -12429,6 +12788,12 @@
             "proj": 10.54,
             "actual": 26,
             "err": 15.46
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 11.02,
+            "actual": 18,
+            "err": 6.98
           }
         ]
       },
@@ -12507,6 +12872,12 @@
             "proj": 4.95,
             "actual": 2,
             "err": -2.95
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 5.43,
+            "actual": 23,
+            "err": 17.57
           }
         ]
       },
@@ -12531,6 +12902,12 @@
             "proj": 4.78,
             "actual": 0,
             "err": -4.78
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 4.92,
+            "actual": 0,
+            "err": -4.92
           }
         ]
       },
@@ -12675,6 +13052,12 @@
             "proj": 7.97,
             "actual": 14,
             "err": 6.03
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 6.62,
+            "actual": 0,
+            "err": -6.62
           }
         ]
       },
@@ -12682,12 +13065,6 @@
         "name": "Josh Bell",
         "role": "BAT",
         "recent": [
-          {
-            "date": "2026-06-20",
-            "proj": 8.27,
-            "actual": 14,
-            "err": 5.73
-          },
           {
             "date": "2026-06-19",
             "proj": 6.54,
@@ -12807,6 +13184,12 @@
             "proj": 6.23,
             "actual": 21,
             "err": 14.77
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 7.71,
+            "actual": 2,
+            "err": -5.71
           }
         ]
       },
@@ -12993,6 +13376,12 @@
             "proj": 8.64,
             "actual": 9,
             "err": 0.36
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 7.05,
+            "actual": 3,
+            "err": -4.05
           }
         ]
       },
@@ -13185,6 +13574,12 @@
             "proj": 8.08,
             "actual": 4,
             "err": -4.08
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 5.88,
+            "actual": 0,
+            "err": -5.88
           }
         ]
       },
@@ -13257,6 +13652,12 @@
             "proj": 9.41,
             "actual": 33,
             "err": 23.59
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 7.45,
+            "actual": 9,
+            "err": 1.55
           }
         ]
       },
@@ -13443,6 +13844,12 @@
             "proj": 7.68,
             "actual": 2,
             "err": -5.68
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 6.69,
+            "actual": 19,
+            "err": 12.31
           }
         ]
       },
@@ -13559,12 +13966,6 @@
         "role": "BAT",
         "recent": [
           {
-            "date": "2026-06-20",
-            "proj": 5.87,
-            "actual": 3,
-            "err": -2.87
-          },
-          {
             "date": "2026-06-19",
             "proj": 8.35,
             "actual": 3,
@@ -13653,6 +14054,12 @@
             "proj": 6.3,
             "actual": 3,
             "err": -3.3
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 7.09,
+            "actual": 0,
+            "err": -7.09
           }
         ]
       },
@@ -13660,12 +14067,6 @@
         "name": "Blaze Alexander",
         "role": "BAT",
         "recent": [
-          {
-            "date": "2026-06-20",
-            "proj": 4.39,
-            "actual": 9,
-            "err": 4.61
-          },
           {
             "date": "2026-06-17",
             "proj": 4.77,
@@ -13690,12 +14091,6 @@
         "name": "Luke Keaschall",
         "role": "BAT",
         "recent": [
-          {
-            "date": "2026-06-20",
-            "proj": 6.43,
-            "actual": 15,
-            "err": 8.57
-          },
           {
             "date": "2026-06-19",
             "proj": 5.13,
@@ -13809,6 +14204,12 @@
             "proj": 6.26,
             "actual": 9,
             "err": 2.74
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 6.65,
+            "actual": 9,
+            "err": 2.35
           }
         ]
       },
@@ -13918,12 +14319,6 @@
         "name": "Kody Clemens",
         "role": "BAT",
         "recent": [
-          {
-            "date": "2026-06-20",
-            "proj": 9.67,
-            "actual": 5,
-            "err": -4.67
-          },
           {
             "date": "2026-06-19",
             "proj": 7.5,
@@ -14037,6 +14432,12 @@
             "proj": 5.51,
             "actual": 18,
             "err": 12.49
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 8.21,
+            "actual": 2,
+            "err": -6.21
           }
         ]
       },
@@ -14163,6 +14564,12 @@
             "proj": 5.2,
             "actual": 5,
             "err": -0.2
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 5.24,
+            "actual": 7,
+            "err": 1.76
           }
         ]
       },
@@ -14229,6 +14636,12 @@
             "proj": 8.45,
             "actual": 2,
             "err": -6.45
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 6.9,
+            "actual": 2,
+            "err": -4.9
           }
         ]
       },
@@ -14355,6 +14768,12 @@
             "proj": 8.34,
             "actual": 5,
             "err": -3.34
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 6.59,
+            "actual": 9,
+            "err": 2.41
           }
         ]
       },
@@ -14433,6 +14852,12 @@
             "proj": 10.11,
             "actual": 7,
             "err": -3.11
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 5.45,
+            "actual": 7,
+            "err": 1.55
           }
         ]
       },
@@ -14517,6 +14942,12 @@
             "proj": 6.2,
             "actual": 9,
             "err": 2.8
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 6.64,
+            "actual": 30,
+            "err": 23.36
           }
         ]
       },
@@ -14524,12 +14955,6 @@
         "name": "Carson Benge",
         "role": "BAT",
         "recent": [
-          {
-            "date": "2026-06-20",
-            "proj": 5.65,
-            "actual": 16,
-            "err": 10.35
-          },
           {
             "date": "2026-06-18",
             "proj": 8.72,
@@ -14625,6 +15050,12 @@
             "proj": 7.3,
             "actual": 6,
             "err": -1.3
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 5.99,
+            "actual": 6,
+            "err": 0.01
           }
         ]
       },
@@ -14632,12 +15063,6 @@
         "name": "Gunnar Henderson",
         "role": "BAT",
         "recent": [
-          {
-            "date": "2026-06-20",
-            "proj": 6.37,
-            "actual": 2,
-            "err": -4.37
-          },
           {
             "date": "2026-06-19",
             "proj": 9.04,
@@ -14727,6 +15152,12 @@
             "proj": 7.87,
             "actual": 4,
             "err": -3.87
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 8.11,
+            "actual": 26,
+            "err": 17.89
           }
         ]
       },
@@ -14841,6 +15272,12 @@
             "proj": 4.1,
             "actual": 5,
             "err": 0.9
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 5.03,
+            "actual": 0,
+            "err": -5.03
           }
         ]
       },
@@ -15021,6 +15458,12 @@
             "proj": 7.37,
             "actual": 9,
             "err": 1.63
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 6.31,
+            "actual": 7,
+            "err": 0.69
           }
         ]
       },
@@ -15028,12 +15471,6 @@
         "name": "Luis Torrens",
         "role": "BAT",
         "recent": [
-          {
-            "date": "2026-06-20",
-            "proj": 3.42,
-            "actual": 3,
-            "err": -0.42
-          },
           {
             "date": "2026-06-26",
             "proj": 3.67,
@@ -15393,6 +15830,12 @@
             "proj": 9.23,
             "actual": 18,
             "err": 8.77
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 5.62,
+            "actual": 3,
+            "err": -2.62
           }
         ]
       },
@@ -15400,12 +15843,6 @@
         "name": "Pete Alonso",
         "role": "BAT",
         "recent": [
-          {
-            "date": "2026-06-20",
-            "proj": 7.14,
-            "actual": 2,
-            "err": -5.14
-          },
           {
             "date": "2026-06-19",
             "proj": 10.26,
@@ -15495,6 +15932,12 @@
             "proj": 9.03,
             "actual": 5,
             "err": -4.03
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 9.33,
+            "actual": 24,
+            "err": 14.67
           }
         ]
       },
@@ -15707,12 +16150,6 @@
         "role": "BAT",
         "recent": [
           {
-            "date": "2026-06-20",
-            "proj": 4.92,
-            "actual": 0,
-            "err": -4.92
-          },
-          {
             "date": "2026-06-19",
             "proj": 6.75,
             "actual": 7,
@@ -15789,6 +16226,12 @@
             "proj": 7.64,
             "actual": 8,
             "err": 0.36
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 7.89,
+            "actual": 2,
+            "err": -5.89
           }
         ]
       },
@@ -15796,12 +16239,6 @@
         "name": "Ryan Kreidler",
         "role": "BAT",
         "recent": [
-          {
-            "date": "2026-06-20",
-            "proj": 5.44,
-            "actual": 28,
-            "err": 22.56
-          },
           {
             "date": "2026-06-23",
             "proj": 4.55,
@@ -15957,6 +16394,12 @@
             "proj": 6.92,
             "actual": 0,
             "err": -6.92
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 7.05,
+            "actual": 3,
+            "err": -4.05
           }
         ]
       },
@@ -15964,12 +16407,6 @@
         "name": "Leody Taveras",
         "role": "BAT",
         "recent": [
-          {
-            "date": "2026-06-20",
-            "proj": 5.1,
-            "actual": 10,
-            "err": 4.9
-          },
           {
             "date": "2026-06-19",
             "proj": 6.75,
@@ -16203,6 +16640,12 @@
             "proj": 6.05,
             "actual": 2,
             "err": -4.05
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 6.9,
+            "actual": 5,
+            "err": -1.9
           }
         ]
       },
@@ -16413,6 +16856,12 @@
             "proj": 6.45,
             "actual": 7,
             "err": 0.55
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 5.39,
+            "actual": 8,
+            "err": 2.61
           }
         ]
       },
@@ -16461,6 +16910,12 @@
             "proj": 4.67,
             "actual": 3,
             "err": -1.67
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 4.02,
+            "actual": 3,
+            "err": -1.02
           }
         ]
       },
@@ -16564,12 +17019,6 @@
         "name": "Yoshinobu Yamamoto",
         "role": "PIT",
         "recent": [
-          {
-            "date": "2026-06-20",
-            "proj": 20.66,
-            "actual": 14.7,
-            "err": -5.96
-          },
           {
             "date": "2026-06-27",
             "proj": 18.81,
@@ -16725,6 +17174,12 @@
             "proj": 17.36,
             "actual": 26.5,
             "err": 9.14
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 19.33,
+            "actual": 15.75,
+            "err": -3.58
           }
         ]
       },
@@ -16835,12 +17290,6 @@
         "role": "BAT",
         "recent": [
           {
-            "date": "2026-06-20",
-            "proj": 10.38,
-            "actual": 14,
-            "err": 3.62
-          },
-          {
             "date": "2026-06-16",
             "proj": 11.66,
             "actual": 14,
@@ -16947,6 +17396,12 @@
             "proj": 9.62,
             "actual": 19,
             "err": 9.38
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 11.28,
+            "actual": 2,
+            "err": -9.28
           }
         ]
       },
@@ -16954,12 +17409,6 @@
         "name": "Wilyer Abreu",
         "role": "BAT",
         "recent": [
-          {
-            "date": "2026-06-20",
-            "proj": 7.19,
-            "actual": 20,
-            "err": 12.81
-          },
           {
             "date": "2026-06-19",
             "proj": 6.45,
@@ -17079,6 +17528,12 @@
             "proj": 8.67,
             "actual": 2,
             "err": -6.67
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 6,
+            "actual": 21,
+            "err": 15
           }
         ]
       },
@@ -17201,12 +17656,6 @@
         "role": "BAT",
         "recent": [
           {
-            "date": "2026-06-20",
-            "proj": 6.99,
-            "actual": 2,
-            "err": -4.99
-          },
-          {
             "date": "2026-06-19",
             "proj": 6.36,
             "actual": 5,
@@ -17319,6 +17768,12 @@
             "proj": 7.17,
             "actual": 5,
             "err": -2.17
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 5.35,
+            "actual": 5,
+            "err": -0.35
           }
         ]
       },
@@ -17427,6 +17882,12 @@
             "proj": 7.39,
             "actual": 0,
             "err": -7.39
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 6.79,
+            "actual": 5,
+            "err": -1.79
           }
         ]
       },
@@ -17434,12 +17895,6 @@
         "name": "J.P. Crawford",
         "role": "BAT",
         "recent": [
-          {
-            "date": "2026-06-20",
-            "proj": 6.52,
-            "actual": 4,
-            "err": -2.52
-          },
           {
             "date": "2026-06-17",
             "proj": 7.63,
@@ -17500,12 +17955,6 @@
         "name": "Travis Bazzana",
         "role": "BAT",
         "recent": [
-          {
-            "date": "2026-06-20",
-            "proj": 7.31,
-            "actual": 42,
-            "err": 34.69
-          },
           {
             "date": "2026-06-19",
             "proj": 8.04,
@@ -17793,6 +18242,12 @@
             "proj": 7.31,
             "actual": 0,
             "err": -7.31
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 7.57,
+            "actual": 14,
+            "err": 6.43
           }
         ]
       },
@@ -17800,12 +18255,6 @@
         "name": "Andy Pages",
         "role": "BAT",
         "recent": [
-          {
-            "date": "2026-06-20",
-            "proj": 8.39,
-            "actual": 2,
-            "err": -6.39
-          },
           {
             "date": "2026-06-19",
             "proj": 12.49,
@@ -17937,6 +18386,12 @@
             "proj": 7.98,
             "actual": 2,
             "err": -5.98
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 8.47,
+            "actual": 5,
+            "err": -3.47
           }
         ]
       },
@@ -17944,12 +18399,6 @@
         "name": "Josh Naylor",
         "role": "BAT",
         "recent": [
-          {
-            "date": "2026-06-20",
-            "proj": 6.67,
-            "actual": 5,
-            "err": -1.67
-          },
           {
             "date": "2026-06-19",
             "proj": 5.81,
@@ -18059,12 +18508,6 @@
         "role": "BAT",
         "recent": [
           {
-            "date": "2026-06-20",
-            "proj": 6.35,
-            "actual": 0,
-            "err": -6.35
-          },
-          {
             "date": "2026-06-19",
             "proj": 10.35,
             "actual": 7,
@@ -18171,6 +18614,12 @@
             "proj": 7.79,
             "actual": 16,
             "err": 8.21
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 8.22,
+            "actual": 4,
+            "err": -4.22
           }
         ]
       },
@@ -18178,12 +18627,6 @@
         "name": "Trevor Rogers",
         "role": "PIT",
         "recent": [
-          {
-            "date": "2026-06-20",
-            "proj": 10.19,
-            "actual": 29.95,
-            "err": 19.76
-          },
           {
             "date": "2026-06-26",
             "proj": 12.22,
@@ -18208,12 +18651,6 @@
         "name": "Rhys Hoskins",
         "role": "BAT",
         "recent": [
-          {
-            "date": "2026-06-20",
-            "proj": 6.44,
-            "actual": 0,
-            "err": -6.44
-          },
           {
             "date": "2026-06-19",
             "proj": 7.16,
@@ -18299,12 +18736,6 @@
         "role": "BAT",
         "recent": [
           {
-            "date": "2026-06-20",
-            "proj": 6.77,
-            "actual": 14,
-            "err": 7.23
-          },
-          {
             "date": "2026-06-18",
             "proj": 9.15,
             "actual": 4,
@@ -18345,6 +18776,12 @@
             "proj": 8.9,
             "actual": 0,
             "err": -8.9
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 7.31,
+            "actual": 7,
+            "err": -0.31
           }
         ]
       },
@@ -18352,12 +18789,6 @@
         "name": "Mookie Betts",
         "role": "BAT",
         "recent": [
-          {
-            "date": "2026-06-20",
-            "proj": 7.1,
-            "actual": 5,
-            "err": -2.1
-          },
           {
             "date": "2026-06-19",
             "proj": 9.75,
@@ -18477,6 +18908,12 @@
             "proj": 6.44,
             "actual": 5,
             "err": -1.44
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 7.52,
+            "actual": 26,
+            "err": 18.48
           }
         ]
       },
@@ -18484,12 +18921,6 @@
         "name": "Julio Rodríguez",
         "role": "BAT",
         "recent": [
-          {
-            "date": "2026-06-20",
-            "proj": 8.04,
-            "actual": 7,
-            "err": -1.04
-          },
           {
             "date": "2026-06-19",
             "proj": 6.23,
@@ -18603,6 +19034,12 @@
             "proj": 6.76,
             "actual": 3,
             "err": -3.76
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 7.89,
+            "actual": 2,
+            "err": -5.89
           }
         ]
       },
@@ -18610,12 +19047,6 @@
         "name": "Willson Contreras",
         "role": "BAT",
         "recent": [
-          {
-            "date": "2026-06-20",
-            "proj": 7.68,
-            "actual": 6,
-            "err": -1.68
-          },
           {
             "date": "2026-06-19",
             "proj": 6.97,
@@ -18717,6 +19148,12 @@
             "proj": 9,
             "actual": 2,
             "err": -7
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 6.32,
+            "actual": 0,
+            "err": -6.32
           }
         ]
       },
@@ -18843,6 +19280,12 @@
             "proj": 8.02,
             "actual": 8,
             "err": -0.02
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 6.14,
+            "actual": 16,
+            "err": 9.86
           }
         ]
       },
@@ -18987,6 +19430,12 @@
             "proj": 6.15,
             "actual": 5,
             "err": -1.15
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 10.46,
+            "actual": 6,
+            "err": -4.46
           }
         ]
       },
@@ -18994,12 +19443,6 @@
         "name": "Carlos Narvaez",
         "role": "BAT",
         "recent": [
-          {
-            "date": "2026-06-20",
-            "proj": 4.22,
-            "actual": 2,
-            "err": -2.22
-          },
           {
             "date": "2026-06-19",
             "proj": 4.23,
@@ -19073,12 +19516,6 @@
         "role": "BAT",
         "recent": [
           {
-            "date": "2026-06-20",
-            "proj": 10.62,
-            "actual": 53,
-            "err": 42.38
-          },
-          {
             "date": "2026-06-18",
             "proj": 12.88,
             "actual": 5,
@@ -19125,6 +19562,12 @@
             "proj": 9.4,
             "actual": 16,
             "err": 6.6
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 8.36,
+            "actual": 5,
+            "err": -3.36
           }
         ]
       },
@@ -19253,12 +19696,6 @@
         "role": "BAT",
         "recent": [
           {
-            "date": "2026-06-20",
-            "proj": 5.61,
-            "actual": 5,
-            "err": -0.61
-          },
-          {
             "date": "2026-06-18",
             "proj": 8.27,
             "actual": 12,
@@ -19299,6 +19736,12 @@
             "proj": 6.31,
             "actual": 14,
             "err": 7.69
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 5.38,
+            "actual": 5,
+            "err": -0.38
           }
         ]
       },
@@ -19445,12 +19888,6 @@
         "role": "BAT",
         "recent": [
           {
-            "date": "2026-06-20",
-            "proj": 5.78,
-            "actual": 0,
-            "err": -5.78
-          },
-          {
             "date": "2026-06-19",
             "proj": 6.87,
             "actual": 0,
@@ -19565,12 +20002,6 @@
         "role": "BAT",
         "recent": [
           {
-            "date": "2026-06-20",
-            "proj": 4.72,
-            "actual": 0,
-            "err": -4.72
-          },
-          {
             "date": "2026-06-16",
             "proj": 4.92,
             "actual": 0,
@@ -19641,6 +20072,12 @@
             "proj": 6.88,
             "actual": 2,
             "err": -4.88
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 5.97,
+            "actual": 9,
+            "err": 3.03
           }
         ]
       },
@@ -19648,12 +20085,6 @@
         "name": "Dalton Rushing",
         "role": "BAT",
         "recent": [
-          {
-            "date": "2026-06-20",
-            "proj": 5.29,
-            "actual": 0,
-            "err": -5.29
-          },
           {
             "date": "2026-06-19",
             "proj": 9.02,
@@ -19732,12 +20163,6 @@
         "name": "Jeremy Peña",
         "role": "BAT",
         "recent": [
-          {
-            "date": "2026-06-20",
-            "proj": 8.19,
-            "actual": 0,
-            "err": -8.19
-          },
           {
             "date": "2026-06-19",
             "proj": 8.73,
@@ -19833,6 +20258,12 @@
             "proj": 8.63,
             "actual": 7,
             "err": -1.63
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 7.97,
+            "actual": 0,
+            "err": -7.97
           }
         ]
       },
@@ -19840,12 +20271,6 @@
         "name": "Samuel Basallo",
         "role": "BAT",
         "recent": [
-          {
-            "date": "2026-06-20",
-            "proj": 5.76,
-            "actual": 6,
-            "err": 0.24
-          },
           {
             "date": "2026-06-19",
             "proj": 8.21,
@@ -19997,12 +20422,6 @@
         "role": "BAT",
         "recent": [
           {
-            "date": "2026-06-20",
-            "proj": 4.31,
-            "actual": 5,
-            "err": 0.69
-          },
-          {
             "date": "2026-06-17",
             "proj": 4.72,
             "actual": 2,
@@ -20097,6 +20516,12 @@
             "proj": 9.07,
             "actual": 4,
             "err": -5.07
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 8.09,
+            "actual": 4,
+            "err": -4.09
           }
         ]
       },
@@ -20104,12 +20529,6 @@
         "name": "Caleb Durbin",
         "role": "BAT",
         "recent": [
-          {
-            "date": "2026-06-20",
-            "proj": 5.24,
-            "actual": 18,
-            "err": 12.76
-          },
           {
             "date": "2026-06-19",
             "proj": 4.49,
@@ -20217,6 +20636,12 @@
             "proj": 6.96,
             "actual": 0,
             "err": -6.96
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 5.38,
+            "actual": 0,
+            "err": -5.38
           }
         ]
       },
@@ -20224,12 +20649,6 @@
         "name": "Cole Young",
         "role": "BAT",
         "recent": [
-          {
-            "date": "2026-06-20",
-            "proj": 5.08,
-            "actual": 2,
-            "err": -3.08
-          },
           {
             "date": "2026-06-19",
             "proj": 4.27,
@@ -20343,6 +20762,12 @@
             "proj": 6.25,
             "actual": 3,
             "err": -3.25
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 5.61,
+            "actual": 0,
+            "err": -5.61
           }
         ]
       },
@@ -20350,12 +20775,6 @@
         "name": "Colton Cowser",
         "role": "BAT",
         "recent": [
-          {
-            "date": "2026-06-20",
-            "proj": 5.32,
-            "actual": 7,
-            "err": 1.68
-          },
           {
             "date": "2026-06-19",
             "proj": 7.63,
@@ -20523,6 +20942,12 @@
             "proj": 7.09,
             "actual": 5,
             "err": -2.09
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 7.92,
+            "actual": 2,
+            "err": -5.92
           }
         ]
       },
@@ -20530,12 +20955,6 @@
         "name": "Isaac Paredes",
         "role": "BAT",
         "recent": [
-          {
-            "date": "2026-06-20",
-            "proj": 6.92,
-            "actual": 5,
-            "err": -1.92
-          },
           {
             "date": "2026-06-19",
             "proj": 8.43,
@@ -20649,6 +21068,12 @@
             "proj": 7.72,
             "actual": 14,
             "err": 6.28
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 7.21,
+            "actual": 6,
+            "err": -1.21
           }
         ]
       },
@@ -20709,6 +21134,12 @@
             "proj": 6.03,
             "actual": 3,
             "err": -3.03
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 5.3,
+            "actual": 3,
+            "err": -2.3
           }
         ]
       },
@@ -20975,12 +21406,6 @@
         "role": "BAT",
         "recent": [
           {
-            "date": "2026-06-20",
-            "proj": 8.89,
-            "actual": 16,
-            "err": 7.11
-          },
-          {
             "date": "2026-06-19",
             "proj": 7.04,
             "actual": 3,
@@ -21075,6 +21500,12 @@
             "proj": 5.39,
             "actual": 0,
             "err": -5.39
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 7.91,
+            "actual": 0,
+            "err": -7.91
           }
         ]
       },
@@ -21197,12 +21628,6 @@
         "role": "BAT",
         "recent": [
           {
-            "date": "2026-06-20",
-            "proj": 5.73,
-            "actual": 8,
-            "err": 2.27
-          },
-          {
             "date": "2026-06-17",
             "proj": 6.22,
             "actual": 3,
@@ -21279,6 +21704,12 @@
             "proj": 6.88,
             "actual": 4,
             "err": -2.88
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 5.69,
+            "actual": 5,
+            "err": -0.69
           }
         ]
       },
@@ -21286,12 +21717,6 @@
         "name": "Bryson Stott",
         "role": "BAT",
         "recent": [
-          {
-            "date": "2026-06-20",
-            "proj": 6.57,
-            "actual": 9,
-            "err": 2.43
-          },
           {
             "date": "2026-06-18",
             "proj": 6.65,
@@ -21339,6 +21764,12 @@
             "proj": 7.96,
             "actual": 8,
             "err": 0.04
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 6.77,
+            "actual": 10,
+            "err": 3.23
           }
         ]
       },
@@ -21376,12 +21807,6 @@
         "name": "J.T. Realmuto",
         "role": "BAT",
         "recent": [
-          {
-            "date": "2026-06-20",
-            "proj": 5.25,
-            "actual": 18,
-            "err": 12.75
-          },
           {
             "date": "2026-06-18",
             "proj": 5.86,
@@ -21423,6 +21848,12 @@
             "proj": 7.47,
             "actual": 5,
             "err": -2.47
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 6.13,
+            "actual": 0,
+            "err": -6.13
           }
         ]
       },
@@ -21454,12 +21885,6 @@
         "name": "Cam Smith",
         "role": "BAT",
         "recent": [
-          {
-            "date": "2026-06-20",
-            "proj": 6.26,
-            "actual": 0,
-            "err": -6.26
-          },
           {
             "date": "2026-06-19",
             "proj": 5.87,
@@ -21567,18 +21992,12 @@
             "proj": 6.1,
             "actual": 24,
             "err": 17.9
-          }
-        ]
-      },
-      "zack short|BAT": {
-        "name": "Zack Short",
-        "role": "BAT",
-        "recent": [
+          },
           {
-            "date": "2026-06-20",
-            "proj": 3.38,
-            "actual": 3,
-            "err": -0.38
+            "date": "2026-08-11",
+            "proj": 6.68,
+            "actual": 5,
+            "err": -1.68
           }
         ]
       },
@@ -21586,12 +22005,6 @@
         "name": "Christian Walker",
         "role": "BAT",
         "recent": [
-          {
-            "date": "2026-06-20",
-            "proj": 8.12,
-            "actual": 2,
-            "err": -6.12
-          },
           {
             "date": "2026-06-19",
             "proj": 8.77,
@@ -21693,6 +22106,12 @@
             "proj": 7.25,
             "actual": 2,
             "err": -5.25
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 7.67,
+            "actual": 0,
+            "err": -7.67
           }
         ]
       },
@@ -21783,6 +22202,12 @@
             "proj": 7.26,
             "actual": 7,
             "err": -0.26
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 6.25,
+            "actual": 0,
+            "err": -6.25
           }
         ]
       },
@@ -21790,12 +22215,6 @@
         "name": "Mitch Garver",
         "role": "BAT",
         "recent": [
-          {
-            "date": "2026-06-20",
-            "proj": 4.95,
-            "actual": 0,
-            "err": -4.95
-          },
           {
             "date": "2026-06-28",
             "proj": 4.34,
@@ -21819,6 +22238,12 @@
             "proj": 5.5,
             "actual": 3,
             "err": -2.5
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 5.56,
+            "actual": 2,
+            "err": -3.56
           }
         ]
       },
@@ -22037,12 +22462,6 @@
         "role": "BAT",
         "recent": [
           {
-            "date": "2026-06-20",
-            "proj": 6.89,
-            "actual": 0,
-            "err": -6.89
-          },
-          {
             "date": "2026-06-29",
             "proj": 6.66,
             "actual": 12,
@@ -22167,6 +22586,12 @@
             "proj": 5.41,
             "actual": 0,
             "err": -5.41
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 6.09,
+            "actual": 5,
+            "err": -1.09
           }
         ]
       },
@@ -22174,12 +22599,6 @@
         "name": "Freddie Freeman",
         "role": "BAT",
         "recent": [
-          {
-            "date": "2026-06-20",
-            "proj": 8.24,
-            "actual": 4,
-            "err": -4.24
-          },
           {
             "date": "2026-06-19",
             "proj": 12.43,
@@ -22293,6 +22712,12 @@
             "proj": 7.63,
             "actual": 13,
             "err": 5.37
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 9.2,
+            "actual": 2,
+            "err": -7.2
           }
         ]
       },
@@ -22300,12 +22725,6 @@
         "name": "Victor Caratini",
         "role": "BAT",
         "recent": [
-          {
-            "date": "2026-06-20",
-            "proj": 6.29,
-            "actual": 25,
-            "err": 18.71
-          },
           {
             "date": "2026-06-19",
             "proj": 4.97,
@@ -22426,12 +22845,6 @@
         "name": "Brayan Rocchio",
         "role": "BAT",
         "recent": [
-          {
-            "date": "2026-06-20",
-            "proj": 6.61,
-            "actual": 0,
-            "err": -6.61
-          },
           {
             "date": "2026-06-19",
             "proj": 7.05,
@@ -22558,12 +22971,6 @@
         "name": "Steven Kwan",
         "role": "BAT",
         "recent": [
-          {
-            "date": "2026-06-20",
-            "proj": 4.93,
-            "actual": 4,
-            "err": -0.93
-          },
           {
             "date": "2026-06-19",
             "proj": 5.26,
@@ -22817,12 +23224,6 @@
         "role": "BAT",
         "recent": [
           {
-            "date": "2026-06-20",
-            "proj": 4.85,
-            "actual": 0,
-            "err": -4.85
-          },
-          {
             "date": "2026-06-19",
             "proj": 5.43,
             "actual": 9,
@@ -22937,12 +23338,6 @@
         "role": "BAT",
         "recent": [
           {
-            "date": "2026-06-20",
-            "proj": 4.09,
-            "actual": 0,
-            "err": -4.09
-          },
-          {
             "date": "2026-06-19",
             "proj": 3.73,
             "actual": 0,
@@ -23049,6 +23444,12 @@
             "proj": 4.59,
             "actual": 0,
             "err": -4.59
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 4.33,
+            "actual": 0,
+            "err": -4.33
           }
         ]
       },
@@ -23068,12 +23469,6 @@
         "name": "Brandon Marsh",
         "role": "BAT",
         "recent": [
-          {
-            "date": "2026-06-20",
-            "proj": 7.9,
-            "actual": 5,
-            "err": -2.9
-          },
           {
             "date": "2026-06-18",
             "proj": 7.79,
@@ -23121,6 +23516,12 @@
             "proj": 7.7,
             "actual": 9,
             "err": 1.3
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 6.38,
+            "actual": 3,
+            "err": -3.38
           }
         ]
       },
@@ -23261,12 +23662,6 @@
         "role": "PIT",
         "recent": [
           {
-            "date": "2026-06-20",
-            "proj": 13.12,
-            "actual": -16.6,
-            "err": -29.72
-          },
-          {
             "date": "2026-06-25",
             "proj": 13.88,
             "actual": 19.15,
@@ -23403,6 +23798,12 @@
             "proj": 7.71,
             "actual": 10,
             "err": 2.29
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 7.45,
+            "actual": 5,
+            "err": -2.45
           }
         ]
       },
@@ -23469,6 +23870,12 @@
             "proj": 8.54,
             "actual": 7,
             "err": -1.54
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 8.42,
+            "actual": 0,
+            "err": -8.42
           }
         ]
       },
@@ -23589,6 +23996,12 @@
             "proj": 6.56,
             "actual": 6,
             "err": -0.56
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 6.32,
+            "actual": 16,
+            "err": 9.68
           }
         ]
       },
@@ -23745,6 +24158,12 @@
             "proj": 8.58,
             "actual": 5,
             "err": -3.58
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 8.24,
+            "actual": 20,
+            "err": 11.76
           }
         ]
       },
@@ -23889,6 +24308,12 @@
             "proj": 6.01,
             "actual": 7,
             "err": 0.99
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 5.84,
+            "actual": 0,
+            "err": -5.84
           }
         ]
       },
@@ -23896,12 +24321,6 @@
         "name": "Taj Bradley",
         "role": "PIT",
         "recent": [
-          {
-            "date": "2026-06-20",
-            "proj": 11.65,
-            "actual": 16.25,
-            "err": 4.6
-          },
           {
             "date": "2026-06-26",
             "proj": 12.78,
@@ -23944,12 +24363,6 @@
         "name": "Juan Soto",
         "role": "BAT",
         "recent": [
-          {
-            "date": "2026-06-20",
-            "proj": 7.24,
-            "actual": 3,
-            "err": -4.24
-          },
           {
             "date": "2026-06-18",
             "proj": 14.25,
@@ -24099,6 +24512,12 @@
             "proj": 7.32,
             "actual": 2,
             "err": -5.32
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 6.3,
+            "actual": 13,
+            "err": 6.7
           }
         ]
       },
@@ -24183,6 +24602,12 @@
             "proj": 7.58,
             "actual": 0,
             "err": -7.58
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 6.91,
+            "actual": 0,
+            "err": -6.91
           }
         ]
       },
@@ -24345,6 +24770,12 @@
             "proj": 5.68,
             "actual": 5,
             "err": -0.68
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 6,
+            "actual": 2,
+            "err": -4
           }
         ]
       },
@@ -24765,6 +25196,12 @@
             "proj": 9.38,
             "actual": 0,
             "err": -9.38
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 8,
+            "actual": 12,
+            "err": 4
           }
         ]
       },
@@ -24879,6 +25316,12 @@
             "proj": 8.25,
             "actual": 2,
             "err": -6.25
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 7.28,
+            "actual": 6,
+            "err": -1.28
           }
         ]
       },
@@ -25036,12 +25479,6 @@
         "name": "Kyle Manzardo",
         "role": "BAT",
         "recent": [
-          {
-            "date": "2026-06-20",
-            "proj": 7.03,
-            "actual": 21,
-            "err": 13.97
-          },
           {
             "date": "2026-06-19",
             "proj": 8.46,
@@ -25413,6 +25850,12 @@
             "proj": 6.09,
             "actual": 7,
             "err": 0.91
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 5.92,
+            "actual": 2,
+            "err": -3.92
           }
         ]
       },
@@ -25547,12 +25990,6 @@
         "role": "BAT",
         "recent": [
           {
-            "date": "2026-06-20",
-            "proj": 4.4,
-            "actual": 14,
-            "err": 9.6
-          },
-          {
             "date": "2026-06-25",
             "proj": 5.49,
             "actual": 8,
@@ -25587,6 +26024,12 @@
             "proj": 6.13,
             "actual": 7,
             "err": 0.87
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 5.38,
+            "actual": 0,
+            "err": -5.38
           }
         ]
       },
@@ -25594,12 +26037,6 @@
         "name": "Patrick Bailey",
         "role": "BAT",
         "recent": [
-          {
-            "date": "2026-06-20",
-            "proj": 3.76,
-            "actual": 13,
-            "err": 9.24
-          },
           {
             "date": "2026-06-19",
             "proj": 4.41,
@@ -25755,6 +26192,12 @@
             "proj": 5.96,
             "actual": 16,
             "err": 10.04
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 5.39,
+            "actual": 9,
+            "err": 3.61
           }
         ]
       },
@@ -25857,6 +26300,12 @@
             "proj": 6.93,
             "actual": 7,
             "err": 0.07
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 6.17,
+            "actual": 14,
+            "err": 7.83
           }
         ]
       },
@@ -25894,12 +26343,6 @@
         "name": "Ketel Marte",
         "role": "BAT",
         "recent": [
-          {
-            "date": "2026-06-20",
-            "proj": 8.98,
-            "actual": 2,
-            "err": -6.98
-          },
           {
             "date": "2026-06-19",
             "proj": 8.78,
@@ -26007,6 +26450,12 @@
             "proj": 7.93,
             "actual": 14,
             "err": 6.07
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 9.53,
+            "actual": 17,
+            "err": 7.47
           }
         ]
       },
@@ -26044,12 +26493,6 @@
         "name": "Geraldo Perdomo",
         "role": "BAT",
         "recent": [
-          {
-            "date": "2026-06-20",
-            "proj": 9.18,
-            "actual": 10,
-            "err": 0.82
-          },
           {
             "date": "2026-06-19",
             "proj": 8.87,
@@ -26171,12 +26614,6 @@
         "role": "BAT",
         "recent": [
           {
-            "date": "2026-06-20",
-            "proj": 10.98,
-            "actual": 0,
-            "err": -10.98
-          },
-          {
             "date": "2026-06-19",
             "proj": 9.91,
             "actual": 28,
@@ -26289,6 +26726,12 @@
             "proj": 8.92,
             "actual": 11,
             "err": 2.08
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 11.16,
+            "actual": 14,
+            "err": 2.84
           }
         ]
       },
@@ -26326,12 +26769,6 @@
         "name": "Nolan Arenado",
         "role": "BAT",
         "recent": [
-          {
-            "date": "2026-06-20",
-            "proj": 7.08,
-            "actual": 0,
-            "err": -7.08
-          },
           {
             "date": "2026-06-19",
             "proj": 6.26,
@@ -26439,6 +26876,12 @@
             "proj": 6.9,
             "actual": 28,
             "err": 21.1
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 8.12,
+            "actual": 11,
+            "err": 2.88
           }
         ]
       },
@@ -26482,12 +26925,6 @@
         "name": "Shea Langeliers",
         "role": "BAT",
         "recent": [
-          {
-            "date": "2026-06-20",
-            "proj": 10.59,
-            "actual": 0,
-            "err": -10.59
-          },
           {
             "date": "2026-06-19",
             "proj": 10.42,
@@ -26709,6 +27146,12 @@
             "proj": 6.66,
             "actual": 0,
             "err": -6.66
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 6.85,
+            "actual": 18,
+            "err": 11.15
           }
         ]
       },
@@ -26787,6 +27230,12 @@
             "proj": 6.81,
             "actual": 0,
             "err": -6.81
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 5.82,
+            "actual": 5,
+            "err": -0.82
           }
         ]
       },
@@ -26794,12 +27243,6 @@
         "name": "Rob Refsnyder",
         "role": "BAT",
         "recent": [
-          {
-            "date": "2026-06-20",
-            "proj": 4.94,
-            "actual": 2,
-            "err": -2.94
-          },
           {
             "date": "2026-06-19",
             "proj": 5.08,
@@ -26955,6 +27398,12 @@
             "proj": 7.84,
             "actual": 19,
             "err": 11.16
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 8.73,
+            "actual": 3,
+            "err": -5.73
           }
         ]
       },
@@ -27039,6 +27488,12 @@
             "proj": 7.52,
             "actual": 10,
             "err": 2.48
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 7.12,
+            "actual": 7,
+            "err": -0.12
           }
         ]
       },
@@ -27177,6 +27632,12 @@
             "proj": 6.18,
             "actual": 0,
             "err": -6.18
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 6.38,
+            "actual": 11,
+            "err": 4.62
           }
         ]
       },
@@ -27184,12 +27645,6 @@
         "name": "Lourdes Gurriel Jr.",
         "role": "BAT",
         "recent": [
-          {
-            "date": "2026-06-20",
-            "proj": 6.77,
-            "actual": 0,
-            "err": -6.77
-          },
           {
             "date": "2026-06-19",
             "proj": 6.58,
@@ -27268,12 +27723,6 @@
         "name": "Hunter Goodman",
         "role": "BAT",
         "recent": [
-          {
-            "date": "2026-06-20",
-            "proj": 9.01,
-            "actual": 0,
-            "err": -9.01
-          },
           {
             "date": "2026-06-19",
             "proj": 10.78,
@@ -27393,6 +27842,12 @@
             "proj": 7.73,
             "actual": 2,
             "err": -5.73
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 8.2,
+            "actual": 10,
+            "err": 1.8
           }
         ]
       },
@@ -27400,12 +27855,6 @@
         "name": "Nick Kurtz",
         "role": "BAT",
         "recent": [
-          {
-            "date": "2026-06-20",
-            "proj": 13.48,
-            "actual": 7,
-            "err": -6.48
-          },
           {
             "date": "2026-06-19",
             "proj": 14.34,
@@ -27597,6 +28046,12 @@
             "proj": 7.61,
             "actual": 0,
             "err": -7.61
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 4.52,
+            "actual": 12,
+            "err": 7.48
           }
         ]
       },
@@ -27755,12 +28210,6 @@
         "role": "BAT",
         "recent": [
           {
-            "date": "2026-06-20",
-            "proj": 9.22,
-            "actual": 2,
-            "err": -7.22
-          },
-          {
             "date": "2026-06-19",
             "proj": 13.17,
             "actual": 11,
@@ -27879,6 +28328,12 @@
             "proj": 6.64,
             "actual": 11,
             "err": 4.36
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 8.8,
+            "actual": 10,
+            "err": 1.2
           }
         ]
       },
@@ -27975,6 +28430,12 @@
             "proj": 7,
             "actual": 10,
             "err": 3
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 8.69,
+            "actual": 8,
+            "err": -0.69
           }
         ]
       },
@@ -28101,6 +28562,12 @@
             "proj": 5.57,
             "actual": 0,
             "err": -5.57
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 5.22,
+            "actual": 5,
+            "err": -0.22
           }
         ]
       },
@@ -28167,6 +28634,12 @@
             "proj": 6.48,
             "actual": 4,
             "err": -2.48
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 7.84,
+            "actual": 0,
+            "err": -7.84
           }
         ]
       },
@@ -28174,12 +28647,6 @@
         "name": "Zach Neto",
         "role": "BAT",
         "recent": [
-          {
-            "date": "2026-06-20",
-            "proj": 9.5,
-            "actual": 13,
-            "err": 3.5
-          },
           {
             "date": "2026-06-19",
             "proj": 10.16,
@@ -28281,6 +28748,12 @@
             "proj": 7.31,
             "actual": 0,
             "err": -7.31
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 7.54,
+            "actual": 17,
+            "err": 9.46
           }
         ]
       },
@@ -28425,6 +28898,12 @@
             "proj": 7.39,
             "actual": 20,
             "err": 12.61
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 7.77,
+            "actual": 9,
+            "err": 1.23
           }
         ]
       },
@@ -28432,12 +28911,6 @@
         "name": "TJ Rumfield",
         "role": "BAT",
         "recent": [
-          {
-            "date": "2026-06-20",
-            "proj": 7.44,
-            "actual": 9,
-            "err": 1.56
-          },
           {
             "date": "2026-06-19",
             "proj": 9.12,
@@ -28635,6 +29108,12 @@
             "proj": 6.53,
             "actual": 23,
             "err": 16.47
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 8.12,
+            "actual": 5,
+            "err": -3.12
           }
         ]
       },
@@ -28642,12 +29121,6 @@
         "name": "Jo Adell",
         "role": "BAT",
         "recent": [
-          {
-            "date": "2026-06-20",
-            "proj": 7.57,
-            "actual": 15,
-            "err": 7.43
-          },
           {
             "date": "2026-06-19",
             "proj": 10.1,
@@ -28757,12 +29230,6 @@
         "role": "BAT",
         "recent": [
           {
-            "date": "2026-06-20",
-            "proj": 5.48,
-            "actual": 9,
-            "err": 3.52
-          },
-          {
             "date": "2026-06-16",
             "proj": 3.62,
             "actual": 3,
@@ -28804,12 +29271,6 @@
         "name": "Jake McCarthy",
         "role": "BAT",
         "recent": [
-          {
-            "date": "2026-06-20",
-            "proj": 7.74,
-            "actual": 21,
-            "err": 13.26
-          },
           {
             "date": "2026-06-19",
             "proj": 9.09,
@@ -28923,6 +29384,12 @@
             "proj": 7.15,
             "actual": 5,
             "err": -2.15
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 7.3,
+            "actual": 0,
+            "err": -7.3
           }
         ]
       },
@@ -28965,6 +29432,12 @@
             "proj": 7.78,
             "actual": 7,
             "err": -0.78
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 7.66,
+            "actual": 9,
+            "err": 1.34
           }
         ]
       },
@@ -29115,6 +29588,12 @@
             "proj": 5.55,
             "actual": 21,
             "err": 15.45
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 6.41,
+            "actual": 0,
+            "err": -6.41
           }
         ]
       },
@@ -29223,6 +29702,12 @@
             "proj": 6.4,
             "actual": 5,
             "err": -1.4
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 7.98,
+            "actual": 5,
+            "err": -2.98
           }
         ]
       },
@@ -29308,12 +29793,6 @@
         "name": "Tyler Soderstrom",
         "role": "BAT",
         "recent": [
-          {
-            "date": "2026-06-20",
-            "proj": 9.66,
-            "actual": 2,
-            "err": -7.66
-          },
           {
             "date": "2026-06-19",
             "proj": 10.25,
@@ -29583,6 +30062,12 @@
             "proj": 6.73,
             "actual": 7,
             "err": 0.27
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 7.38,
+            "actual": 0,
+            "err": -7.38
           }
         ]
       },
@@ -29632,12 +30117,6 @@
         "name": "Troy Johnston",
         "role": "BAT",
         "recent": [
-          {
-            "date": "2026-06-20",
-            "proj": 7.07,
-            "actual": 4,
-            "err": -3.07
-          },
           {
             "date": "2026-06-16",
             "proj": 7.71,
@@ -29793,6 +30272,12 @@
             "proj": 7.29,
             "actual": 0,
             "err": -7.29
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 9.42,
+            "actual": 20,
+            "err": 10.58
           }
         ]
       },
@@ -29800,12 +30285,6 @@
         "name": "Willi Castro",
         "role": "BAT",
         "recent": [
-          {
-            "date": "2026-06-20",
-            "proj": 7.38,
-            "actual": 0,
-            "err": -7.38
-          },
           {
             "date": "2026-06-19",
             "proj": 8.97,
@@ -29901,6 +30380,12 @@
             "proj": 5.73,
             "actual": 3,
             "err": -2.73
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 6.69,
+            "actual": 2,
+            "err": -4.69
           }
         ]
       },
@@ -30069,6 +30554,12 @@
             "proj": 5.91,
             "actual": 9,
             "err": 3.09
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 6.18,
+            "actual": 2,
+            "err": -4.18
           }
         ]
       },
@@ -30117,6 +30608,12 @@
             "proj": 14.13,
             "actual": 1.3,
             "err": -12.83
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 12.55,
+            "actual": 23.95,
+            "err": 11.4
           }
         ]
       },
@@ -30147,6 +30644,12 @@
             "proj": 9.01,
             "actual": 8.8,
             "err": -0.21
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 10.87,
+            "actual": 21.9,
+            "err": 11.03
           }
         ]
       },
@@ -30269,12 +30772,6 @@
         "role": "BAT",
         "recent": [
           {
-            "date": "2026-06-20",
-            "proj": 3.96,
-            "actual": 4,
-            "err": 0.04
-          },
-          {
             "date": "2026-06-19",
             "proj": 5.6,
             "actual": 5,
@@ -30333,6 +30830,12 @@
             "proj": 5.98,
             "actual": 16,
             "err": 10.02
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 6.51,
+            "actual": 2,
+            "err": -4.51
           }
         ]
       },
@@ -30340,12 +30843,6 @@
         "name": "Jeff McNeil",
         "role": "BAT",
         "recent": [
-          {
-            "date": "2026-06-20",
-            "proj": 5.71,
-            "actual": 5,
-            "err": -0.71
-          },
           {
             "date": "2026-06-19",
             "proj": 6.3,
@@ -30429,6 +30926,12 @@
             "proj": 7.57,
             "actual": 15,
             "err": 7.43
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 7.49,
+            "actual": 3,
+            "err": -4.49
           }
         ]
       },
@@ -30569,12 +31072,6 @@
         "role": "BAT",
         "recent": [
           {
-            "date": "2026-06-20",
-            "proj": 7.47,
-            "actual": 9,
-            "err": 1.53
-          },
-          {
             "date": "2026-06-19",
             "proj": 7.66,
             "actual": 18,
@@ -30669,6 +31166,12 @@
             "proj": 5.94,
             "actual": 0,
             "err": -5.94
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 6.15,
+            "actual": 7,
+            "err": 0.85
           }
         ]
       },
@@ -30729,6 +31232,12 @@
             "proj": 5.69,
             "actual": 12,
             "err": 6.31
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 6.23,
+            "actual": 0,
+            "err": -6.23
           }
         ]
       },
@@ -30801,6 +31310,12 @@
             "proj": 5.82,
             "actual": 10,
             "err": 4.18
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 5.07,
+            "actual": 7,
+            "err": 1.93
           }
         ]
       },
@@ -30917,12 +31432,6 @@
         "role": "BAT",
         "recent": [
           {
-            "date": "2026-06-20",
-            "proj": 4.96,
-            "actual": 0,
-            "err": -4.96
-          },
-          {
             "date": "2026-06-19",
             "proj": 6.27,
             "actual": 8,
@@ -31017,6 +31526,12 @@
             "proj": 5.19,
             "actual": 0,
             "err": -5.19
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 5.15,
+            "actual": 5,
+            "err": -0.15
           }
         ]
       },
@@ -31060,12 +31575,6 @@
         "name": "Henry Bolte",
         "role": "BAT",
         "recent": [
-          {
-            "date": "2026-06-20",
-            "proj": 6.78,
-            "actual": 3,
-            "err": -3.78
-          },
           {
             "date": "2026-06-19",
             "proj": 6.72,
@@ -31185,6 +31694,12 @@
             "proj": 6.11,
             "actual": 8,
             "err": 1.89
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 6.12,
+            "actual": 3,
+            "err": -3.12
           }
         ]
       },
@@ -31361,12 +31876,6 @@
         "role": "PIT",
         "recent": [
           {
-            "date": "2026-06-20",
-            "proj": 5.46,
-            "actual": 23.1,
-            "err": 17.64
-          },
-          {
             "date": "2026-06-26",
             "proj": 7.16,
             "actual": -4.15,
@@ -31377,6 +31886,12 @@
             "proj": 8.72,
             "actual": 18,
             "err": 9.28
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 8.28,
+            "actual": 19.9,
+            "err": 11.62
           }
         ]
       },
@@ -31505,12 +32020,6 @@
         "role": "BAT",
         "recent": [
           {
-            "date": "2026-06-20",
-            "proj": 6.75,
-            "actual": 0,
-            "err": -6.75
-          },
-          {
             "date": "2026-06-18",
             "proj": 5.86,
             "actual": 5,
@@ -31569,6 +32078,12 @@
             "proj": 5.81,
             "actual": 6,
             "err": 0.19
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 6.03,
+            "actual": 7,
+            "err": 0.97
           }
         ]
       },
@@ -31665,6 +32180,12 @@
             "proj": 7.52,
             "actual": 4,
             "err": -3.52
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 6.46,
+            "actual": 2,
+            "err": -4.46
           }
         ]
       },
@@ -31803,6 +32324,12 @@
             "proj": 6.6,
             "actual": 2,
             "err": -4.6
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 5.55,
+            "actual": 4,
+            "err": -1.55
           }
         ]
       },
@@ -31810,12 +32337,6 @@
         "name": "Lawrence Butler",
         "role": "BAT",
         "recent": [
-          {
-            "date": "2026-06-20",
-            "proj": 7.29,
-            "actual": 3,
-            "err": -4.29
-          },
           {
             "date": "2026-06-19",
             "proj": 7.39,
@@ -31905,6 +32426,12 @@
             "proj": 7.56,
             "actual": 6,
             "err": -1.56
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 7.46,
+            "actual": 16,
+            "err": 8.54
           }
         ]
       },
@@ -32001,6 +32528,12 @@
             "proj": 5.83,
             "actual": 0,
             "err": -5.83
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 6.86,
+            "actual": 16,
+            "err": 9.14
           }
         ]
       },
@@ -32020,12 +32553,6 @@
         "name": "Jose Siri",
         "role": "BAT",
         "recent": [
-          {
-            "date": "2026-06-20",
-            "proj": 5.56,
-            "actual": 7,
-            "err": 1.44
-          },
           {
             "date": "2026-06-19",
             "proj": 5.25,
@@ -32067,6 +32594,12 @@
             "proj": 6.54,
             "actual": 0,
             "err": -6.54
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 5.93,
+            "actual": 0,
+            "err": -5.93
           }
         ]
       },
@@ -32115,6 +32648,12 @@
             "proj": 4.93,
             "actual": 5,
             "err": 0.07
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 5.21,
+            "actual": 12,
+            "err": 6.79
           }
         ]
       },
@@ -32163,6 +32702,12 @@
             "proj": 18.87,
             "actual": 34.05,
             "err": 15.18
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 16.86,
+            "actual": -7.3,
+            "err": -24.16
           }
         ]
       },
@@ -32212,12 +32757,6 @@
         "name": "Connelly Early",
         "role": "PIT",
         "recent": [
-          {
-            "date": "2026-06-20",
-            "proj": 15.02,
-            "actual": 25.3,
-            "err": 10.28
-          },
           {
             "date": "2026-06-25",
             "proj": 12.55,
@@ -32457,6 +32996,12 @@
             "proj": 5.36,
             "actual": 3,
             "err": -2.36
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 6.14,
+            "actual": 0,
+            "err": -6.14
           }
         ]
       },
@@ -32613,6 +33158,12 @@
             "proj": 6.28,
             "actual": 16,
             "err": 9.72
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 5.75,
+            "actual": 12,
+            "err": 6.25
           }
         ]
       },
@@ -32769,6 +33320,12 @@
             "proj": 5.25,
             "actual": 19,
             "err": 13.75
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 5.88,
+            "actual": 4,
+            "err": -1.88
           }
         ]
       },
@@ -33081,6 +33638,12 @@
             "proj": 23.77,
             "actual": 21.9,
             "err": -1.87
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 24.58,
+            "actual": 13.85,
+            "err": -10.73
           }
         ]
       },
@@ -33142,12 +33705,6 @@
         "name": "Yordan Alvarez",
         "role": "BAT",
         "recent": [
-          {
-            "date": "2026-06-20",
-            "proj": 10.63,
-            "actual": 0,
-            "err": -10.63
-          },
           {
             "date": "2026-06-19",
             "proj": 11.65,
@@ -33261,6 +33818,12 @@
             "proj": 10.75,
             "actual": 10,
             "err": -0.75
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 8.89,
+            "actual": 6,
+            "err": -2.89
           }
         ]
       },
@@ -33503,12 +34066,6 @@
         "role": "BAT",
         "recent": [
           {
-            "date": "2026-06-20",
-            "proj": 3.77,
-            "actual": 12,
-            "err": 8.23
-          },
-          {
             "date": "2026-07-29",
             "proj": 4.38,
             "actual": 3,
@@ -33519,6 +34076,12 @@
             "proj": 4.36,
             "actual": 3,
             "err": -1.36
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 4.38,
+            "actual": 0,
+            "err": -4.38
           }
         ]
       },
@@ -33549,6 +34112,12 @@
             "proj": 4.97,
             "actual": 6,
             "err": 1.03
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 4.98,
+            "actual": 16,
+            "err": 11.02
           }
         ]
       },
@@ -33556,12 +34125,6 @@
         "name": "Jonah Heim",
         "role": "BAT",
         "recent": [
-          {
-            "date": "2026-06-20",
-            "proj": 7.58,
-            "actual": 0,
-            "err": -7.58
-          },
           {
             "date": "2026-06-18",
             "proj": 8.71,
@@ -33657,6 +34220,12 @@
             "proj": 6.31,
             "actual": 0,
             "err": -6.31
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 6.18,
+            "actual": 0,
+            "err": -6.18
           }
         ]
       },
@@ -33664,12 +34233,6 @@
         "name": "Edouard Julien",
         "role": "BAT",
         "recent": [
-          {
-            "date": "2026-06-20",
-            "proj": 5.19,
-            "actual": 0,
-            "err": -5.19
-          },
           {
             "date": "2026-06-17",
             "proj": 5.65,
@@ -33821,12 +34384,6 @@
         "role": "BAT",
         "recent": [
           {
-            "date": "2026-06-20",
-            "proj": 4.48,
-            "actual": 0,
-            "err": -4.48
-          },
-          {
             "date": "2026-06-17",
             "proj": 4.23,
             "actual": 3,
@@ -33951,6 +34508,12 @@
             "proj": 5.99,
             "actual": 19,
             "err": 13.01
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 5.95,
+            "actual": 8,
+            "err": 2.05
           }
         ]
       },
@@ -34000,12 +34563,6 @@
         "name": "J.T. Ginn",
         "role": "PIT",
         "recent": [
-          {
-            "date": "2026-06-20",
-            "proj": 12.86,
-            "actual": 8,
-            "err": -4.86
-          },
           {
             "date": "2026-06-26",
             "proj": 13.88,
@@ -34060,12 +34617,6 @@
         "name": "Zac Gallen",
         "role": "PIT",
         "recent": [
-          {
-            "date": "2026-06-20",
-            "proj": 10.02,
-            "actual": -13.4,
-            "err": -23.42
-          },
           {
             "date": "2026-06-26",
             "proj": 9.11,
@@ -34185,6 +34736,12 @@
             "proj": 7.09,
             "actual": 17,
             "err": 9.91
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 6.28,
+            "actual": 0,
+            "err": -6.28
           }
         ]
       },
@@ -34359,6 +34916,12 @@
             "proj": 5.27,
             "actual": 0,
             "err": -5.27
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 5.1,
+            "actual": 0,
+            "err": -5.1
           }
         ]
       },
@@ -34455,6 +35018,12 @@
             "proj": 6.19,
             "actual": 5,
             "err": -1.19
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 7.11,
+            "actual": 16,
+            "err": 8.89
           }
         ]
       },
@@ -34486,12 +35055,6 @@
         "name": "Sterlin Thompson",
         "role": "BAT",
         "recent": [
-          {
-            "date": "2026-06-20",
-            "proj": 4.25,
-            "actual": 3,
-            "err": -1.25
-          },
           {
             "date": "2026-06-19",
             "proj": 5.48,
@@ -34594,12 +35157,6 @@
         "name": "Paul Skenes",
         "role": "PIT",
         "recent": [
-          {
-            "date": "2026-06-20",
-            "proj": 17.63,
-            "actual": 20.7,
-            "err": 3.07
-          },
           {
             "date": "2026-08-05",
             "proj": 18.61,
@@ -34725,6 +35282,12 @@
             "proj": 8,
             "actual": 12,
             "err": 4
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 7.71,
+            "actual": 4,
+            "err": -3.71
           }
         ]
       },
@@ -34797,6 +35360,12 @@
             "proj": 5.46,
             "actual": 5,
             "err": -0.46
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 6.05,
+            "actual": 0,
+            "err": -6.05
           }
         ]
       },
@@ -34961,12 +35530,6 @@
         "role": "BAT",
         "recent": [
           {
-            "date": "2026-06-20",
-            "proj": 7.66,
-            "actual": 7,
-            "err": -0.66
-          },
-          {
             "date": "2026-06-19",
             "proj": 5.85,
             "actual": 14,
@@ -35091,6 +35654,12 @@
             "proj": 6.94,
             "actual": 12,
             "err": 5.06
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 7.34,
+            "actual": 8,
+            "err": 0.66
           }
         ]
       },
@@ -35115,6 +35684,12 @@
             "proj": 11.53,
             "actual": 18.4,
             "err": 6.87
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 11.21,
+            "actual": 13.3,
+            "err": 2.09
           }
         ]
       },
@@ -35211,6 +35786,12 @@
             "proj": 14.51,
             "actual": 10.55,
             "err": -3.96
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 12.36,
+            "actual": 17.5,
+            "err": 5.14
           }
         ]
       },
@@ -35307,6 +35888,12 @@
             "proj": 16.57,
             "actual": 9.55,
             "err": -7.02
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 19.6,
+            "actual": 27.95,
+            "err": 8.35
           }
         ]
       },
@@ -35465,12 +36052,6 @@
         "role": "BAT",
         "recent": [
           {
-            "date": "2026-06-20",
-            "proj": 4.6,
-            "actual": 10,
-            "err": 5.4
-          },
-          {
             "date": "2026-06-23",
             "proj": 4.49,
             "actual": 2,
@@ -35585,12 +36166,6 @@
         "role": "PIT",
         "recent": [
           {
-            "date": "2026-06-20",
-            "proj": 13.93,
-            "actual": 10.4,
-            "err": -3.53
-          },
-          {
             "date": "2026-06-28",
             "proj": 13.53,
             "actual": 17.95,
@@ -35685,6 +36260,12 @@
             "proj": 5.95,
             "actual": 6,
             "err": 0.05
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 5.19,
+            "actual": 0,
+            "err": -5.19
           }
         ]
       },
@@ -35865,6 +36446,12 @@
             "proj": 5.86,
             "actual": 19,
             "err": 13.14
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 5.55,
+            "actual": 3,
+            "err": -2.55
           }
         ]
       },
@@ -35895,6 +36482,12 @@
             "proj": 4.41,
             "actual": 19,
             "err": 14.59
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 5.43,
+            "actual": 0,
+            "err": -5.43
           }
         ]
       },
@@ -36027,6 +36620,12 @@
             "proj": 7.16,
             "actual": 9,
             "err": 1.84
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 7.42,
+            "actual": 7,
+            "err": -0.42
           }
         ]
       },
@@ -36082,12 +36681,6 @@
         "name": "Wade Meckler",
         "role": "BAT",
         "recent": [
-          {
-            "date": "2026-06-20",
-            "proj": 6.53,
-            "actual": 7,
-            "err": 0.47
-          },
           {
             "date": "2026-06-19",
             "proj": 3.9,
@@ -36159,6 +36752,12 @@
             "proj": 4.18,
             "actual": 3,
             "err": -1.18
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 4.46,
+            "actual": 5,
+            "err": 0.54
           }
         ]
       },
@@ -36166,12 +36765,6 @@
         "name": "Donovan Walton",
         "role": "BAT",
         "recent": [
-          {
-            "date": "2026-06-20",
-            "proj": 5.38,
-            "actual": 15,
-            "err": 9.62
-          },
           {
             "date": "2026-06-16",
             "proj": 4.68,
@@ -36213,6 +36806,12 @@
             "proj": 6.27,
             "actual": 6,
             "err": -0.27
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 6.24,
+            "actual": 3,
+            "err": -3.24
           }
         ]
       },
@@ -36220,12 +36819,6 @@
         "name": "Spencer Arrighetti",
         "role": "PIT",
         "recent": [
-          {
-            "date": "2026-06-20",
-            "proj": 13.35,
-            "actual": 13.3,
-            "err": -0.05
-          },
           {
             "date": "2026-07-24",
             "proj": 11.15,
@@ -36303,6 +36896,12 @@
             "proj": 6.31,
             "actual": 0,
             "err": -6.31
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 4.48,
+            "actual": 5,
+            "err": 0.52
           }
         ]
       },
@@ -36501,6 +37100,12 @@
             "proj": 4.49,
             "actual": 0,
             "err": -4.49
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 5.46,
+            "actual": 0,
+            "err": -5.46
           }
         ]
       },
@@ -36508,12 +37113,6 @@
         "name": "Petey Halpin",
         "role": "BAT",
         "recent": [
-          {
-            "date": "2026-06-20",
-            "proj": 3.56,
-            "actual": 5,
-            "err": 1.44
-          },
           {
             "date": "2026-06-17",
             "proj": 3.83,
@@ -36857,12 +37456,6 @@
         "role": "BAT",
         "recent": [
           {
-            "date": "2026-06-20",
-            "proj": 7.4,
-            "actual": 8,
-            "err": 0.6
-          },
-          {
             "date": "2026-06-23",
             "proj": 6.85,
             "actual": 4,
@@ -36947,12 +37540,6 @@
         "role": "BAT",
         "recent": [
           {
-            "date": "2026-06-20",
-            "proj": 5.63,
-            "actual": 0,
-            "err": -5.63
-          },
-          {
             "date": "2026-06-23",
             "proj": 6.39,
             "actual": 25,
@@ -36963,6 +37550,12 @@
             "proj": 6,
             "actual": 2,
             "err": -4
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 5.85,
+            "actual": 9,
+            "err": 3.15
           }
         ]
       },
@@ -37109,12 +37702,6 @@
         "role": "BAT",
         "recent": [
           {
-            "date": "2026-06-20",
-            "proj": 4.19,
-            "actual": 27,
-            "err": 22.81
-          },
-          {
             "date": "2026-06-30",
             "proj": 3.8,
             "actual": 9,
@@ -37173,6 +37760,12 @@
             "proj": 7.75,
             "actual": 2,
             "err": -5.75
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 6.57,
+            "actual": 12,
+            "err": 5.43
           }
         ]
       },
@@ -37264,12 +37857,6 @@
         "name": "Joey Cantillo",
         "role": "PIT",
         "recent": [
-          {
-            "date": "2026-06-20",
-            "proj": 10.64,
-            "actual": 35,
-            "err": 24.36
-          },
           {
             "date": "2026-06-26",
             "proj": 13.55,
@@ -37593,6 +38180,12 @@
             "proj": 17.5,
             "actual": 35.3,
             "err": 17.8
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 17.29,
+            "actual": 25.1,
+            "err": 7.81
           }
         ]
       },
@@ -37600,12 +38193,6 @@
         "name": "Jose Altuve",
         "role": "BAT",
         "recent": [
-          {
-            "date": "2026-06-20",
-            "proj": 6.87,
-            "actual": 6,
-            "err": -0.87
-          },
           {
             "date": "2026-06-19",
             "proj": 7.45,
@@ -37713,6 +38300,12 @@
             "proj": 7.49,
             "actual": 2,
             "err": -5.49
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 7.45,
+            "actual": 2,
+            "err": -5.45
           }
         ]
       },
@@ -37786,12 +38379,6 @@
         "name": "Denzer Guzman",
         "role": "BAT",
         "recent": [
-          {
-            "date": "2026-06-20",
-            "proj": 5.61,
-            "actual": 16,
-            "err": 10.39
-          },
           {
             "date": "2026-06-19",
             "proj": 4.65,
@@ -38079,6 +38666,12 @@
             "proj": 6.64,
             "actual": 5,
             "err": -1.64
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 9.42,
+            "actual": 0,
+            "err": -9.42
           }
         ]
       },
@@ -38181,6 +38774,12 @@
             "proj": 7.4,
             "actual": 8,
             "err": 0.6
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 9.93,
+            "actual": 0,
+            "err": -9.93
           }
         ]
       },
@@ -38241,6 +38840,12 @@
             "proj": 4.32,
             "actual": 6,
             "err": 1.68
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 5.45,
+            "actual": 3,
+            "err": -2.45
           }
         ]
       },
@@ -38403,6 +39008,12 @@
             "proj": 6.99,
             "actual": 4,
             "err": -2.99
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 8.23,
+            "actual": 0,
+            "err": -8.23
           }
         ]
       },
@@ -38410,12 +39021,6 @@
         "name": "Francisco Alvarez",
         "role": "BAT",
         "recent": [
-          {
-            "date": "2026-06-20",
-            "proj": 4.93,
-            "actual": 3,
-            "err": -1.93
-          },
           {
             "date": "2026-06-18",
             "proj": 7.13,
@@ -38499,6 +39104,12 @@
             "proj": 6.2,
             "actual": 6,
             "err": -0.2
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 5.72,
+            "actual": 2,
+            "err": -3.72
           }
         ]
       },
@@ -38673,6 +39284,12 @@
             "proj": 5.47,
             "actual": 4,
             "err": -1.47
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 5.5,
+            "actual": 0,
+            "err": -5.5
           }
         ]
       },
@@ -38771,12 +39388,6 @@
         "role": "BAT",
         "recent": [
           {
-            "date": "2026-06-20",
-            "proj": 5.11,
-            "actual": 7,
-            "err": 1.89
-          },
-          {
             "date": "2026-06-19",
             "proj": 5.69,
             "actual": 7,
@@ -38871,6 +39482,12 @@
             "proj": 6.89,
             "actual": 0,
             "err": -6.89
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 7.15,
+            "actual": 13,
+            "err": 5.85
           }
         ]
       },
@@ -39069,6 +39686,12 @@
             "proj": 5.43,
             "actual": 3,
             "err": -2.43
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 4.27,
+            "actual": 0,
+            "err": -4.27
           }
         ]
       },
@@ -39135,6 +39758,12 @@
             "proj": 6.02,
             "actual": 10,
             "err": 3.98
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 6.14,
+            "actual": 8,
+            "err": 1.86
           }
         ]
       },
@@ -39389,12 +40018,6 @@
         "role": "BAT",
         "recent": [
           {
-            "date": "2026-06-20",
-            "proj": 8.13,
-            "actual": 3,
-            "err": -5.13
-          },
-          {
             "date": "2026-06-19",
             "proj": 8.34,
             "actual": 23,
@@ -39489,6 +40112,12 @@
             "proj": 7.53,
             "actual": 7,
             "err": -0.53
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 7.41,
+            "actual": 5,
+            "err": -2.41
           }
         ]
       },
@@ -39585,6 +40214,12 @@
             "proj": 18.62,
             "actual": 17.95,
             "err": -0.67
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 18.15,
+            "actual": 8.45,
+            "err": -9.7
           }
         ]
       },
@@ -39622,12 +40257,6 @@
         "name": "Cal Raleigh",
         "role": "BAT",
         "recent": [
-          {
-            "date": "2026-06-20",
-            "proj": 7.78,
-            "actual": 5,
-            "err": -2.78
-          },
           {
             "date": "2026-06-19",
             "proj": 6.62,
@@ -39741,6 +40370,12 @@
             "proj": 6.47,
             "actual": 5,
             "err": -1.47
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 7.63,
+            "actual": 0,
+            "err": -7.63
           }
         ]
       },
@@ -39863,12 +40498,6 @@
         "role": "BAT",
         "recent": [
           {
-            "date": "2026-06-20",
-            "proj": 5.62,
-            "actual": 5,
-            "err": -0.62
-          },
-          {
             "date": "2026-06-19",
             "proj": 6.26,
             "actual": 5,
@@ -39945,6 +40574,12 @@
             "proj": 5.43,
             "actual": 0,
             "err": -5.43
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 5.63,
+            "actual": 2,
+            "err": -3.63
           }
         ]
       },
@@ -40035,6 +40670,12 @@
             "proj": 6.47,
             "actual": 14,
             "err": 7.53
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 4.72,
+            "actual": 0,
+            "err": -4.72
           }
         ]
       },
@@ -40185,6 +40826,12 @@
             "proj": 6.29,
             "actual": 3,
             "err": -3.29
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 6.8,
+            "actual": 3,
+            "err": -3.8
           }
         ]
       },
@@ -40275,6 +40922,12 @@
             "proj": 8.94,
             "actual": 5,
             "err": -3.94
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 7.88,
+            "actual": 12,
+            "err": 4.12
           }
         ]
       },
@@ -40305,6 +40958,12 @@
             "proj": 5.03,
             "actual": 2,
             "err": -3.03
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 4.64,
+            "actual": 14,
+            "err": 9.36
           }
         ]
       },
@@ -40389,6 +41048,12 @@
             "proj": 9.21,
             "actual": 0.35,
             "err": -8.86
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 8.73,
+            "actual": 14.75,
+            "err": 6.02
           }
         ]
       },
@@ -40467,6 +41132,12 @@
             "proj": 6.27,
             "actual": 12,
             "err": 5.73
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 4.43,
+            "actual": 0,
+            "err": -4.43
           }
         ]
       },
@@ -40557,6 +41228,12 @@
             "proj": 11.28,
             "actual": 29.95,
             "err": 18.67
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 12.53,
+            "actual": 17.3,
+            "err": 4.77
           }
         ]
       },
@@ -40564,12 +41241,6 @@
         "name": "Kahlil Watson",
         "role": "BAT",
         "recent": [
-          {
-            "date": "2026-06-20",
-            "proj": 3.96,
-            "actual": 0,
-            "err": -3.96
-          },
           {
             "date": "2026-06-19",
             "proj": 3.14,
@@ -40618,12 +41289,6 @@
         "name": "Tommy Edman",
         "role": "BAT",
         "recent": [
-          {
-            "date": "2026-06-20",
-            "proj": 6.65,
-            "actual": 6,
-            "err": -0.65
-          },
           {
             "date": "2026-06-19",
             "proj": 6.4,
@@ -40731,6 +41396,12 @@
             "proj": 6.78,
             "actual": 5,
             "err": -1.78
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 6.36,
+            "actual": 3,
+            "err": -3.36
           }
         ]
       },
@@ -40794,28 +41465,10 @@
           }
         ]
       },
-      "cristopher sánchez|PIT": {
-        "name": "Cristopher Sánchez",
-        "role": "PIT",
-        "recent": [
-          {
-            "date": "2026-06-20",
-            "proj": 17.44,
-            "actual": 21.9,
-            "err": 4.46
-          }
-        ]
-      },
       "anthony seigler|BAT": {
         "name": "Anthony Seigler",
         "role": "BAT",
         "recent": [
-          {
-            "date": "2026-06-20",
-            "proj": 5.82,
-            "actual": 5,
-            "err": -0.82
-          },
           {
             "date": "2026-06-23",
             "proj": 3.23,
@@ -40895,12 +41548,6 @@
         "role": "BAT",
         "recent": [
           {
-            "date": "2026-06-20",
-            "proj": 4.1,
-            "actual": 2,
-            "err": -2.1
-          },
-          {
             "date": "2026-06-23",
             "proj": 9.8,
             "actual": 28,
@@ -40912,12 +41559,6 @@
         "name": "Eric Wagaman",
         "role": "BAT",
         "recent": [
-          {
-            "date": "2026-06-20",
-            "proj": 5.79,
-            "actual": 2,
-            "err": -3.79
-          },
           {
             "date": "2026-06-24",
             "proj": 5.58,
@@ -40943,12 +41584,6 @@
         "role": "PIT",
         "recent": [
           {
-            "date": "2026-06-20",
-            "proj": 8.53,
-            "actual": 24.25,
-            "err": 15.72
-          },
-          {
             "date": "2026-07-02",
             "proj": 12.81,
             "actual": 18.55,
@@ -40960,12 +41595,6 @@
         "name": "Gabriel Rincones Jr.",
         "role": "BAT",
         "recent": [
-          {
-            "date": "2026-06-20",
-            "proj": 3.68,
-            "actual": 0,
-            "err": -3.68
-          },
           {
             "date": "2026-06-25",
             "proj": 4.14,
@@ -41409,6 +42038,12 @@
             "proj": 8.13,
             "actual": 26,
             "err": 17.87
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 7.08,
+            "actual": 5,
+            "err": -2.08
           }
         ]
       },
@@ -42003,6 +42638,12 @@
             "proj": 7.43,
             "actual": 0,
             "err": -7.43
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 6.56,
+            "actual": 0,
+            "err": -6.56
           }
         ]
       },
@@ -42129,6 +42770,12 @@
             "proj": 5.64,
             "actual": 3,
             "err": -2.64
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 4.35,
+            "actual": 9,
+            "err": 4.65
           }
         ]
       },
@@ -42351,6 +42998,12 @@
             "proj": 18.61,
             "actual": 25.55,
             "err": 6.94
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 18.11,
+            "actual": 18.85,
+            "err": 0.74
           }
         ]
       },
@@ -42483,6 +43136,12 @@
             "proj": 5.29,
             "actual": 2,
             "err": -3.29
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 5.34,
+            "actual": 2,
+            "err": -3.34
           }
         ]
       },
@@ -42531,6 +43190,12 @@
             "proj": 4.72,
             "actual": 0,
             "err": -4.72
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 4.15,
+            "actual": 15,
+            "err": 10.85
           }
         ]
       },
@@ -42633,6 +43298,12 @@
             "proj": 4.44,
             "actual": 3,
             "err": -1.44
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 3.94,
+            "actual": 7,
+            "err": 3.06
           }
         ]
       },
@@ -42777,6 +43448,12 @@
             "proj": 4.69,
             "actual": 4,
             "err": -0.69
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 4.33,
+            "actual": 0,
+            "err": -4.33
           }
         ]
       },
@@ -42855,6 +43532,12 @@
             "proj": 7.17,
             "actual": 20,
             "err": 12.83
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 8.01,
+            "actual": 5,
+            "err": -3.01
           }
         ]
       },
@@ -42879,6 +43562,12 @@
             "proj": 15.01,
             "actual": 15.25,
             "err": 0.24
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 14.12,
+            "actual": 10.9,
+            "err": -3.22
           }
         ]
       },
@@ -42951,6 +43640,12 @@
             "proj": 7.16,
             "actual": 9,
             "err": 1.84
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 7.27,
+            "actual": 5,
+            "err": -2.27
           }
         ]
       },
@@ -42963,6 +43658,12 @@
             "proj": 5.52,
             "actual": 27,
             "err": 21.48
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 6.57,
+            "actual": 25,
+            "err": 18.43
           }
         ]
       },
@@ -43023,6 +43724,12 @@
             "proj": 6.01,
             "actual": 0,
             "err": -6.01
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 4.6,
+            "actual": 28,
+            "err": 23.4
           }
         ]
       },
@@ -43059,6 +43766,12 @@
             "proj": 6.16,
             "actual": 23,
             "err": 16.84
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 6.7,
+            "actual": 3,
+            "err": -3.7
           }
         ]
       },
@@ -43119,6 +43832,12 @@
             "proj": 4.84,
             "actual": 2,
             "err": -2.84
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 4.27,
+            "actual": 0,
+            "err": -4.27
           }
         ]
       },
@@ -43227,6 +43946,12 @@
             "proj": 5.93,
             "actual": 5,
             "err": -0.93
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 5.25,
+            "actual": 0,
+            "err": -5.25
           }
         ]
       },
@@ -43296,6 +44021,12 @@
           },
           {
             "date": "2026-07-29",
+            "proj": 3.93,
+            "actual": 0,
+            "err": -3.93
+          },
+          {
+            "date": "2026-08-11",
             "proj": 3.93,
             "actual": 0,
             "err": -3.93
@@ -43395,6 +44126,12 @@
             "proj": 4.55,
             "actual": 3,
             "err": -1.55
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 4.95,
+            "actual": 5,
+            "err": 0.05
           }
         ]
       },
@@ -43695,6 +44432,12 @@
             "proj": 6.37,
             "actual": 5,
             "err": -1.37
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 4.02,
+            "actual": 7,
+            "err": 2.98
           }
         ]
       },
@@ -43755,6 +44498,12 @@
             "proj": 3.39,
             "actual": 0,
             "err": -3.39
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 4.88,
+            "actual": 2,
+            "err": -2.88
           }
         ]
       },
@@ -43791,6 +44540,12 @@
             "proj": 8.71,
             "actual": 13.65,
             "err": 4.94
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 7.27,
+            "actual": -5.8,
+            "err": -13.07
           }
         ]
       },
@@ -43929,6 +44684,12 @@
             "proj": 6.64,
             "actual": 15,
             "err": 8.36
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 6.71,
+            "actual": 14,
+            "err": 7.29
           }
         ]
       },
@@ -43941,6 +44702,12 @@
             "proj": 10.68,
             "actual": -5.1,
             "err": -15.78
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 8.35,
+            "actual": 13.95,
+            "err": 5.6
           }
         ]
       },
@@ -43965,6 +44732,12 @@
             "proj": 4.56,
             "actual": 0,
             "err": -4.56
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 5.12,
+            "actual": 5,
+            "err": -0.12
           }
         ]
       },
@@ -43983,6 +44756,12 @@
             "proj": 9.85,
             "actual": 35.35,
             "err": 25.5
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 14.18,
+            "actual": 14.5,
+            "err": 0.32
           }
         ]
       },
@@ -44139,6 +44918,12 @@
             "proj": 5.04,
             "actual": 7,
             "err": 1.96
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 7.88,
+            "actual": 0,
+            "err": -7.88
           }
         ]
       },
@@ -44187,6 +44972,12 @@
             "proj": 5.74,
             "actual": 3,
             "err": -2.74
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 4.59,
+            "actual": 6,
+            "err": 1.41
           }
         ]
       },
@@ -44253,6 +45044,12 @@
             "proj": 3.53,
             "actual": 16,
             "err": 12.47
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 4.02,
+            "actual": 0,
+            "err": -4.02
           }
         ]
       },
@@ -44277,6 +45074,12 @@
             "proj": 5.01,
             "actual": 2,
             "err": -3.01
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 6.08,
+            "actual": 5,
+            "err": -1.08
           }
         ]
       },
@@ -44289,6 +45092,12 @@
             "proj": 4.4,
             "actual": 0,
             "err": -4.4
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 4.13,
+            "actual": 0,
+            "err": -4.13
           }
         ]
       },
@@ -44319,6 +45128,12 @@
             "proj": 5.88,
             "actual": 3,
             "err": -2.88
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 5.12,
+            "actual": 3,
+            "err": -2.12
           }
         ]
       },
@@ -44385,6 +45200,12 @@
             "proj": 4.65,
             "actual": 0,
             "err": -4.65
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 5.21,
+            "actual": 3,
+            "err": -2.21
           }
         ]
       },
@@ -44505,6 +45326,12 @@
             "proj": 10.55,
             "actual": 3.9,
             "err": -6.65
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 12.81,
+            "actual": 6.1,
+            "err": -6.71
           }
         ]
       },
@@ -44673,6 +45500,12 @@
             "proj": 4.06,
             "actual": 2,
             "err": -2.06
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 3.81,
+            "actual": 3,
+            "err": -0.81
           }
         ]
       },
@@ -44763,6 +45596,12 @@
             "proj": 5.45,
             "actual": 3,
             "err": -2.45
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 5.27,
+            "actual": 12,
+            "err": 6.73
           }
         ]
       },
@@ -44835,6 +45674,12 @@
             "proj": 4.05,
             "actual": 16,
             "err": 11.95
+          },
+          {
+            "date": "2026-08-11",
+            "proj": 5.46,
+            "actual": 4,
+            "err": -1.46
           }
         ]
       },
@@ -44849,8 +45694,80 @@
             "err": -1.82
           }
         ]
+      },
+      "blake snell|PIT": {
+        "name": "Blake Snell",
+        "role": "PIT",
+        "recent": [
+          {
+            "date": "2026-08-11",
+            "proj": 14.46,
+            "actual": 29.1,
+            "err": 14.64
+          }
+        ]
+      },
+      "jihwan bae|BAT": {
+        "name": "Jihwan Bae",
+        "role": "BAT",
+        "recent": [
+          {
+            "date": "2026-08-11",
+            "proj": 4.06,
+            "actual": 2,
+            "err": -2.06
+          }
+        ]
+      },
+      "cody bradford|PIT": {
+        "name": "Cody Bradford",
+        "role": "PIT",
+        "recent": [
+          {
+            "date": "2026-08-11",
+            "proj": 13.36,
+            "actual": 7.55,
+            "err": -5.81
+          }
+        ]
+      },
+      "christian franklin|BAT": {
+        "name": "Christian Franklin",
+        "role": "BAT",
+        "recent": [
+          {
+            "date": "2026-08-11",
+            "proj": 3.88,
+            "actual": 0,
+            "err": -3.88
+          }
+        ]
+      },
+      "hector rodriguez|BAT": {
+        "name": "Hector Rodriguez",
+        "role": "BAT",
+        "recent": [
+          {
+            "date": "2026-08-11",
+            "proj": 4.7,
+            "actual": 0,
+            "err": -4.7
+          }
+        ]
+      },
+      "austin hays|BAT": {
+        "name": "Austin Hays",
+        "role": "BAT",
+        "recent": [
+          {
+            "date": "2026-08-11",
+            "proj": 5.7,
+            "actual": 12,
+            "err": 6.3
+          }
+        ]
       }
     },
-    "lastUpdated": "2026-08-11T12:40:15.989Z"
+    "lastUpdated": "2026-08-12T12:41:00.073Z"
   }
 }
