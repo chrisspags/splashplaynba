@@ -3,7 +3,7 @@
   "builderVersion": "nfl-recap-core-v3",
   "season": 2026,
   "week": 4,
-  "builtAt": "2026-10-06T19:30:44.040Z",
+  "builtAt": "2026-10-06T19:31:23.876Z",
   "games": [
     {
       "id": "401872964",
@@ -741,6 +741,28 @@
             "recEpaPerTarget": null,
             "rushEpaPerCarry": 0.04
           },
+          "ngs": {
+            "passing": {
+              "avg_time_to_throw": 2.50751515151515,
+              "avg_completed_air_yards": 3.43791666666667,
+              "avg_intended_air_yards": 6.86060606060606,
+              "avg_air_yards_differential": -3.42268939393939,
+              "aggressiveness": 18.1818181818182,
+              "max_completed_air_distance": 42.5736596970474,
+              "avg_air_yards_to_sticks": -1.77575757575758,
+              "attempts": 33,
+              "pass_yards": 268,
+              "pass_touchdowns": 1,
+              "interceptions": 1,
+              "passer_rating": 94.0025252525253,
+              "completions": 24,
+              "completion_percentage": 72.7272727272727,
+              "expected_completion_percentage": 72.2133333333333,
+              "completion_percentage_above_expectation": 0.513939393939389,
+              "avg_air_distance": 20.5332325061033,
+              "max_air_distance": 54.0632860636495
+            }
+          },
           "pfr": {
             "pass": {
               "passing_drops": 0,
@@ -769,28 +791,6 @@
               "rushing_broken_tackles": 0,
               "receiving_broken_tackles": null,
               "via": "name"
-            }
-          },
-          "ngs": {
-            "passing": {
-              "avg_time_to_throw": 2.50751515151515,
-              "avg_completed_air_yards": 3.43791666666667,
-              "avg_intended_air_yards": 6.86060606060606,
-              "avg_air_yards_differential": -3.42268939393939,
-              "aggressiveness": 18.1818181818182,
-              "max_completed_air_distance": 42.5736596970474,
-              "avg_air_yards_to_sticks": -1.77575757575758,
-              "attempts": 33,
-              "pass_yards": 268,
-              "pass_touchdowns": 1,
-              "interceptions": 1,
-              "passer_rating": 94.0025252525253,
-              "completions": 24,
-              "completion_percentage": 72.7272727272727,
-              "expected_completion_percentage": 72.2133333333333,
-              "completion_percentage_above_expectation": 0.513939393939389,
-              "avg_air_distance": 20.5332325061033,
-              "max_air_distance": 54.0632860636495
             }
           }
         },
@@ -2235,26 +2235,6 @@
             "recEpaPerTarget": null,
             "rushEpaPerCarry": -0.01
           },
-          "pfr": {
-            "pass": {
-              "passing_drops": 0,
-              "passing_drop_pct": 0,
-              "receiving_drop": null,
-              "receiving_drop_pct": null,
-              "passing_bad_throws": 10,
-              "passing_bad_throw_pct": 0.256,
-              "times_sacked": 5,
-              "times_blitzed": 12,
-              "times_hurried": 0,
-              "times_hit": 4,
-              "times_pressured": 9,
-              "times_pressured_pct": 0.2,
-              "def_times_blitzed": null,
-              "def_times_hurried": null,
-              "def_times_hitqb": null,
-              "via": "name"
-            }
-          },
           "ngs": {
             "passing": {
               "avg_time_to_throw": 2.81135,
@@ -2275,6 +2255,26 @@
               "completion_percentage_above_expectation": -5.64,
               "avg_air_distance": 22.9871538982856,
               "max_air_distance": 55.4894728754923
+            }
+          },
+          "pfr": {
+            "pass": {
+              "passing_drops": 0,
+              "passing_drop_pct": 0,
+              "receiving_drop": null,
+              "receiving_drop_pct": null,
+              "passing_bad_throws": 10,
+              "passing_bad_throw_pct": 0.256,
+              "times_sacked": 5,
+              "times_blitzed": 12,
+              "times_hurried": 0,
+              "times_hit": 4,
+              "times_pressured": 9,
+              "times_pressured_pct": 0.2,
+              "def_times_blitzed": null,
+              "def_times_hurried": null,
+              "def_times_hitqb": null,
+              "via": "name"
             }
           }
         },
@@ -48211,15 +48211,14 @@
         "group": "passing",
         "url": "https://github.com/nflverse/nflverse-data/releases/download/nextgen_stats/ngs_passing.csv.gz",
         "qualifiedSubset": true,
-        "status": "retained",
+        "status": "loaded",
         "rows": 32,
         "matched": 32,
         "unmatched": 0,
         "ambiguous": 0,
         "conflicts": 0,
         "collisions": 0,
-        "noId": 0,
-        "retainedPlayers": 32
+        "noId": 0
       },
       "ngs_receiving": {
         "provider": "ngs",
@@ -48309,72 +48308,73 @@
   },
   "sources": [
     {
-      "name": "snaps",
-      "url": "https://github.com/nflverse/nflverse-data/releases/download/snap_counts/snap_counts_2026.csv.gz",
-      "checkedAt": "2026-10-06T19:30:36.045Z",
-      "durationMs": 497
+      "name": "pfr_pass",
+      "url": "https://github.com/nflverse/nflverse-data/releases/download/pfr_advstats/advstats_week_pass_2026.csv",
+      "checkedAt": "2026-10-06T19:31:16.757Z",
+      "durationMs": 219
     },
     {
       "name": "pfr_rush",
       "url": "https://github.com/nflverse/nflverse-data/releases/download/pfr_advstats/advstats_week_rush_2026.csv",
-      "checkedAt": "2026-10-06T19:30:36.218Z",
-      "durationMs": 501
-    },
-    {
-      "name": "rosters",
-      "url": "https://github.com/nflverse/nflverse-data/releases/download/rosters/roster_2026.csv.gz",
-      "checkedAt": "2026-10-06T19:30:36.299Z",
-      "durationMs": 742
-    },
-    {
-      "name": "stats",
-      "url": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2026.csv.gz",
-      "checkedAt": "2026-10-06T19:30:36.477Z",
-      "durationMs": 1580
-    },
-    {
-      "name": "pfr_def",
-      "url": "https://github.com/nflverse/nflverse-data/releases/download/pfr_advstats/advstats_week_def_2026.csv",
-      "checkedAt": "2026-10-06T19:30:37.261Z",
-      "durationMs": 1545
-    },
-    {
-      "name": "pfr_pass",
-      "url": "https://github.com/nflverse/nflverse-data/releases/download/pfr_advstats/advstats_week_pass_2026.csv",
-      "checkedAt": "2026-10-06T19:30:37.360Z",
-      "durationMs": 1661
+      "checkedAt": "2026-10-06T19:31:16.799Z",
+      "durationMs": 276
     },
     {
       "name": "pfr_rec",
       "url": "https://github.com/nflverse/nflverse-data/releases/download/pfr_advstats/advstats_week_rec_2026.csv",
-      "checkedAt": "2026-10-06T19:30:37.404Z",
-      "durationMs": 1717
+      "checkedAt": "2026-10-06T19:31:16.820Z",
+      "durationMs": 283
     },
     {
-      "name": "pbp",
-      "url": "https://github.com/nflverse/nflverse-data/releases/download/pbp/play_by_play_2026.csv.gz",
-      "checkedAt": "2026-10-06T19:30:37.797Z",
-      "durationMs": 7632
+      "name": "ngs_passing",
+      "url": "https://github.com/nflverse/nflverse-data/releases/download/nextgen_stats/ngs_passing.csv.gz",
+      "checkedAt": "2026-10-06T19:31:16.858Z",
+      "durationMs": 410
     },
     {
       "name": "ngs_rushing",
       "url": "https://github.com/nflverse/nflverse-data/releases/download/nextgen_stats/ngs_rushing.csv.gz",
-      "checkedAt": "2026-10-06T19:30:43.340Z",
-      "durationMs": 7681
+      "checkedAt": "2026-10-06T19:31:16.967Z",
+      "durationMs": 488
     },
     {
       "name": "ngs_receiving",
       "url": "https://github.com/nflverse/nflverse-data/releases/download/nextgen_stats/ngs_receiving.csv.gz",
-      "checkedAt": "2026-10-06T19:30:43.419Z",
-      "durationMs": 7863
-    }
-  ],
-  "sourceErrors": [
+      "checkedAt": "2026-10-06T19:31:17.060Z",
+      "durationMs": 647
+    },
     {
-      "source": "ngs_passing",
-      "message": "The operation was aborted due to timeout"
+      "name": "stats",
+      "url": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2026.csv.gz",
+      "checkedAt": "2026-10-06T19:31:17.197Z",
+      "durationMs": 1132
+    },
+    {
+      "name": "rosters",
+      "url": "https://github.com/nflverse/nflverse-data/releases/download/rosters/roster_2026.csv.gz",
+      "checkedAt": "2026-10-06T19:31:17.666Z",
+      "durationMs": 1188
+    },
+    {
+      "name": "snaps",
+      "url": "https://github.com/nflverse/nflverse-data/releases/download/snap_counts/snap_counts_2026.csv.gz",
+      "checkedAt": "2026-10-06T19:31:17.739Z",
+      "durationMs": 1508
+    },
+    {
+      "name": "pbp",
+      "url": "https://github.com/nflverse/nflverse-data/releases/download/pbp/play_by_play_2026.csv.gz",
+      "checkedAt": "2026-10-06T19:31:18.236Z",
+      "durationMs": 6951
+    },
+    {
+      "name": "pfr_def",
+      "url": "https://github.com/nflverse/nflverse-data/releases/download/pfr_advstats/advstats_week_def_2026.csv",
+      "checkedAt": "2026-10-06T19:31:23.478Z",
+      "durationMs": 6945
     }
   ],
+  "sourceErrors": [],
   "context": {
     "teams": [
       {
@@ -59859,6 +59859,6 @@
     "lookbackGames": 3,
     "minimumGames": 2
   },
-  "checkedAt": "2026-10-06T19:30:52.740Z",
-  "publishedAt": "2026-10-06T19:30:53.599Z"
+  "checkedAt": "2026-10-06T19:31:31.541Z",
+  "publishedAt": "2026-10-06T19:31:31.978Z"
 }
