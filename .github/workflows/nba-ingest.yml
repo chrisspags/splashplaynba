@@ -34,6 +34,12 @@ jobs:
           path: .nba-cache
           key: nba-cache-${{ env.SEASON }}-${{ github.run_id }}
           restore-keys: nba-cache-${{ env.SEASON }}-
+      # The projection step's one dependency, pinned to the version it was reviewed on, by the hash PyPI publishes for this wheel.
+      # If it cannot be installed the run goes on: the projection step says so in the status file and the history is still written.
+      - name: Install numpy, pinned
+        run: |
+          printf '%s\n' 'numpy==2.3.5 --hash=sha256:0d8163f43acde9a73c2a33605353a4f1bc4798745a8b1d73183b28e5b435ae28' > "$RUNNER_TEMP/nba-requirements.txt"
+          python3 -m pip install --disable-pip-version-check --no-deps --only-binary=:all: --require-hashes -r "$RUNNER_TEMP/nba-requirements.txt" || echo "::warning::numpy 2.3.5 could not be installed; the projection step will report it"
       - name: Ingest
         run: python3 tools/nba-ingest/run.py --season "$SEASON" --cache .nba-cache --out . --outputs-file "$RUNNER_TEMP/nba-outputs.txt"
       - name: Commit only the declared outputs
