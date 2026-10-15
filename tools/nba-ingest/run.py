@@ -27,8 +27,13 @@ def steps(a):
         # builds that on an admin's press). Soft: a date that cannot be projected is reported under "projection", not fatal.
         # The news it was handed (the league's report, the lineups file, DraftKings' prop prices) is kept in nba-public-record/<date>/:
         # nba-record/ is the PRIVATE repo's (Stokastic's numbers live there, 10/14), and this job never writes it.
+        # Orders 080/084: it also writes nba-model-inputs.json, the saved stats the page's projection step (assets/nba-model.js) reads,
+        # from its own reads of the public history only, and runs the model check on every date before anything is published: on a
+        # disagreement, or when it cannot say, it publishes no projection and no saved stats. Order 085: only the projections stop. It
+        # writes a stop entry for the date in the status file and exits 0, so the run goes on (stats, minutes) and commits the history,
+        # tonight's slate and the status as on any night; the last good nba-proj/<date>.json stays as it was.
         {"script": "nba_project_step.py", "args": ["--repo", a.out, "--cache", a.cache],
-         "outputs": ["nba-proj", "nba-public-record", "nba-ingest-status.json"]},
+         "outputs": ["nba-proj", "nba-model-inputs.json", "nba-public-record", "nba-ingest-status.json"]},
         # Vale's stats step (10/13; Monty CLEAR at nba_stats.py 26355373c1f1 on nbalib.py 9863a35a5768), unpacked from the same
         # bundle: every number the Stats tab and the Matchups screens used to get from the Excel, one row a player by ESPN id, and
         # the substitution chain. Writes nba-stats.json and "stats" in the status file. Soft; never a thinner file.
