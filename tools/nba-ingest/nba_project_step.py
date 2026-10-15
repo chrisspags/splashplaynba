@@ -10,7 +10,9 @@ then, when the answer is a whole projection file for that date, publishes it as 
 What the step is handed, each press (Vale 10/13): the league's newest injury report, read by the step's own nba_injury.py fetch
 (at most eight header requests and two files, under its own name); the NBA's lineups file for the date, one plain read; and the
 minutes Chris typed for that slate date. Each is optional: when the league does not answer, or a file is not there, the step runs
-without it and the status file says which and why. Nothing is disguised and nothing is retried.
+without it and the status file says which and why. Nothing is disguised and nothing is retried. A file that is not there yet says
+so (order 086, Monty's A4): "injury report not posted yet (...)" when all eight stamps answer 403 and the fixed old report answers
+200 (a ninth header request), and "lineups file not posted yet for <date> (...)" on a 404 or a redirect that ends in no JSON.
 
 HIS TYPED MINUTES ARE PRIVATE (order 072; Chris 10/14: his edits are private, free numbers stay public). They live in the private
 repo (nba-typed-minutes/<date>.json), not in minutes-data.json any more. This job asks the site for them (nba-typed-for-job.js, at
@@ -19,7 +21,8 @@ folder (the workflow caches .nba-cache), hands it to the step and removes it. Th
 which or how many. What is published is the step's file less his typed fields and the notes that speak of them (public_copy): each
 row's minutes and points are the fit around what he typed, which is the product, and they stay.
 
-What it writes: nba-proj/<date>.json, its entry in the run's status file under "projection", and the night's record of the news it
+What it writes: nba-proj/<date>.json, nba-model-inputs.json (the saved stats the page's projection step reads, order 084), its
+entry in the run's status file under "projection", and the night's record of the news it
 was handed (Vale's DAILY-RECORD.md, item 3): nba-public-record/<date>/injury-<UTC time>.json, the league's report exactly as the reader
 answered it (or its "unavailable" answer with the reason), and lineups-<UTC time>.json, the lineups file as read (or that it was
 not read, and why). A new file each press, never one replaced. That folder is the PUBLIC repo's: nba-record/ is the private
@@ -35,9 +38,26 @@ points to 1e-6 of the step's and its published minutes exactly; and every hover 
 numbers, in a chain, to the cell. Otherwise the file is not published and the status says which row and which stat (or which field
 is missing), naming no row and no number when his typed minutes were in the check. No node, no check, no file.
 
-It is soft, like the tonight step in the job: a date that cannot be projected (numpy or node missing, the two past seasons not in
-the repo, the step failing, an answer that is not a projection file for that date, the chain check failing) writes no file for
-that date, says why in the status file, and the run's history and tonight files are still committed.
+THE MODEL CHECK (Vale's orders 080 and 084; SPEC-v3 section 3, "one copy of the math, enforced"): after the step answers and before
+the public copy is made, the step's nba_model_inputs.py writes the saved stats for that date (nba-model-inputs.json) from the step's
+own reads (the same repo as NBA_ROOT, the history the step has just parsed as NBA_CACHE) and is handed nothing else: no tonight
+file, no news, no props, no typed minutes. Then node runs the step's nba_model_check.js on the step's own file: the page's projection
+step (assets/nba-model.js, carried in the bundle beside nba-chain.js) on those saved stats and the files the step was handed must give
+it, every row and field, numbers to 1e-6, from the same night of stats. When it does not, or it cannot say, NOTHING is published (no
+nba-proj file for any date, no saved stats): the projections STOP. Order 085 (Monty's review of 084): only the projections stop. Each
+date gets a `stop` entry in the status file (whether the check failed or could not be checked, which check, which field; the row only
+on a night his minutes were not read; whether an earlier run's nba-proj/<date>.json is still there), a date held back by another
+date's stop says so, this step exits 0, and run.py goes on (stats, minutes): the run commits the history, tonight's slate and the
+status as on any night, and the last good nba-proj/<date>.json stays as it was. The Data tab and Build show the stop as one red line.
+"Could not be checked" (the check is not there, did not finish, gave no answer, exited 2, the saved stats could not be written, no node)
+is never a pass. The log says which check, which row and which field; on a night his minutes were read, which check and which field
+only (the log is public). When every date agrees, the dates' files are published and so is the saved stats file of the first of them,
+after a last guard: nothing in it outside its format, no key or string that speaks of typed minutes, no key that speaks of props or
+Stokastic.
+
+It is soft otherwise, like the tonight step in the job: a date that cannot be projected (numpy missing, the two past seasons not in
+the repo, the step failing, an answer that is not a projection file for that date, the chain check failing) writes no file for that
+date, says why in the status file, and the run's history and tonight files are still committed.
 
 The step keeps a parsed copy of the history in its scratch folder and reuses it when it is there, so the scratch folder is
 emptied before every run: a run always reads the history that is in the repo now.
@@ -79,6 +99,120 @@ def chain_check(out,stepdir,node,run=subprocess.run,edits=None):
     if not isinstance(d,dict):return False,{'why':'the chain check gave no answer'}
     return (r.returncode==0 and d.get('ok') is True),d
 
+INPUTS_FILE='nba-model-inputs.json'      # the saved stats (orders 080, 084), at the top of the repo, beside data.json's other inputs
+INPUTS_FORMAT='nba-model-inputs-v1'
+INPUTS_KEYS=('format','stats','season','seasons','players','teams','acc','plk','tmk','lgk','onoff','stints','benchPerMinute','benchLinePerMinute','ownFit')
+NOT_PUBLIC_KEY=re.compile(r'typed|prop|stok',re.I)     # what the saved stats never carry: his minutes, the props, Stokastic's numbers
+WRITER_NOT_GIVEN=('NBA_TYPED_URL','ACTIONS_ID_TOKEN_REQUEST_URL','ACTIONS_ID_TOKEN_REQUEST_TOKEN')   # it cannot ask the site for his minutes
+
+def saved_stats(date,repo,scratch,stepdir,hist,python=sys.executable,run=subprocess.run):
+    """(inputs file, stats file, None) or (None, None, why): the step's nba_model_inputs.py writes the saved stats for `date` and the
+    night of stats they are ({through, lastGame, games}) from the step's own reads: the repo as NBA_ROOT, the history the step has
+    just parsed as NBA_CACHE. It is handed nothing else (no tonight file, no news, no props, no typed minutes)."""
+    inp=os.path.join(scratch,'inputs-'+date+'.json');sta=os.path.join(scratch,'stats-'+date+'.json')
+    for f in (inp,sta):
+        if os.path.exists(f):os.remove(f)      # never a file an earlier run left
+    w=os.path.join(stepdir,'nba_model_inputs.py')
+    if not os.path.exists(w):return None,None,'the saved-stats writer is not in the step'
+    env={k:v for k,v in os.environ.items() if k not in WRITER_NOT_GIVEN};env.update(NBA_ROOT=os.path.abspath(repo),NBA_CACHE=hist)
+    try:r=run([python,w,'--out',inp,'--date',date,'--stats-out',sta],capture_output=True,text=True,timeout=900,env=env);why=None
+    except Exception as e:r=None;why='the saved-stats writer did not finish (%s)'%type(e).__name__
+    both=os.path.exists(inp) and os.path.exists(sta)
+    if r is not None and (r.returncode or not both):why='the saved-stats writer exited %s and wrote %s'%(r.returncode,'them' if both else 'not both files')
+    if why:
+        for f in (inp,sta):
+            if os.path.exists(f):os.remove(f)      # nothing half-written is left in the scratch folder
+        return None,None,why
+    return inp,sta,None
+
+def model_check(out,inputs,stats,tonight,handed,stepdir,node,run=subprocess.run):
+    """(ok, what it said): nba_model_check.js from the unpacked step (nba-model.js and nba-chain.js beside it, as the bundle carries
+    them) on the step's own file: the page's projection step on the saved stats and the files the step was handed, with the same flags
+    and team total, must give it, and from the same night of stats. Exit 0 with ok is a pass and exit 1 a disagreement, as the check
+    promises; anything else (not in the step, did not finish, no answer, exit 2 or any other code) could not be checked (`cannot`), never
+    a pass (order 085)."""
+    chk=os.path.join(stepdir,'nba_model_check.js')
+    if not os.path.exists(chk):return False,{'check':'load','why':'the model check is not in the step','cannot':True}
+    try:r=run([node,chk,'--step',out,'--inputs',inputs,'--stats',stats,'--tonight',tonight,*handed,'--team-minutes',TEAM_MINUTES],capture_output=True,text=True,timeout=300)
+    except Exception as e:return False,{'check':'run','why':'the model check did not finish (%s)'%type(e).__name__,'cannot':True}
+    try:d=json.loads((r.stdout or '').strip().splitlines()[-1])
+    except Exception:return False,{'check':'run','why':'the model check gave no answer (exit %s)'%r.returncode,'cannot':True}
+    if not isinstance(d,dict):return False,{'check':'run','why':'the model check gave no answer','cannot':True}
+    if r.returncode==0 and d.get('ok') is True:return True,d
+    if r.returncode==1 and d.get('ok') is False:return False,d
+    return False,dict(d,check=d.get('check') or 'run',cannot=True,exit=r.returncode,why=d.get('why') or None)
+
+def last_good(repo,date):
+    """Whether an earlier run's nba-proj/<date>.json is in the repo: the projections a stop leaves up (order 085)."""
+    return os.path.exists(os.path.join(repo,'nba-proj',date+'.json'))
+
+def split_at(at):
+    """(row or team, field) of a path the model check names: rows[9: A Name (BOS, ESPN 1)].chain.final.dk -> ('A Name (BOS, ESPN 1)',
+    'chain.final.dk'); stats.games -> (None, 'stats.games'). Any index left in the field is []."""
+    at=str(at or '');m=re.match(r'^(?:rows|teams)\[(?:\d+: )?([^\]]*)\]\.?',at)
+    rest=at[m.end():] if m else re.sub(r'^file\.','',at)
+    return (m.group(1) or None) if m else None,re.sub(r'\[[^\]]*\]','[]',rest) or None
+
+CANNOT_WORDS={'load':'it could not read its files or load the model','run':'it did not run to the end'}
+
+def stop_of(said,ty,repo,date):
+    """The date's stop entry for the status file (order 085), which the Data tab and Build turn into one red line: result "failed" (the
+    check ran and the page's model does not give the job's file) or "not checked" (it could not say, never a pass); the check; the field
+    (rows[].x as x); the row or team only on a night his minutes were NOT read (ty: his typed file), as the log names it; and lastGood:
+    an earlier run's nba-proj/<date>.json is still there. On a night his minutes were read a reason the check itself wrote is not
+    carried (it could name a file of his): the check's own words for what could not run stand in."""
+    s={'result':'not checked' if said.get('cannot') else 'failed','check':str(said.get('check') or 'run')}
+    bad=[b for b in (said.get('bad') or []) if isinstance(b,dict)]
+    if s['result']=='failed' and bad:
+        if ty:f=field_only(bad[0].get('at'));s['field']=f if f.startswith('a field') else split_at(f)[1]
+        else:
+            row,s['field']=split_at(bad[0].get('at'))
+            if row:s['row']=row
+    elif s['result']=='not checked':
+        w=said.get('why')
+        if 'exit' in said and not w:w='its answer and its exit code (%s) do not agree'%said['exit']
+        elif ty and 'exit' in said:w=CANNOT_WORDS.get(s['check'],'it could not run')
+        s['why']=str(w or 'no reason given')[:200]
+    elif not ty and said.get('why'):s['why']=str(said['why'])[:200]
+    s['lastGood']=last_good(repo,date)
+    return {k:v for k,v in s.items() if v is not None}
+
+def field_only(at):
+    """A path the model check names, without the row or team it is on (rows[9: A Name (BOS, ...)].min -> rows[].min): what a public
+    log may say on a night his minutes were read. A path that speaks of typed minutes, or a field the public copy does not carry
+    (CHAIN_MINUTES_PRIVATE, chain.final.min), is not named at all."""
+    p=re.sub(r'\[[^\]]*\]','[]',str(at or ''))
+    if TYPED_WORD.search(p) or re.search(r'\.chain\.minutes\.(%s)\b|\.chain\.final\.min\b'%'|'.join(CHAIN_MINUTES_PRIVATE),p):return 'a field the public file does not carry'
+    return p
+
+INPUTS_SHAPE={'stats':('through','lastGame','games','bySeason','onoffBefore','stintsSince','rule','signature'),'acc':('PL','TM','OP','LG'),
+              'onoff':('regs','players'),'stints':('ids','days','day','sec','on'),
+              'benchLinePerMinute':('PTS','TPM','TRB','AST','STL','BLK','TOV')}      # the members of stats, of each season's or team's entry, and the bench line (order 086)
+
+def inputs_trace(doc,own=None):
+    """Where the saved stats hold anything but the job's reads of the public history (order 084), by path: a member outside the format
+    (at the top, in stats, in each season's totals or team's on/off and stints, in the bench stand-in's line, or ownFit other than the
+    step's own_fit.json `own`), and at any depth a key or string that speaks of typed minutes or a key that speaks of props or
+    Stokastic. [] when there is none. Its numbers are the history's own and are not judged here: a typed number can equal a box
+    score's minutes by chance."""
+    if not isinstance(doc,dict):return ['the file is not an object']
+    hits=['.'+str(k) for k in doc if k not in INPUTS_KEYS]+['.%s (missing)'%k for k in INPUTS_KEYS if k not in doc]
+    if doc.get('format')!=INPUTS_FORMAT:hits.append('.format')
+    shape=lambda o,keys,path:hits.extend([path] if not isinstance(o,dict) else [path+'.'+str(k) for k in o if k not in keys]+[path+'.%s (missing)'%k for k in keys if k not in o])
+    shape(doc.get('stats'),INPUTS_SHAPE['stats'],'.stats'); shape(doc.get('benchLinePerMinute'),INPUTS_SHAPE['benchLinePerMinute'],'.benchLinePerMinute')
+    for m in ('acc','onoff','stints'):
+        for k,v in (doc.get(m) or {}).items() if isinstance(doc.get(m),dict) else [(None,None)]:shape(v,INPUTS_SHAPE[m],'.%s.%s'%(m,k))
+    if own is not None and doc.get('ownFit')!=own:hits.append('.ownFit (not the step\'s own_fit.json)')
+    def walk(o,path):
+        if isinstance(o,dict):
+            for k,v in o.items():
+                if NOT_PUBLIC_KEY.search(str(k)):hits.append(path+'.'+str(k))
+                walk(v,path+'.'+str(k))
+        elif isinstance(o,list):
+            for i,v in enumerate(o):walk(v,'%s[%d]'%(path,i))
+        elif isinstance(o,str) and TYPED_WORD.search(o):hits.append(path)
+    walk(doc,'');return hits
+
 def missing_history(repo):
     """What the model needs from the repo and is not there, as plain words; [] when it is all there."""
     out=[]
@@ -101,9 +235,22 @@ def wanted_dates(repo,date=None):
     return go,skip
 
 def plain_get(url,timeout=8):
-    """One plain request under the job's own name; no retry. Returns the parsed JSON or raises."""
+    """One plain request under the job's own name; no retry. Returns the parsed JSON or raises. An answer that is not JSON raises as
+    it always did, marked .moved when it came from another address than the one asked (a redirect; order 086, the lineups file)."""
     import urllib.request
-    with urllib.request.urlopen(urllib.request.Request(url,headers={'User-Agent':AGENT,'Accept':'application/json'}),timeout=timeout) as r:return json.loads(r.read())
+    with urllib.request.urlopen(urllib.request.Request(url,headers={'User-Agent':AGENT,'Accept':'application/json'}),timeout=timeout) as r:
+        b=r.read()
+        try:return json.loads(b)
+        except ValueError as e:e.moved=r.geturl()!=url;raise
+
+def not_posted(e,url):
+    """Order 086 (Monty's A4 of 10/15): the read failed because the file is not there yet, not because anything blocked it: HTTP 404,
+    or a redirect that ends in no JSON (the NBA sends a date with no lineups file on to its error page: measured 10/15, 2026-10-20
+    answered 302 to /error/, which ends in a 404 page; 2026-10-14, a game day, answered 200)."""
+    a=vars(e)       # instance attributes only: on Python 3.9 getattr on an HTTPError made without a body raises KeyError, not the default
+    code=a.get('code')
+    if code==404 or a.get('moved'):return True        # a 404, or an answer from another address that is not JSON
+    return code is not None and (a.get('url') or a.get('filename') or url)!=url      # an HTTP error at the end of a redirect: no JSON either
 
 def injury_file(scratch,run_step,python=sys.executable,run=subprocess.run):
     """(path or None, what to say). The step's own reader fetches the league's report; "unavailable" is an answer and is handed on."""
@@ -119,8 +266,9 @@ def lineups_file(date,scratch,get=plain_get):
     """(path or None, what to say). One plain read of the NBA's lineups file for the date."""
     out=os.path.join(scratch,'lineups-'+date+'.json')
     if os.path.exists(out):os.remove(out)
-    try:d=get(LINEUPS.format(date.replace('-','')))
-    except Exception as e:return None,'lineups file not read (%s)'%(str(e)[:80] or type(e).__name__)
+    url=LINEUPS.format(date.replace('-',''))
+    try:d=get(url)
+    except Exception as e:return None,('lineups file not posted yet for %s (the NBA posts it on game day)'%date if not_posted(e,url) else 'lineups file not read (%s)'%(str(e)[:80] or type(e).__name__))
     if not isinstance(d,dict) or not isinstance(d.get('games'),list):return None,'lineups file not read (not the file we know)'
     json.dump(d,open(out,'w'));return out,'read, %d game(s)'%len(d['games'])
 
@@ -263,13 +411,17 @@ def record_news(repo,date,stamp,inj_path,lu_path,lu_say,props_path=None,props_sa
         wrote.append(fn)
     return wrote
 
-def project(date,repo,scratch,run_step,python=sys.executable,run=subprocess.run,handed=(),node=None):
-    """Runs the step for one date. Returns the status entry; publishes nba-proj/<date>.json only for a whole answer."""
+def project(date,repo,scratch,run_step,python=sys.executable,run=subprocess.run,handed=(),node=None,ready=None):
+    """Runs the step for one date and returns the status entry. A whole answer that both checks agree with is left ready to publish
+    (ready[date] = (its public copy, the saved stats it was checked on), in scratch/ready); main() publishes them only when no date
+    stopped the run. An answer the model check does not agree with returns "stop"."""
     t0=time.time();tonight=os.path.join(repo,'nba-tonight',date+'.json');tmp=os.path.join(scratch,'out-'+date+'.json');ptmp=os.path.join(scratch,'pub-'+date+'.json')
+    if ready is None:ready={}
     if not os.path.exists(tonight):return {'date':date,'wrote':False,'why':'nba-tonight/%s.json is not in the repo'%date}
     for f in (tmp,ptmp):
         if os.path.exists(f):os.remove(f)
     hist=os.path.join(scratch,'history');shutil.rmtree(hist,ignore_errors=True)   # never a parsed history left by an earlier run
+    inp=sta=None
     try:
         r=run([python,run_step,'--tonight',tonight,'--out',tmp,*handed,'--team-minutes',TEAM_MINUTES],capture_output=True,text=True,timeout=900,env={**os.environ,'NBA_ROOT':os.path.abspath(repo),'NBA_CACHE':hist})
         if r.returncode:
@@ -280,8 +432,21 @@ def project(date,repo,scratch,run_step,python=sys.executable,run=subprocess.run,
         except Exception as e:return {'date':date,'wrote':False,'why':'the step wrote no readable file (%s)'%type(e).__name__}
         if not isinstance(doc,dict) or any(k not in doc for k in FORMAT_KEYS) or doc.get('date')!=date or not isinstance(doc.get('rows'),list) or not isinstance(doc.get('games'),list):
             return {'date':date,'wrote':False,'why':'the step answered with something that is not a projection file for %s'%date}
-        pub=public_copy(doc);rows=[x for x in pub['rows'] if isinstance(x,dict)]
         ty=handed[list(handed).index('--typed')+1] if '--typed' in handed else None
+        # THE MODEL CHECK (orders 080, 084): the page's projection step on the saved stats must give the step's own file, before any
+        # of it is made public. A date it does not agree with, or cannot say about, stops the projections (order 085: only them).
+        t1=time.time();stepdir=os.path.dirname(run_step);inp,sta,why=saved_stats(date,repo,scratch,stepdir,hist,python,run)
+        if why:return {'date':date,'wrote':False,'stop':dict(result='not checked',check='writer',why=why,lastGood=last_good(repo,date)),'why':'model check: the saved stats could not be written: '+why}
+        ok,said=model_check(tmp,inp,sta,tonight,handed,stepdir,node,run)
+        mc={'seconds':round(time.time()-t1,1),**{k:said.get(k) for k in ('rows','teams','fields','ms') if said.get(k) is not None}}
+        if not ok:
+            bad=[b for b in (said.get('bad') or []) if isinstance(b,dict)];stop=stop_of(said,ty,repo,date)
+            if stop['result']=='not checked':
+                return {'date':date,'wrote':False,'stop':stop,'why':'model check: %s: could not be checked: %s'%(stop['check'],stop['why']),'modelCheck':mc}
+            if ty:return {'date':date,'wrote':False,'stop':stop,'why':'model check: %s: a difference in %s (it ran with his typed minutes, so no row and no number is named here)'%(said.get('check') or 'failed',field_only(bad[0].get('at')) if bad else 'the file'),'modelCheck':mc}
+            return {'date':date,'wrote':False,'stop':stop,'why':'model check: %s: %s'%(said.get('check') or 'failed',str(said.get('why') or 'it did not agree')[:400]),'modelCheck':dict(mc,bad=[{k:b.get(k) for k in ('at','step','model')} for b in bad[:3]])}
+        mc['worst']=(said.get('worst') or {}).get('diff')
+        pub=public_copy(doc);rows=[x for x in pub['rows'] if isinstance(x,dict)]
         tr=typed_trace(pub) if ty else []      # a last guard on words, on a night his minutes were read (order 081): nothing published speaks of them
         if tr:return {'date':date,'wrote':False,'why':'the public copy still speaks of typed minutes in %d place(s), so it is not published'%len(tr)}
         # published as the step writes its file (json, indent 0), less his typed fields: the file a direct run of the step gives, without them.
@@ -292,15 +457,44 @@ def project(date,repo,scratch,run_step,python=sys.executable,run=subprocess.run,
             if ty:return {'date':date,'wrote':False,'why':'chain check: %s (it ran with his typed minutes, so no row or number is named here)'%str(said.get('kind') or 'it did not agree'),
                           'chainCheck':{k:said.get(k) for k in ('rows','checked') if said.get(k) is not None}}
             return {'date':date,'wrote':False,'why':'chain check: '+str(said.get('why') or 'failed')[:300],'chainCheck':{k:said.get(k) for k in ('rows','checked','bad','missing') if said.get(k) is not None}}
-        dst=os.path.join(repo,'nba-proj',date+'.json');os.makedirs(os.path.dirname(dst),exist_ok=True);shutil.copyfile(ptmp,dst)
+        rd=os.path.join(scratch,'ready');os.makedirs(rd,exist_ok=True);rp=os.path.join(rd,'proj-'+date+'.json');ri=os.path.join(rd,'inputs-'+date+'.json')
+        shutil.move(ptmp,rp);shutil.move(inp,ri);ready[date]=(rp,ri)      # published by main() when no date stops the run
         return {'date':date,'wrote':True,'games':len(pub['games']),'rows':len(rows),'pool15':sum(1 for x in rows if (x.get('proj') or 0)>=15),
-                'notes':len(pub.get('notes') or []),'seconds':round(time.time()-t0,1),
+                'notes':len(pub.get('notes') or []),'seconds':round(time.time()-t0,1),'modelCheck':mc,
                 'chainCheck':{'rows':said.get('rows'),'checked':said.get('checked'),'steps':said.get('steps'),'worst':(said.get('worst') or {}).get('diff')}}
     finally:
         # the parsed history is about 120 MB: never left behind for the workflow's cache to carry from run to run
         shutil.rmtree(hist,ignore_errors=True)
-        for f in (tmp,ptmp):
-            if os.path.exists(f):os.remove(f)
+        for f in (tmp,ptmp,inp,sta):
+            if f and os.path.exists(f):os.remove(f)
+
+def publish(repo,ready,entry,done,own=None):
+    """Publishes what project() left ready, when no date stopped the run: each date's public copy as nba-proj/<date>.json, and the saved
+    stats of the first of them as nba-model-inputs.json (after its last guard, inputs_trace; own: the step's own_fit.json). Returns why
+    the projections stopped, or None. A date that agreed but is held back by another date's stop gets a stop entry that says so (order
+    085: result "held", by which dates), so the Data tab and Build treat it as the slate's date too and never open another."""
+    stops=[e for e in done if e.get('stop')]
+    if not stops and ready:
+        first=min(ready);raw=open(ready[first][1],'rb').read()
+        try:tr=inputs_trace(json.loads(raw),own)
+        except Exception:tr=['the file is not JSON']
+        if tr:
+            entry['modelInputs']={'published':False,'why':'the saved stats hold something outside the public history in %d place(s), so nothing is published'%len(tr)}
+            e=[x for x in done if x.get('date')==first and x.get('wrote')][0]
+            e.update(wrote=False,stop=dict(result='failed',check='guard',why='the saved stats hold something outside the public history',lastGood=last_good(repo,first)),why='the saved stats\' last guard: '+entry['modelInputs']['why'])
+            stops=[e]
+    if stops:
+        by=[x['date'] for x in stops]
+        for e in done:
+            if e.get('wrote'):e.update(wrote=False,stop=dict(result='held',by=by,lastGood=last_good(repo,e['date'])),why='not published: the model check stopped the run (%s)'%', '.join(by))
+        return '; '.join('%s: %s'%(x['date'],x['why']) for x in stops)
+    for d,(rp,ri) in sorted(ready.items()):
+        dst=os.path.join(repo,'nba-proj',d+'.json');os.makedirs(os.path.dirname(dst),exist_ok=True);shutil.copyfile(rp,dst)
+    if ready:
+        st=json.loads(raw).get('stats') or {}
+        with open(os.path.join(repo,INPUTS_FILE),'wb') as f:f.write(raw)
+        entry['modelInputs']={'published':True,'date':first,'through':st.get('through'),'lastGame':st.get('lastGame'),'games':st.get('games'),'bytes':len(raw)}
+    return None
 
 def main(argv=None,bundle=None,numpy=numpy_version,run=subprocess.run,get=plain_get,now=None,env=None,ask=ask_json,node=node_version):
     ap=argparse.ArgumentParser(description='Run the NBA projection step for the dates the tonight step wrote')
@@ -308,15 +502,16 @@ def main(argv=None,bundle=None,numpy=numpy_version,run=subprocess.run,get=plain_
     a=ap.parse_args(argv)
     if bundle is None:import nba_projection_bundle as bundle
     dates,done=wanted_dates(a.repo,a.date);entry={'step':bundle.BUNDLE_ID[:12]}
-    why=None
+    why=None;stopped=None
     if dates:
         nv=numpy();entry['numpy']=nv;nd=node();entry['node']=nd[1] if nd else None;miss=missing_history(a.repo)
         if not nv:why='numpy is not installed for this run'
-        elif not nd:why='node is not installed for this run, so the chain check cannot run and no file is published'
+        elif not nd:why='node is not installed for this run, so the chain check and the model check cannot run and no file is published'
         elif miss:why='the history the model reads is not in the repo: '+', '.join(miss)
-    if dates and why:done+=[{'date':d,'wrote':False,'why':why} for d in dates]
+    if dates and why:done+=[{'date':d,'wrote':False,'why':why,**({'stop':dict(result='not checked',check='node',why='node is not installed for this run',lastGood=last_good(a.repo,d))} if nv and not nd else {})} for d in dates]
     elif dates:
         scratch=os.path.join(a.cache,'projection');code=os.path.join(scratch,'step');shutil.rmtree(code,ignore_errors=True);os.makedirs(code,exist_ok=True)
+        ready={};rdir=os.path.join(scratch,'ready');shutil.rmtree(rdir,ignore_errors=True)     # what both checks agreed with, published below
         try:run_step=bundle.extract(code)
         except Exception as e:run_step=None;done+=[{'date':d,'wrote':False,'why':'the step could not be unpacked: %s'%str(e)[:160]} for d in dates]
         inj,inj_say=injury_file(scratch,run_step,run=run) if run_step else (None,None)
@@ -329,7 +524,7 @@ def main(argv=None,bundle=None,numpy=numpy_version,run=subprocess.run,get=plain_
                 handed=[x for pair in (('--injury',inj),('--lineups',lu),('--typed',ty),('--props',pr)) if pair[1] for x in pair]
                 try:rec=record_news(a.repo,d,stamp,inj,lu,lu_say,pr,pr_say)       # before the step runs: the news is kept even when the step fails
                 except Exception as x:rec=None;rec_why='%s: %s'%(type(x).__name__,str(x)[:120])
-                e=project(d,a.repo,scratch,run_step,run=run,handed=handed,node=nd[0]);e['lineups']=lu_say;e['typed']=ty_say;e['props']=pr_say
+                e=project(d,a.repo,scratch,run_step,run=run,handed=handed,node=nd[0],ready=ready);e['lineups']=lu_say;e['typed']=ty_say;e['props']=pr_say
                 if rec is None:e['recordNotSaved']=rec_why
                 else:e['recorded']=rec
                 done.append(e)
@@ -339,9 +534,14 @@ def main(argv=None,bundle=None,numpy=numpy_version,run=subprocess.run,get=plain_
                     if os.path.exists(os.path.join(scratch,f)):os.remove(os.path.join(scratch,f))
         shutil.rmtree(tdir,ignore_errors=True)
         if os.path.exists(os.path.join(scratch,'injury.json')):os.remove(os.path.join(scratch,'injury.json'))
+        try:own=json.load(open(os.path.join(code,'own_fit.json')))
+        except Exception:own=None
+        stopped=publish(a.repo,ready,entry,done,own);shutil.rmtree(rdir,ignore_errors=True)
     entry['dates']=sorted(done,key=lambda x:x['date'])
     for x in entry['dates']:print(json.dumps(x))
     P.note(a.repo,entry,'projection')
+    if stopped:      # order 085: only the projections stop; run.py goes on, and the run commits the history, the slate and this status
+        print('NBA projection STOPPED, nothing published: '+stopped,flush=True)
     return 0
 
 if __name__=='__main__':
