@@ -25,8 +25,10 @@ def steps(a):
         # Vale's projection step (Monty CLEAR 10/12), unpacked from nba_projection_bundle.py and run for each date the tonight step
         # wrote that has joined slate rows. Writes nba-proj/<date>.json and its entry in the status file; never data.json (the page
         # builds that on an admin's press). Soft: a date that cannot be projected is reported under "projection", not fatal.
+        # The news it was handed (the league's report, the lineups file, DraftKings' prop prices) is kept in nba-public-record/<date>/:
+        # nba-record/ is the PRIVATE repo's (Stokastic's numbers live there, 10/14), and this job never writes it.
         {"script": "nba_project_step.py", "args": ["--repo", a.out, "--cache", a.cache],
-         "outputs": ["nba-proj", "nba-record", "nba-ingest-status.json"]},
+         "outputs": ["nba-proj", "nba-public-record", "nba-ingest-status.json"]},
         # Vale's stats step (10/13; Monty CLEAR at nba_stats.py 26355373c1f1 on nbalib.py 9863a35a5768), unpacked from the same
         # bundle: every number the Stats tab and the Matchups screens used to get from the Excel, one row a player by ESPN id, and
         # the substitution chain. Writes nba-stats.json and "stats" in the status file. Soft; never a thinner file.
@@ -38,6 +40,8 @@ def steps(a):
         # Never a thinner file; both or neither; soft; reported under "minutes".
         {"script": "nba_minutes_file.py", "args": ["--season", a.season, "--repo", a.out],
          "outputs": ["minutes-data.json", "player-profiles.json", "nba-ingest-status.json"]},
+        # (Vale's morning card no longer runs here: Monty's HOLD of 8caf95e, 10/14. It is graded from the night's record, which carries
+        # Stokastic's numbers, so it runs in the PRIVATE repo's own workflow beside the props ledger: nba_private_record.py.)
     ]
 
 
