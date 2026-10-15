@@ -5,6 +5,9 @@ on:
     types: [nba-ingest]
 permissions:
   contents: write
+  # Order 072: the minutes Chris typed are private. The projection step asks the site for them (nba-typed-for-job.js) with the identity
+  # token GitHub signs for this run, so the list never sits in this public repo, its inputs, its log or its cache.
+  id-token: write
 concurrency:
   group: nba-ingest
   cancel-in-progress: false
@@ -41,6 +44,8 @@ jobs:
           printf '%s\n' 'numpy==2.3.5 --hash=sha256:0d8163f43acde9a73c2a33605353a4f1bc4798745a8b1d73183b28e5b435ae28' > "$RUNNER_TEMP/nba-requirements.txt"
           python3 -m pip install --disable-pip-version-check --no-deps --only-binary=:all: --require-hashes -r "$RUNNER_TEMP/nba-requirements.txt" || echo "::warning::numpy 2.3.5 could not be installed; the projection step will report it"
       - name: Ingest
+        env:
+          NBA_TYPED_URL: https://splashplaypodcast.com/.netlify/functions/nba-typed-for-job
         run: python3 tools/nba-ingest/run.py --season "$SEASON" --cache .nba-cache --out . --outputs-file "$RUNNER_TEMP/nba-outputs.txt"
       - name: Commit only the declared outputs
         run: |
