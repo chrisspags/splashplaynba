@@ -15,12 +15,12 @@ repo (nba-events/<season>/, regular season and playoffs, NBA games only):
                 and the last ten of those. Minutes are whole, as ESPN's box score gives them.
   projectedMinutes  the projection step's minutes. confidence and reasoning: from the step's row (same team, new to team, or no
                 NBA game; the model or the bench-minute stand-in).
-  typedMinutes  a minute Chris typed FOR THIS SLATE DATE (Vale's ruling A). It lives in this file, on his row, with typedAt; the
-                job hands it to the step, which holds it and fits his team around it; here the row keeps his number as
-                projectedMinutes with the model's beside it (modelMinutes) and says "Typed 30; the model has 15.4." When the
-                league's own Out or Inactive beats it the row is Out, keeps what he typed, and says so (typedBeatenBy). A typed
-                minute of another slate date is not carried.
   injuryStatus  "Out" for a row the step has as unavailable, else "Available".
+NO TYPED FIELD, EVER (order 072; Chris 10/14: his edits are private). This file is public. The minutes Chris types live in the private
+repo (nba-typed-minutes/<date>.json); the job hands them to the step, which fits his team around them, and a row here carries only
+the result as projectedMinutes, like every other row. No typedMinutes, typedAt, typedBeatenBy or modelMinutes, and no reasoning that
+says he typed it; a typed field left in the file in the repo by an earlier version is not carried. The page shows him his own numbers
+from the private file.
 A row that did not join is not written (it has no ESPN id and no minutes).
 
 A row of this file NEVER carries substitutionChain (Vale's ruling, 10/13 evening). The page's lineup builder reads that key off
@@ -87,9 +87,6 @@ def reasoning(row):
     basis={'model':'minutes from the model','bench-minute stand-in':'a bench-minute stand-in, not the model','not playing':'not playing'}.get(row.get('basis'),str(row.get('basis') or ''))
     return (kind+'; '+basis+'.') if kind or basis else None
 
-def _g(x):
-    return ('%.1f'%x).rstrip('0').rstrip('.') if isinstance(x,(int,float)) else str(x)
-
 def chains(repo,date,slate_name):
     """(ESPN id -> his chain for tonight, why there is none). The stats row's chain; an entry is kept only when the player and his
     replacement are on the same team in tonight's file. slate_name: ESPN id -> the slate's own name for a player on it."""
@@ -116,7 +113,7 @@ def chains(repo,date,slate_name):
         if ch:out[str(r['espnId'])]=ch
     return out,None
 
-def player(row,cur,prev,old=None):
+def player(row,cur,prev):
     played=lambda g:[x for x in g if x['minutes']>0]
     season=list(cur);n=len(played(cur))
     for g in prev:                      # his most recent of last season, until 25 played are in the log
@@ -125,21 +122,9 @@ def player(row,cur,prev,old=None):
     last=(played(cur)+played(prev))[:10];m5=[x['minutes'] for x in last[:5]];m10=[x['minutes'] for x in last]
     l10=list(last)
     while len(l10)<10:l10.append({'date':'','minutes':0,'started':False})   # the page's table has ten columns
-    mins=row.get('min');model=row.get('modelMin') if row.get('modelMin') is not None else mins
-    was=old.get('typedMinutes') if isinstance(old,dict) and isinstance(old.get('typedMinutes'),(int,float)) and not isinstance(old.get('typedMinutes'),bool) else None
-    # The step held it (the row is in at his number), or something beat it and the row is out at 0. In the second case the number he
-    # typed is the one already in the file, NOT the row's 0 (Monty 10/13: writing that 0 would hand the step a typed 0 on the next
-    # press and keep the player out after the league cleared him: a zero nobody typed).
-    held=row.get('typed') and row.get('available')
-    typed=mins if held else (was if was is not None else (mins if row.get('typed') else None))
-    why=reasoning(row);extra={}
-    if typed is not None:
-        beaten=not row.get('available') and typed>0
-        extra=dict(typedMinutes=typed,typedAt=(old or {}).get('typedAt') if was==typed else None,modelMinutes=model)
-        if beaten:extra['typedBeatenBy']=str(row.get('whyOut') or 'out');why='Typed %s; he is out (%s).'%(_g(typed),extra['typedBeatenBy'])
-        else:why='Typed %s; the model has %s.'%(_g(typed),_g(model))
+    mins=row.get('min')
     return dict(name=row['name'],espnId=str(row['espnId']),team=row.get('team') or '',pos=row.get('pos') or '',price=int(P._num(row.get('salary'))),
-        projectedMinutes=mins,confidence=confidence(row),reasoning=why,injuryStatus='Available' if row.get('available') else 'Out',**extra,
+        projectedMinutes=mins,confidence=confidence(row),reasoning=reasoning(row),injuryStatus='Available' if row.get('available') else 'Out',
         l5Avg=round(sum(m5)/len(m5),1) if m5 else 0.0,gp5=len(m5),l10Avg=round(sum(m10)/len(m10),1) if m10 else 0.0,currentProjMin=mins,
         last10Games=l10,seasonGames=season)
 
@@ -171,17 +156,13 @@ def build(repo,season,date,now=None):
     cur=logs(repo,season);prev=logs(repo,previous(season))
     try:olddoc=json.load(open(os.path.join(repo,'minutes-data.json')))
     except Exception:olddoc={}
-    # a typed minute is carried for ITS slate date only: the old file's rows count when that file was written for this date
-    same=isinstance(olddoc,dict) and olddoc.get('slateDate')==date
-    oldby={str(p.get('espnId')):p for p in (olddoc.get('players') or []) if isinstance(p,dict) and p.get('espnId')} if same else {}
     chain,no_chain=chains(repo,date,{str(r['espnId']):r['name'] for r in rows})
-    players=[player(r,cur.get(str(r['espnId']),[]),prev.get(str(r['espnId']),[]),oldby.get(str(r['espnId']))) for r in rows]
+    players=[player(r,cur.get(str(r['espnId']),[]),prev.get(str(r['espnId']),[])) for r in rows]
     players.sort(key=lambda x:(x['team'],-(x['projectedMinutes'] or 0),x['name']))
     five=lambda p:sum(1 for g in p['seasonGames'] if g['minutes']>0 and g.get('dkfp') is not None)>=5
     pool=[r['name'] for r in rows if (r.get('proj') or 0)>=15];by={p['name']:p for p in players}
     entry={'date':date,'players':len(players),'withFiveGames':sum(1 for p in players if five(p)),'out':sum(1 for p in players if p['injuryStatus']=='Out'),
            'pool15':len(pool),'pool15Short':sorted(n for n in pool if not five(by[n])),
-           'typed':sum(1 for p in players if p.get('typedMinutes') is not None),'typedBeaten':sorted(p['name'] for p in players if p.get('typedBeatenBy')),
            'profilesWithChain':sum(1 for p in players if chain.get(p['espnId'])),**({'noChain':no_chain} if no_chain else {})}
     # never a thinner file: the players of THIS slate the file in the repo already holds must all still be there
     old=(olddoc.get('players') or []) if isinstance(olddoc,dict) else []
