@@ -5,7 +5,8 @@
 # Reads: nba-record/<date>/<draft group>/build-*.json and sim-*.json; nba-record/<date>/injury-*.json, lineups-*.json, news-*.json;
 # nba-proj/<date>.json (the step's file); dk-results/<date>.json (contest results, v2 or v3); the job's game files through nbalib (box scores).
 # --private adds his money for every contest he entered: from the --entries file (the private repo's nba-my-lineups/results/<date>.json,
-# {contests:[...]}) first, else the results' myLineups (v3), else the v2 leaderboard's user entries. Without --private no entry is read at all.
+# {contests:[...]}; each contest's myLineups, else its leaderBoardUserEntries) first, else the results' myLineups (v3), else the v2 leaderboard's
+# user entries. Without --private no entry is read at all.
 # Writes: <out>/card-<date>.json and prints the card as text, never into the data repo. Rules: a missing input is a validator line, never a crash;
 # a slate player whose team played and who has no box line played 0 and scored 0 (DraftKings); "last build before lock" = the latest build before the first tip.
 import sys,os,json,glob,re,math,argparse,datetime,unicodedata,collections
@@ -87,6 +88,13 @@ def won_of(e):
     if isinstance(w,dict): w=[w]
     if isinstance(w,list): return sum(num(dig(x,"value") if isinstance(x,dict) else x) or 0.0 for x in w)
     return num(w) or 0.0
+def file_entries(x):
+    """his entries in one --entries file contest: myLineups, else the v2 leaderboard's leaderBoardUserEntries (entryByEntryKey), which
+    order 103's private move keeps beside them (owner-entries.js); a contest DK only gave as a leaderboard has no myLineups"""
+    es=listed(dig(x,"myLineups"))
+    if es: return es
+    u=dig(x,"leaderBoardUserEntries")
+    return listed(u.get("entryByEntryKey")) if isinstance(u,dict) else listed(u)
 def money(date,res,entries):
     """his money for every contest of the date he entered, Classic and Showdown: (money or {}, validator text). Only with --private."""
     ef=load(entries) if entries else None; looked=[]
@@ -106,10 +114,10 @@ def money(date,res,entries):
     got=[]
     for c in rc:
         x=match(c)
-        for src,es in (("entries file",listed(dig(x,"myLineups"))),("results myLineups",listed(c.get("myLineups"))),
+        for src,es in (("entries file",file_entries(x)),("results myLineups",listed(c.get("myLineups"))),
                        ("results v2 leaderboard",listed(dig(c,"leaderboard","leaderBoardUserEntries","entryByEntryKey")))):
             if es: got.append((c,x,src,es)); break
-    got+=[(x,x,"entries file",listed(x.get("myLineups"))) for i,x in enumerate(ec) if i not in used and listed(x.get("myLineups"))]
+    got+=[(x,x,"entries file",file_entries(x)) for i,x in enumerate(ec) if i not in used and file_entries(x)]
     M=[]; nofee=0
     for c,x,src,es in got:
         fee=next((f for f in (num(dig(c,"contestDetail","entryFee")),num(c.get("entryFee")),num(dig(x,"contestDetail","entryFee")),num(dig(x,"entryFee"))) if f is not None),None)
