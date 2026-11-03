@@ -51,7 +51,7 @@ Public data only, aggregates only: no lineups, user ids, anonIds or entry ids. N
 | split 4-2 | 39.7% (4.8) | not derivable from marginals | — |
 | split 3-3 | 34.2% (6.5) | not derivable from marginals | — |
 | split 5-1 toward captain team | 23.8% (6.4) | not derivable from marginals | — |
-| salary left ($) | $584 (66) | $1059 (48) | $-475 (43) |
+| salary left ($) | $584 (66) | $1059 (48) | −$475 (43) |
 | salary left <= $500 | 65.2% (3.9) | not derivable from marginals | — |
 | sum of field own (%) | 176.619 (3.074) | 173.300 (1.842) | 3.319 (2.248) |
 | entries in a roster repeated within the top set | 96.7% (0.6) | 95.5% (0.2) | 1.2% (0.5) |

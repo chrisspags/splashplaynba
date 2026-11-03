@@ -183,6 +183,15 @@ QB and DST are left out of the bias table: every lineup holds exactly one of eac
 - That Afternoon needs a different model from Main (2 held-out slates each).
 - Any field-level comparison of stack shape, bring-back or RB+DST pairing (the field's joint lineups aren't public).
 
+## Data gaps, and what would close them
+
+- **Is the full-game-stack gap a winning edge or a sim field miss?** Splitting it needs the real field's stack-shape shares. No public file has them:
+  - every Classic contest here is over 1,000 entries, so the 250 published `topFieldLineups` are never the whole field;
+  - each results file names a `standingsArchive` (`nfl-dk-standings/<date>-<contest>.csv.gz`), but that folder is not on public `main`.
+  - Field stack-shape shares per team and slate (aggregates only) would answer it. Whoever holds the standings can produce them with no lineups or user data leaving.
+- **The held-out sample is the main limit** (2 slates per type). Each new week adds one Afternoon and one Main slate, and the two scripts re-run in seconds.
+- **The stack lift test uses the sim's per-lineup top-10 rate.** That rate mixes in the rest of each candidate lineup, so a stack in weak lineups looks weak. A cleaner test would need the sim's per-stack scoring draws, which the public summaries don't carry.
+
 **Reproduce:** `node scripts/unit-d.cjs <data dir> unit-d.json`, then `node scripts/render-result-d.cjs unit-d.json RESULT-D.md`.
 
 RESULT: Classic player winner shares are calibrated and rank about as well as real ownership, but the sim can't tell which QB stacks over-perform. Full game stacks are 36.6% (5.5) of top-1% lineups vs 23.3% (2.9) in the sim field. Afternoon winners are more concentrated and use more salary than the field (8+8 slates, 2 held-out slates each).

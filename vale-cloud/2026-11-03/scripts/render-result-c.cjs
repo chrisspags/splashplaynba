@@ -2,7 +2,7 @@
 const fs = require('fs'); const R = JSON.parse(fs.readFileSync(process.argv[2], 'utf8')), OUT = process.argv[3];
 const f3 = o => o && o.mean != null ? o.mean.toFixed(3) + ' (' + o.se.toFixed(3) + ')' : '—';
 const pc = o => o && o.mean != null ? (100 * o.mean).toFixed(1) + '% (' + (100 * o.se).toFixed(1) + ')' : '—';
-const money = o => o && o.mean != null ? '$' + o.mean.toFixed(0) + ' (' + o.se.toFixed(0) + ')' : '—';
+const money = o => o && o.mean != null ? (o.mean < 0 ? '−$' : '$') + Math.abs(o.mean).toFixed(0) + ' (' + o.se.toFixed(0) + ')' : '—';
 const A = R.anatomy, Sb = R.sim.bias, Sc = R.sim.calibration, PS = R.sim.byPositionScript, KD = R.kdst, PR = R.predictors;
 const nG = R.games.length, nC = R.games.reduce((s, g) => s + g.contests, 0), nL = R.games.reduce((s, g) => s + g.topLineups, 0);
 const fmt = k => /\(\$\)/.test(k) ? money : /count|own \(%\)/.test(k) ? f3 : pc;
