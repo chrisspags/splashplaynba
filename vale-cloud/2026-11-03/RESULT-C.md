@@ -1,4 +1,4 @@
-Pooled over 25 prime-time Showdowns, top-1% lineups do not carry more K or DST than the field, and the sim's winner rates are calibrated on average (FLEX slope 1.05, CPT 0.92). K/DST use in top lineups is game-specific: it follows the team that wins (DST FLEX share 25.5% (6.9) on the winner vs 2.1% (1.3) on the loser; K 28.3% (5.7) vs 8.6% (2.9)). The sim spreads K/DST flat across games, and no pre-lock field predicts which games. So the 11/1 SNF gap is one of those games, not a standing bias in the sim's winner rates. Whether our book's picking makes it worse is not measurable from public data.
+Pooled over 25 prime-time Showdowns, top-1% lineups do not carry more K or DST than the field, and the sim's winner rates are calibrated on average (FLEX slope 1.05, CPT 0.92). K/DST use in top lineups is game-specific: it follows the team that wins (DST FLEX share 26.4% (6.6) on the winner vs 2.0% (1.3) on the loser; K 30.1% (5.8) vs 8.3% (2.8)). The sim spreads K/DST flat across games, and no pre-lock field predicts which games. So the 11/1 SNF gap is one of those games, not a standing bias in the sim's winner rates. Whether our book's picking makes it worse is not measurable from public data.
 
 # Vale unit 1103CL-C (11/3/2026): what wins prime-time Showdowns vs what our sim calls winners
 
@@ -8,6 +8,7 @@ Public data only, aggregates only: no lineups, user ids, anonIds or entry ids. N
 - **Results:** `nfl-dk-results/<date>.json` (topFieldLineups, summary.topThresholds, fieldOwnership, captainOwnership, dupes).
 - **Pre-lock runs:** `nfl-dk-showdown-<dg>.json` (`results.playerResults`, `results.publicForecast`).
 - **Scores:** `nfl-schedule.json`.
+- **Re-run 11/3:** the first version of this file read `nfl-schedule.json` before main picked up the 11/2 MNF final (CHI 34, SEA 17). It treated that game as 0–0, with no winner and a "low total". All numbers here use the final score; no conclusion changed.
 - nflverse lines were not fetched. Game script uses real scores; pre-lock lines come from each run's own `publicForecast` (implied, total, spread).
 
 ## Sample
@@ -29,7 +30,7 @@ Public data only, aggregates only: no lineups, user ids, anonIds or entry ids. N
 | cptPos TE | 5.4% (2.3) | 10.1% (0.7) | -4.7% (2.3) |
 | cptPos K | 1.7% (1.2) | 1.8% (0.2) | -0.0% (1.2) |
 | cptPos DST | 2.0% (1.3) | 3.3% (0.3) | -1.3% (1.4) |
-| cpt on game winner | 72.5% (6.2) | 48.2% (2.6) | 24.2% (6.0) |
+| cpt on game winner | 72.5% (5.9) | 47.9% (2.5) | 24.6% (5.7) |
 | cpt tier under $4,000 | 5.7% (2.6) | 4.9% (0.6) | 0.9% (2.3) |
 | cpt tier $4,000-$7,999 | 13.2% (3.6) | 22.3% (1.3) | -9.1% (3.6) |
 | cpt tier $8,000+ | 81.1% (4.4) | 72.8% (1.2) | 8.2% (4.4) |
@@ -44,9 +45,9 @@ Public data only, aggregates only: no lineups, user ids, anonIds or entry ids. N
 | K in FLEX on other team (count) | 0.141 (0.035) | not derivable from marginals | — |
 | DST in FLEX on captain team (count) | 0.237 (0.067) | not derivable from marginals | — |
 | DST in FLEX on other team (count) | 0.046 (0.019) | not derivable from marginals | — |
-| K in FLEX on game winner (count) | 0.283 (0.056) | 0.215 (0.008) | 0.068 (0.054) |
-| DST in FLEX on game winner (count) | 0.255 (0.068) | 0.133 (0.010) | 0.122 (0.065) |
-| share of slots on game winner | 58.0% (3.4) | 49.3% (1.2) | 8.7% (3.3) |
+| K in FLEX on game winner (count) | 0.301 (0.057) | 0.216 (0.008) | 0.085 (0.055) |
+| DST in FLEX on game winner (count) | 0.264 (0.066) | 0.134 (0.010) | 0.130 (0.063) |
+| share of slots on game winner | 57.8% (3.3) | 49.2% (1.2) | 8.6% (3.2) |
 | split 5-1 | 26.1% (6.4) | not derivable from marginals | — |
 | split 4-2 | 39.7% (4.8) | not derivable from marginals | — |
 | split 3-3 | 34.2% (6.5) | not derivable from marginals | — |
@@ -64,7 +65,7 @@ Public data only, aggregates only: no lineups, user ids, anonIds or entry ids. N
 - Duplication compares top entries whose roster repeats within the top set against the field's share of entries in repeated rosters (`summary.dupes`).
 
 **What stands out (hindsight features, not pre-lock signals):**
-- Captain on the game winner: 72.5% (6.2) vs 48.2% (2.6).
+- Captain on the game winner: 72.5% (5.9) vs 47.9% (2.5).
 - $8,000+ captain: 81.1% (4.4) vs 72.8% (1.2).
 - Less salary left: $584 (66) vs $1059 (48).
 - DST rides with the captain's team: 0.237 (0.067) vs 0.046 (0.019) on the other team.
@@ -97,8 +98,8 @@ The sim's winner rates track real top-lineup rates about as well as the field's 
 | FLEX | salary under $4,000 | 374 | 6.0% (0.5) | 5.5% (0.2) | 5.6% (0.3) | 0.5% (0.5) | 0.4% (0.5) |
 | FLEX | salary $4,000-$7,999 | 214 | 18.7% (1.3) | 21.4% (0.4) | 20.4% (0.5) | -2.7% (1.2) | -1.6% (1.2) |
 | FLEX | salary $8,000+ | 146 | 42.9% (1.6) | 40.1% (0.6) | 40.9% (0.8) | 2.7% (1.4) | 2.0% (1.4) |
-| FLEX | game winner team | 354 | 18.7% (1.2) | 16.9% (0.3) | 16.7% (0.3) | 1.8% (1.1) | 2.0% (1.2) |
-| FLEX | game loser team | 350 | 15.4% (1.2) | 17.2% (0.3) | 17.2% (0.4) | -1.8% (1.2) | -1.8% (1.2) |
+| FLEX | game winner team | 368 | 18.6% (1.1) | 16.9% (0.3) | 16.7% (0.3) | 1.7% (1.1) | 2.0% (1.1) |
+| FLEX | game loser team | 366 | 15.4% (1.2) | 17.1% (0.3) | 17.1% (0.4) | -1.7% (1.1) | -1.7% (1.1) |
 | CPT | pos QB | 50 | 9.2% (2.1) | 11.4% (0.7) | 11.1% (0.7) | -2.2% (2.2) | -1.9% (2.0) |
 | CPT | pos RB | 160 | 4.6% (1.0) | 4.8% (0.3) | 4.4% (0.3) | -0.2% (1.1) | 0.2% (1.1) |
 | CPT | pos WR | 250 | 4.3% (0.8) | 3.1% (0.2) | 3.4% (0.2) | 1.2% (0.7) | 0.9% (0.7) |
@@ -108,74 +109,74 @@ The sim's winner rates track real top-lineup rates about as well as the field's 
 | CPT | salary under $4,000 | 374 | 0.4% (0.2) | 0.3% (0.0) | 0.3% (0.0) | 0.1% (0.2) | 0.1% (0.2) |
 | CPT | salary $4,000-$7,999 | 214 | 1.5% (0.4) | 2.7% (0.1) | 2.6% (0.1) | -1.1% (0.4) | -1.1% (0.4) |
 | CPT | salary $8,000+ | 146 | 13.9% (0.8) | 12.4% (0.3) | 12.5% (0.2) | 1.5% (0.7) | 1.4% (0.8) |
-| CPT | game winner team | 354 | 4.9% (0.4) | 3.2% (0.1) | 3.3% (0.2) | 1.7% (0.4) | 1.6% (0.4) |
-| CPT | game loser team | 350 | 1.9% (0.4) | 3.6% (0.1) | 3.5% (0.2) | -1.7% (0.4) | -1.7% (0.4) |
+| CPT | game winner team | 368 | 4.9% (0.4) | 3.2% (0.1) | 3.3% (0.2) | 1.7% (0.4) | 1.7% (0.4) |
+| CPT | game loser team | 366 | 1.9% (0.4) | 3.6% (0.1) | 3.6% (0.2) | -1.7% (0.4) | -1.7% (0.4) |
 
-### Game script inside each position (real game result; real-total terciles cut at 37 and 53 points)
+### Game script inside each position (real game result; real-total terciles cut at 40 and 53 points)
 
 Inside a game the player shares sum to a fixed total, so game script only means something within a position.
 
 | Role | Position | Group | Real | Sim | Real − sim |
 |---|---|---|---:|---:|---:|
-| FLEX | QB | game winner team | 61.1% (7.0) | 49.8% (0.8) | 11.3% (7.0) |
-| FLEX | QB | game loser team | 49.6% (8.0) | 49.6% (1.0) | -0.1% (7.7) |
-| FLEX | QB | low total | 50.0% (7.8) | 49.5% (1.5) | 0.5% (7.5) |
-| FLEX | QB | mid total | 52.0% (4.7) | 51.5% (0.8) | 0.5% (4.3) |
+| FLEX | QB | game winner team | 58.7% (7.0) | 49.7% (0.8) | 8.9% (6.9) |
+| FLEX | QB | game loser team | 50.4% (7.6) | 49.5% (1.0) | 0.9% (7.3) |
+| FLEX | QB | low total | 50.3% (7.9) | 49.7% (1.5) | 0.6% (7.7) |
+| FLEX | QB | mid total | 51.8% (4.8) | 51.4% (0.9) | 0.4% (4.3) |
 | FLEX | QB | high total | 60.7% (6.2) | 48.0% (1.4) | 12.7% (6.0) |
-| FLEX | RB | game winner team | 22.5% (2.8) | 16.8% (0.8) | 5.7% (2.8) |
-| FLEX | RB | game loser team | 15.8% (2.7) | 16.0% (0.8) | -0.3% (2.6) |
-| FLEX | RB | low total | 18.0% (3.3) | 14.9% (0.8) | 3.1% (2.9) |
-| FLEX | RB | mid total | 17.3% (3.5) | 15.6% (0.7) | 1.6% (3.5) |
+| FLEX | RB | game winner team | 21.9% (2.7) | 16.8% (0.8) | 5.1% (2.7) |
+| FLEX | RB | game loser team | 14.8% (2.6) | 15.6% (0.8) | -0.8% (2.5) |
+| FLEX | RB | low total | 20.2% (2.5) | 15.5% (0.6) | 4.7% (2.3) |
+| FLEX | RB | mid total | 15.2% (3.8) | 15.0% (0.8) | 0.1% (3.6) |
 | FLEX | RB | high total | 19.9% (3.6) | 18.2% (0.9) | 1.7% (3.6) |
-| FLEX | WR | game winner team | 10.4% (1.7) | 13.8% (0.6) | -3.4% (1.9) |
-| FLEX | WR | game loser team | 15.0% (2.6) | 15.5% (0.5) | -0.4% (2.3) |
-| FLEX | WR | low total | 14.5% (3.7) | 15.1% (0.5) | -0.6% (3.6) |
-| FLEX | WR | mid total | 13.8% (2.4) | 14.2% (0.5) | -0.5% (2.2) |
+| FLEX | WR | game winner team | 10.7% (1.7) | 13.8% (0.5) | -3.2% (1.9) |
+| FLEX | WR | game loser team | 15.9% (2.6) | 15.5% (0.5) | 0.4% (2.4) |
+| FLEX | WR | low total | 12.7% (3.2) | 15.1% (0.5) | -2.4% (3.0) |
+| FLEX | WR | mid total | 15.5% (2.8) | 14.2% (0.5) | 1.3% (2.5) |
 | FLEX | WR | high total | 11.7% (1.8) | 14.7% (0.6) | -3.0% (1.8) |
-| FLEX | TE | game winner team | 10.4% (2.2) | 9.1% (0.5) | 1.3% (2.1) |
-| FLEX | TE | game loser team | 11.5% (2.0) | 9.2% (0.4) | 2.3% (1.9) |
-| FLEX | TE | low total | 7.1% (3.4) | 9.0% (0.6) | -1.9% (3.4) |
-| FLEX | TE | mid total | 11.4% (3.3) | 8.4% (0.6) | 3.0% (3.0) |
+| FLEX | TE | game winner team | 10.2% (2.1) | 9.2% (0.5) | 0.9% (2.1) |
+| FLEX | TE | game loser team | 11.1% (1.9) | 9.3% (0.4) | 1.9% (1.9) |
+| FLEX | TE | low total | 6.6% (3.5) | 8.7% (0.5) | -2.1% (3.4) |
+| FLEX | TE | mid total | 12.1% (3.1) | 8.8% (0.8) | 3.3% (2.9) |
 | FLEX | TE | high total | 12.9% (2.7) | 10.1% (0.5) | 2.8% (2.7) |
-| FLEX | K | game winner team | 28.3% (5.7) | 25.6% (1.0) | 2.7% (5.9) |
-| FLEX | K | game loser team | 8.6% (2.9) | 24.8% (0.9) | -16.2% (3.1) |
-| FLEX | K | low total | 16.4% (4.6) | 25.4% (1.3) | -9.0% (4.3) |
-| FLEX | K | mid total | 15.0% (5.6) | 25.3% (0.9) | -10.2% (5.9) |
+| FLEX | K | game winner team | 30.1% (5.8) | 25.6% (1.0) | 4.5% (6.0) |
+| FLEX | K | game loser team | 8.3% (2.8) | 24.9% (0.8) | -16.6% (3.0) |
+| FLEX | K | low total | 17.8% (5.7) | 25.3% (1.3) | -7.5% (5.4) |
+| FLEX | K | mid total | 13.6% (4.4) | 25.4% (0.8) | -11.8% (4.6) |
 | FLEX | K | high total | 25.3% (6.3) | 25.0% (1.7) | 0.3% (7.1) |
-| FLEX | DST | game winner team | 25.5% (6.9) | 18.4% (1.2) | 7.1% (6.3) |
-| FLEX | DST | game loser team | 2.1% (1.3) | 17.3% (1.3) | -15.2% (1.9) |
-| FLEX | DST | low total | 26.1% (7.0) | 19.6% (1.8) | 6.5% (6.4) |
-| FLEX | DST | mid total | 14.5% (7.0) | 18.2% (1.7) | -3.7% (6.6) |
+| FLEX | DST | game winner team | 26.4% (6.6) | 18.4% (1.2) | 8.0% (6.0) |
+| FLEX | DST | game loser team | 2.0% (1.3) | 17.4% (1.3) | -15.4% (1.8) |
+| FLEX | DST | low total | 29.1% (7.5) | 19.4% (1.8) | 9.7% (6.9) |
+| FLEX | DST | mid total | 11.4% (5.4) | 18.3% (1.7) | -6.9% (4.9) |
 | FLEX | DST | high total | 3.3% (1.7) | 16.1% (1.7) | -12.8% (2.3) |
-| CPT | QB | game winner team | 14.0% (3.9) | 12.3% (1.2) | 1.7% (4.2) |
-| CPT | QB | game loser team | 5.2% (2.2) | 10.5% (0.9) | -5.3% (2.1) |
-| CPT | QB | low total | 8.4% (4.4) | 10.4% (1.0) | -2.0% (4.6) |
-| CPT | QB | mid total | 7.3% (2.7) | 13.6% (1.5) | -6.3% (2.6) |
+| CPT | QB | game winner team | 13.4% (3.8) | 12.4% (1.2) | 1.1% (4.1) |
+| CPT | QB | game loser team | 5.0% (2.2) | 10.5% (0.9) | -5.5% (2.1) |
+| CPT | QB | low total | 10.0% (4.2) | 11.5% (1.6) | -1.6% (4.5) |
+| CPT | QB | mid total | 5.7% (2.8) | 12.5% (1.2) | -6.8% (2.7) |
 | CPT | QB | high total | 11.7% (3.6) | 10.4% (1.2) | 1.3% (3.7) |
-| CPT | RB | game winner team | 7.1% (2.0) | 4.2% (0.6) | 2.9% (1.9) |
-| CPT | RB | game loser team | 1.6% (0.6) | 5.7% (0.6) | -4.2% (1.0) |
-| CPT | RB | low total | 1.6% (1.3) | 4.2% (0.6) | -2.6% (1.6) |
-| CPT | RB | mid total | 8.7% (1.3) | 4.6% (0.5) | 4.1% (1.4) |
+| CPT | RB | game winner team | 7.7% (2.0) | 4.2% (0.5) | 3.5% (1.9) |
+| CPT | RB | game loser team | 1.5% (0.6) | 5.4% (0.7) | -3.9% (0.9) |
+| CPT | RB | low total | 1.5% (1.2) | 4.4% (0.6) | -2.8% (1.4) |
+| CPT | RB | mid total | 8.5% (1.2) | 4.4% (0.5) | 4.1% (1.3) |
 | CPT | RB | high total | 3.7% (1.8) | 5.7% (0.5) | -2.1% (1.8) |
-| CPT | WR | game winner team | 5.5% (1.7) | 2.8% (0.3) | 2.7% (1.5) |
-| CPT | WR | game loser team | 3.2% (1.1) | 3.3% (0.3) | -0.1% (1.0) |
-| CPT | WR | low total | 7.3% (1.3) | 3.7% (0.3) | 3.6% (1.3) |
-| CPT | WR | mid total | 1.6% (0.7) | 2.6% (0.3) | -1.0% (0.7) |
+| CPT | WR | game winner team | 5.3% (1.6) | 2.8% (0.3) | 2.4% (1.5) |
+| CPT | WR | game loser team | 3.3% (1.0) | 3.4% (0.3) | -0.1% (0.9) |
+| CPT | WR | low total | 7.0% (1.5) | 3.4% (0.3) | 3.6% (1.3) |
+| CPT | WR | mid total | 1.9% (0.7) | 2.8% (0.3) | -1.0% (0.7) |
 | CPT | WR | high total | 4.2% (1.2) | 3.1% (0.2) | 1.0% (1.2) |
-| CPT | TE | game winner team | 1.3% (0.7) | 1.3% (0.2) | -0.0% (0.7) |
-| CPT | TE | game loser team | 0.3% (0.2) | 1.3% (0.1) | -1.0% (0.2) |
-| CPT | TE | low total | 0.0% (0.0) | 1.1% (0.2) | -1.1% (0.2) |
-| CPT | TE | mid total | 0.9% (0.7) | 1.4% (0.3) | -0.5% (0.8) |
+| CPT | TE | game winner team | 1.2% (0.6) | 1.3% (0.2) | -0.1% (0.7) |
+| CPT | TE | game loser team | 0.3% (0.2) | 1.4% (0.1) | -1.0% (0.2) |
+| CPT | TE | low total | 0.0% (0.0) | 1.2% (0.2) | -1.2% (0.2) |
+| CPT | TE | mid total | 0.9% (0.7) | 1.3% (0.3) | -0.4% (0.7) |
 | CPT | TE | high total | 1.3% (0.8) | 1.5% (0.1) | -0.2% (0.8) |
-| CPT | K | game winner team | 1.6% (1.1) | 1.2% (0.1) | 0.4% (1.1) |
-| CPT | K | game loser team | 0.3% (0.1) | 1.1% (0.1) | -0.9% (0.2) |
-| CPT | K | low total | 0.0% (0.0) | 1.2% (0.2) | -1.1% (0.1) |
-| CPT | K | mid total | 0.4% (0.3) | 1.2% (0.2) | -0.8% (0.4) |
+| CPT | K | game winner team | 1.5% (1.1) | 1.2% (0.1) | 0.4% (1.1) |
+| CPT | K | game loser team | 0.2% (0.1) | 1.1% (0.1) | -0.9% (0.2) |
+| CPT | K | low total | 0.4% (0.3) | 1.1% (0.2) | -0.8% (0.4) |
+| CPT | K | mid total | 0.0% (0.0) | 1.2% (0.2) | -1.2% (0.2) |
 | CPT | K | high total | 2.1% (1.7) | 1.1% (0.3) | 1.0% (1.7) |
-| CPT | DST | game winner team | 2.0% (1.4) | 1.8% (0.3) | 0.2% (1.5) |
+| CPT | DST | game winner team | 1.9% (1.3) | 1.8% (0.3) | 0.1% (1.4) |
 | CPT | DST | game loser team | 0.1% (0.1) | 1.7% (0.3) | -1.6% (0.3) |
-| CPT | DST | low total | 0.4% (0.3) | 1.9% (0.3) | -1.5% (0.3) |
-| CPT | DST | mid total | 2.3% (2.0) | 2.0% (0.5) | 0.3% (2.3) |
+| CPT | DST | low total | 0.5% (0.3) | 1.9% (0.3) | -1.4% (0.4) |
+| CPT | DST | mid total | 2.1% (2.1) | 2.0% (0.5) | 0.2% (2.4) |
 | CPT | DST | high total | 0.4% (0.3) | 1.4% (0.3) | -1.0% (0.3) |
 
 ### K and DST per game (count per lineup: top lineups vs field-implied vs the sim's FLEX winner rate summed over that position)
@@ -212,7 +213,7 @@ Inside a game the player shares sum to a fixed total, so game script only means 
 - **Not a standing sim bias.** Pooled, the sim's K FLEX winner rate is 25.2% (0.7) against a real 19.2% (3.3), and DST 17.9% (1.0) against 14.2% (3.6): if anything, slightly high.
 - **K/DST is all-or-nothing by game.** Top lineups load up on a kicker in 6 of 25 games (0.7+ per lineup) and on a DST in 4 of 25; otherwise they mostly leave them out.
 - **The sim gives every game about the same K/DST rate**, so it can't tell those games apart.
-- **The real split runs on the game result.** Real FLEX share on the winner vs the loser: K 28.3% (5.7) vs 8.6% (2.9), DST 25.5% (6.9) vs 2.1% (1.3). The sim has K 25.6% (1.0) vs 24.8% (0.9) and DST 18.4% (1.2) vs 17.3% (1.3).
+- **The real split runs on the game result.** Real FLEX share on the winner vs the loser: K 30.1% (5.8) vs 8.3% (2.8), DST 26.4% (6.6) vs 2.0% (1.3). The sim has K 25.6% (1.0) vs 24.9% (0.8) and DST 18.4% (1.2) vs 17.4% (1.3).
 - **On 11/1 SNF** (draft group 155951) top lineups held 0.94 kickers per lineup vs a field 0.42 and a sim 0.49.
 - **Our book's own K/DST rates aren't public,** so "only in our picking" can't be tested here.
 

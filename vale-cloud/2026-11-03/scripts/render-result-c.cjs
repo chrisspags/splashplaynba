@@ -18,6 +18,7 @@ L.push('**Data:** `chrisspags/splashplaynba` `origin/main`.');
 L.push('- **Results:** `nfl-dk-results/<date>.json` (topFieldLineups, summary.topThresholds, fieldOwnership, captainOwnership, dupes).');
 L.push('- **Pre-lock runs:** `nfl-dk-showdown-<dg>.json` (`results.playerResults`, `results.publicForecast`).');
 L.push('- **Scores:** `nfl-schedule.json`.');
+L.push('- **Re-run 11/3:** the first version of this file read `nfl-schedule.json` before main picked up the 11/2 MNF final (CHI 34, SEA 17). It treated that game as 0–0, with no winner and a "low total". All numbers here use the final score; no conclusion changed.');
 L.push('- nflverse lines were not fetched. Game script uses real scores; pre-lock lines come from each run\'s own `publicForecast` (implied, total, spread).');
 L.push('');
 L.push('## Sample');
