@@ -3,7 +3,7 @@
   "builderVersion": "nfl-recap-core-v3",
   "season": 2026,
   "week": 9,
-  "builtAt": "2026-11-08T09:00:47.396Z",
+  "builtAt": "2026-11-08T09:30:43.276Z",
   "games": [
     {
       "id": "401873037",
@@ -72,22 +72,7 @@
           "recEpaSum": 0,
           "recEpaN": 0,
           "snaps": 28,
-          "snapPct": 0.5,
-          "ngs": {
-            "rushing": {
-              "efficiency": 5.53333333333333,
-              "percent_attempts_gte_eight_defenders": 29.4117647058824,
-              "avg_time_to_los": 3.26525,
-              "rush_attempts": 17,
-              "rush_yards": 57,
-              "avg_rush_yards": 3.35294117647059,
-              "rush_touchdowns": 0,
-              "expected_rush_yards": 54.3003438689155,
-              "rush_yards_over_expected": 2.69965613108453,
-              "rush_yards_over_expected_per_att": 0.158803301828502,
-              "rush_pct_over_expected": 0.529411764705882
-            }
-          }
+          "snapPct": 0.5
         },
         {
           "id": "JAX|bhayshul tuten",
@@ -145,22 +130,7 @@
           "recEpaSum": 0,
           "recEpaN": 0,
           "snaps": 20,
-          "snapPct": 0.36,
-          "ngs": {
-            "rushing": {
-              "efficiency": 6.30758620689655,
-              "percent_attempts_gte_eight_defenders": 16.6666666666667,
-              "avg_time_to_los": 2.9947,
-              "rush_attempts": 12,
-              "rush_yards": 29,
-              "avg_rush_yards": 2.41666666666667,
-              "rush_touchdowns": 1,
-              "expected_rush_yards": 52.9638015682147,
-              "rush_yards_over_expected": -23.9638015682147,
-              "rush_yards_over_expected_per_att": -1.99698346401789,
-              "rush_pct_over_expected": 0.166666666666667
-            }
-          }
+          "snapPct": 0.36
         },
         {
           "id": "JAX|chris rodriguez",
@@ -218,22 +188,7 @@
           "recEpaSum": 3.1216274106991397,
           "recEpaN": 2,
           "snaps": 25,
-          "snapPct": 0.45,
-          "ngs": {
-            "rushing": {
-              "efficiency": 5.72105263157895,
-              "percent_attempts_gte_eight_defenders": 30,
-              "avg_time_to_los": 2.6183,
-              "rush_attempts": 10,
-              "rush_yards": 19,
-              "avg_rush_yards": 1.9,
-              "rush_touchdowns": 1,
-              "expected_rush_yards": 28.9312275522616,
-              "rush_yards_over_expected": -9.93122755226157,
-              "rush_yards_over_expected_per_att": -0.993122755226157,
-              "rush_pct_over_expected": 0.2
-            }
-          }
+          "snapPct": 0.45
         },
         {
           "id": "BAL|justice hill",
@@ -3203,15 +3158,14 @@
         "group": "rushing",
         "url": "https://github.com/nflverse/nflverse-data/releases/download/nextgen_stats/ngs_rushing.csv.gz",
         "qualifiedSubset": true,
-        "status": "retained",
+        "status": "loaded",
         "rows": 3,
-        "matched": 3,
-        "unmatched": 0,
+        "matched": 0,
+        "unmatched": 3,
         "ambiguous": 0,
         "conflicts": 0,
         "collisions": 0,
-        "noId": 0,
-        "retainedPlayers": 3
+        "noId": 0
       },
       "pfr_pass": {
         "provider": "pfr",
@@ -3275,10 +3229,29 @@
       }
     }
   },
-  "sources": [],
+  "sources": [
+    {
+      "name": "ngs_rushing",
+      "url": "https://github.com/nflverse/nflverse-data/releases/download/nextgen_stats/ngs_rushing.csv.gz",
+      "checkedAt": "2026-11-08T09:30:35.419Z",
+      "durationMs": 377
+    }
+  ],
   "sourceErrors": [
     {
       "source": "pbp",
+      "message": "Source returned 504"
+    },
+    {
+      "source": "snaps",
+      "message": "Source returned 504"
+    },
+    {
+      "source": "ngs_receiving",
+      "message": "Source returned 504"
+    },
+    {
+      "source": "ngs_passing",
       "message": "Source returned 504"
     },
     {
@@ -3286,23 +3259,7 @@
       "message": "The operation was aborted due to timeout"
     },
     {
-      "source": "snaps",
-      "message": "The operation was aborted due to timeout"
-    },
-    {
       "source": "rosters",
-      "message": "The operation was aborted due to timeout"
-    },
-    {
-      "source": "ngs_passing",
-      "message": "The operation was aborted due to timeout"
-    },
-    {
-      "source": "ngs_receiving",
-      "message": "The operation was aborted due to timeout"
-    },
-    {
-      "source": "ngs_rushing",
       "message": "The operation was aborted due to timeout"
     },
     {
@@ -4379,6 +4336,6 @@
     "lookbackGames": 3,
     "minimumGames": 2
   },
-  "checkedAt": "2026-11-08T09:00:48.273Z",
-  "publishedAt": "2026-11-08T09:00:48.853Z"
+  "checkedAt": "2026-11-08T09:30:44.144Z",
+  "publishedAt": "2026-11-08T09:30:44.740Z"
 }
