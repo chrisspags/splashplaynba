@@ -3,7 +3,7 @@
   "builderVersion": "nfl-recap-core-v3",
   "season": 2026,
   "week": 11,
-  "builtAt": "2026-11-21T00:01:26.227Z",
+  "builtAt": "2026-11-21T00:30:47.753Z",
   "games": [
     {
       "id": "2026_11_IND_HOU",
@@ -1733,8 +1733,8 @@
           "passYardsN": 29,
           "rushYardsSum": 38,
           "rushYardsN": 17,
-          "qbRushYardsSum": 5,
-          "qbRushYardsN": 2,
+          "qbRushYardsSum": 3,
+          "qbRushYardsN": 1,
           "rzRushYardsSum": -3,
           "rzRushYardsN": 1,
           "rzPassYardsSum": 5,
@@ -1753,7 +1753,7 @@
           "passEpaN": 29,
           "rushEpaSum": -5.086146373208421,
           "rushEpaN": 17,
-          "targets": 26,
+          "targets": 0,
           "carries": 17,
           "xpassSum": 34.21085250377655,
           "xpassN": 48,
@@ -1787,8 +1787,8 @@
           "passYardsN": 27,
           "rushYardsSum": 168,
           "rushYardsN": 36,
-          "qbRushYardsSum": 28,
-          "qbRushYardsN": 5,
+          "qbRushYardsSum": 31,
+          "qbRushYardsN": 3,
           "rzRushYardsSum": 8,
           "rzRushYardsN": 3,
           "rzPassYardsSum": 13,
@@ -1807,7 +1807,7 @@
           "passEpaN": 27,
           "rushEpaSum": -3.39776648533907,
           "rushEpaN": 36,
-          "targets": 26,
+          "targets": 0,
           "carries": 37,
           "xpassSum": 32.45607794634998,
           "xpassN": 64,
@@ -1825,7 +1825,12 @@
       "homeScore": 26,
       "awayScore": 3,
       "boxReady": true,
-      "snapsReady": true
+      "snapsReady": true,
+      "retained": true,
+      "retainedSources": [
+        "box score",
+        "snaps"
+      ]
     },
     {
       "id": "401873067",
@@ -3286,14 +3291,15 @@
         "group": "rec",
         "url": "https://github.com/nflverse/nflverse-data/releases/download/pfr_advstats/advstats_week_rec_2026.csv",
         "qualifiedSubset": false,
-        "status": "loaded",
+        "status": "retained",
         "rows": 0,
         "matched": 0,
         "unmatched": 0,
         "ambiguous": 0,
         "conflicts": 0,
         "collisions": 0,
-        "noId": 0
+        "noId": 0,
+        "retainedPlayers": 0
       },
       "pfr_rush": {
         "provider": "pfr",
@@ -3327,73 +3333,65 @@
   },
   "sources": [
     {
-      "name": "pfr_pass",
-      "url": "https://github.com/nflverse/nflverse-data/releases/download/pfr_advstats/advstats_week_pass_2026.csv",
-      "checkedAt": "2026-11-21T00:01:16.366Z",
-      "durationMs": 374
-    },
-    {
-      "name": "rosters",
-      "url": "https://github.com/nflverse/nflverse-data/releases/download/rosters/roster_2026.csv.gz",
-      "checkedAt": "2026-11-21T00:01:16.440Z",
-      "durationMs": 745
-    },
-    {
-      "name": "ngs_rushing",
-      "url": "https://github.com/nflverse/nflverse-data/releases/download/nextgen_stats/ngs_rushing.csv.gz",
-      "checkedAt": "2026-11-21T00:01:16.806Z",
-      "durationMs": 920
-    },
-    {
-      "name": "stats",
-      "url": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2026.csv.gz",
-      "checkedAt": "2026-11-21T00:01:17.024Z",
-      "durationMs": 1723
-    },
-    {
-      "name": "pfr_rush",
-      "url": "https://github.com/nflverse/nflverse-data/releases/download/pfr_advstats/advstats_week_rush_2026.csv",
-      "checkedAt": "2026-11-21T00:01:17.727Z",
-      "durationMs": 1698
-    },
-    {
-      "name": "snaps",
-      "url": "https://github.com/nflverse/nflverse-data/releases/download/snap_counts/snap_counts_2026.csv.gz",
-      "checkedAt": "2026-11-21T00:01:17.781Z",
-      "durationMs": 2100
-    },
-    {
-      "name": "ngs_receiving",
-      "url": "https://github.com/nflverse/nflverse-data/releases/download/nextgen_stats/ngs_receiving.csv.gz",
-      "checkedAt": "2026-11-21T00:01:18.181Z",
-      "durationMs": 2320
-    },
-    {
-      "name": "pfr_rec",
-      "url": "https://github.com/nflverse/nflverse-data/releases/download/pfr_advstats/advstats_week_rec_2026.csv",
-      "checkedAt": "2026-11-21T00:01:18.345Z",
-      "durationMs": 2354
-    },
-    {
       "name": "pfr_def",
       "url": "https://github.com/nflverse/nflverse-data/releases/download/pfr_advstats/advstats_week_def_2026.csv",
-      "checkedAt": "2026-11-21T00:01:18.420Z",
-      "durationMs": 2421
+      "checkedAt": "2026-11-21T00:30:39.128Z",
+      "durationMs": 383
+    },
+    {
+      "name": "pfr_pass",
+      "url": "https://github.com/nflverse/nflverse-data/releases/download/pfr_advstats/advstats_week_pass_2026.csv",
+      "checkedAt": "2026-11-21T00:30:39.257Z",
+      "durationMs": 414
     },
     {
       "name": "ngs_passing",
       "url": "https://github.com/nflverse/nflverse-data/releases/download/nextgen_stats/ngs_passing.csv.gz",
-      "checkedAt": "2026-11-21T00:01:18.504Z",
-      "durationMs": 2658
+      "checkedAt": "2026-11-21T00:30:39.331Z",
+      "durationMs": 678
+    },
+    {
+      "name": "ngs_rushing",
+      "url": "https://github.com/nflverse/nflverse-data/releases/download/nextgen_stats/ngs_rushing.csv.gz",
+      "checkedAt": "2026-11-21T00:30:39.592Z",
+      "durationMs": 864
+    },
+    {
+      "name": "ngs_receiving",
+      "url": "https://github.com/nflverse/nflverse-data/releases/download/nextgen_stats/ngs_receiving.csv.gz",
+      "checkedAt": "2026-11-21T00:30:39.794Z",
+      "durationMs": 1146
     },
     {
       "name": "pbp",
       "url": "https://github.com/nflverse/nflverse-data/releases/download/pbp/play_by_play_2026.csv.gz",
-      "checkedAt": "2026-11-21T00:01:19.823Z",
-      "durationMs": 10159
+      "checkedAt": "2026-11-21T00:30:41.015Z",
+      "durationMs": 8884
+    },
+    {
+      "name": "pfr_rush",
+      "url": "https://github.com/nflverse/nflverse-data/releases/download/pfr_advstats/advstats_week_rush_2026.csv",
+      "checkedAt": "2026-11-21T00:30:47.714Z",
+      "durationMs": 8847
     }
   ],
   "sourceErrors": [
+    {
+      "source": "stats",
+      "message": "The operation was aborted due to timeout"
+    },
+    {
+      "source": "snaps",
+      "message": "The operation was aborted due to timeout"
+    },
+    {
+      "source": "rosters",
+      "message": "The operation was aborted due to timeout"
+    },
+    {
+      "source": "pfr_rec",
+      "message": "The operation was aborted due to timeout"
+    },
     {
       "source": "game status",
       "message": "The operation was aborted due to timeout"
@@ -3406,33 +3404,33 @@
         "metrics": {
           "plays": {
             "current": 48,
-            "baseline": 57.333333333333336,
-            "games": 3,
-            "delta": -9.333333333333336
+            "baseline": null,
+            "games": 0,
+            "delta": null
           },
           "proe": {
             "current": -0.04605942716201147,
-            "baseline": -0.01318951247082594,
-            "games": 3,
-            "delta": -0.032869914691185526
+            "baseline": null,
+            "games": 0,
+            "delta": null
           },
           "epa": {
             "current": -0.3115277328130165,
-            "baseline": -0.2538303718501673,
-            "games": 3,
-            "delta": -0.057697360962849165
+            "baseline": null,
+            "games": 0,
+            "delta": null
           },
           "dbEpa": {
             "current": -0.32073245920735377,
-            "baseline": -0.3979830270724063,
-            "games": 3,
-            "delta": 0.07725056786505252
+            "baseline": null,
+            "games": 0,
+            "delta": null
           },
           "rushEpa": {
             "current": -0.29918508077696593,
-            "baseline": -0.10990107181415414,
-            "games": 3,
-            "delta": -0.18928400896281178
+            "baseline": null,
+            "games": 0,
+            "delta": null
           }
         }
       },
@@ -3441,33 +3439,33 @@
         "metrics": {
           "plays": {
             "current": 64,
-            "baseline": 60.333333333333336,
-            "games": 3,
-            "delta": 3.6666666666666643
+            "baseline": null,
+            "games": 0,
+            "delta": null
           },
           "proe": {
             "current": -0.022751217911718413,
-            "baseline": 0.013530182054699963,
-            "games": 3,
-            "delta": -0.036281399966418375
+            "baseline": null,
+            "games": 0,
+            "delta": null
           },
           "epa": {
             "current": 0.06342133138736208,
-            "baseline": 0.05081027557223173,
-            "games": 3,
-            "delta": 0.012611055815130355
+            "baseline": null,
+            "games": 0,
+            "delta": null
           },
           "dbEpa": {
             "current": 0.2854244486760513,
-            "baseline": 0.147302002663481,
-            "games": 3,
-            "delta": 0.13812244601257032
+            "baseline": null,
+            "games": 0,
+            "delta": null
           },
           "rushEpa": {
             "current": -0.09438240237052972,
-            "baseline": -0.07132402494411545,
-            "games": 3,
-            "delta": -0.02305837742641427
+            "baseline": null,
+            "games": 0,
+            "delta": null
           }
         }
       },
@@ -3476,32 +3474,32 @@
         "metrics": {
           "plays": {
             "current": null,
-            "baseline": 53.333333333333336,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           },
           "proe": {
             "current": null,
-            "baseline": 0.002341967392591056,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           },
           "epa": {
             "current": null,
-            "baseline": -0.19976751840977047,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           },
           "dbEpa": {
             "current": null,
-            "baseline": -0.26862141763800085,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           },
           "rushEpa": {
             "current": null,
-            "baseline": -0.09645533569745186,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           }
         }
@@ -3511,32 +3509,32 @@
         "metrics": {
           "plays": {
             "current": null,
-            "baseline": 64.66666666666667,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           },
           "proe": {
             "current": null,
-            "baseline": 0.08462169129713544,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           },
           "epa": {
             "current": null,
-            "baseline": 0.16448655434141757,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           },
           "dbEpa": {
             "current": null,
-            "baseline": 0.25603875553194566,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           },
           "rushEpa": {
             "current": null,
-            "baseline": 0.038059298806540735,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           }
         }
@@ -3546,32 +3544,32 @@
         "metrics": {
           "plays": {
             "current": null,
-            "baseline": 55.666666666666664,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           },
           "proe": {
             "current": null,
-            "baseline": -0.0858903610652555,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           },
           "epa": {
             "current": null,
-            "baseline": -0.2346425536314279,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           },
           "dbEpa": {
             "current": null,
-            "baseline": -0.38386425191792134,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           },
           "rushEpa": {
             "current": null,
-            "baseline": -0.08148030600652957,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           }
         }
@@ -3581,32 +3579,32 @@
         "metrics": {
           "plays": {
             "current": null,
-            "baseline": 65.33333333333333,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           },
           "proe": {
             "current": null,
-            "baseline": -0.023998683786911265,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           },
           "epa": {
             "current": null,
-            "baseline": -0.02446063072709248,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           },
           "dbEpa": {
             "current": null,
-            "baseline": -0.049917600752058415,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           },
           "rushEpa": {
             "current": null,
-            "baseline": 0.0005259402542708106,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           }
         }
@@ -3616,32 +3614,32 @@
         "metrics": {
           "plays": {
             "current": null,
-            "baseline": 57,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           },
           "proe": {
             "current": null,
-            "baseline": -0.09637729220741381,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           },
           "epa": {
             "current": null,
-            "baseline": -0.1273833070306508,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           },
           "dbEpa": {
             "current": null,
-            "baseline": -0.08313892001136665,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           },
           "rushEpa": {
             "current": null,
-            "baseline": -0.21137924015370504,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           }
         }
@@ -3651,32 +3649,32 @@
         "metrics": {
           "plays": {
             "current": null,
-            "baseline": 66.66666666666667,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           },
           "proe": {
             "current": null,
-            "baseline": -0.06554414193869963,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           },
           "epa": {
             "current": null,
-            "baseline": 0.10272443661255433,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           },
           "dbEpa": {
             "current": null,
-            "baseline": 0.09622666817417545,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           },
           "rushEpa": {
             "current": null,
-            "baseline": 0.1086265006593561,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           }
         }
@@ -3686,32 +3684,32 @@
         "metrics": {
           "plays": {
             "current": null,
-            "baseline": 63,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           },
           "proe": {
             "current": null,
-            "baseline": 0.062079838915237474,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           },
           "epa": {
             "current": null,
-            "baseline": -0.07879423657695513,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           },
           "dbEpa": {
             "current": null,
-            "baseline": 0.042955866423747414,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           },
           "rushEpa": {
             "current": null,
-            "baseline": -0.2585096015945632,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           }
         }
@@ -3721,32 +3719,32 @@
         "metrics": {
           "plays": {
             "current": null,
-            "baseline": 64,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           },
           "proe": {
             "current": null,
-            "baseline": 0.04521900427007556,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           },
           "epa": {
             "current": null,
-            "baseline": 0.04831259647105335,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           },
           "dbEpa": {
             "current": null,
-            "baseline": 0.09608738123778854,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           },
           "rushEpa": {
             "current": null,
-            "baseline": 0.026420691563995128,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           }
         }
@@ -3756,32 +3754,32 @@
         "metrics": {
           "plays": {
             "current": null,
-            "baseline": 60.333333333333336,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           },
           "proe": {
             "current": null,
-            "baseline": -0.27455545898743544,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           },
           "epa": {
             "current": null,
-            "baseline": -0.04117638404634407,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           },
           "dbEpa": {
             "current": null,
-            "baseline": -0.3123657433711269,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           },
           "rushEpa": {
             "current": null,
-            "baseline": 0.010776694987150767,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           }
         }
@@ -3791,32 +3789,32 @@
         "metrics": {
           "plays": {
             "current": null,
-            "baseline": 62,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           },
           "proe": {
             "current": null,
-            "baseline": -0.04691144048692928,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           },
           "epa": {
             "current": null,
-            "baseline": 0.06993035774846307,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           },
           "dbEpa": {
             "current": null,
-            "baseline": 0.017600128721919846,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           },
           "rushEpa": {
             "current": null,
-            "baseline": 0.11519773722774933,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           }
         }
@@ -3826,32 +3824,32 @@
         "metrics": {
           "plays": {
             "current": null,
-            "baseline": 63,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           },
           "proe": {
             "current": null,
-            "baseline": 0.014252144185182248,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           },
           "epa": {
             "current": null,
-            "baseline": 0.005263198515359009,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           },
           "dbEpa": {
             "current": null,
-            "baseline": 0.041654885703252806,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           },
           "rushEpa": {
             "current": null,
-            "baseline": 0.07505261413651108,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           }
         }
@@ -3861,32 +3859,32 @@
         "metrics": {
           "plays": {
             "current": null,
-            "baseline": 72,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           },
           "proe": {
             "current": null,
-            "baseline": -0.024956283815223423,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           },
           "epa": {
             "current": null,
-            "baseline": 0.09002278659406521,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           },
           "dbEpa": {
             "current": null,
-            "baseline": 0.16686881598996717,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           },
           "rushEpa": {
             "current": null,
-            "baseline": 0.04419282041941288,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           }
         }
@@ -3896,32 +3894,32 @@
         "metrics": {
           "plays": {
             "current": null,
-            "baseline": 58.666666666666664,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           },
           "proe": {
             "current": null,
-            "baseline": -0.0738120166686923,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           },
           "epa": {
             "current": null,
-            "baseline": 0.07500574609775364,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           },
           "dbEpa": {
             "current": null,
-            "baseline": -0.017606989695990772,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           },
           "rushEpa": {
             "current": null,
-            "baseline": 0.1866566143422732,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           }
         }
@@ -3931,32 +3929,32 @@
         "metrics": {
           "plays": {
             "current": null,
-            "baseline": 65,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           },
           "proe": {
             "current": null,
-            "baseline": -0.03691247577062551,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           },
           "epa": {
             "current": null,
-            "baseline": -0.13694417630172065,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           },
           "dbEpa": {
             "current": null,
-            "baseline": -0.16207792708423094,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           },
           "rushEpa": {
             "current": null,
-            "baseline": -0.03376923805032479,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           }
         }
@@ -3966,32 +3964,32 @@
         "metrics": {
           "plays": {
             "current": null,
-            "baseline": 63.666666666666664,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           },
           "proe": {
             "current": null,
-            "baseline": -0.0382182778546138,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           },
           "epa": {
             "current": null,
-            "baseline": -0.051105462302202566,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           },
           "dbEpa": {
             "current": null,
-            "baseline": -0.042679752362021185,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           },
           "rushEpa": {
             "current": null,
-            "baseline": 0.004223958506275244,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           }
         }
@@ -4001,32 +3999,32 @@
         "metrics": {
           "plays": {
             "current": null,
-            "baseline": 60,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           },
           "proe": {
             "current": null,
-            "baseline": -0.08900791401425971,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           },
           "epa": {
             "current": null,
-            "baseline": -0.16769183852110844,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           },
           "dbEpa": {
             "current": null,
-            "baseline": -0.1189762268170265,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           },
           "rushEpa": {
             "current": null,
-            "baseline": -0.19157786939367535,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           }
         }
@@ -4036,32 +4034,32 @@
         "metrics": {
           "plays": {
             "current": null,
-            "baseline": 59.666666666666664,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           },
           "proe": {
             "current": null,
-            "baseline": -0.04641030127612449,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           },
           "epa": {
             "current": null,
-            "baseline": 0.14053940140871066,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           },
           "dbEpa": {
             "current": null,
-            "baseline": 0.3197728533144288,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           },
           "rushEpa": {
             "current": null,
-            "baseline": -0.007916538137076304,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           }
         }
@@ -4071,32 +4069,32 @@
         "metrics": {
           "plays": {
             "current": null,
-            "baseline": 63.333333333333336,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           },
           "proe": {
             "current": null,
-            "baseline": -0.04112397575080792,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           },
           "epa": {
             "current": null,
-            "baseline": 0.07573604370622362,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           },
           "dbEpa": {
             "current": null,
-            "baseline": 0.12430392496348353,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           },
           "rushEpa": {
             "current": null,
-            "baseline": 0.04886493996035279,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           }
         }
@@ -4106,32 +4104,32 @@
         "metrics": {
           "plays": {
             "current": null,
-            "baseline": 54.666666666666664,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           },
           "proe": {
             "current": null,
-            "baseline": -0.02425561173227482,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           },
           "epa": {
             "current": null,
-            "baseline": -0.08971142817435607,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           },
           "dbEpa": {
             "current": null,
-            "baseline": 0.008457557912186645,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           },
           "rushEpa": {
             "current": null,
-            "baseline": -0.150569387200831,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           }
         }
@@ -4141,32 +4139,32 @@
         "metrics": {
           "plays": {
             "current": null,
-            "baseline": 57.666666666666664,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           },
           "proe": {
             "current": null,
-            "baseline": 0.03347304966731894,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           },
           "epa": {
             "current": null,
-            "baseline": 0.10099821460555107,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           },
           "dbEpa": {
             "current": null,
-            "baseline": 0.21817174789727908,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           },
           "rushEpa": {
             "current": null,
-            "baseline": 0.017001080063511403,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           }
         }
@@ -4176,32 +4174,32 @@
         "metrics": {
           "plays": {
             "current": null,
-            "baseline": 52.666666666666664,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           },
           "proe": {
             "current": null,
-            "baseline": 0.027479090775786908,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           },
           "epa": {
             "current": null,
-            "baseline": -0.19693693490689593,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           },
           "dbEpa": {
             "current": null,
-            "baseline": -0.1597642732773332,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           },
           "rushEpa": {
             "current": null,
-            "baseline": -0.21859109843519509,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           }
         }
@@ -4211,32 +4209,32 @@
         "metrics": {
           "plays": {
             "current": null,
-            "baseline": 64,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           },
           "proe": {
             "current": null,
-            "baseline": -0.014972507392164621,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           },
           "epa": {
             "current": null,
-            "baseline": 0.2099108956058521,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           },
           "dbEpa": {
             "current": null,
-            "baseline": 0.32283466734457794,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           },
           "rushEpa": {
             "current": null,
-            "baseline": 0.15390593414490392,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           }
         }
@@ -4246,32 +4244,32 @@
         "metrics": {
           "plays": {
             "current": null,
-            "baseline": 62.333333333333336,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           },
           "proe": {
             "current": null,
-            "baseline": 0.15276016674860257,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           },
           "epa": {
             "current": null,
-            "baseline": 0.2827433123238327,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           },
           "dbEpa": {
             "current": null,
-            "baseline": 0.4317293163932529,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           },
           "rushEpa": {
             "current": null,
-            "baseline": -0.023960932281865428,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           }
         }
@@ -4281,644 +4279,41 @@
         "metrics": {
           "plays": {
             "current": null,
-            "baseline": 59.333333333333336,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           },
           "proe": {
             "current": null,
-            "baseline": 0.029835374101353753,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           },
           "epa": {
             "current": null,
-            "baseline": -0.028768228597427895,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           },
           "dbEpa": {
             "current": null,
-            "baseline": -0.0020280243518414017,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           },
           "rushEpa": {
             "current": null,
-            "baseline": -0.03578307436513235,
-            "games": 3,
+            "baseline": null,
+            "games": 0,
             "delta": null
           }
         }
       }
     ],
-    "players": [
-      {
-        "id": "00-0039816",
-        "name": "Anthony Gould",
-        "team": "IND",
-        "pos": "WR",
-        "games": 2,
-        "weeks": [
-          10,
-          9
-        ],
-        "metrics": {
-          "targetShare": {
-            "current": 0.11538461538461539,
-            "baseline": 0.11086309523809523,
-            "games": 2,
-            "delta": 0.004521520146520158
-          },
-          "carryShare": {
-            "current": 0,
-            "baseline": 0,
-            "games": 2,
-            "delta": 0
-          },
-          "snapPct": {
-            "current": 0.58,
-            "baseline": 0.28,
-            "games": 2,
-            "delta": 0.29999999999999993
-          },
-          "routes": {
-            "current": null,
-            "baseline": 8,
-            "games": 2,
-            "delta": null
-          },
-          "rzTg": {
-            "current": 0,
-            "baseline": 0,
-            "games": 2,
-            "delta": 0
-          },
-          "rzRu": {
-            "current": 0,
-            "baseline": 0,
-            "games": 2,
-            "delta": 0
-          }
-        },
-        "direction": "Increased",
-        "pattern": "Two games",
-        "driver": "snapPct",
-        "tds": 0,
-        "magnitude": 2.999999999999999
-      },
-      {
-        "id": "00-0041132",
-        "name": "Deion Burks",
-        "team": "IND",
-        "pos": "WR",
-        "games": 3,
-        "weeks": [
-          10,
-          9,
-          8
-        ],
-        "metrics": {
-          "targetShare": {
-            "current": 0.11538461538461539,
-            "baseline": 0.05327380952380952,
-            "games": 3,
-            "delta": 0.06211080586080587
-          },
-          "carryShare": {
-            "current": 0,
-            "baseline": 0,
-            "games": 3,
-            "delta": 0
-          },
-          "snapPct": {
-            "current": 0.64,
-            "baseline": 0.38666666666666666,
-            "games": 3,
-            "delta": 0.25333333333333335
-          },
-          "routes": {
-            "current": null,
-            "baseline": 11.666666666666666,
-            "games": 3,
-            "delta": null
-          },
-          "rzTg": {
-            "current": 0,
-            "baseline": 0,
-            "games": 3,
-            "delta": 0
-          },
-          "rzRu": {
-            "current": 0,
-            "baseline": 0,
-            "games": 3,
-            "delta": 0
-          }
-        },
-        "direction": "Increased",
-        "pattern": "Two games",
-        "driver": "snapPct",
-        "tds": 0,
-        "magnitude": 2.533333333333333
-      },
-      {
-        "id": "00-0035021",
-        "name": "Ashton Dulin",
-        "team": "IND",
-        "pos": "WR",
-        "games": 3,
-        "weeks": [
-          10,
-          9,
-          8
-        ],
-        "metrics": {
-          "targetShare": {
-            "current": 0.15384615384615385,
-            "baseline": 0.05257936507936508,
-            "games": 3,
-            "delta": 0.10126678876678877
-          },
-          "carryShare": {
-            "current": 0,
-            "baseline": 0.027313266443701228,
-            "games": 3,
-            "delta": -0.027313266443701228
-          },
-          "snapPct": {
-            "current": 0.44,
-            "baseline": 0.25,
-            "games": 3,
-            "delta": 0.19
-          },
-          "routes": {
-            "current": null,
-            "baseline": 7,
-            "games": 3,
-            "delta": null
-          },
-          "rzTg": {
-            "current": 1,
-            "baseline": 0,
-            "games": 3,
-            "delta": 1
-          },
-          "rzRu": {
-            "current": 0,
-            "baseline": 0.3333333333333333,
-            "games": 3,
-            "delta": -0.3333333333333333
-          }
-        },
-        "direction": "Increased",
-        "pattern": "This week",
-        "driver": "targetShare",
-        "tds": 0,
-        "magnitude": 2.0253357753357752
-      },
-      {
-        "id": "00-0036223",
-        "name": "Jonathan Taylor",
-        "team": "IND",
-        "pos": "RB",
-        "games": 3,
-        "weeks": [
-          10,
-          9,
-          8
-        ],
-        "metrics": {
-          "targetShare": {
-            "current": 0.19230769230769232,
-            "baseline": 0.17113095238095236,
-            "games": 3,
-            "delta": 0.021176739926739963
-          },
-          "carryShare": {
-            "current": 0.6470588235294118,
-            "baseline": 0.447832644763591,
-            "games": 3,
-            "delta": 0.19922617876582077
-          },
-          "snapPct": {
-            "current": 0.68,
-            "baseline": 0.6633333333333334,
-            "games": 3,
-            "delta": 0.016666666666666607
-          },
-          "routes": {
-            "current": null,
-            "baseline": 22,
-            "games": 3,
-            "delta": null
-          },
-          "rzTg": {
-            "current": 0,
-            "baseline": 0,
-            "games": 3,
-            "delta": 0
-          },
-          "rzRu": {
-            "current": 0,
-            "baseline": 2.6666666666666665,
-            "games": 3,
-            "delta": -2.6666666666666665
-          }
-        },
-        "direction": "Increased",
-        "pattern": "This week",
-        "driver": "carryShare",
-        "tds": 0,
-        "magnitude": 1.9922617876582076
-      },
-      {
-        "id": "pfr:StovCa00",
-        "name": "Cade Stover",
-        "team": "HOU",
-        "pos": "TE",
-        "games": 2,
-        "weeks": [
-          10,
-          7
-        ],
-        "metrics": {
-          "targetShare": {
-            "current": null,
-            "baseline": 0.017857142857142856,
-            "games": 2,
-            "delta": null
-          },
-          "carryShare": {
-            "current": null,
-            "baseline": 0.02,
-            "games": 2,
-            "delta": null
-          },
-          "snapPct": {
-            "current": 0,
-            "baseline": 0.18,
-            "games": 2,
-            "delta": -0.18
-          },
-          "routes": {
-            "current": null,
-            "baseline": null,
-            "games": 0,
-            "delta": null
-          },
-          "rzTg": {
-            "current": null,
-            "baseline": 0.5,
-            "games": 2,
-            "delta": null
-          },
-          "rzRu": {
-            "current": null,
-            "baseline": 0,
-            "games": 2,
-            "delta": null
-          }
-        },
-        "direction": "Decreased",
-        "pattern": "Two games",
-        "driver": "snapPct",
-        "tds": null,
-        "magnitude": 1.7999999999999998
-      },
-      {
-        "id": "00-0034383",
-        "name": "Dalton Schultz",
-        "team": "HOU",
-        "pos": "TE",
-        "games": 3,
-        "weeks": [
-          10,
-          9,
-          7
-        ],
-        "metrics": {
-          "targetShare": {
-            "current": 0.038461538461538464,
-            "baseline": 0.12598312598312597,
-            "games": 3,
-            "delta": -0.08752158752158751
-          },
-          "carryShare": {
-            "current": 0,
-            "baseline": 0,
-            "games": 3,
-            "delta": 0
-          },
-          "snapPct": {
-            "current": 0.55,
-            "baseline": 0.5566666666666666,
-            "games": 3,
-            "delta": -0.006666666666666599
-          },
-          "routes": {
-            "current": null,
-            "baseline": 24.5,
-            "games": 2,
-            "delta": null
-          },
-          "rzTg": {
-            "current": 0,
-            "baseline": 0.3333333333333333,
-            "games": 3,
-            "delta": -0.3333333333333333
-          },
-          "rzRu": {
-            "current": 0,
-            "baseline": 0,
-            "games": 3,
-            "delta": 0
-          }
-        },
-        "direction": "Decreased",
-        "pattern": "Two games",
-        "driver": "targetShare",
-        "tds": 0,
-        "magnitude": 1.7504317504317501
-      },
-      {
-        "id": "00-0038618",
-        "name": "Xavier Hutchinson",
-        "team": "HOU",
-        "pos": "WR",
-        "games": 3,
-        "weeks": [
-          10,
-          9,
-          7
-        ],
-        "metrics": {
-          "targetShare": {
-            "current": 0.11538461538461539,
-            "baseline": 0.1998069498069498,
-            "games": 3,
-            "delta": -0.0844223344223344
-          },
-          "carryShare": {
-            "current": 0,
-            "baseline": 0.02666666666666667,
-            "games": 3,
-            "delta": -0.02666666666666667
-          },
-          "snapPct": {
-            "current": 0.82,
-            "baseline": 0.71,
-            "games": 3,
-            "delta": 0.10999999999999999
-          },
-          "routes": {
-            "current": null,
-            "baseline": 32,
-            "games": 2,
-            "delta": null
-          },
-          "rzTg": {
-            "current": 0,
-            "baseline": 1,
-            "games": 3,
-            "delta": -1
-          },
-          "rzRu": {
-            "current": 0,
-            "baseline": 0.6666666666666666,
-            "games": 3,
-            "delta": -0.6666666666666666
-          }
-        },
-        "direction": "Decreased",
-        "pattern": "This week",
-        "driver": "targetShare",
-        "tds": 0,
-        "magnitude": 1.688446688446688
-      },
-      {
-        "id": "00-0036554",
-        "name": "Nico Collins",
-        "team": "HOU",
-        "pos": "WR",
-        "games": 3,
-        "weeks": [
-          10,
-          9,
-          7
-        ],
-        "metrics": {
-          "targetShare": {
-            "current": 0.19230769230769232,
-            "baseline": 0.2437079937079937,
-            "games": 3,
-            "delta": -0.051400301400301385
-          },
-          "carryShare": {
-            "current": 0,
-            "baseline": 0,
-            "games": 3,
-            "delta": 0
-          },
-          "snapPct": {
-            "current": 0.89,
-            "baseline": 0.75,
-            "games": 3,
-            "delta": 0.14
-          },
-          "routes": {
-            "current": null,
-            "baseline": 34,
-            "games": 2,
-            "delta": null
-          },
-          "rzTg": {
-            "current": 0,
-            "baseline": 0.6666666666666666,
-            "games": 3,
-            "delta": -0.6666666666666666
-          },
-          "rzRu": {
-            "current": 0,
-            "baseline": 0,
-            "games": 3,
-            "delta": 0
-          }
-        },
-        "direction": "Increased",
-        "pattern": "Two games",
-        "driver": "snapPct",
-        "tds": 1,
-        "magnitude": 1.4000000000000001
-      },
-      {
-        "id": "00-0037292",
-        "name": "Andrew Ogletree",
-        "team": "IND",
-        "pos": "TE",
-        "games": 3,
-        "weeks": [
-          10,
-          8,
-          7
-        ],
-        "metrics": {
-          "targetShare": {
-            "current": 0,
-            "baseline": 0.06349206349206349,
-            "games": 3,
-            "delta": -0.06349206349206349
-          },
-          "carryShare": {
-            "current": 0,
-            "baseline": 0,
-            "games": 3,
-            "delta": 0
-          },
-          "snapPct": {
-            "current": 0.48,
-            "baseline": 0.4466666666666666,
-            "games": 3,
-            "delta": 0.03333333333333338
-          },
-          "routes": {
-            "current": null,
-            "baseline": 3,
-            "games": 2,
-            "delta": null
-          },
-          "rzTg": {
-            "current": 0,
-            "baseline": 0.3333333333333333,
-            "games": 3,
-            "delta": -0.3333333333333333
-          },
-          "rzRu": {
-            "current": 0,
-            "baseline": 0,
-            "games": 3,
-            "delta": 0
-          }
-        },
-        "direction": "Decreased",
-        "pattern": "This week",
-        "driver": "targetShare",
-        "tds": 0,
-        "magnitude": 1.2698412698412698
-      },
-      {
-        "id": "00-0038705",
-        "name": "Emari Demercado",
-        "team": "HOU",
-        "pos": "RB",
-        "games": 2,
-        "weeks": [
-          10,
-          9
-        ],
-        "metrics": {
-          "targetShare": {
-            "current": 0.07692307692307693,
-            "baseline": 0.054804804804804805,
-            "games": 2,
-            "delta": 0.022118272118272123
-          },
-          "carryShare": {
-            "current": 0.13513513513513514,
-            "baseline": 0.25297619047619047,
-            "games": 2,
-            "delta": -0.11784105534105532
-          },
-          "snapPct": {
-            "current": 0.26,
-            "baseline": 0.28,
-            "games": 2,
-            "delta": -0.020000000000000018
-          },
-          "routes": {
-            "current": null,
-            "baseline": null,
-            "games": 0,
-            "delta": null
-          },
-          "rzTg": {
-            "current": 0,
-            "baseline": 0,
-            "games": 2,
-            "delta": 0
-          },
-          "rzRu": {
-            "current": 0,
-            "baseline": 1,
-            "games": 2,
-            "delta": -1
-          }
-        },
-        "direction": "Decreased",
-        "pattern": "This week",
-        "driver": "carryShare",
-        "tds": 0,
-        "magnitude": 1.1784105534105531
-      },
-      {
-        "id": "00-0041125",
-        "name": "Seth McGowan",
-        "team": "IND",
-        "pos": "RB",
-        "games": 3,
-        "weeks": [
-          10,
-          9,
-          8
-        ],
-        "metrics": {
-          "targetShare": {
-            "current": 0.038461538461538464,
-            "baseline": 0.010416666666666666,
-            "games": 3,
-            "delta": 0.0280448717948718
-          },
-          "carryShare": {
-            "current": 0.17647058823529413,
-            "baseline": 0.26870614466522397,
-            "games": 3,
-            "delta": -0.09223555642992984
-          },
-          "snapPct": {
-            "current": 0.18,
-            "baseline": 0.2833333333333333,
-            "games": 3,
-            "delta": -0.10333333333333333
-          },
-          "routes": {
-            "current": null,
-            "baseline": 3.3333333333333335,
-            "games": 3,
-            "delta": null
-          },
-          "rzTg": {
-            "current": 0,
-            "baseline": 0,
-            "games": 3,
-            "delta": 0
-          },
-          "rzRu": {
-            "current": 1,
-            "baseline": 1.3333333333333333,
-            "games": 3,
-            "delta": -0.33333333333333326
-          }
-        },
-        "direction": "Decreased",
-        "pattern": "This week",
-        "driver": "snapPct",
-        "tds": 0,
-        "magnitude": 1.0333333333333332
-      }
-    ],
+    "players": [],
     "lookbackGames": 3,
     "minimumGames": 2
   },
-  "checkedAt": "2026-11-21T00:01:35.850Z",
-  "publishedAt": "2026-11-21T00:01:36.420Z"
+  "checkedAt": "2026-11-21T00:30:49.557Z",
+  "publishedAt": "2026-11-21T00:30:50.147Z"
 }
